@@ -4,7 +4,9 @@
 {% block meta_description %}Find or become and Ubuntu partner, and benefit from the support of Canonical, the company set up to guide Ubuntu's enterprise adoption.{% endblock %}
 {% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, IaaS, PaaS, SaaS, server, ISV, IHV, OEM, ODM, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
 
-{% block extra_body_class %}home{% endblock %}
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="Reseller" %}
+{% endblock second_level_nav_items %}
 
 {% block content %}
 <div class="row row-hero">

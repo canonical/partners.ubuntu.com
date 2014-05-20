@@ -1,0 +1,68 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu Partners overview{% endblock %}
+{% block meta_description %}Canonical offers a range of Ubuntu partner programmes covering everything from ISVs and cloud technology to mobile carriers and hardware enablement.{% endblock %}
+{% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, server, ISV, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="Overview" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="eight-col">
+		<h1>Ubuntu partner programmes</h1>
+		<p>At Canonical, we run a range of partner programmes to help OEMs, ODMs, ISVs, IHVs, cloud operators and mobile carriers maximise the revenue opportunities Ubuntu provides.</p>
+	</div>
+</div>
+<div class="row no-border">
+	<div class="twelve-col">
+		<h2>A variety of partner programmes</h2>
+	</div>
+	<div class="equal-height">
+		<div class="four-col box">
+			<h3><a href="/partner-programme/public-cloud">Public cloud providers&nbsp;&rsaquo;</a></h3>
+			<p>We provide optimised Ubuntu images, management and commercial support to the world’s biggest clouds.</p>
+		</div>
+		<div class="four-col box">
+			<h3><a href="/partner-programme/phone">Mobile network carriers&nbsp;&rsaquo;</a></h3>
+			<p>We shaping the Ubuntu phone OS with the needs of carriers and handset makers in mind.</p>
+		</div>
+		<div class="four-col last-col box">
+			<h3><a href="/partner-programme/reseller">Resellers&nbsp;&rsaquo;</a></h3>
+			<p>Resellers can expand their service portfolios with Ubuntu Advantage &mdash; management and support for Ubuntu.</p>
+		</div>
+	</div>
+	<div class="equal-height">
+		<div class="four-col box">
+			<h3><a href="/partner-programme/retailer">Retailers&nbsp;&rsaquo;</a></h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin risus ut est aliquet ultrices. Sed lacinia, dolor nec ornare feugiat, leo magna rutrum ipsum.</p>
+		</div>
+		<div class="four-col box">
+			<h3><a href="/partner-programme/hardware">Hardware and component manufacturers&nbsp;&rsaquo;</a></h3>
+			<p>We provide an end-to-end solution for manufacturers of Intel, AMD or ARM-based servers and client devices, helping them get to market on time and on budget.</p>
+		</div>
+		<div class="four-col last-col box">
+			<h3><a href="/partner-programme/software">Independent software vendors (ISVs)&nbsp;&rsaquo;</a></h3>
+			<p>The Canonical Technical Partner programme provides all the information, tools and training necessary to stay ahead of the Ubuntu development curve.</p>
+		</div>
+	</div>
+</div>
+
+<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
+<hr />
+	<div class="twelve-col vertical-divider">
+		<div class="feature-one six-col">
+			<h3>Talk to us about becoming a partner</h3>
+			<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
+			<p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col">
+			<h3>Find a partner</h3>
+			<p>Looking for Ubuntu products or services? Search or select from the complete list of our partners.</p>
+			<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

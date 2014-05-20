@@ -70,9 +70,10 @@
 {% endblock header_banner %}
 </header>
 <div class="wrapper">
-<div id="main-content">
+<div id="main-content" class="inner-wrapper">
 {% if level_1 %}
 {% block second_level_nav %}
+<nav role="navigation" class="nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
 {% endblock second_level_nav %}
 {% endif %}
 

@@ -1,0 +1,67 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu Certified Public cloud{% endblock %}
+{% block meta_description %}Canonical has partnered with the very best software and solutions companies to extend and support and build Ubuntu OpenStack clouds.{% endblock %}
+{% block meta_keywords %}Ubuntu OpenStack, cloud ecosystem, cloud partners, cloud consulting, cloud tools, Canonical{% endblock %}
+
+{% block second_level_nav_items %}
+	{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="Certified Public cloud" %}
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero">
+	<div class="eight-col">
+		<h1>Ubuntu Certified Public Cloud</h1>
+		<p>Ubuntu is enormously popular with providers delivering public cloud services today. Together with its significant developer mindshare, its favourable licensing model and policy of regular updates have made it the platform of choice for cloud guests the world over.</p>
+		<p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified Ubuntu Server images available to these users, along with management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities.</p>
+	</div>
+</div>
+<div class="row no-border strip-dark">
+	<div class="eight-col append-four">
+		<h2>What&rsquo;s included?</h2>
+		<p>As a partner in the Ubuntu Certified Public Cloud programme you can expect:</p>
+	</div>
+	<div class="six-col">
+		<ul class="list-ubuntu">
+			<li>Be featured as a certified partner on the Ubuntu website, including the ability to use Ubuntu Public Cloud certification logos</li>
+			<li>Joint marketing, including entry into our list of public clouds partners</li>
+			<li class="last-item">Revenue-sharing upsells of management tooling <a href="http://www.ubuntu.com/management">Landscape</a> and Ubuntu support offerings</li>
+		</ul>
+	</div>
+	<div class="six-col last-col">
+		<ul class="list-ubuntu">
+			<li>Certified Ubuntu cloud images, tuned and tested to your environment</li>
+			<li>Regular refresh of Ubuntu images increases security</li>
+			<li>Automated publication across all cloud availability zones facilitates operations</li>
+			<li class="last-item">Local Ubuntu archive mirrors deliver a fast maintenance and software installation experience</li>
+		</ul>
+	</div>
+</div>
+<div class="row">
+	<div class="eight-col">
+		<h2>A selection of our cloud partners</h2>
+		<p>We already work with the world&rsquo;s leading public cloud providers, our Premier Certified Public Cloud partners, collaborating with them on the technological developments that are driving cloud computing forward. These include <a href="https://juju.ubuntu.com">Juju</a>, a groundbreaking service orchestration tool bringing rapid deployment of complex applications to any cloud.</p>
+		<p><a href="/find-a-partner">See all public cloud partners&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="four-col last-col">
+		<img src="http://placehold.it/289x250/" alt="" />
+	</div>
+</div>
+
+<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
+<hr />
+	<div class="twelve-col vertical-divider">
+		<div class="feature-one six-col">
+			<h3>Talk to us about becoming a partner</h3>
+			<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
+			<p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col">
+			<h3>Partner programmes</h3>
+			<p>Interested in becoming an Ubuntu partner? Learn more about the benefits of working with Canonical.</p>
+			<p><a href="/partners-programmes">Learn more about partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
