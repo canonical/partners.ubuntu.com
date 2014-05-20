@@ -85,6 +85,9 @@ core scss files are in /sites/core/static/css
 -------------------------------------------------------------- */
 //@import "section/.";
 
+
+/*	@section header
+-------------------------------------------------------------- */
 header.banner .logo-ubuntu span {
     float: left;
     font-weight: 300;
@@ -94,6 +97,87 @@ header.banner .logo-ubuntu span {
     top: 6px;
 }
 
+
+/*	@section footer
+-------------------------------------------------------------- */
 #context-footer div + div {
+	width: auto;
+}
+
+footer .row {
+    margin: 0 auto;
+    width: 984px;
+}
+
+footer.global .list-social li {
+    display: inline-block;
+    height: 45px;
+    margin-right: 20px;
+    text-indent: -999em;
+    width: 45px;
+}
+footer.global .list-social li a {
+    display: block;
+    height: 44px;
+    overflow: hidden;
+    width: 44px;
+}
+footer.global .list-social li a {
+    background-image: url("/static/img/icons/icon-social.svg");
+    background-repeat: no-repeat;
+}
+footer.global .list-social li a#item-twitter {
+    background-position: 0 0;
+}
+footer.global .list-social li a#item-google {
+    background-position: -45px 0;
+}
+footer.global .list-social li a#item-facebook {
+    background-position: -90.5px 0;
+}
+footer.global .list-social li a#item-canonical {
+    background-position: -135px 0;
+}
+footer.global .list-social li a#item-twitter:hover {
+    background-position: 0 -45px;
+}
+footer.global .list-social li a#item-google:hover {
+    background-position: -45px -45px;
+}
+footer.global .list-social li a#item-facebook:hover {
+    background-position: -90.5px -45px;
+}
+footer.global .list-social li a#item-canonical:hover {
+    background-position: -135px -45px;
+}
+html.opera-mini footer.global .list-social li a#item-twitter, html.no-svg footer.global .list-social li a#item-twitter {
+    background-image: url("/static/img/icons/icon-social-twitter.png");
+}
+html.opera-mini footer.global .list-social li a#item-google, html.no-svg footer.global .list-social li a#item-google {
+    background-image: url("/static/img/icons/icon-social-google.png");
+}
+html.opera-mini footer.global .list-social li a#item-facebook, html.no-svg footer.global .list-social li a#item-facebook {
+    background-image: url("/static/img/icons/icon-social-facebook.png");
+}
+html.opera-mini footer.global .list-social li a#item-canonical, html.no-svg footer.global .list-social li a#item-canonical {
+    background-image: url("/static/img/icons/icon-social-rss.png");
+}
+html.opera-mini footer.global .list-social li a#item-twitter:hover, html.no-svg footer.global .list-social li a#item-twitter:hover {
+    background-image: url("/static/img/icons/icon-social-twitter-selected.png");
+}
+html.opera-mini footer.global .list-social li a#item-google:hover, html.no-svg footer.global .list-social li a#item-google:hover {
+    background-image: url("/static/img/icons/icon-social-google-selected.png");
+}
+html.opera-mini footer.global .list-social li a#item-facebook:hover, html.no-svg footer.global .list-social li a#item-facebook:hover {
+    background-image: url("/static/img/icons/icon-social-facebook-selected.png");
+}
+html.opera-mini footer.global .list-social li a#item-canonical:hover, html.no-svg footer.global .list-social li a#item-canonical:hover {
+    background-image: url("/static/img/icons/icon-social-rss-selected.png");
+}
+html.opera-mini footer #nav-global h2:before, html.opera-mini footer #additional-info h2:before, html.no-svg footer #nav-global h2:before, html.no-svg footer #additional-info h2:before {
+    background-image: url("/static/img/external-link.png");
+}
+
+footer.global ul.inline li:last-child {
 	width: auto;
 }
