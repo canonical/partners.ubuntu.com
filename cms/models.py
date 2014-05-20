@@ -17,10 +17,36 @@ class PartnerModel(models.Model):
         abstract = True
 
 
+class CategoryModel(PartnerModel):
+    class Meta:
+        abstract = True
+
+
+class Category(CategoryModel):
+    pass
+
+
+class IndustrySector(CategoryModel):
+    pass
+
+
+class Programme(CategoryModel):
+    pass
+
+
+class ServiceOffered(CategoryModel):
+    pass
+
+
+class Region(CategoryModel):
+    pass
+
+
 class Partner(PartnerModel):
-    logo = models.ImageField()
+    logo = models.URLField()
     external_page = models.CharField(max_length=200)
     external_fallback = models.CharField(max_length=200)
     short_description = models.CharField(max_length=200)
     long_description = models.TextField()
     featured = models.BooleanField()
+    category = models.ManyToManyField(Category, related_name='partners')
