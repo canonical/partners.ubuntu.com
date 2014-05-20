@@ -124,7 +124,9 @@
 import all the scss and css files in the order they should be combined.
 core scss files are in /sites/core/static/css
 -------------------------------------------------------------- */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\0000388}}
+/*	@section header
+-------------------------------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\0000391}}
 header.banner .logo-ubuntu span {
   float: left;
   font-weight: 300;
@@ -133,6 +135,105 @@ header.banner .logo-ubuntu span {
   position: relative;
   top: 6px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\0000397}}
+/*	@section footer
+-------------------------------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003103}}
 #context-footer div + div {
+  width: auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003107}}
+footer .row {
+  margin: 0 auto;
+  width: 984px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003112}}
+footer.global .list-social li {
+  display: inline-block;
+  height: 45px;
+  margin-right: 20px;
+  text-indent: -999em;
+  width: 45px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003119}}
+footer.global .list-social li a {
+  display: block;
+  height: 44px;
+  overflow: hidden;
+  width: 44px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003125}}
+footer.global .list-social li a {
+  background-image: url("/static/img/icons/icon-social.svg");
+  background-repeat: no-repeat; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003129}}
+footer.global .list-social li a#item-twitter {
+  background-position: 0 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003132}}
+footer.global .list-social li a#item-google {
+  background-position: -45px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003135}}
+footer.global .list-social li a#item-facebook {
+  background-position: -90.5px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003138}}
+footer.global .list-social li a#item-canonical {
+  background-position: -135px 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003141}}
+footer.global .list-social li a#item-twitter:hover {
+  background-position: 0 -45px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003144}}
+footer.global .list-social li a#item-google:hover {
+  background-position: -45px -45px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003147}}
+footer.global .list-social li a#item-facebook:hover {
+  background-position: -90.5px -45px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003150}}
+footer.global .list-social li a#item-canonical:hover {
+  background-position: -135px -45px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003153}}
+html.opera-mini footer.global .list-social li a#item-twitter, html.no-svg footer.global .list-social li a#item-twitter {
+  background-image: url("/static/img/icons/icon-social-twitter.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003156}}
+html.opera-mini footer.global .list-social li a#item-google, html.no-svg footer.global .list-social li a#item-google {
+  background-image: url("/static/img/icons/icon-social-google.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003159}}
+html.opera-mini footer.global .list-social li a#item-facebook, html.no-svg footer.global .list-social li a#item-facebook {
+  background-image: url("/static/img/icons/icon-social-facebook.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003162}}
+html.opera-mini footer.global .list-social li a#item-canonical, html.no-svg footer.global .list-social li a#item-canonical {
+  background-image: url("/static/img/icons/icon-social-rss.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003165}}
+html.opera-mini footer.global .list-social li a#item-twitter:hover, html.no-svg footer.global .list-social li a#item-twitter:hover {
+  background-image: url("/static/img/icons/icon-social-twitter-selected.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003168}}
+html.opera-mini footer.global .list-social li a#item-google:hover, html.no-svg footer.global .list-social li a#item-google:hover {
+  background-image: url("/static/img/icons/icon-social-google-selected.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003171}}
+html.opera-mini footer.global .list-social li a#item-facebook:hover, html.no-svg footer.global .list-social li a#item-facebook:hover {
+  background-image: url("/static/img/icons/icon-social-facebook-selected.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003174}}
+html.opera-mini footer.global .list-social li a#item-canonical:hover, html.no-svg footer.global .list-social li a#item-canonical:hover {
+  background-image: url("/static/img/icons/icon-social-rss-selected.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003177}}
+html.opera-mini footer #nav-global h2:before, html.opera-mini footer #additional-info h2:before, html.no-svg footer #nav-global h2:before, html.no-svg footer #additional-info h2:before {
+  background-image: url("/static/img/external-link.png"); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003181}}
+footer.global ul.inline li:last-child {
   width: auto; }
