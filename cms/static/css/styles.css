@@ -76,24 +76,63 @@
 
 -----------------------------------------------------------------
 -------------------------------------------------------------- */
-@import "core-constants";
-@import "core-mixins";
-
+/**
+ * Ubuntu Patterns Stylesheet
+ *
+ * The CSS file required by Ubuntu patterns page
+ * 
+ * @project		Ubuntu Patterns
+ * @author		Web Team at Canonical Ltd
+ * @copyright	2012 Canonical Ltd
+ *
+ * @see 		http://design.ubuntu.com
+ */
+/**
+ * standard colors
+ *
+ * @colordef standard colors
+ */
+/* ubuntu orange (used for text links also on any site except canonical) */
+/* used as background on pre text */
+/* canonical aubergine */
+/* light aubergine (consumer) */
+/* mid aubergine (both) */
+/* dark aubergine (enterprise) */
+/* warm grey */
+/* cool grey */
+/* light grey */
+/* notifications */
+/* red */
+/* yellow */
+/* green */
+/* cyan */
+/* colour coded status - from negative to positive (Icon: canonical circle) */
+/* red, for status that require immediate attention */
+/* grey, for disabled status or ones that don’t require attention */
+/* yellow, for status that require attention */
+/* blue, for status that don’t require action */
+/* green, for positive status */
+/* misc colours */
+/* This is the global link color, mainly used for links in content */
+/* grid variables */
+/**
+ * mixins
+ *
+ * @section mixins
+ */
 /*	@section import scss files
 import all the scss and css files in the order they should be combined.
 core scss files are in /sites/core/static/css
 -------------------------------------------------------------- */
-//@import "section/.";
-
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\0000388}}
 header.banner .logo-ubuntu span {
-    float: left;
-    font-weight: 300;
-    padding-left: 113px;
-    padding-right: 20px;
-    position: relative;
-    top: 6px;
-}
+  float: left;
+  font-weight: 300;
+  padding-left: 113px;
+  padding-right: 20px;
+  position: relative;
+  top: 6px; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthonydillon\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\0000397}}
 #context-footer div + div {
-	width: auto;
-}
+  width: auto; }
