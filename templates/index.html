@@ -1,1 +1,25 @@
-index
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu Partners overview{% endblock %}
+{% block meta_description %}Find or become and Ubuntu partner, and benefit from the support of Canonical, the company set up to guide Ubuntu's enterprise adoption.{% endblock %}
+{% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, IaaS, PaaS, SaaS, server, ISV, IHV, OEM, ODM, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
+
+{% block extra_body_class %}home{% endblock %}
+
+{% block content %}
+<div class="inner-wrapper">
+	<div class="row row-hero">
+		<div class="six-col">
+			<h1>Ubuntu partners</h1>
+			<p>At Canonical, we provide the services our partners need to ensure their hardware and softwareworks optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For enterprise technology customers, this has created a thriving market of suppliers, all proven experts on Ubuntu.</p>
+			<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="twelve-col">
+			<h3 class="caps-centered">Works with all your hardware and software</h3>
+			<p>INSERT ROW OF FEATURED LOGO'S</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
