@@ -10,6 +10,7 @@ sass-watch:
 	sass --debug-info --watch cms/static/css/styles.scss:cms/static/css/styles.css &
 
 runserver:
+	make sass-watch
 	env/bin/python manage.py runserver_plus
 
 runserver_prod:
