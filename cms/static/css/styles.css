@@ -142,11 +142,59 @@ header.banner .logo-ubuntu span {
   width: 48.9362%; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003107}}
+.cookie-policy {
+  -moz-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  background-color: #fae4dc;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 100; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003115}}
+  .cookie-policy .wrapper {
+    background: transparent; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003119}}
+  .cookie-policy p {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding: 8px 10px;
+    width: 100%; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003128}}
+  .cookie-policy .link-cta {
+    background-image: url(http://assets.ubuntu.com/sites/ubuntu/latest/u/img/icons/close-orange.svg);
+    background-repeat: no-repeat;
+    color: #fff;
+    float: right;
+    font-size: 1em;
+    height: 15px;
+    margin: 12px 10px;
+    margin-top: 12px;
+    padding: 0;
+    text-decoration: none;
+    text-indent: -9999px;
+    width: 16px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003145}}
+html.no-svg .cookie-policy .link-cta,
+html.opera-mini .cookie-policy .link-cta {
+  background-image: url(http://assets.ubuntu.com/sites/ubuntu/latest/u/img/icons/close-orange.png); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003150}}
+html.opera-mini .cookie-policy {
+  position: relative;
+  top: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003156}}
 footer .row {
   margin: 0 auto;
   width: 984px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003112}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003161}}
 footer.global .list-social li {
   display: inline-block;
   height: 45px;
@@ -154,86 +202,86 @@ footer.global .list-social li {
   text-indent: -999em;
   width: 45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003119}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003168}}
 footer.global .list-social li a {
   display: block;
   height: 44px;
   overflow: hidden;
   width: 44px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003125}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003174}}
 footer.global .list-social li a {
   background-image: url("/static/img/icons/icon-social.svg");
   background-repeat: no-repeat; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003178}}
 footer.global .list-social li a#item-twitter {
   background-position: 0 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003132}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003181}}
 footer.global .list-social li a#item-google {
   background-position: -45px 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003135}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003184}}
 footer.global .list-social li a#item-facebook {
   background-position: -90.5px 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003138}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003187}}
 footer.global .list-social li a#item-canonical {
   background-position: -135px 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003141}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003190}}
 footer.global .list-social li a#item-twitter:hover {
   background-position: 0 -45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003144}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003193}}
 footer.global .list-social li a#item-google:hover {
   background-position: -45px -45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003147}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003196}}
 footer.global .list-social li a#item-facebook:hover {
   background-position: -90.5px -45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003199}}
 footer.global .list-social li a#item-canonical:hover {
   background-position: -135px -45px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003153}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003202}}
 html.opera-mini footer.global .list-social li a#item-twitter, html.no-svg footer.global .list-social li a#item-twitter {
   background-image: url("/static/img/icons/icon-social-twitter.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003156}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003205}}
 html.opera-mini footer.global .list-social li a#item-google, html.no-svg footer.global .list-social li a#item-google {
   background-image: url("/static/img/icons/icon-social-google.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003159}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003208}}
 html.opera-mini footer.global .list-social li a#item-facebook, html.no-svg footer.global .list-social li a#item-facebook {
   background-image: url("/static/img/icons/icon-social-facebook.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003162}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003211}}
 html.opera-mini footer.global .list-social li a#item-canonical, html.no-svg footer.global .list-social li a#item-canonical {
   background-image: url("/static/img/icons/icon-social-rss.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003214}}
 html.opera-mini footer.global .list-social li a#item-twitter:hover, html.no-svg footer.global .list-social li a#item-twitter:hover {
   background-image: url("/static/img/icons/icon-social-twitter-selected.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003168}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003217}}
 html.opera-mini footer.global .list-social li a#item-google:hover, html.no-svg footer.global .list-social li a#item-google:hover {
   background-image: url("/static/img/icons/icon-social-google-selected.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003171}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003220}}
 html.opera-mini footer.global .list-social li a#item-facebook:hover, html.no-svg footer.global .list-social li a#item-facebook:hover {
   background-image: url("/static/img/icons/icon-social-facebook-selected.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003174}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003223}}
 html.opera-mini footer.global .list-social li a#item-canonical:hover, html.no-svg footer.global .list-social li a#item-canonical:hover {
   background-image: url("/static/img/icons/icon-social-rss-selected.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003226}}
 html.opera-mini footer #nav-global h2:before, html.opera-mini footer #additional-info h2:before, html.no-svg footer #nav-global h2:before, html.no-svg footer #additional-info h2:before {
   background-image: url("/static/img/external-link.png"); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/anthony\/Documents\/Canonical\/Branches\/partners\/cms\/static\/css\/styles\.scss}line{font-family:\00003230}}
 footer.global ul.inline li:last-child {
   width: auto; }
