@@ -6,7 +6,57 @@ from cms.models import (
 
 
 class PartnerAdmin(admin.ModelAdmin):
-    pass
+    filter_horizontal = (
+        'quote',
+        'link',
+        'insights_tag',
+        'text'
+    )
+    list_display = (
+        'name',
+        'short_description',
+        'featured',
+        'generate_page',
+    )
+    list_filter = (
+        'name',
+        'featured',
+        'generate_page',
+    )
+    search_fields = ['name']
+    readonly_fields = (
+        'created_by',
+        'updated_by'
+    )
+    fieldsets = (
+        (None, {
+            'fields': (
+                'name',
+                'logo',
+                'external_page',
+                'external_fallback',
+                'short_description',
+                'long_description',
+                'featured',
+                'generate_page'
+            )
+        }),
+        ('Categories', {
+            'fields': (
+                'category',
+                'industry_sector',
+                'programme',
+                'service_offered',
+                'region'
+            )
+        }),
+        ("Metadata", {
+            'fields': ('quote', 'link', 'insights_tag', 'text')
+        }),
+        ("Other", {
+            'fields': ('notes', 'created_by', 'updated_by')
+        }),
+    )
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -29,19 +79,26 @@ class RegionAdmin(admin.ModelAdmin):
     pass
 
 
-class QuoteAdmin(admin.ModelAdmin):
+class MetadataAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'created_by',
+        'updated_by'
+    )
+
+
+class QuoteAdmin(MetadataAdmin):
     pass
 
 
-class LinkAdmin(admin.ModelAdmin):
+class LinkAdmin(MetadataAdmin):
     pass
 
 
-class InsightsTagAdmin(admin.ModelAdmin):
+class InsightsTagAdmin(MetadataAdmin):
     pass
 
 
-class TextAdmin(admin.ModelAdmin):
+class TextAdmin(MetadataAdmin):
     pass
 
 

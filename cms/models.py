@@ -5,17 +5,16 @@ class PartnerModel(models.Model):
     "Partner metadata"
 
     name = models.CharField(max_length=200)
-    notes = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
-    created_by = models.CharField(max_length=200, blank=True)
+    created_by = models.CharField(max_length=200, blank=True, default="TEST_USER")
     updated_on = models.DateTimeField(auto_now=True, blank=True)
-    updated_by = models.CharField(max_length=200, blank=True)
+    updated_by = models.CharField(max_length=200, blank=True, default="TEST_USER")
 
     class Meta:
         abstract = True
 
     def __unicode__(self):
-        return str(self.name)
+        return unicode(self.name)
 
 
 class Quote(PartnerModel):
@@ -76,6 +75,7 @@ class Partner(PartnerModel):
     short_description = models.CharField(max_length=200)
     long_description = models.TextField()
     featured = models.BooleanField()
+    generate_page = models.BooleanField()
     category = models.ManyToManyField(
         Category,
         related_name='partners'
@@ -112,3 +112,4 @@ class Partner(PartnerModel):
         Text,
         related_name='partners'
     )
+    notes = models.TextField(blank=True)
