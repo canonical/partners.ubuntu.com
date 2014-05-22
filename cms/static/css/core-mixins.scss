@@ -3,9 +3,9 @@
  *
  * @section mixins
  */
- 
+
 @mixin font_size ($size: 16) {
-  font-size: ($size / $base)em; 
+  font-size: ($size / $base)em;
   margin-bottom: (12 / $size)em;
 }
 
@@ -15,13 +15,19 @@
 	box-sizing:         $type;
 }
 
-@mixin rounded_corners($radius: 4px 4px 4px 4px) { 
+@mixin background_size ($size: 0 0) {
+  -webkit-background-size: $size;
+  -moz-background-size:    $size;
+  background-size:         $size;
+}
+
+@mixin rounded_corners($radius: 4px 4px 4px 4px) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
 }
 
-@mixin box_shadow($shadow: 0 2px 2px 0 #c2c2c2) { 
+@mixin box_shadow($shadow: 0 2px 2px 0 #c2c2c2) {
   -moz-box-shadow: $shadow;
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;

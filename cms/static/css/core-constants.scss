@@ -3,14 +3,14 @@
  * Ubuntu Patterns Stylesheet
  *
  * The CSS file required by Ubuntu patterns page
- * 
+ *
  * @project		Ubuntu Patterns
  * @author		Web Team at Canonical Ltd
  * @copyright	2012 Canonical Ltd
  *
  * @see 		http://design.ubuntu.com
  */
- 
+
 $one_col:             6.38297%;
 $two_col:             14.89361%;
 $three_col:           23.40425%;
@@ -38,6 +38,13 @@ $dark_aubergine:		  #2c001e; /* dark aubergine (enterprise) */
 $warm_grey:				    #aea79f; /* warm grey */
 $cool_grey:				    #333333; /* cool grey */
 $light_grey:			    #f7f7f7; /* light grey */
+
+$nav_bg:			#f0f0f0;
+$nav_link_color:	#333;
+$nav_border_dark:	#d4d7d4;
+$nav_border_light:	#f2f2f4;
+$nav_hover_bg:      #d0d0d0;
+$nav_active_bg:     #ddd;
 
 /* notifications */
 $error:					      #df382c; /* red */
