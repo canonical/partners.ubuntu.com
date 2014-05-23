@@ -45,7 +45,7 @@ class CategoryModel(models.Model):
         abstract = True
 
     def __unicode__(self):
-        return str(self.name)
+        return unicode(self.name)
 
 
 class Category(CategoryModel):
