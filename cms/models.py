@@ -6,9 +6,20 @@ class PartnerModel(models.Model):
 
     name = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
-    created_by = models.CharField(max_length=200, blank=True, default="TEST_USER")
-    updated_on = models.DateTimeField(auto_now=True, blank=True)
-    updated_by = models.CharField(max_length=200, blank=True, default="TEST_USER")
+    created_by = models.CharField(
+        max_length=200,
+        blank=True,
+        default="TEST_USER"
+    )
+    updated_on = models.DateTimeField(
+        auto_now=True,
+        blank=True
+    )
+    updated_by = models.CharField(
+        max_length=200,
+        blank=True,
+        default="TEST_USER"
+    )
 
     class Meta:
         abstract = True
@@ -49,7 +60,8 @@ class CategoryModel(models.Model):
 
 
 class Category(CategoryModel):
-    pass
+    class Meta:
+        verbose_name_plural = 'categories'
 
 
 class IndustrySector(CategoryModel):
@@ -61,7 +73,8 @@ class Programme(CategoryModel):
 
 
 class ServiceOffered(CategoryModel):
-    pass
+    class Meta:
+        verbose_name_plural = 'services offered'
 
 
 class Region(CategoryModel):
@@ -82,7 +95,9 @@ class Partner(PartnerModel):
     )
     industry_sector = models.ManyToManyField(
         IndustrySector,
-        related_name='partners'
+        related_name='partners',
+        blank=True,
+        null=True
     )
     programme = models.ManyToManyField(
         Programme,
