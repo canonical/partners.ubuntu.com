@@ -10,6 +10,9 @@
 <div class="row row-hero">
 	<div class="eight-col">
 		<h1>Ubuntu partners</h1>
+		{% for p in partners %}
+		{{ p.short_description }}
+		{% endfor %}
 		<p>At Canonical, we provide the services our partners need to ensure their hardware and softwareworks optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For enterprise technology customers, this has created a thriving market of suppliers, all proven experts on Ubuntu.</p>
 		<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
 	</div>
