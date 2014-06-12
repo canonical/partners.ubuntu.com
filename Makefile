@@ -20,4 +20,4 @@ rebuild-packages:
 	pip2tgz packages/ -r requirements.txt
 
 graph:
-	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && gnome-open cms.svg
+	./manage.py graph_models cms -o cms.png -X PartnerModel,CategoryModel && gnome-open cms.png
