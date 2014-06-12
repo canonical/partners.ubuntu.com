@@ -12,6 +12,9 @@ admin.autodiscover()
 
 
 class PartnerView(TemplateFinder):
+    """
+    This view injects Partners into every template. You know, for prototyping.
+    """
     def render_to_response(self, context, **response_kwargs):
         context['partners'] = Partner.objects.all()
         return super(PartnerView, self).render_to_response(context, **response_kwargs)
