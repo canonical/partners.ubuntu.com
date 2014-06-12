@@ -6,8 +6,15 @@ from django.http import (
 from django.template import RequestContext, loader, Context
 
 from fenchurch import TemplateFinder
+from cms.models import Partner
 
 admin.autodiscover()
+
+
+class PartnerView(TemplateFinder):
+    def render_to_response(self, context, **response_kwargs):
+        context['partners'] = Partner.objects.all()
+        return super(PartnerView, self).render_to_response(context, **response_kwargs)
 
 
 def custom_404(request):
@@ -23,7 +30,7 @@ def custom_500(request):
 urlpatterns = patterns(
     '',
     url(r'^admin', include(admin.site.urls)),
-    url(r'^(?P<template>.*)$', TemplateFinder.as_view()),
+    url(r'^(?P<template>.*)$', PartnerView.as_view()),
 )
 
 # Error handlers
