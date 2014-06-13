@@ -5,23 +5,74 @@ from cms.models import (
 )
 
 
+class TextInline(admin.TabularInline):
+    model = Text
+    extra = 0
+
+
+class QuoteInline(admin.TabularInline):
+    model = Quote
+    extra = 0
+
+
+class LinkInline(admin.TabularInline):
+    model = Link
+    extra = 0
+
+
+class InsightsTagInline(admin.TabularInline):
+    model = InsightsTag
+    extra = 0
+
+
 class PartnerAdmin(admin.ModelAdmin):
-    filter_horizontal = (
-        'quote',
-        'link',
-        'insights_tag',
-        'text'
-    )
+
+    def category(obj):
+        return ",".join([str(o) for o in obj.category.all()])
+
+    def industry_sector(obj):
+        return ",".join([str(o) for o in obj.industry_sector.all()])
+
+    def programme(obj):
+        return ",".join([str(o) for o in obj.programme.all()])
+
+    def service_offered(obj):
+        return ",".join([str(o) for o in obj.service_offered.all()])
+
+    def region(obj):
+        return ",".join([str(o) for o in obj.region.all()])
+
+    category.short_description = 'Category'
+    industry_sector.short_description = 'Industry Sector'
+    programme.short_description = 'Programme'
+    service_offered.short_description = 'Service Offered'
+    region.short_description = 'Region'
+
     list_display = (
         'name',
+        'published',
         'short_description',
         'featured',
         'generate_page',
+        category,
+        industry_sector,
+        programme,
+        service_offered,
+        region,
     )
     list_filter = (
         'name',
+        'published',
         'featured',
         'generate_page',
+        'category',
+        'industry_sector',
+        'programme',
+        'service_offered',
+        'region'
+    )
+    list_editable = (
+        'published',
     )
     search_fields = ['name']
     readonly_fields = (
@@ -32,6 +83,7 @@ class PartnerAdmin(admin.ModelAdmin):
         (None, {
             'fields': (
                 'name',
+                'published',
                 'logo',
                 'external_page',
                 'external_fallback',
@@ -50,13 +102,16 @@ class PartnerAdmin(admin.ModelAdmin):
                 'region'
             )
         }),
-        ("Metadata", {
-            'fields': ('quote', 'link', 'insights_tag', 'text')
-        }),
         ("Other", {
             'fields': ('notes', 'created_by', 'updated_by')
         }),
     )
+    inlines = [
+        TextInline,
+        QuoteInline,
+        LinkInline,
+        InsightsTagInline
+    ]
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -86,19 +141,19 @@ class MetadataAdmin(admin.ModelAdmin):
     )
 
 
-class QuoteAdmin(MetadataAdmin):
+class QuoteAdmin(admin.ModelAdmin):
     pass
 
 
-class LinkAdmin(MetadataAdmin):
+class LinkAdmin(admin.ModelAdmin):
     pass
 
 
-class InsightsTagAdmin(MetadataAdmin):
+class InsightsTagAdmin(admin.ModelAdmin):
     pass
 
 
-class TextAdmin(MetadataAdmin):
+class TextAdmin(admin.ModelAdmin):
     pass
 
 

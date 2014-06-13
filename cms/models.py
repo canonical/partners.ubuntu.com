@@ -3,7 +3,6 @@ from django.db import models
 
 class PartnerModel(models.Model):
     "Partner metadata"
-
     name = models.CharField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.CharField(
@@ -26,27 +25,6 @@ class PartnerModel(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
-
-
-class Quote(PartnerModel):
-    text = models.TextField(blank=True)
-    attribution = models.CharField(max_length=200)
-
-
-class Link(PartnerModel):
-    url = models.URLField()
-    text = models.TextField()
-
-
-class InsightsTag(PartnerModel):
-    tag = models.TextField()
-
-
-class Text(PartnerModel):
-    image = models.URLField()
-    header = models.TextField()
-    body = models.TextField()
-    url = models.URLField()
 
 
 class CategoryModel(models.Model):
@@ -82,16 +60,19 @@ class Region(CategoryModel):
 
 
 class Partner(PartnerModel):
-    logo = models.URLField()
-    external_page = models.CharField(max_length=200)
-    external_fallback = models.CharField(max_length=200)
-    short_description = models.CharField(max_length=200)
-    long_description = models.TextField()
+    published = models.BooleanField()
+    logo = models.URLField(blank=True, null=True)
+    external_page = models.CharField(max_length=200, blank=True, null=True)
+    external_fallback = models.CharField(max_length=200, blank=True, null=True)
+    short_description = models.CharField(max_length=200, blank=True, null=True)
+    long_description = models.TextField(blank=True, null=True)
     featured = models.BooleanField()
     generate_page = models.BooleanField()
     category = models.ManyToManyField(
         Category,
-        related_name='partners'
+        related_name='partners',
+        blank=True,
+        null=True
     )
     industry_sector = models.ManyToManyField(
         IndustrySector,
@@ -101,30 +82,45 @@ class Partner(PartnerModel):
     )
     programme = models.ManyToManyField(
         Programme,
-        related_name='partners'
+        related_name='partners',
+        blank=True,
+        null=True
     )
     service_offered = models.ManyToManyField(
         ServiceOffered,
-        related_name='partners'
+        related_name='partners',
+        blank=True,
+        null=True
     )
     region = models.ManyToManyField(
         Region,
-        related_name='partners'
-    )
-    quote = models.ManyToManyField(
-        Quote,
-        related_name='partners'
-    )
-    link = models.ManyToManyField(
-        Link,
-        related_name='partners'
-    )
-    insights_tag = models.ManyToManyField(
-        InsightsTag,
-        related_name='partners'
-    )
-    text = models.ManyToManyField(
-        Text,
-        related_name='partners'
+        related_name='partners',
+        blank=True,
+        null=True
     )
     notes = models.TextField(blank=True)
+
+
+class Quote(models.Model):
+    partner = models.ForeignKey(Partner)
+    text = models.TextField(blank=True)
+    attribution = models.CharField(max_length=200)
+
+
+class Link(models.Model):
+    partner = models.ForeignKey(Partner)
+    url = models.URLField()
+    text = models.TextField()
+
+
+class InsightsTag(models.Model):
+    partner = models.ForeignKey(Partner)
+    tag = models.CharField(max_length=200)
+
+
+class Text(models.Model):
+    partner = models.ForeignKey(Partner)
+    image = models.URLField()
+    header = models.TextField()
+    body = models.TextField()
+    url = models.URLField()
