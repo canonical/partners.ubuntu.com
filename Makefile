@@ -2,6 +2,7 @@ develop:
 	python bootstrap.py env
 	env/bin/pip install -r requirements.txt
 	env/bin/python manage.py syncdb --noinput
+	env/bin/python manage.py migrate
 	make sass-watch
 	make runserver
 

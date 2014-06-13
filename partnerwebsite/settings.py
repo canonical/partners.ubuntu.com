@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'cms'
+    'cms',
+    'south'
 )
 
 MIDDLEWARE_CLASSES = (
