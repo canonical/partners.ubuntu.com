@@ -16,7 +16,7 @@ class PartnerView(TemplateFinder):
     This view injects Partners into every template. You know, for prototyping.
     """
     def render_to_response(self, context, **response_kwargs):
-        context['partners'] = Partner.objects.all()
+        context['partners'] = Partner.objects.filter(published=True)
         return super(PartnerView, self).render_to_response(context, **response_kwargs)
 
 
