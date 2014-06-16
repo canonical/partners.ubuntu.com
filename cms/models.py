@@ -1,4 +1,5 @@
 from django.db import models
+from django.core import serializers
 
 
 class PartnerModel(models.Model):
@@ -99,6 +100,18 @@ class Partner(PartnerModel):
         null=True
     )
     notes = models.TextField(blank=True)
+
+    def quotes(self):
+        return serializers.serialize('python', self.quote_set.all())
+
+    def links(self):
+        return serializers.serialize('python', self.link_set.all())
+
+    def insights_tags(self):
+        return serializers.serialize('python', self.insightstag_set.all())
+
+    def texts(self):
+        return serializers.serialize('python', self.text_set.all())
 
 
 class Quote(models.Model):
