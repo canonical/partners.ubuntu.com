@@ -1,8 +1,6 @@
 extra requirements::
 
-    sudo apt-get install postgresql
-    sudo apt-get install postgresql-server-dev-9.1
-
+    sudo apt-get install postgresql postgresql-server-dev-9.3
 
 To create your postgres user and database::
 
