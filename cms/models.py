@@ -65,7 +65,7 @@ class Partner(PartnerModel):
     logo = models.URLField(blank=True, null=True)
     external_page = models.CharField(max_length=200, blank=True, null=True)
     external_fallback = models.CharField(max_length=200, blank=True, null=True)
-    short_description = models.CharField(max_length=200, blank=True, null=True)
+    short_description = models.CharField(max_length=200)
     long_description = models.TextField(blank=True, null=True)
     featured = models.BooleanField()
     generate_page = models.BooleanField()

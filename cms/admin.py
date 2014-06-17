@@ -80,14 +80,18 @@ class PartnerAdmin(admin.ModelAdmin):
         'updated_by'
     )
     fieldsets = (
-        (None, {
+        ('Required', {
             'fields': (
                 'name',
+                'short_description',
+            )
+        }),
+        ('Further information', {
+            'fields': (
                 'published',
                 'logo',
                 'external_page',
                 'external_fallback',
-                'short_description',
                 'long_description',
                 'featured',
                 'generate_page'
