@@ -1,11 +1,10 @@
 Django==1.6.5
-Pillow==2.4.0
 South==0.8.4
 Werkzeug==0.9.4
 argparse==1.2.1
 django-extensions==1.3.7
 django-preserialize==1.0.7
-fenchurch==0.1
+bzr+ssh://bazaar.launchpad.net/+branch/fenchurch/3.0.0/#egg=fenchurch
 ipdb==0.8
 ipython==2.1.0
 psycopg2==2.5.3

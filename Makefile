@@ -7,8 +7,7 @@ develop:
 	make runserver
 
 requirements:
-	sudo apt-get -y install libjpeg-dev zlib1g-dev libpng12-dev libmagickwand-dev python-dev
-	- sudo ln -s /usr/include/freetype2 /usr/include/freetype
+	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
 	env/bin/pip install -r requirements.txt
 sass-watch:
 	# Build sass
@@ -25,4 +24,4 @@ rebuild-packages:
 	pip2tgz packages/ -r requirements.txt
 
 graph:
-	./manage.py graph_models cms -o cms.png -X PartnerModel,CategoryModel && gnome-open cms.png
+	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
