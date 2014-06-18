@@ -12,21 +12,28 @@
 <div class="row row-hero">
 	<div class="eight-col">
 		<h1>Ubuntu OpenStack partners</h1>
-		<p>The Ubuntu OpenStack interoperability lab is an integration lab in which we test our cloud partners’ products in countless Ubuntu OpenStack configurations. Currently we are working with over 3,000 combinations per month. </p>
-		<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
+		<p>The Ubuntu OpenStack Interoperability Lab (OIL)  is an integration lab in which we test our cloud partners&rsquo; products in countless Ubuntu OpenStack configurations, over and over again. Currently we are working with over 3,000 combinations per month. </p>
 	</div>
 </div>
 <div class="row">
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our OpenStack partners</h3>
-		<p>INSERT ROW OF OPENSTACK PARTNER LOGO'S</p>
+		<ul class="inline-logos no-bullets">
+			{% for p in partners %}
+				{% for programme in p.programme.all %}
+					{% if programme.name == 'openstack' %}
+						<li><img src="{{ p.logo }}" alt="{{ p.name }}" /></li>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</ul>
 		<p><a href="/find-a-partner/openstack">See all OpenStack partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 <div class="row">
 	<div class="eight-col">
 		<h2>Proven integration testing</h2>
-		<p>The Ubuntu Openstack ecosystem is growing fast. This is good news.  But as the options in cloud building grow, so does the task of ensuring interoperability between all the components.</p>
+		<p>The Ubuntu Openstack ecosystem is growing fast. This is good news.  But as the hardware and software options for cloud building grow, so does the task of ensuring interoperability between all the components.</p>
 		<p>Canonical has a long history of interoperability testing between OpenStack and Ubuntu.  To bring the benefits of our work to the rest of the ecosystem, we’ve launched the Ubuntu OpenStack Interoperability Lab, making it easier for you to QA the compatibility of your products with the world’s leading open cloud platform.</p>
 	</div>
 	<div class="four-col last-col">
@@ -40,7 +47,7 @@
 	<div class="eight-col last-col">
 		<h2>A sophisticated testing and integration process</h2>
 		<p>Our process tests current and future developments of OpenStack against current and future developments of Ubuntu Server and Server LTS. As the ecosystem has grown we&rsquo;ve expanded it to include different guest OSs, hypervisors and software-defined networking (SDN) stacks. We’ve also worked with partners familiar with Ubuntu and OpenStack but unfamiliar with Juju, MAAS and charms, to help them more fully integrate their solution with Ubuntu.</p>
-		<p>The need for tested, integrated components has never been greater.  So how do you get involved?</p>
+		<p>It&rsquo;s never been more important to test your hardware and software against the entire OpenStack ecosystem.  So how do you get involved?</p>
 	</div>
 </div>
 <div class="row no-border strip-dark">
@@ -60,23 +67,25 @@
 		<ul class="list-ubuntu">
 			<li>Technical alignment to synchronise development timelines</li>
 			<li>Training on the creation, adaptation and real-world use of Ubuntu Charms</li>
-			<li>Training in maximising returns on your relationship with Canonical</li>
-			<li class="last-item">Marketing assistance, including entry into our list of compatible solutions, joint revenue opportunities and support for joint solutions</li>
+			<li>Marketing assistance, including entry into our list of compatible solutions, joint revenue opportunities and support for joint solutions</li>
+			<li class="last-item">Training in maximising returns on your relationship with Canonical</li>
 		</ul>
 	</div>
 </div>
 
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
-	<div class="feature-one six-col">
-		<h3>Talk to us about becoming a partner</h3>
-		<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
-		<p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
-	</div>
-	<div class="feature-two six-col last-col">
-		<h3>Partner programmes</h3>
-		<p>Interested in becoming an Ubuntu partner? Learn more about the benefits of working with Canonical.</p>
-		<p><a href="/partners-programmes">Learn more about partner programmes&nbsp;&rsaquo;</a></p>
+	<div class="twelve-col vertical-divider">
+		<div class="feature-one six-col">
+			<h3>Partner programmes</h3>
+			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
+			<p><a href="/partners-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col">
+			<h3>Find a partner</h3>
+			<p>Do you offer more services to you customers? Learn more about our other partner programmes.</p>
+			<p><a href="/find-a-partner">Other Ubuntu partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
 	</div>
 </div>
 

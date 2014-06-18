@@ -11,10 +11,33 @@
 {% block content %}
 <div class="row row-hero no-border">
 	<div class="eight-col">
-		<h1>Reseller partners</h1>
+		<h1>Ubuntu reseller partners</h1>
+		<p>Canonical works with reseller partners around the world to ensure that local expertise is available to Ubuntu users on every continent. From OpenStack consulting to hardware sales and the provision of Ubuntu Advantage service contracts, the Ubuntu reseller ecosystem is growing by the day. Contact us today to learn how your business could benefit from joining the programme.</p>
 	</div>
 </div>
 
+<div class="row no-border">
+	<div class="twelve-col">
+		<h3 class="caps-centered">A selection of our reseller partners</h3>
+		<ul class="inline-logos no-bullets">
+			{% for p in partners %}
+				{% for programme in p.programme.all %}
+					{% if programme.name == 'reseller' %}
+						<li><img src="{{ p.logo }}" alt="{{ p.name }}" height="100" /></li>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</ul>
+		<p><a href="/find-a-partner">Browse all reseller partners&nbsp;&rsaquo;</a></p>
+	</div>
+</div>
+
+<div class="row row-hero no-border">
+	<div class="eight-col">
+		<h3>Provide services with the backing of Canonical</h3>
+		<p>Whether you&rsquo;re a value-add reseller (VAR) or a systems integrator, the Ubuntu reseller programme provides valuable training, certification and, above all, direct access to the technologists at Canonical. This means you can deploy Ubuntu solutions for your customers with confidence.</p>
+	</div>
+</div>
 
 <div class="row no-border strip-dark">
 	<div class="eight-col append-four">
@@ -23,41 +46,33 @@
 	</div>
 	<div class="six-col">
 		<ul class="list-ubuntu">
-			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed turpis sit amet velit vestibulum hendrerit</li>
-			<li>Sed rhoncus metus congue massa auctor rutrum. Duis rutrum orci non libero mattis, nec sollicitudin leo imperdiet. Nulla vehicula id libero id eleifend. Curabitur sit amet varius massa, et scelerisque dolor</li>
-			<li class="last-item">Maecenas faucibus est at gravida mattis</li>
+			<li>Opportunities to profit from Ubuntu Advantage support contracts</li>
+			<li>Technical training for your customer-facing team on the latest features of Ubuntu</li>
+			<li>The marketing benefits of certification</li>
+			<li class="last-item">Permission to use the Canonical and Ubuntu trademarks in your own materials</li>
 		</ul>
 	</div>
 	<div class="six-col last-col">
 		<ul class="list-ubuntu">
-			<li>Etiam lacinia, eros vitae interdum blandit, lorem nulla gravida enim, eget dignissim ipsum libero eget sem</li>
-			<li>Mauris lacus lectus</li>
-			<li class="last-item">Fusce a ante malesuada, venenatis metus et, scelerisque orci. Praesent accumsan rhoncus ante, non laoreet nunc accumsan non. Proin id eros tincidunt</li>
+			<li>Close collaboration and technical support from the engineers who develop Ubuntu</li>
+			<li>VIP invitations to Canonical events in your country</li>
+			<li class="last-item">Inside information on forthcoming developments in Ubuntu</li>
 		</ul>
 	</div>
 </div>
-
-<div class="row no-border">
-	<div class="twelve-col">
-		<h3 class="caps-centered">Ubuntu reseller partnerships</h3>
-		<p>INSERT ROW OF RESELLER LOGO'S</p>
-		<p><a href="/find-a-partner">Browse all Ubuntu resellers&nbsp;&rsaquo;</a></p>
-	</div>
-</div>
-
 
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
 	<div class="twelve-col vertical-divider">
 		<div class="feature-one six-col">
 			<h3>Partner programmes</h3>
-			<p>Interested in becoming an Ubuntu partner? Learn more about the benefits of working with Canonical.</p>
-			<p><a href="/partners-programmes">Learn more about partner programmes&nbsp;&rsaquo;</a></p>
+			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
+			<p><a href="/partners-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="feature-two six-col last-col">
 			<h3>Find a partner</h3>
-			<p>Looking for Ubuntu products or services? Search or select from the complete list of our partners.</p>
-			<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
+			<p>Do you offer more services to you customers? Learn more about our other partner programmes.</p>
+			<p><a href="/find-a-partner">Other Ubuntu partner programmes&nbsp;&rsaquo;</a></p>
 		</div>
 	</div>
 </div>

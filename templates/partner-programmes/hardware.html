@@ -12,13 +12,21 @@
 <div class="row row-hero">
 	<div class="eight-col">
 		<h1>Ubuntu hardware partners</h1>
-		<p>Partnering with Canonical is a great way to keep your products ahead of the competition. The Technical Partner Programme gives access to the latest Ubuntu information, tools and training to help you get to market quicker and for less.</p>
+		<p>Partnering with Canonical is a great way to keep your products ahead of the competition. The Technical Partner Programme gives you access to information, tools and training that can help you get to market quicker and for less. And in retail and online, we work with our hardware partners on the promotion of Ubuntu to consumers and businesses.</p>
 	</div>
 </div>
 <div class="row">
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our hardware partners</h3>
-		<p>INSERT ROW OF HARDWARE PARTNER LOGO'S</p>
+		<ul class="inline-logos no-bullets">
+			{% for p in partners %}
+				{% for programme in p.programme.all %}
+					{% if programme.name == 'hardware' %}
+						<li><img src="{{ p.logo }}" alt="{{ p.name }}" height="100" /></li>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</ul>
 		<p><a href="/find-a-partner/openstack">See all OpenStack hardware partners&nbsp;&rsaquo;</a></p>
 		<p><a href="/find-a-partner/oem+chipset">See all OEM and chipset partners&nbsp;&rsaquo;</a></p>
 	</div>
@@ -26,9 +34,10 @@
 <div class="row">
 	<div class="eight-col">
 		<h2>Get ahead with Ubuntu and Canonical</h2>
-		<p>As Ubuntu use grows around the world there&rsquo;s an increasing demand for fully compatible devices. The need spans hardware (servers, desktops, laptops and more) and enterprise software, and manufacturers are looking to capitalise.</p>
+		<p>As Ubuntu use grows around the world, demand for compatible devices is increasing fast. From thin clients, desktops and laptops to enterprise servers, manufacturers are looking to capitalise.</p>
 		<p>To get to market quicker and reduce costs, OEMs and their partners need components that are compatible with the latest Ubuntu releases. For IHVs and ISVs, the big question is how to develop, test and certify such products.</p>
-		<p>The answer is to work with Canonical, the company sponsoring the Ubuntu project. OEMs, IHVs, ISVs and peripheral manufacturers can subscribe to the <strong>Canonical Technical Partner Programme</strong>, which provides all the information, tools and training a manufacturer needs to keep its products ahead of the Ubuntu development curve</p>
+		<p>The answer is to work with Canonical, the company sponsoring the Ubuntu project. OEMs, IHVs, ISVs and peripheral manufacturers can subscribe to the Canonical Technical Partner Programme, which provides all the information, tools and training a manufacturer needs to keep its products ahead of the Ubuntu development curve.</p>
+		<p>In addition to the Technical Partner Programme, we work together with the world’s leading silicon vendors and OEMs to install Ubuntu on their hardware and ensure it works seamlessly. These partnerships result in the worldwide availability of stable, secure and performance-optimised Ubuntu devices.</p>
 	</div>
 	<div class="four-col last-col">
 		<img src="http://placehold.it/289x250/" alt="" />
@@ -36,35 +45,35 @@
 </div>
 <div class="row no-border strip-dark">
 	<div class="eight-col append-four">
-		<h2>What&rsquo;s included?</h2>
-		<p>As a hardware partner in the Ubuntu programme you can expect:</p>
+		<h2>What you get when you work with us</h2>
 	</div>
 	<div class="six-col">
 		<ul class="list-ubuntu">
-			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sed turpis sit amet velit vestibulum hendrerit</li>
-			<li>Sed rhoncus metus congue massa auctor rutrum. Duis rutrum orci non libero mattis, nec sollicitudin leo imperdiet. Nulla vehicula id libero id eleifend. Curabitur sit amet varius massa, et scelerisque dolor</li>
-			<li class="last-item">Maecenas faucibus est at gravida mattis</li>
+			<li>Official hardware testing and certification</li>
+			<li>Custom development services</li>
+			<li class="last-item">Product training and competence transfer</li>
 		</ul>
 	</div>
 	<div class="six-col last-col">
 		<ul class="list-ubuntu">
-			<li>Etiam lacinia, eros vitae interdum blandit, lorem nulla gravida enim, eget dignissim ipsum libero eget sem</li>
-			<li>Mauris lacus lectus</li>
-			<li class="last-item">Fusce a ante malesuada, venenatis metus et, scelerisque orci. Praesent accumsan rhoncus ante, non laoreet nunc accumsan non. Proin id eros tincidunt</li>
+			<li>A global engineering network and support infrastructure</li>
+			<li class="last-item">Marketing planning and assistance to support joint solutions and new revenue opportunities</li>
 		</ul>
 	</div>
 </div>
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
-	<div class="feature-one six-col">
-		<h3>Talk to us about becoming a partner</h3>
-		<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
-		<p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
-	</div>
-	<div class="feature-two six-col last-col">
-		<h3>Partner programmes</h3>
-		<p>Interested in becoming an Ubuntu partner? Learn more about the benefits of working with Canonical.</p>
-		<p><a href="/partners-programmes">Learn more about partner programmes&nbsp;&rsaquo;</a></p>
+	<div class="twelve-col vertical-divider">
+		<div class="feature-one six-col">
+			<h3>Partner programmes</h3>
+			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
+			<p><a href="/partners-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col">
+			<h3>Find a partner</h3>
+			<p>Do you offer more services to you customers? Learn more about our other partner programmes.</p>
+			<p><a href="/find-a-partner">Other Ubuntu partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
 	</div>
 </div>
 

@@ -10,24 +10,25 @@
 <div class="row row-hero">
 	<div class="eight-col">
 		<h1>Ubuntu partners</h1>
-		{% for p in partners %}
-		{{ p.short_description }}
-		{% endfor %}
-		<p>At Canonical, we provide the services our partners need to ensure their hardware and softwareworks optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For enterprise technology customers, this has created a thriving market of suppliers, all proven experts on Ubuntu.</p>
+		<p>At Canonical, we provide the services our partners need to ensure their hardware and software works optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For technology customers, this has created a thriving market of suppliers with Ubuntu expertise.</p>
 		<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 <div class="row">
 	<div class="twelve-col">
-		<h3 class="caps-centered">Works with all your hardware and software</h3>
-		<p>INSERT ROW OF FEATURED LOGO'S</p>
+		<h3 class="caps-centered">A selection of Ubuntu partners</h3>
+		{% for p in partners %}
+			{% if p.featured %}
+				<img src="{{ p.logo }}" alt="{{ p.name }}" width="150" />
+			{% endif %}
+		{% endfor %}
 		<p><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 <div class="row">
 	<div class="eight-col">
 		<h2>World leaders in the cloud</h2>
-		<p>At Canonical, we partner with a wide range of cloud vendors, offering engineering assistance, support and <a href="/oil">quality assurance</a> to the ecosystem that is fast developing around Ubuntu and OpenStack. As a result, Ubuntu is the now world&rsquo;s most popular OS for OpenStack, with over 60% of deployments worldwide. Meanwhile, the <a href="/pcp">Certified Public Cloud</a> programme, offers optimised Ubuntu images for users of the world’s top public clouds. Two levels of partnership &mdash; Premier and Certified &mdash; give partners the flexibility to choose a level of involvement that best suits their needs.</p>
+		<p>We partner with a wide range of cloud vendors, offering engineering assistance, support and ongoing <a href="">quality assurance</a> to the ecosystem that is fast developing around Ubuntu and OpenStack. As a result, Ubuntu is the now world&rsquo;s most popular OS for OpenStack, with over 60% of deployments worldwide. Meanwhile, the <a href="">Certified Public Cloud</a> programme, offers optimised Ubuntu images for users of the world&rsquo;s top public clouds. Two levels of partnership &mdash; Premier and Certified &mdash; give partners the flexibility to choose a level of involvement that best suits their needs.</p>
 	</div>
 	<div class="four-col last-col">
 		<img src="http://placehold.it/289x250/" alt="" />
@@ -65,7 +66,7 @@
 		</div>
 		<div class="feature-two six-col last-col">
 			<h3>Find a partner</h3>
-			<p>Looking for Ubuntu products or services? Search or select from the complete list of our partners.</p>
+			<p>Looking for a supplier with Ubuntu expertise? Search or select from the complete list of our partners.</p>
 			<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
 		</div>
 	</div>
