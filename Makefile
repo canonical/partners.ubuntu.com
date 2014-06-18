@@ -15,7 +15,7 @@ sass-watch:
 
 runserver:
 	make sass-watch
-	env/bin/python manage.py runserver_plus
+	env/bin/python manage.py runserver_plus 0.0.0.0:8000
 
 runserver_prod:
 	gunicorn fenchurch.wsgi:application
