@@ -6,231 +6,293 @@
 
 {% block content %}
 <div class="row row-hero">
-	<div class="nine-col">
-		<h1>Find an Ubuntu partner</h1>
-		<p>Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities from the development, supply and support of hardware and software to IaaS, PaaS and SaaS cloud services. </p>
-	</div>
+    <div class="nine-col">
+        <h1>Find an Ubuntu partner</h1>
+        <p>Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities. We offer partner programmes for software vendors, hardware OEMs, mobile carriers, resellers, retailers and public cloud providers. </p>
+    </div>
 </div>
 <div class="row no-border">
-	<div class="three-col">
-		<h2>Search<h2>
-		<form action="" method="get">
-			<input type="search" name="search">
-		</form>
-		<h2>Filter</h2>
-		<div class="filter-tech">
-			<h3>Technology</h3>
-			<ul class="no-bullets">
-				<li>
-					<input type="checkbox" name="cloud" id="filter-tech-cloud">
-					<label for="filter-tech-cloud">Cloud</label>
-				</li>
-				<li>
-					<input type="checkbox" name="server" id="filter-tech-server">
-					<label for="filter-tech-server">Server</label>
-				</li>
-				<li>
-					<input type="checkbox" name="desktop" id="filter-tech-desktop">
-					<label for="filter-tech-desktop">Desktop</label>
-				</li>
-				<li>
-					<input type="checkbox" name="phone" id="filter-tech-phone">
-					<label for="filter-tech-phone">Phone</label>
-				</li>
-				<li>
-					<input type="checkbox" name="tablet" id="filter-tech-tablet">
-					<label for="filter-tech-tablet">Tablet</label>
-				</li>
-			</ul>
-		</div>
+    <div class="three-col">
+        <h2>Search</h2>
+        <form>
+            <input type="text" name="search" id="search">
+        </form>
+        <!--<h2>Filter</h2>
+        <div class="filter-tech">
+            <h3>Technology</h3>
+            <ul class="no-bullets">
+                <li>
+                    <input type="checkbox" name="cloud" id="filter-tech-cloud">
+                    <label for="filter-tech-cloud">Cloud</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="server" id="filter-tech-server">
+                    <label for="filter-tech-server">Server</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="desktop" id="filter-tech-desktop">
+                    <label for="filter-tech-desktop">Desktop</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="phone" id="filter-tech-phone">
+                    <label for="filter-tech-phone">Phone</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="tablet" id="filter-tech-tablet">
+                    <label for="filter-tech-tablet">Tablet</label>
+                </li>
+            </ul>
+        </div>
 
-		<div class="filter-programme">
-			<h3>Programme</h3>
-			<ul class="no-bullets">
-				<li>
-					<input type="checkbox" name="public-cloud" id="filter-programme-public-cloud">
-					<label for="filter-programme-public-cloud">Certified Public Cloud</label>
-				</li>
-				<li>
-					<input type="checkbox" name="oil" id="filter-programme-oil">
-					<label for="filter-programme-oil">OpenStack Interoperability Lab</label>
-				</li>
-				<li>
-					<input type="checkbox" name="cag" id="filter-programme-cag">
-					<label for="filter-programme-cag">Carier Advisory Group</label>
-				</li>
-				<li>
-					<input type="checkbox" name="technical" id="filter-programme-technical">
-					<label for="filter-programme-technical">Technical Partner Programme</label>
-				</li>
-				<li>
-					<input type="checkbox" name="reseller" id="filter-programme-reseller">
-					<label for="filter-programme-reseller">Reseller</label>
-				</li>
-				<li>
-					<input type="checkbox" name="retailer" id="filter-programme-retailer">
-					<label for="filter-programme-retailer">Retailer</label>
-				</li>
-			</ul>
-		</div>
+        <div class="filter-programme">
+            <h3>Programme</h3>
+            <ul class="no-bullets">
+                <li>
+                    <input type="checkbox" name="public-cloud" id="filter-programme-public-cloud">
+                    <label for="filter-programme-public-cloud">Certified Public Cloud</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="oil" id="filter-programme-oil">
+                    <label for="filter-programme-oil">OpenStack Interoperability Lab</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="cag" id="filter-programme-cag">
+                    <label for="filter-programme-cag">Carier Advisory Group</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="technical" id="filter-programme-technical">
+                    <label for="filter-programme-technical">Technical Partner Programme</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="reseller" id="filter-programme-reseller">
+                    <label for="filter-programme-reseller">Reseller</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="retailer" id="filter-programme-retailer">
+                    <label for="filter-programme-retailer">Retailer</label>
+                </li>
+            </ul>
+        </div>
 
-		<div class="filter-tech">
-			<h3>Region</h3>
-			<ul class="no-bullets">
-				<li>
-					<input type="checkbox" name="global" id="filter-region-global">
-					<label for="filter-region-global">Global</label>
-				</li>
-				<li>
-					<input type="checkbox" name="africa" id="filter-region-africa">
-					<label for="filter-region-africa">Africa</label>
-				</li>
-				<li>
-					<input type="checkbox" name="asia" id="filter-region-asia">
-					<label for="filter-region-asia">Asia</label>
-				</li>
-				<li>
-					<input type="checkbox" name="noth-america" id="filter-region-noth-america">
-					<label for="filter-region-noth-america">North America</label>
-				</li>
-				<li>
-					<input type="checkbox" name="europe" id="filter-region-europe">
-					<label for="filter-region-europe">Europe</label>
-				</li>
-				<li>
-					<input type="checkbox" name="south-america" id="filter-region-south-america">
-					<label for="filter-region-south-america">South America</label>
-				</li>
-			</ul>
-		</div>
+        <div class="filter-tech">
+            <h3>Region</h3>
+            <ul class="no-bullets">
+                <li>
+                    <input type="checkbox" name="global" id="filter-region-global">
+                    <label for="filter-region-global">Global</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="africa" id="filter-region-africa">
+                    <label for="filter-region-africa">Africa</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="asia" id="filter-region-asia">
+                    <label for="filter-region-asia">Asia</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="noth-america" id="filter-region-noth-america">
+                    <label for="filter-region-noth-america">North America</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="europe" id="filter-region-europe">
+                    <label for="filter-region-europe">Europe</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="south-america" id="filter-region-south-america">
+                    <label for="filter-region-south-america">South America</label>
+                </li>
+            </ul>
+        </div>
 
-		<div class="filter-tech">
-			<h3>Service offered</h3>
-			<ul class="no-bullets">
-				<li>
-					<input type="checkbox" name="software-publisher" id="filter-service-software-publisher">
-					<label for="filter-service-software-publisher">Software Publisher</label>
-				</li>
-				<li>
-					<input type="checkbox" name="bespoke-software-developer" id="filter-service-bespoke-software-developer">
-					<label for="filter-service-bespoke-software-developer">Bespoke software developer</label>
-				</li>
-				<li>
-					<input type="checkbox" name="cloud-software" id="filter-service-cloud-software">
-					<label for="filter-service-cloud-software">Cloud software provider</label>
-				</li>
-				<li>
-					<input type="checkbox" name="cloud-infrastructure" id="filter-service-cloud-infrastructure">
-					<label for="filter-service-cloud-infrastructure">Cloud infrastructure provider</label>
-				</li>
-				<li>
-					<input type="checkbox" name="platform-provider" id="filter-service-platform-provider">
-					<label for="filter-service-platform-provider">Platform provider</label>
-				</li>
-				<li>
-					<input type="checkbox" name="cloud-consultant" id="filter-service-cloud-consultant">
-					<label for="filter-service-cloud-consultant">Cloud consultant</label>
-				</li>
-				<li>
-					<input type="checkbox" name="systems-integrator" id="filter-service-systems-integrator">
-					<label for="filter-service-systems-integrator">Systems integrator</label>
-				</li>
-			</ul>
-		</div>
+        <div class="filter-tech">
+            <h3>Service offered</h3>
+            <ul class="no-bullets">
+                <li>
+                    <input type="checkbox" name="software-publisher" id="filter-service-software-publisher">
+                    <label for="filter-service-software-publisher">Software Publisher</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="bespoke-software-developer" id="filter-service-bespoke-software-developer">
+                    <label for="filter-service-bespoke-software-developer">Bespoke software developer</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="cloud-software" id="filter-service-cloud-software">
+                    <label for="filter-service-cloud-software">Cloud software provider</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="cloud-infrastructure" id="filter-service-cloud-infrastructure">
+                    <label for="filter-service-cloud-infrastructure">Cloud infrastructure provider</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="platform-provider" id="filter-service-platform-provider">
+                    <label for="filter-service-platform-provider">Platform provider</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="cloud-consultant" id="filter-service-cloud-consultant">
+                    <label for="filter-service-cloud-consultant">Cloud consultant</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="systems-integrator" id="filter-service-systems-integrator">
+                    <label for="filter-service-systems-integrator">Systems integrator</label>
+                </li>
+            </ul>
+        </div>
 
-		<div class="filter-tech">
-			<h3>Industry sector</h3>
-			<ul class="no-bullets">
-				<li>
-					<input type="checkbox" name="financial" id="filter-industry-financial">
-					<label for="filter-industry-financial">Financial services</label>
-				</li>
-				<li>
-					<input type="checkbox" name="science" id="filter-industry-science">
-					<label for="filter-industry-science">Science and technology</label>
-				</li>
-				<li>
-					<input type="checkbox" name="media" id="filter-industry-media">
-					<label for="filter-industry-media">Media</label>
-				</li>
-				<li>
-					<input type="checkbox" name="professional" id="filter-industry-professional">
-					<label for="filter-industry-professional">Professional services</label>
-				</li>
-				<li>
-					<input type="checkbox" name="manufacturing" id="filter-industry-manufacturing">
-					<label for="filter-industry-manufacturing">Manufacturing</label>
-				</li>
-				<li>
-					<input type="checkbox" name="transport" id="filter-industry-transport">
-					<label for="filter-industry-transport">Transport</label>
-				</li>
-				<li>
-					<input type="checkbox" name="education" id="filter-industry-education">
-					<label for="filter-industry-education">Education</label>
-				</li>
-				<li>
-					<input type="checkbox" name="government" id="filter-industry-government">
-					<label for="filter-industry-government">Government</label>
-				</li>
-				<li>
-					<input type="checkbox" name="financial" id="filter-industry-financial">
-					<label for="filter-industry-non-profit">Non-profit</label>
-				</li>
-				<li>
-					<input type="checkbox" name="other" id="filter-industry-other">
-					<label for="filter-industry-other">Other</label>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="eight-col last-col">
-		<h4>Results 1 to 15 of 359</h4>
-		<div class="four-col box">
-			<div class="twelve-col">
-				<img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-lenovo.svg" width="100%" alt="Dell logo" />
-			</div>
-			<p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
-			<p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="four-col last-col box">
-			<div class="twelve-col">
-				<img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-hpcloud.svg" width="100%" alt="Dell logo" />
-			</div>
-			<p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
-			<p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="four-col box">
-			<div class="twelve-col">
-				<img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-asus.svg" width="100%" alt="Dell logo" />
-			</div>
-			<p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
-			<p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="four-col last-col box">
-			<div class="twelve-col">
-				<img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-steam.svg" width="100%" alt="Dell logo" />
-			</div>
-			<p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
-			<p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
+        <div class="filter-tech">
+            <h3>Industry sector</h3>
+            <ul class="no-bullets">
+                <li>
+                    <input type="checkbox" name="financial" id="filter-industry-financial">
+                    <label for="filter-industry-financial">Financial services</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="science" id="filter-industry-science">
+                    <label for="filter-industry-science">Science and technology</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="media" id="filter-industry-media">
+                    <label for="filter-industry-media">Media</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="professional" id="filter-industry-professional">
+                    <label for="filter-industry-professional">Professional services</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="manufacturing" id="filter-industry-manufacturing">
+                    <label for="filter-industry-manufacturing">Manufacturing</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="transport" id="filter-industry-transport">
+                    <label for="filter-industry-transport">Transport</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="education" id="filter-industry-education">
+                    <label for="filter-industry-education">Education</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="government" id="filter-industry-government">
+                    <label for="filter-industry-government">Government</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="financial" id="filter-industry-financial">
+                    <label for="filter-industry-non-profit">Non-profit</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="other" id="filter-industry-other">
+                    <label for="filter-industry-other">Other</label>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+    <div id="results" class="results eight-col last-col">
+        {% for p in partners %}
+        <div class="partner four-col box last-col" data-searchText="{{ p.name }} {{ p.long_description }}">
+            <div class="twelve-col">
+                <img src="{{ p.logo }}" width="100" alt="{{ p.name }} logo" />
+            </div>
+            <h2>{{ p.name }}</h2>
+            <p>{{ p.long_description }}</p>
+        </div>
+        {% endfor %}
+
+      <!--
+        <h4>Results 1 to 15 of 359</h4>
+        <div class="four-col box">
+            <div class="twelve-col">
+                <img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-lenovo.svg" width="100%" alt="Dell logo" />
+            </div>
+            <p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
+            <p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col last-col box">
+            <div class="twelve-col">
+                <img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-hpcloud.svg" width="100%" alt="Dell logo" />
+            </div>
+            <p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
+            <p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col box">
+            <div class="twelve-col">
+                <img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-asus.svg" width="100%" alt="Dell logo" />
+            </div>
+            <p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
+            <p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="four-col last-col box">
+            <div class="twelve-col">
+                <img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-steam.svg" width="100%" alt="Dell logo" />
+            </div>
+            <p>Canonical and Dell continue to work together to deliver Ubuntu computers from entry-level laptops to high-end developer specific machines.  They&rsquo;re available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
+            <p><a href="http://www.dell.com/content/public/choosecountry.aspx">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+        </div>-->
+    </div>
 </div>
 
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
-	<div class="twelve-col vertical-divider">
-		<div class="feature-one six-col">
-			<h3>Talk to us about becoming a partner</h3>
-			<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
-			<p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="feature-two six-col last-col">
-			<h3>Find a partner</h3>
-			<p>Looking for Ubuntu products or services? Search or select from the complete list of our partners.</p>
-			<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
+    <div class="twelve-col vertical-divider">
+        <div class="feature-one six-col">
+            <h3>Talk to us about becoming a partner</h3>
+            <p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
+            <p><a href="/contact">Contact us about becoming a partner&nbsp;&rsaquo;</a></p>
+        </div>
+        <div class="feature-two six-col last-col">
+            <h3>Find a partner</h3>
+            <p>Looking for Ubuntu products or services? Search or select from the complete list of our partners.</p>
+            <p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
+        </div>
+    </div>
 </div>
+
+{% endblock %}
+
+{% block footer_extra %}
+<script>
+YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
+  // Create a custom PartnerFilter class that extends AutoCompleteBase.
+  var PartnerFilter = Y.Base.create('partnerFilter', Y.Base, [Y.AutoCompleteBase], {
+    initializer: function () {
+      this._bindUIACBase();
+      this._syncUIACBase();
+    }
+  }),
+
+  // Create instance
+  filter = new PartnerFilter({
+    inputNode: '#search',
+    minQueryLength: 0,
+    queryDelay: 0,
+
+    // Immediately-invoked function to gather data
+    source: (function () {
+      var results = [];
+
+      Y.all('#results > .partner').each(function (node) {
+        results.push({
+          node: node,
+          searchText: node.getAttribute('data-searchText')
+        });
+      });
+
+      return results;
+    }()), // <-- Note the parens. This invokes the function immediately.
+          //     Remove these to invoke the function on every query instead.
+
+    resultTextLocator: 'searchText',
+
+    // filter on part-words
+    resultFilters: 'subWordMatch'
+  });
+
+  // Subscribe to the "results" event
+  filter.on('results', function (e) {
+    Y.all('#results > .partner').addClass('hidden');
+
+    Y.Array.each(e.results, function (result) {
+      result.raw.node.removeClass('hidden');
+    });
+  });
+});
+</script>
 
 {% endblock %}
