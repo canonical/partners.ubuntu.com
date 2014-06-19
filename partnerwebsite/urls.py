@@ -6,11 +6,12 @@ from django.http import (
     HttpResponseNotFound, HttpResponseServerError
 )
 from django.template import RequestContext, loader, Context
-from django.core import serializers
 from preserialize.serialize import serialize
 
 from fenchurch import TemplateFinder
-from cms.models import Partner
+from cms.models import (
+    Partner, Category, IndustrySector, Programme, ServiceOffered, Region
+)
 
 admin.autodiscover()
 
@@ -21,6 +22,9 @@ class PartnerView(TemplateFinder):
     """
     def render_to_response(self, context, **response_kwargs):
 
+        def serialise(model):
+            return [o['name'] for o in serialize(model.objects.all())]
+
         partners_json = json.dumps(
             serialize(
                 Partner.objects.filter(published=True),
@@ -29,7 +33,13 @@ class PartnerView(TemplateFinder):
             ),
             default=lambda obj: None
         )
-
+        context['filters'] = json.dumps([
+            {"Category": serialise(Category)},
+            {"IndustrySector": serialise(IndustrySector)},
+            {"Programme": serialise(Programme)},
+            {"ServiceOffered": serialise(ServiceOffered)},
+            {"Region": serialise(Region)}
+        ])
         context['partners'] = Partner.objects.filter(published=True)
         context['partners_json'] = partners_json
         return super(PartnerView, self).render_to_response(
