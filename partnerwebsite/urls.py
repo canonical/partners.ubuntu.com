@@ -34,11 +34,11 @@ class PartnerView(TemplateFinder):
             default=lambda obj: None
         )
         context['filters'] = json.dumps([
-            {"Category": serialise(Category)},
-            {"IndustrySector": serialise(IndustrySector)},
-            {"Programme": serialise(Programme)},
-            {"ServiceOffered": serialise(ServiceOffered)},
-            {"Region": serialise(Region)}
+            {"name": "Category", "Items": serialise(Category)},
+            {"name": "IndustrySector", "Items": serialise(IndustrySector)},
+            {"name": "Programme", "Items": serialise(Programme)},
+            {"name": "ServiceOffered", "Items": serialise(ServiceOffered)},
+            {"name": "Region", "Items": serialise(Region)}
         ])
         context['partners'] = Partner.objects.filter(published=True)
         context['partners_json'] = partners_json
