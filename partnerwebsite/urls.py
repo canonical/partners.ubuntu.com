@@ -34,9 +34,9 @@ class PartnerView(TemplateFinder):
         Filter = namedtuple('Filter', ['name', 'items'])
         context['filters'] = [
             Filter("Category", Category.objects.all()),
-            Filter("IndustrySector", IndustrySector.objects.all()),
+            Filter("Industry Sector", IndustrySector.objects.all()),
             Filter("Programme", Programme.objects.all()),
-            Filter("ServiceOffered", ServiceOffered.objects.all()),
+            Filter("Service Offered", ServiceOffered.objects.all()),
             Filter("Region", Region.objects.all()),
         ]
         context['partners'] = Partner.objects.filter(published=True)
