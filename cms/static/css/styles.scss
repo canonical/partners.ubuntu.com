@@ -850,6 +850,14 @@ html.no-svg {
   }
 }
 
-.hidden {
+/* Find a partner */
+
+.hidden,
+.notSearchMatch,
+.notFilterMatch {
+  display: none;
+}
+
+.no-js .search-panel{
   display: none;
 }

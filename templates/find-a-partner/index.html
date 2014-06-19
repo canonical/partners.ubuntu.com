@@ -12,10 +12,11 @@
     </div>
 </div>
 <div class="row no-border">
-    <div class="three-col">
+    <div class="search-panel three-col">
         <h2>Search</h2>
         <form>
             <input type="text" name="search" id="search">
+            <input type="text" name="filter" id="filter">
         </form>
         <h2>Filter</h2>
         <div class="filter-tech">
@@ -48,7 +49,7 @@
             <h3>Programme</h3>
             <ul class="no-bullets">
                 <li>
-                    <input type="checkbox" name="public-cloud" id="filter-programme-public-cloud">
+                    <input type="checkbox" name="public-cloud" id="programme-certified-public-cloud">
                     <label for="filter-programme-public-cloud">Certified Public Cloud</label>
                 </li>
                 <li>
@@ -186,7 +187,7 @@
     </div>
     <div id="results" class="results eight-col last-col">
         {% for p in partners %}
-        <div class="partner four-col box last-col" data-searchText="{{ p.name }} {{ p.long_description }}">
+        <div class="partner four-col box last-col" data-searchText="{{ p.name }} {{ p.long_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry_sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service_offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
             <div class="twelve-col">
                 <img src="{{ p.logo }}" width="100" alt="{{ p.name }} logo" />
             </div>
@@ -227,7 +228,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
   }),
 
   // Create instance
-  filter = new PartnerFilter({
+  search = new PartnerFilter({
     inputNode: '#search',
     minQueryLength: 0,
     queryDelay: 0,
@@ -253,13 +254,74 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     resultFilters: 'subWordMatch'
   });
 
+  // Create instance
+  filter = new PartnerFilter({
+    inputNode: '#filter',
+    minQueryLength: 0,
+    queryDelay: 0,
+
+    // Immediately-invoked function to gather data
+    source: (function () {
+      var results = [];
+
+      Y.all('#results > .partner').each(function (node) {
+        results.push({
+          node: node,
+          searchText: node.getAttribute('data-filter')
+        });
+      });
+
+      return results;
+    }()), // <-- Note the parens. This invokes the function immediately.
+          //     Remove these to invoke the function on every query instead.
+
+    resultTextLocator: 'searchText',
+
+    // filter on words
+    resultFilters: 'wordMatch'
+  });
+
   // Subscribe to the "results" event
-  filter.on('results', function (e) {
-    Y.all('#results > .partner').addClass('hidden');
+  search.on('results', function (e) {
+    Y.all('#results > .partner').addClass('notSearchMatch');
 
     Y.Array.each(e.results, function (result) {
-      result.raw.node.removeClass('hidden');
+      result.raw.node.removeClass('notSearchMatch');
     });
+  });
+
+  // Subscribe to the "results" event
+  filter.on('results', function (e) {
+    Y.all('#results > .partner').addClass('notFilterMatch');
+
+    Y.Array.each(e.results, function (result) {
+      result.raw.node.removeClass('notFilterMatch');
+    });
+  });
+
+
+  var filterText = '';
+  var filterElement = Y.one('#filter');
+
+  function updateFilter(name, add) {
+    name += ' ';
+    if (add == true) {
+      if (filterText.indexOf(name) == -1) { 
+        filterText += name;
+      }
+    } else {
+      filterText = filterText.replace(name, '');
+    }
+    filterElement.set('value', filterText);
+  }
+
+  //Add the name of checked checkboxes to #filter
+  var checkboxes = Y.all('.search-panel input[type=checkbox]');
+  checkboxes.on('change', function (e) {
+    var checkbox = e.target;
+    var checked = checkbox.get('checked');
+    var attributeName = checkbox.get('id')
+    updateFilter(attributeName, checked);
   });
 });
 </script>
