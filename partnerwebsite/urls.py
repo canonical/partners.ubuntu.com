@@ -1,4 +1,5 @@
 import json
+from collections import namedtuple
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
@@ -30,12 +31,13 @@ class PartnerView(TemplateFinder):
             ),
             default=lambda obj: None
         )
+        Filter = namedtuple('Filter', ['name', 'items'])
         context['filters'] = [
-            {"name": "Category", "items": Category.objects.all()},
-            {"name": "IndustrySector", "items": IndustrySector.objects.all()},
-            {"name": "Programme", "items": Programme.objects.all()},
-            {"name": "ServiceOffered", "items": ServiceOffered.objects.all()},
-            {"name": "Region", "items": Region.objects.all()}
+            Filter("Category", Category.objects.all()),
+            Filter("IndustrySector", IndustrySector.objects.all()),
+            Filter("Programme", Programme.objects.all()),
+            Filter("ServiceOffered", ServiceOffered.objects.all()),
+            Filter("Region", Region.objects.all()),
         ]
         context['partners'] = Partner.objects.filter(published=True)
         context['partners_json'] = partners_json
