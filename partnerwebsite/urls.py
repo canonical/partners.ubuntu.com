@@ -22,9 +22,6 @@ class PartnerView(TemplateFinder):
     """
     def render_to_response(self, context, **response_kwargs):
 
-        def serialise(model):
-            return [o['name'] for o in serialize(model.objects.all())]
-
         partners_json = json.dumps(
             serialize(
                 Partner.objects.filter(published=True),
@@ -33,13 +30,13 @@ class PartnerView(TemplateFinder):
             ),
             default=lambda obj: None
         )
-        context['filters'] = json.dumps([
-            {"name": "Category", "Items": serialise(Category)},
-            {"name": "IndustrySector", "Items": serialise(IndustrySector)},
-            {"name": "Programme", "Items": serialise(Programme)},
-            {"name": "ServiceOffered", "Items": serialise(ServiceOffered)},
-            {"name": "Region", "Items": serialise(Region)}
-        ])
+        context['filters'] = [
+            {"name": "Category", "items": Category.objects.all()},
+            {"name": "IndustrySector", "items": IndustrySector.objects.all()},
+            {"name": "Programme", "items": Programme.objects.all()},
+            {"name": "ServiceOffered", "items": ServiceOffered.objects.all()},
+            {"name": "Region", "items": Region.objects.all()}
+        ]
         context['partners'] = Partner.objects.filter(published=True)
         context['partners_json'] = partners_json
         return super(PartnerView, self).render_to_response(
