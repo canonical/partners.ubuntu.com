@@ -13,6 +13,7 @@ from fenchurch import TemplateFinder
 from cms.models import (
     Partner, Category, IndustrySector, Programme, ServiceOffered, Region
 )
+from cms.views import partner_programmes
 
 admin.autodiscover()
 
@@ -60,6 +61,7 @@ def custom_500(request):
 urlpatterns = patterns(
     '',
     url(r'^admin', include(admin.site.urls)),
+    url(r'^partner-programmes/(?P<name>\w+)', partner_programmes),
     url(r'^(?P<template>.*)$', PartnerView.as_view()),
 )
 

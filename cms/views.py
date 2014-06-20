@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render_to_response
 
-# Create your views here.
+from cms.models import Programme, Partner
+
+
+def partner_programmes(request, name):
+    get_object_or_404(Programme, name=name)
+    partners = Partner.objects.filter(programme__name=name)
+    return render_to_response(
+        'partner-programmes/%s.html' % name,
+        {'programme_partners': partners}
+    )
