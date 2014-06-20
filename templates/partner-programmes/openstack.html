@@ -19,10 +19,10 @@
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our OpenStack partners</h3>
 		<ul class="inline-logos no-bullets">
-			{% for p in partners %}
-				{% for programme in p.programme.all %}
+			{% for partner in partners %}
+				{% for programme in partner.programme.all %}
 					{% if programme.name == 'openstack' %}
-						<li><img src="{{ p.logo }}" alt="{{ p.name }}" /></li>
+						<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
@@ -79,7 +79,7 @@
 		<div class="feature-one six-col">
 			<h3>Partner programmes</h3>
 			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
-			<p><a href="/partners-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+			<p><a href="/partner-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
 		</div>
 		<div class="feature-two six-col last-col">
 			<h3>Find a partner</h3>
