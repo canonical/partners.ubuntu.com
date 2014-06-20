@@ -4,7 +4,6 @@ from cms.models import Programme, Partner
 
 
 def partner_programmes(request, name):
-    get_object_or_404(Programme, name=name)
     partners = Partner.objects.filter(programme__name=name)
     return render_to_response(
         'partner-programmes/%s.html' % name,
