@@ -19,12 +19,8 @@
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our OpenStack partners</h3>
 		<ul class="inline-logos no-bullets">
-			{% for partner in partners %}
-				{% for programme in partner.programme.all %}
-					{% if programme.name == 'openstack' %}
-						<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-					{% endif %}
-				{% endfor %}
+			{% for partner in programme_partners %}
+				<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 			{% endfor %}
 		</ul>
 		<p><a href="/find-a-partner/openstack">See all OpenStack partners&nbsp;&rsaquo;</a></p>
@@ -73,20 +69,6 @@
 	</div>
 </div>
 
-<div id="context-footer" class="{{ level_1 }}-context-footer no-border">
-<hr />
-	<div class="twelve-col vertical-divider">
-		<div class="feature-one six-col">
-			<h3>Partner programmes</h3>
-			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
-			<p><a href="/partner-programmes">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
-		</div>
-		<div class="feature-two six-col last-col">
-			<h3>Find a partner</h3>
-			<p>Do you offer more services to you customers? Learn more about our other partner programmes.</p>
-			<p><a href="/find-a-partner">Other Ubuntu partner programmes&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</div>
+{% include "templates/_contextual-footer.html" %}
 
 {% endblock %}
