@@ -34,14 +34,20 @@ class PartnerView(TemplateFinder):
         )
         Filter = namedtuple('Filter', ['name', 'items'])
         context['filters'] = [
-            Filter("Category", Category.objects.all()),
+            Filter("Category",        Category.objects.all()),
             Filter("Industry Sector", IndustrySector.objects.all()),
-            Filter("Programme", Programme.objects.all()),
+            Filter("Programme",       Programme.objects.all()),
             Filter("Service Offered", ServiceOffered.objects.all()),
-            Filter("Region", Region.objects.all()),
+            Filter("Region",          Region.objects.all()),
         ]
         context['partners'] = Partner.objects.filter(published=True)
         context['partners_json'] = partners_json
+
+        path_list = [p for p in self.request.path.split('/') if p]
+        for i, path, in enumerate(path_list):
+            level = "level_%s" % str(i+1)
+            context[level] = path
+
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
