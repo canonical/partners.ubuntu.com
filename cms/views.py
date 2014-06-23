@@ -1,6 +1,7 @@
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import render_to_response
+from django.conf import settings
 
-from cms.models import Programme, Partner
+from cms.models import Partner
 
 
 def partner_programmes(request, name):
@@ -10,6 +11,7 @@ def partner_programmes(request, name):
     for i, path, in enumerate(path_list):
         level = "level_%s" % str(i+1)
         context[level] = path
+    context['STATIC_URL'] = settings.STATIC_URL
     return render_to_response(
         'partner-programmes/%s.html' % name,
         context
