@@ -15,22 +15,20 @@
 		<p>Partnering with Canonical is a great way to keep your products ahead of the competition. The Technical Partner Programme gives you access to information, tools and training that can help you get to market quicker and for less. And in retail and online, we work with our hardware partners on the promotion of Ubuntu to consumers and businesses.</p>
 	</div>
 </div>
+{% if programme_partners %}
 <div class="row">
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our hardware partners</h3>
 		<ul class="inline-logos no-bullets">
-			{% for p in partners %}
-				{% for programme in p.programme.all %}
-					{% if programme.name == 'hardware' %}
-						<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ p.logo }}" alt="{{ p.name }}" height="100" /></li>
-					{% endif %}
-				{% endfor %}
+			{% for partner in programme_partners %}
+				<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 			{% endfor %}
 		</ul>
-		<p><a href="/find-a-partner/openstack">See all OpenStack hardware partners&nbsp;&rsaquo;</a></p>
-		<p><a href="/find-a-partner/oem+chipset">See all OEM and chipset partners&nbsp;&rsaquo;</a></p>
+		<p class="align-center"><a href="/find-a-partner/openstack">See all OpenStack hardware partners&nbsp;&rsaquo;</a></p>
+		<p class="align-center"><a href="/find-a-partner/oem+chipset">See all OEM and chipset partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
+{% endif %}
 <div class="row">
 	<div class="eight-col">
 		<h2>Get ahead with Ubuntu and Canonical</h2>

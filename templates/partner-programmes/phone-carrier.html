@@ -46,17 +46,11 @@
 	<div class="twelve-col">
 		<h3 class="caps-centered">Ubuntu phone partners</h3>
 		<ul class="inline-logos no-bullets">
-			{% for p in partners %}
-				{% if partners.published %}
-					{% for programme in p.programme.all %}
-						{% if programme.name == 'phone carrier' %}
-							<li><img src="{{ p.logo }}" alt="{{ p.name }}" /></li>
-						{% endif %}
-					{% endfor %}
-				{% endif %}
+			{% for partner in programme_partners %}
+				<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 			{% endfor %}
 		</ul>
-		<p><a href="/find-a-partner/phone">Browse all Ubuntu phone partners&nbsp;&rsaquo;</a></p>
+		<p class="align-center"><a href="/find-a-partner/phone">Browse all Ubuntu phone partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 {% endif %}
