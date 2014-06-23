@@ -97,6 +97,23 @@ header.banner .logo-ubuntu span {
     top: 6px;
 }
 
+/* @section home
+-------------------------------------------------------------- */
+.full-images img {
+  width: 100%;
+}
+
+/* @section contextual footer
+-------------------------------------------------------------- */
+#context-footer div+div {
+  width: auto;
+}
+
+#context-footer .search img {
+  width: 100px;
+  height: 100px;
+  float: right;
+}
 
 /* @section footer
 -------------------------------------------------------------- */
