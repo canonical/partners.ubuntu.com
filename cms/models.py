@@ -40,7 +40,7 @@ class CategoryModel(models.Model):
 
 class Technology(CategoryModel):
     class Meta:
-        verbose_name_plural = 'technologies'
+        verbose_name_plural = 'technology'
 
 
 class IndustrySector(CategoryModel):
@@ -61,7 +61,8 @@ class ServiceOffered(CategoryModel):
 
 
 class Region(CategoryModel):
-    pass
+    class Meta:
+        verbose_name_plural = 'region'
 
 
 class Partner(PartnerModel):
