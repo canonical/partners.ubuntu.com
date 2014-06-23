@@ -38,9 +38,9 @@ class CategoryModel(models.Model):
         return unicode(self.name)
 
 
-class Category(CategoryModel):
+class Technology(CategoryModel):
     class Meta:
-        verbose_name_plural = 'categories'
+        verbose_name_plural = 'technologyies'
 
 
 class IndustrySector(CategoryModel):
@@ -69,8 +69,8 @@ class Partner(PartnerModel):
     long_description = models.TextField(blank=True, null=True)
     featured = models.BooleanField()
     generate_page = models.BooleanField()
-    category = models.ManyToManyField(
-        Category,
+    technology = models.ManyToManyField(
+        Technology,
         related_name='partners',
         blank=True,
         null=True

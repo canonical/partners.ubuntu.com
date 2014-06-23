@@ -1,6 +1,6 @@
 from django.contrib import admin
 from cms.models import (
-    Partner, Category, IndustrySector, Programme, ServiceOffered, Region,
+    Partner, Technology, IndustrySector, Programme, ServiceOffered, Region,
     Quote, Link, InsightsTag, Text
 )
 
@@ -27,8 +27,8 @@ class InsightsTagInline(admin.TabularInline):
 
 class PartnerAdmin(admin.ModelAdmin):
 
-    def category(obj):
-        return ",".join([str(o) for o in obj.category.all()])
+    def technology(obj):
+        return ",".join([str(o) for o in obj.technology.all()])
 
     def industry_sector(obj):
         return ",".join([str(o) for o in obj.industry_sector.all()])
@@ -42,7 +42,7 @@ class PartnerAdmin(admin.ModelAdmin):
     def region(obj):
         return ",".join([str(o) for o in obj.region.all()])
 
-    category.short_description = 'Category'
+    technology.short_description = 'Technology'
     industry_sector.short_description = 'Industry Sector'
     programme.short_description = 'Programme'
     service_offered.short_description = 'Service Offered'
@@ -55,7 +55,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'short_description',
         'featured',
         'generate_page',
-        category,
+        technology,
         industry_sector,
         programme,
         service_offered,
@@ -66,7 +66,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'published',
         'featured',
         'generate_page',
-        'category',
+        'technology',
         'industry_sector',
         'programme',
         'service_offered',
@@ -101,7 +101,7 @@ class PartnerAdmin(admin.ModelAdmin):
         }),
         ('Categories', {
             'fields': (
-                'category',
+                'technology',
                 'industry_sector',
                 'programme',
                 'service_offered',
@@ -120,7 +120,7 @@ class PartnerAdmin(admin.ModelAdmin):
     ]
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class TechnologyAdmin(admin.ModelAdmin):
     pass
 
 
@@ -164,7 +164,7 @@ class TextAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Partner, PartnerAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(IndustrySector, IndustrySectorAdmin)
 admin.site.register(Programme, ProgrammeAdmin)
 admin.site.register(ServiceOffered, ServiceOfferedAdmin)

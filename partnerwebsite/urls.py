@@ -11,7 +11,7 @@ from preserialize.serialize import serialize
 
 from fenchurch import TemplateFinder
 from cms.models import (
-    Partner, Category, IndustrySector, Programme, ServiceOffered, Region
+    Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
 )
 from cms.views import partner_programmes
 
@@ -34,7 +34,7 @@ class PartnerView(TemplateFinder):
         )
         Filter = namedtuple('Filter', ['name', 'items'])
         context['filters'] = [
-            Filter("Category",        Category.objects.all()),
+            Filter("Technology",        Technology.objects.all()),
             Filter("Industry Sector", IndustrySector.objects.all()),
             Filter("Programme",       Programme.objects.all()),
             Filter("Service Offered", ServiceOffered.objects.all()),
