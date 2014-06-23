@@ -40,24 +40,29 @@ class CategoryModel(models.Model):
 
 class Technology(CategoryModel):
     class Meta:
-        verbose_name_plural = 'technologyies'
+        verbose_name_plural = 'technology'
 
 
 class IndustrySector(CategoryModel):
+    class Meta:
+        verbose_name_plural = 'industry sector'
     pass
 
 
 class Programme(CategoryModel):
+    class Meta:
+        verbose_name_plural = 'programme'
     pass
 
 
 class ServiceOffered(CategoryModel):
     class Meta:
-        verbose_name_plural = 'services offered'
+        verbose_name_plural = 'service offered'
 
 
 class Region(CategoryModel):
-    pass
+    class Meta:
+        verbose_name_plural = 'region'
 
 
 class Partner(PartnerModel):
@@ -65,7 +70,7 @@ class Partner(PartnerModel):
     logo = models.URLField(blank=True, null=True)
     external_page = models.CharField(max_length=200, blank=True, null=True)
     external_fallback = models.CharField(max_length=200, blank=True, null=True)
-    short_description = models.CharField(max_length=200)
+    short_description = models.TextField(blank=True, null=True)
     long_description = models.TextField(blank=True, null=True)
     featured = models.BooleanField()
     generate_page = models.BooleanField()
