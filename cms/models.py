@@ -40,7 +40,7 @@ class CategoryModel(models.Model):
 
 class Technology(CategoryModel):
     class Meta:
-        verbose_name_plural = 'technologyies'
+        verbose_name_plural = 'technologies'
 
 
 class IndustrySector(CategoryModel):
