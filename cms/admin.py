@@ -50,6 +50,7 @@ class PartnerAdmin(admin.ModelAdmin):
 
     list_display = (
         'name',
+        'logo',
         'published',
         'short_description',
         'featured',
@@ -73,6 +74,7 @@ class PartnerAdmin(admin.ModelAdmin):
     )
     list_editable = (
         'published',
+        'logo'
     )
     search_fields = ['name']
     readonly_fields = (
