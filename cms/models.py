@@ -44,16 +44,20 @@ class Technology(CategoryModel):
 
 
 class IndustrySector(CategoryModel):
+    class Meta:
+        verbose_name_plural = 'industry sector'
     pass
 
 
 class Programme(CategoryModel):
+    class Meta:
+        verbose_name_plural = 'programme'
     pass
 
 
 class ServiceOffered(CategoryModel):
     class Meta:
-        verbose_name_plural = 'services offered'
+        verbose_name_plural = 'service offered'
 
 
 class Region(CategoryModel):
