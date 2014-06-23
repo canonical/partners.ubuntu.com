@@ -8,40 +8,39 @@
 
 {% block content %}
 <div class="row row-hero">
-	<div class="eight-col">
+	<div class="six-col">
 		<h1>Ubuntu partners</h1>
 		<p>At Canonical, we provide the services our partners need to ensure their hardware and software works optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For technology customers, this has created a thriving market of suppliers with Ubuntu expertise.</p>
 		<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
 	</div>
+	<div class="six-col last-col">
+		<img class="priority-0" width="400" height="300" alt="Ubuntu partners" src="http://placehold.it/400x300/">
+	</div>
 </div>
 <div class="row">
-	<div class="twelve-col">
+	<div class="eight-col push-two">
 		<h3 class="caps-centered">A selection of Ubuntu partners</h3>
-		{% for p in partners %}
-			{% if p.featured %}
-				<img src="{{ p.logo }}" alt="{{ p.name }}" width="150" />
+		<ul class="inline-logos no-bullets"><!-- TODO: get this passed through from a view -->
+		{% for partner in partners %}
+			{% if partner.featured %}
+				<li><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 			{% endif %}
 		{% endfor %}
-		<p><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
+		</ul>
+		<p class="align-center"><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
 <div class="row">
-	<div class="eight-col">
+	<div class="six-col">
 		<h2>World leaders in the cloud</h2>
 		<p>We partner with a wide range of cloud vendors, offering engineering assistance, support and ongoing <a href="">quality assurance</a> to the ecosystem that is fast developing around Ubuntu and OpenStack. As a result, Ubuntu is the now world&rsquo;s most popular OS for OpenStack, with over 60% of deployments worldwide. Meanwhile, the <a href="">Certified Public Cloud</a> programme, offers optimised Ubuntu images for users of the world&rsquo;s top public clouds. Two levels of partnership &mdash; Premier and Certified &mdash; give partners the flexibility to choose a level of involvement that best suits their needs.</p>
-	</div>
-	<div class="four-col last-col">
 		<img src="http://placehold.it/289x250/" alt="" />
 	</div>
-</div>
-<div class="row">
-	<div class="four-col">
-		<img src="http://placehold.it/289x250/" alt="" />
-	</div>
-	<div class="eight-col last-col">
+	<div class="six-col last-col">
 		<h2>Driving innovation on devices and PCs</h2>
 		<p>Ubuntu re-invents how users engage with content and services on smartphones, making it quicker and easier to discover and access. We invite OEMs and carriers to get involved in bringing this new mobile user experience to consumers. Consider a rare opportunity to help shape the future of smartphones, either as a phone OEM partner or via the <a href="/phone">Ubuntu Carrier Advisory Group.</a></p>
 		<p>Thanks to Canonical&rsquo;s <a href="/heardware">OEM</a> and <a href="/retail">retail</a> partners, Ubuntu has been available pre-installed on PCs all over the world, for several years. The same underlying OS will soon be available on smartphones and tablets, as well.</p>
+		<img src="http://placehold.it/289x250/" alt="" />
 	</div>
 </div>
 <div class="row row-image-centered no-border">
