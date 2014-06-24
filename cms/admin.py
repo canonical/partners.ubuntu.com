@@ -92,21 +92,12 @@ class PartnerAdmin(admin.ModelAdmin):
         'updated_by'
     )
     fieldsets = (
-        ('Required', {
+        ('Partner Information', {
             'fields': (
                 'name',
                 'short_description',
-            )
-        }),
-        ('Further information', {
-            'fields': (
                 'published',
                 'logo',
-                'external_page',
-                'external_fallback',
-                'long_description',
-                'featured',
-                'generate_page'
             )
         }),
         ('Categories', {
@@ -116,6 +107,15 @@ class PartnerAdmin(admin.ModelAdmin):
                 'programme',
                 'service_offered',
                 'region'
+            )
+        }),
+        ('Detailed partner Information', {
+            'fields': (
+                'external_page',
+                'external_fallback',
+                'long_description',
+                'featured',
+                'generate_page',
             )
         }),
         ("Other", {
