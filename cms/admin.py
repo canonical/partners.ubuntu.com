@@ -72,7 +72,6 @@ class PartnerAdmin(admin.ModelAdmin):
         region,
     )
     list_filter = (
-        'name',
         'published',
         'featured',
         'generate_page',
