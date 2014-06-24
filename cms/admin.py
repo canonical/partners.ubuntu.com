@@ -42,6 +42,16 @@ class PartnerAdmin(admin.ModelAdmin):
     def region(obj):
         return ",".join([str(o) for o in obj.region.all()])
 
+    list_display = ('upper_case_name',)
+
+    def shorter_description(self, obj):
+        if len(obj.short_description) < 70:
+            return obj.short_description
+        else:
+            return obj.short_description[0:64-1] + "[...]"
+
+    shorter_description.short_description = 'Short Description'
+
     technology.short_description = 'Technology'
     industry_sector.short_description = 'Industry Sector'
     programme.short_description = 'Programme'
@@ -52,7 +62,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'name',
         'logo',
         'published',
-        'short_description',
+        'shorter_description',
         'featured',
         'generate_page',
         technology,
