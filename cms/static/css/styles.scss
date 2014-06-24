@@ -107,7 +107,7 @@ header.banner .logo-ubuntu span {
 -------------------------------------------------------------- */
 .partner-programmes-retail{
   .twelve-col img {
-    max-height: 65px;
+    max-height: 100px;
   }
 }
 
@@ -131,6 +131,14 @@ ul.inline-logos li img {
 
 /* @section footer
 -------------------------------------------------------------- */
+
+.footer-wrapper.strip-light { //TODO: move this to guidelines
+  clear: both;
+  background: none;
+  -moz-box-shadow: inset 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: inset 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
 
 footer.global {
   background-color: transparent;
@@ -738,6 +746,14 @@ html.no-svg {
     display: block;
   }
 
+  /* @section partner programmes: retail
+  -------------------------------------------------------------- */
+  .partner-programmes-retail {
+    .twelve-col img {
+      float: none;
+    }
+  }
+
   footer #nav-global {
     display: none;
   }
@@ -856,6 +872,8 @@ html.no-svg {
     padding-top: 13px !important;
   }
 
+  /* @section footer
+  -------------------------------------------------------------- */
   footer .row {
     width: 984px;
     margin: 0 auto;
