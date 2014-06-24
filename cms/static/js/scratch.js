@@ -92,6 +92,7 @@ core.setupAdditionalInfo = function() {
 core.mobileNav = function() {
 	Y.one('.nav-primary').insert('<a id="menu" class="nav-toggle">☰</a>','before');
 	Y.all('.nav-toggle').on('click', function(e) {
+		e.preventDefault();
 		Y.all('header nav ul').toggleClass('active');
 		Y.all('.nav-primary').toggleClass('active');
 	});
