@@ -60,7 +60,10 @@
 		</div>
 		<ul>
 			<li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-			<li><a class="first{% if level_1 == 'partner-programmes' %} active{% endif %}" href="/partner-programmes">Partner programmes</a></li>
+			<li>
+				<a class="first{% if level_1 == 'partner-programmes' %} active{% endif %}" href="/partner-programmes">Partner programmes</a>
+				{% include "partner-programmes/_nav_secondary.html" with arrow="true" promo="true" %}
+			</li>
 			<li><a{% if level_1 == 'find-a-partner' %} class="active"{% endif %} href="/find-a-partner">Find a partner</a></li>
 			<li><a{% if level_1 == 'ubuntu-and-canonical' %} class="active"{% endif %} href="/ubuntu-and-canonical">Partnering with us</a></li>
 			<li><a{% if level_1 == 'contact-us' %} class="active"{% endif %} href="/contact-us">Contact us</a></li>
