@@ -128,6 +128,7 @@ class PartnerAdmin(admin.ModelAdmin):
         LinkInline,
         InsightsTagInline
     ]
+    change_form_template = 'admin/asterix_change_form.html'
 
 
 class TechnologyAdmin(admin.ModelAdmin):
