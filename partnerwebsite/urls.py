@@ -62,7 +62,12 @@ urlpatterns = patterns(
     '',
     url(r'^admin', include(admin.site.urls)),
     url(r'^partner-programmes/(?P<name>[-\w]+)', partner_programmes),
-    url(r'^(?P<template>.*)$', PartnerView.as_view()),
+    url(r'^$', PartnerView.as_view()),
+    url(r'^contact-us$', PartnerView.as_view()),
+    url(r'^thank-you$', PartnerView.as_view()),
+    url(r'^find-a-partner$', PartnerView.as_view()),
+    url(r'^ubuntu-and-canonical$', PartnerView.as_view()),
+    #url(r'^(?P<template>.*)$', PartnerView.as_view()),
 )
 
 # Error handlers
