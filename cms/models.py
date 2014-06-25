@@ -21,6 +21,7 @@ class PartnerModel(models.Model):
         blank=True,
         default="TEST_USER"
     )
+    ordering = '?'
 
     class Meta:
         abstract = True
