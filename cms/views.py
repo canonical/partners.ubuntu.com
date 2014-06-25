@@ -23,7 +23,7 @@ def partner_view(request, partner):
         Partner,
         name=partner,
         published=True,
-        featured=True
+        generate_page=True
     )
     context = {'programme_partners': partners}
     path_list = [p for p in request.path.split('/') if p]
