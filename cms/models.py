@@ -5,6 +5,7 @@ from django.core import serializers
 class PartnerModel(models.Model):
     "Partner metadata"
     name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(unique=True)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.CharField(
         max_length=200,

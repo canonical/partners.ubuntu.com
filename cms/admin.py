@@ -58,6 +58,8 @@ class PartnerAdmin(admin.ModelAdmin):
     service_offered.short_description = 'Service Offered'
     region.short_description = 'Region'
 
+    prepopulated_fields = {"slug": ("name",)}
+
     list_display = (
         'name',
         'logo',
@@ -94,6 +96,7 @@ class PartnerAdmin(admin.ModelAdmin):
         ('Partner Information', {
             'fields': (
                 'name',
+                'slug',
                 'short_description',
                 'published',
                 'logo',
