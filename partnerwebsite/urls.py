@@ -68,7 +68,7 @@ urlpatterns = patterns(
     url(r'^thank-you$', PartnerView.as_view()),
     url(r'^find-a-partner$', PartnerView.as_view()),
     url(r'^ubuntu-and-canonical$', PartnerView.as_view()),
-    url(r'^(?P<partner>[-\w]+)$', partner_view),
+    url(r'^(?P<slug[-\w]+)$', partner_view),
     #url(r'^(?P<partner>.*)$', PartnerView.as_view())
     #url(r'^(?P<template>.*)$', PartnerView.as_view()),
 )

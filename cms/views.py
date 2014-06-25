@@ -18,10 +18,10 @@ def partner_programmes(request, name):
     )
 
 
-def partner_view(request, partner):
+def partner_view(request, slug):
     partners = get_object_or_404(
         Partner,
-        name=partner,
+        slug=slug,
         published=True,
         generate_page=True
     )
