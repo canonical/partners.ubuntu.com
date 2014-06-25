@@ -19,7 +19,12 @@ def partner_programmes(request, name):
 
 
 def partner_view(request, partner):
-    partners = get_object_or_404(Partner, name=partner, published=True, featured=True)
+    partners = get_object_or_404(
+        Partner,
+        name=partner,
+        published=True,
+        featured=True
+    )
     context = {'programme_partners': partners}
     path_list = [p for p in request.path.split('/') if p]
     for i, path, in enumerate(path_list):
