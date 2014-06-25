@@ -61,7 +61,7 @@ def custom_500(request):
 urlpatterns = patterns(
     '',
     url(r'^admin', include(admin.site.urls)),
-    url(r'^partner-programmes$', PartnerView.as_view()),
+    url(r'^partner-programmes/?$', PartnerView.as_view()),
     url(r'^partner-programmes/(?P<name>[-\w]+)', partner_programmes),
     url(r'^$', PartnerView.as_view()),
     url(r'^contact-us$', PartnerView.as_view()),
