@@ -31,11 +31,11 @@
           </ul>
         {% endfor %}
     </div>
-    <div id="results" class="results eight-col last-col">
+    <div id="results" class="results nine-col last-col">
         {% for p in partners %}
-        <div class="partner four-col box last-col" data-searchText="{{ p.name }} {{ p.long_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
-            <div class="twelve-col">
-                <img src="{{ p.logo }}" width="100" alt="{{ p.name }} logo" />
+        <div class="partner box" data-searchText="{{ p.name }} {{ p.long_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
+            <div class="">
+                <img src="{{ p.logo }}" alt="{{ p.name }} logo" />
             </div>
             <h2>{{ p.name }}</h2>
             <p>{{ p.short_description }}</p>
