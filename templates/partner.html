@@ -10,6 +10,10 @@
 
 <h1>{{ partner.name }}</h1>
 <p>{{ partner.long_description|linebreaks }}</p>
+<p>{{ partner.texts }}</p>
+{% for text in partner.texts %}
+<p>{{ text.fields.body }}</p>
+{% endfor %}
 <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />
 <p><a href="http://{{ partner.external_page }}" class="external">Partner website</a></p>
 
