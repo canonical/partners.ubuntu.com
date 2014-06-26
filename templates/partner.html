@@ -1,0 +1,18 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu Partners overview{% endblock %}
+{% block meta_description %}Find or become and Ubuntu partner, and benefit from the support of Canonical, the company set up to guide Ubuntu's enterprise adoption.{% endblock %}
+{% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, IaaS, PaaS, SaaS, server, ISV, IHV, OEM, ODM, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
+
+{% block extra_body_class %}home{% endblock %}
+
+{% block content %}
+
+<h1>{{ partner.name }}</h1>
+<p>{{ partner.long_description|linebreaks }}</p>
+<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />
+<p><a href="http://{{ partner.external_page }}" class="external">Partner website</a></p>
+
+{% include "templates/_contextual-footer.html" %}
+
+{% endblock %}

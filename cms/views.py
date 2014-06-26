@@ -3,7 +3,7 @@ from collections import namedtuple
 
 from preserialize.serialize import serialize
 from fenchurch import TemplateFinder
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, get_object_or_null
 from django.conf import settings
 
 from cms.models import (
@@ -46,11 +46,7 @@ class PartnerView(TemplateFinder):
 def partner_programmes(request, name):
     partners = Partner.objects.filter(programme__name=name).order_by('?')
     context = {'programme_partners': partners}
-    path_list = [p for p in request.path.split('/') if p]
-    for i, path, in enumerate(path_list):
-        level = "level_%s" % str(i+1)
-        context[level] = path
-    context['STATIC_URL'] = settings.STATIC_URL
+    context = add_default_values_to_context(context, request)
     return render_to_response(
         'partner-programmes/%s.html' % name,
         context
@@ -58,19 +54,26 @@ def partner_programmes(request, name):
 
 
 def partner_view(request, slug):
-    partners = get_object_or_404(
+    partner = get_object_or_404(
         Partner,
         slug=slug,
         published=True,
         generate_page=True
     )
-    context = {'programme_partners': partners}
+    #texts = get_object(
+    #    )
+    context = {'partner': partner}
+    context = add_default_values_to_context(context, request)
+
+    return render_to_response(
+        'partner.html',
+        context
+    )
+
+def add_default_values_to_context(context, request):
     path_list = [p for p in request.path.split('/') if p]
     for i, path, in enumerate(path_list):
         level = "level_%s" % str(i+1)
         context[level] = path
     context['STATIC_URL'] = settings.STATIC_URL
-    return render_to_response(
-        'index.html',
-        context
-    )
+    return context
