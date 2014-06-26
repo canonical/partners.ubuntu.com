@@ -61,10 +61,6 @@ def partner_view(request, slug):
         generate_page=True
     )
 
-    # import ipdb; ipdb.set_trace();
-
-    #texts = get_object(
-    #    )
     context = {'partner': partner}
     context = add_default_values_to_context(context, request)
 
