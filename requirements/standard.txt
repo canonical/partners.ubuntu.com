@@ -1,2 +1,2 @@
 -r base.txt
-bzr+ssh://bazaar.launchpad.net/+branch/fenchurch/3.0.0/#egg=fenchurch
+-e bzr+ssh://bazaar.launchpad.net/+branch/fenchurch/3.0.0/#egg=fenchurch
