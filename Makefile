@@ -9,9 +9,14 @@ develop:
 requirements:
 	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
 	env/bin/pip install -r requirements.txt
+
 sass-watch:
 	# Build sass
 	sass --debug-info --watch cms/static/css/styles.scss:cms/static/css/styles.css &
+
+sass:
+	# Build sass
+	sass --style compressed --update cms/static/css/styles.scss:cms/static/css/styles.css
 
 runserver:
 	make sass-watch
