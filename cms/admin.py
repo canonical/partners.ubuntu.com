@@ -97,9 +97,12 @@ class PartnerAdmin(admin.ModelAdmin):
             'fields': (
                 'name',
                 'slug',
+                'featured',
                 'short_description',
                 'published',
                 'logo',
+                'external_page',
+                'external_fallback',
             )
         }),
         ('Categories', {
@@ -112,12 +115,10 @@ class PartnerAdmin(admin.ModelAdmin):
             )
         }),
         ('Detailed partner Information', {
+            'classes': ('collapse',),
             'fields': (
-                'external_page',
-                'external_fallback',
-                'long_description',
-                'featured',
                 'generate_page',
+                'long_description',
             )
         }),
         ("Other", {
