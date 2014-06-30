@@ -19,7 +19,7 @@ class PartnerView(TemplateFinder):
 
         partners_json = json.dumps(
             serialize(
-                Partner.objects.filter(published=True).order_by('?'),
+                Partner.objects.filter(published=True),
                 fields=[':all'],
                 exclude=['created_on', 'updated_on']
             ),
@@ -35,7 +35,7 @@ class PartnerView(TemplateFinder):
         ]
         context['partners'] = Partner.objects.filter(
             published=True
-        ).order_by('?')
+        )
         context['partners_json'] = partners_json
         return super(PartnerView, self).render_to_response(
             context,
@@ -44,7 +44,7 @@ class PartnerView(TemplateFinder):
 
 
 def partner_programmes(request, name):
-    partners = Partner.objects.filter(programme__name=name).order_by('?')
+    partners = Partner.objects.filter(programme__name=name)
     context = {'programme_partners': partners}
     context = add_default_values_to_context(context, request)
     return render_to_response(
