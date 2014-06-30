@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import MultiWidget
+
 from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region,
     Quote, Link, InsightsTag, Text
@@ -130,6 +133,13 @@ class PartnerAdmin(admin.ModelAdmin):
         QuoteInline,
         LinkInline,
         InsightsTagInline
+    ]
+    filter_horizontal = [
+        'technology',
+        'industry_sector',
+        'programme',
+        'service_offered',
+        'region'
     ]
     change_form_template = 'admin/asterix_change_form.html'
 
