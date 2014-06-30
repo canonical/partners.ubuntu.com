@@ -8,7 +8,7 @@ develop:
 
 requirements:
 	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
-	env/bin/pip install -r requirements.txt
+	env/bin/pip install -r requirements/standard.txt
 
 sass-watch:
 	# Build sass
@@ -26,7 +26,7 @@ runserver_prod:
 	gunicorn fenchurch.wsgi:application
 
 rebuild-packages:
-	pip2tgz packages/ -r requirements.txt
+	pip2tgz packages/ -r requirements/standard.txt
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
