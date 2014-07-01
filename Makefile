@@ -1,12 +1,11 @@
 develop:
 	python bootstrap.py env
-	make requirements
-	env/bin/python manage.py syncdb --noinput
-	env/bin/python manage.py migrate
-	make sass-watch
-	make runserver
+	$(MAKE) pip-requirements
+	. env/bin/activate && $(MAKE) update
+	$(MAKE) sass-watch
+	$(MAKE) runserver
 
-requirements:
+pip-requirements:
 	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
 	env/bin/pip install -r requirements/dev.txt
 
@@ -30,3 +29,7 @@ rebuild-packages:
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
+
+update:
+	./manage.py syncdb --noinput
+	./manage.py migrate
