@@ -6,38 +6,44 @@
 
 {% block content %}
 <div class="row row-hero">
-    <div class="nine-col">
+    <div class="eight-col">
         <h1>Find an Ubuntu partner</h1>
-        <p>Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities. We offer partner programmes for software vendors, hardware OEMs, mobile carriers, resellers, retailers and public cloud providers. </p>
+        <p class="intro">Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities. We offer partner programmes for software vendors, hardware OEMs, mobile carriers, resellers, retailers and public cloud providers. </p>
     </div>
 </div>
 <div class="row no-border">
     <div class="search-panel three-col">
+      <div class="twelve-col">
         <h2>Search</h2>
         <form>
-            <input type="text" name="search" id="search">
-            <input type="text" name="filter" id="filter" class="accessibility-aid">
+          <input type="text" name="search" id="search">
+          <input type="text" name="filter" id="filter" class="accessibility-aid">
         </form>
+      </div>
+      <div class="twelve-col">
         <h2>Filter</h2>
         {% for filter in filters %}
-          <h3>{{ filter.name }}</h3>
-          <ul class="no-bullets">
-          {% for item in filter.items %}
-          <li>
-            <input type="checkbox" name="{{ filter.name|slugify }}-{{ item|slugify }}" id="{{ filter.name|slugify }}-{{ item|slugify }}">
-            <label for="f{{ filter.name|slugify }}-{{ item|slugify }}">{{ item }}</label>
-          </li>
-          {% endfor %}
-          </ul>
+          <div id="{{ filter.name|slugify }}" class="tabbed-content">
+            <a href="#{{ filter.name|slugify }}" class="accordion-button slideless" data-hash="{{ filter.name|slugify }}">{{ filter.name }}</a>
+            <ul class="no-bullets">
+            {% for item in filter.items %}
+            <li>
+              <input type="checkbox" name="{{ filter.name|slugify }}-{{ item|slugify }}" id="{{ filter.name|slugify }}-{{ item|slugify }}">
+              <label for="{{ filter.name|slugify }}-{{ item|slugify }}">{{ item }}</label>
+            </li>
+            {% endfor %}
+            </ul>
+          </div>
         {% endfor %}
+      </div>
     </div>
     <div id="results" class="results nine-col last-col">
         {% for p in partners %}
         <div class="partner box" data-searchText="{{ p.name }} {{ p.long_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
-            <div class="">
+            <div class="twelve-col">
                 <img src="{{ p.logo }}" alt="{{ p.name }} logo" />
             </div>
-            <h2>{{ p.name }}</h2>
+            <h3><a href="{% if p.generate_page %}/{{ p.slug }}{% else %}{{ p.external_page }}{% endif %}">{{ p.name }}</a></h3>
             <p>{{ p.short_description }}</p>
         </div>
         {% endfor %}
@@ -156,6 +162,47 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     var attributeName = checkbox.get('id')
     updateFilter(attributeName, checked);
   });
+
+  //Get specified query param
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  //check any checkboxes that match
+  function populateCheckboxes() {
+    var filters = [], groupedFilters = [];
+
+    {% for filter in filters %}
+    groupedFilters['{{ filter.name|slugify }}'] = getParameterByName('{{ filter.name|slugify }}');
+    {% endfor %}
+    for (var key in groupedFilters) {
+      if (groupedFilters[key]) {
+        var filters = groupedFilters[key].split(' ');
+        for (var filter in filters) {
+          var checkbox = key + '-' + filters[filter];
+          var checkboxObject = Y.one('#'+checkbox);
+          if (checkboxObject != null) {
+            checkboxObject.setAttribute('checked','checked');
+            updateFilter('#'+checkbox, true);
+          }
+        }
+      }
+    }
+  }
+
+  //auto-fill text serarch
+  function populateTextbox() {
+    var searchbox = Y.one('#search');
+    if (searchbox != null) {
+      searchbox.focus();
+      searchbox.set('value', 'Maurisve');
+    }
+  }
+
+  populateCheckboxes();
+  populateTextbox();
 });
 </script>
 

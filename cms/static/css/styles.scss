@@ -282,13 +282,15 @@ ul.inline-logos li img {
 /* @section find a partner
 -------------------------------------------------------------- */
 .results {
-}
-
-.results .partner {
-  width: 25.5%;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  float: left;
+  .partner {
+    width: 25.5%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: left;
+  }
+  .twelve-col {
+    border-bottom: 1px dotted #888;
+  }
 }
 
 /* @section contextual footer
@@ -566,7 +568,7 @@ html.yui3-js-enabled {
         }
 
       .accordion-button {
-        display: none;
+        //display: none;
       }
     }
   }
