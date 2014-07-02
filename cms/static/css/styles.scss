@@ -290,6 +290,7 @@ ul.inline-logos li img {
     height: 36px;
     line-height: 36px;
   }
+
   .results {
     .partner {
       width: 25.5%;
@@ -303,6 +304,22 @@ ul.inline-logos li img {
       margin-bottom: 20px;
       border-bottom: 1px dotted #888;
     }
+  }
+}
+
+html.yui3-js-enabled .find-a-partner {
+  .search-panel {
+    .tabbed-content {
+      opacity: 1 !important;
+      ul {
+        display: none;
+      }
+    }
+
+    .tabbed-content.open ul {
+      display: block;
+    }
+
   }
 }
 
