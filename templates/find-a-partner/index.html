@@ -47,7 +47,7 @@
     </div>
     <div id="results" class="results nine-col last-col">
         {% for p in partners %}
-        <div class="partner box" data-searchText="{{ p.name }} {{ p.long_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
+        <div class="partner box" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
             {% if p.logo %}<img src="{{ p.logo }}" alt="{{ p.name }} logo" />{% endif %}
             <h3><a {% if not p.generate_page %}class="external"{% endif %} href="{% if p.generate_page %}/{{ p.slug }}{% else %}{{ p.external_page }}{% endif %}">{{ p.name }}{% if p.generate_page %}&nbsp;&rsaquo;{% endif %}</a></h3>
             <p>{{ p.short_description }}</p>
