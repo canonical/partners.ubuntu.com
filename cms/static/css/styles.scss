@@ -957,6 +957,14 @@ html.no-svg {
     display: block;
   }
 
+  /* inline logos
+  -------------------------------------------------------------- */
+  .inline-logos {
+    li:nth-child(3n+3) {
+      border: none;
+    }
+  }
+
   /* @section partner programmes: retail
   -------------------------------------------------------------- */
   .partner-programmes-retail {
@@ -1060,6 +1068,9 @@ html.no-svg {
 /* @section Large / Desktop viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : 984px) {
+  header.banner {
+    margin-bottom: 30px;
+  }
 
   .row.row-contextual-footer  {
     padding-bottom: 60px;
