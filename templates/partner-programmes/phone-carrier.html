@@ -41,9 +41,8 @@
 	<p>The Carrier Advisory Group is chaired independently of Canonical by David Wood, who has 25 years&rsquo; experience in the mobile industry, including leadership roles at Psion, Symbian and Accenture. He has wide experience with collaborative advisory groups, and twice served on the board of directors of the OMA (Open Mobile Alliance).</p>
 	</div>
 </div>
-{% if programme_partners %}
 <div class="row no-border">
-	<div class="twelve-col">
+	<div class="eight-col push-two">
 		<h3 class="caps-centered">Ubuntu phone partners</h3>
 		<ul class="inline-logos no-bullets">
 			{% for partner in programme_partners %}
@@ -53,7 +52,6 @@
 		<p class="align-center"><a href="/find-a-partner/phone">Browse all Ubuntu phone partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
-{% endif %}
 {% include "templates/_contextual-footer.html" %}
 
 {% endblock %}

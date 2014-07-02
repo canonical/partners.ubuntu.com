@@ -303,6 +303,8 @@ ul.inline-logos li img {
 html.yui3-js-enabled .find-a-partner {
   .search-panel {
     .tabbed-content {
+      padding: 8px 0 0 0;
+      margin-bottom: 8px;
       opacity: 1 !important;
       ul {
         display: none;
@@ -531,7 +533,9 @@ html.yui3-js-enabled {
   .tabbed-content {
       padding: 8px 8px 0;
       margin-bottom: 8px;
-
+      a {
+        border-bottom: 1px dotted $warm_grey;
+      }
       &.hide {
         display: block;
         opacity: 1 !important;
@@ -552,7 +556,7 @@ html.yui3-js-enabled {
       font-size: 16px;
         color: $cool_grey;
         padding-top: 2px;
-        background: url(http://www.canonical.com/static/img/icons/icon-arrow-down.svg) no-repeat scroll right 3px $light_grey;
+        background: url(http://www.canonical.com/static/img/icons/icon-arrow-down.svg) no-repeat scroll right 3px transparent;
     }
 
       &.open {
@@ -960,7 +964,8 @@ html.no-svg {
   /* inline logos
   -------------------------------------------------------------- */
   .inline-logos {
-    li:nth-child(3n+3) {
+    li:nth-child(3n+3),
+    li:last-child {
       border: none;
     }
   }
