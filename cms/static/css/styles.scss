@@ -129,7 +129,7 @@ footer.global .legal.has-cookie {
   }
 
   .link-cta {
-    background-image: url(../img/icons/close-orange.svg);
+    background-image: url(http://assets.ubuntu.com/sites/ubuntu/latest/u/img/icons/close-orange.svg);
     background-repeat: no-repeat;
     color: #fff;
     float: right;
@@ -299,6 +299,9 @@ ul.inline-logos li img {
       float: left;
       height: 430px;
       overflow: hidden;
+      -moz-box-shadow: 0 2px 2px -1px #777777;
+      -webkit-box-shadow: 0 2px 2px -1px #777777;
+      box-shadow: 0 2px 2px -1px #777777;
     }
     img {
       width: 100%;
