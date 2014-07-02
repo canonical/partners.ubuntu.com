@@ -32,7 +32,7 @@
         </div>
         {% for filter in filters %}
           <div id="{{ filter.name|slugify }}" class="tabbed-content">
-            <a href="#{{ filter.name|slugify }}" class="accordion-button slideless">{{ filter.name }}</a>
+            <a href="#{{ filter.name|slugify }}" class="accordion-button slideless">{{ filter.name|lower|capfirst }}</a>
             <ul class="no-bullets">
             {% for item in filter.items %}
             <li>
