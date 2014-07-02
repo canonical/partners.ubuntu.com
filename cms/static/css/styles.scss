@@ -965,6 +965,15 @@ html.no-svg {
     }
   }
 
+  /* @section partnering with ubuntu and canonical
+  -------------------------------------------------------------- */
+  .ubuntu-and-canonical {
+    .inner-wrapper {
+      background: url(../img/image-partnering.svg) no-repeat right 40px top;
+      background-size: 400px;
+    }
+  }
+
   footer #nav-global {
     display: none;
   }
@@ -1081,6 +1090,15 @@ html.no-svg {
 
   header.banner .nav-primary li a {
     padding-top: 13px !important;
+  }
+
+  /* @section partnering with ubuntu and canonical
+  -------------------------------------------------------------- */
+  .ubuntu-and-canonical {
+    .inner-wrapper {
+      background: url(../img/image-partnering.svg) no-repeat right 40px top;
+      background-size: 450px;
+    }
   }
 
   /* @section footer
