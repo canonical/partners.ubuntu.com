@@ -20,11 +20,9 @@
 <div class="row">
 	<div class="eight-col push-two">
 		<h3 class="caps-centered">A selection of Ubuntu partners</h3>
-		<ul class="inline-logos no-bullets"><!-- TODO: get this passed through from a view -->
+		<ul class="inline-logos no-bullets">
 		{% for partner in partners %}
-			{% if partner.featured %}
-				<li><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-			{% endif %}
+			<li><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 		{% endfor %}
 		</ul>
 		<p class="align-center"><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
