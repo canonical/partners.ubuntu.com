@@ -281,16 +281,41 @@ ul.inline-logos li img {
 
 /* @section find a partner
 -------------------------------------------------------------- */
-.results {
-  .partner {
-    width: 25.5%;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    float: left;
+.find-a-partner {
+  #search {
+    background: url(http://www.canonical.com/static/img/pictograms/image-footer-search.svg) no-repeat;
+    background-size: 20px;
+    padding-left: 35px;
+    background-position: 7px 7px;
+    height: 36px;
+    line-height: 36px;
   }
-  .twelve-col {
-    border-bottom: 1px dotted #888;
+  .results {
+    .partner {
+      width: 25.5%;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      float: left;
+      height: 430px;
+    }
+    img {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px dotted #888;
+    }
   }
+}
+
+/* Find a partner */
+
+.hidden,
+.notSearchMatch,
+.notFilterMatch {
+  display: none;
+}
+
+.no-js .search-panel{
+  display: none;
 }
 
 /* @section contextual footer
@@ -548,8 +573,8 @@ html.yui3-js-enabled {
       display: block;
     }
     .tabbed-content {
-        padding: 40px;
-        margin-bottom: 20px;
+        // padding: 40px;
+        // margin-bottom: 20px;
 
         &.hide {
           display: none;
@@ -1073,16 +1098,4 @@ html.no-svg {
     /* if the cookie message is being displayed add padding so the legal links are still visible */
     padding-bottom: 30px;
   }
-}
-
-/* Find a partner */
-
-.hidden,
-.notSearchMatch,
-.notFilterMatch {
-  display: none;
-}
-
-.no-js .search-panel{
-  display: none;
 }
