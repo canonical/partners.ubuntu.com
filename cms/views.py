@@ -5,6 +5,7 @@ from preserialize.serialize import serialize
 from fenchurch import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
+from django.db.models import Q
 
 from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
@@ -45,8 +46,62 @@ class PartnerView(TemplateFinder):
 
 
 def partner_programmes(request, name):
-    partners = Partner.objects.filter(programme__name=name)
+    base_partners = Partner.objects.filter(published=True).exclude(logo="")
+    lookup_partners = {
+        "public-cloud": base_partners.filter(
+            programme__name="Certified Public Cloud",
+            featured=True),
+
+        "phone-carrier": base_partners.filter(
+            Q(service_offered__name='Mobile network operator') or
+            Q(service_offered__name='Hardware manufacturer'),
+            technology__name="Phone"),
+
+        "reseller": base_partners.filter(
+            programme__name="Reseller"),
+
+        "retail": base_partners.filter(
+            programme__name="Retailer"),
+
+        "hardware": base_partners.filter(
+            (
+                Q(programme__name="Technical Partner Programme") or
+                Q(programme__name="OpenStack interoperability Lab")
+            ) and (
+                Q(service_offered__name="Mobile network operator") or
+                Q(service_offered__name="hardware manufacturer") or
+                Q(service_offered__name="component manufacturer") or
+                Q(service_offered__name="silicon vendor"))
+        ),
+
+        "software": base_partners.filter(
+            (
+                Q(programme__name="Technical Partner Programme") or
+                Q(programme__name="OpenStack interoperability Lab")
+            ) and (
+                Q(service_offered__name="Software publisher") or
+                Q(service_offered__name="bespoke software developer") or
+                Q(service_offered__name="cloud software provider") or
+                Q(service_offered__name="software reseller")
+            )
+        ),
+
+        "openstack": base_partners.filter(
+            programme__name="software reseller"),
+    }
+    partners = lookup_partners[name][:15]
     context = {'programme_partners': partners}
+
+    if name == "phone-carrier":
+        context['cag_partners'] = base_partners.filter(
+            (
+                Q(technology__name="phone") or Q(technology__name="tablet")
+            ) and (
+                Q(programme__name="Carrier Advisory Group")
+            ),
+            featured=True
+        )
+
     context = add_default_values_to_context(context, request)
     return render_to_response(
         'partner-programmes/%s.html' % name,
