@@ -36,7 +36,6 @@ class PartnerView(TemplateFinder):
         ]
         context['partners'] = Partner.objects.filter(
             published=True,
-            featured=True
         ).exclude(logo="")
         context['partners_json'] = partners_json
         return super(PartnerView, self).render_to_response(
