@@ -89,30 +89,6 @@ core.setupAdditionalInfo = function() {
 	}
 };
 
-core.mobileNav = function() {
-		Y.one('.nav-primary').insert('<a class="search-toggle"></a><a id="menu" class="nav-toggle">menu</a>','before');
-		Y.all('.nav-toggle').on('click', function(e) {
-			e.preventDefault();
-			Y.all('.nav-toggle').toggleClass('active');
-			Y.all('header nav ul').toggleClass('active');
-			Y.all('.nav-primary').toggleClass('active');
-		});
-		if(Y.one('.breadcrumb li a')) {
-			Y.one('.breadcrumb > li a').insert('<span class="after"></span>');
-			Y.one('.breadcrumb li a .after').on('click', function(e) {
-				e.preventDefault();
-				Y.one('.nav-secondary').toggleClass('open');
-				core.setLocalStorage('onboard');
-			});
-		}
-		Y.all('.footer-a li h2').on('click', function(e) {
-			e.target.toggleClass('active');
-		});
-		Y.all('.footer-b li h2').on('click', function(e) {
-			e.target.toggleClass('active');
-		});
-};
-
 core.cookiePolicy = function() {
 	function open() {
 		YUI().use('node', function(Y) {
@@ -213,7 +189,6 @@ core.svgFallback = function() {
 
 core.setupAccordion();
 core.resizeListener();
-core.mobileNav();
 core.cookiePolicy();
 core.setupGlobalNavAccordion();
 core.setupHtmlClass();
