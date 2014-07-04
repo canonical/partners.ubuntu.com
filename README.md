@@ -2,6 +2,7 @@ extra requirements::
 
     sudo apt-get install postgresql
     sudo apt-get install postgresql-server-dev-9.x
+    sudo apt-get install graphviz-dev
 
 
 To create your postgres user and database::
