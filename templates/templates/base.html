@@ -76,7 +76,7 @@
 <div id="main-content" class="inner-wrapper">
 {% if level_1 %}
 {% block second_level_nav %}
-<nav role="navigation" class="nav-secondary clearfix">{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}</nav>
+{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}
 {% endblock second_level_nav %}
 {% endif %}
 

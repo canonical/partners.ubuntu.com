@@ -1004,10 +1004,6 @@ html.no-svg {
 /* @section Large / Desktop viewport
 -------------------------------------------------------------- */
 @media only screen and (min-width : 984px) {
-  header.banner {
-    margin-bottom: 30px;
-  }
-
   .row.row-contextual-footer  {
     padding-bottom: 60px;
 
@@ -1018,12 +1014,6 @@ html.no-svg {
     .featured p {
       font-size: 1.25em;
     }
-  }
-
-  .inner-wrapper {
-    float: none;
-    clear: both;
-    overflow: hidden;
   }
 
   #nav-global li.more a {
