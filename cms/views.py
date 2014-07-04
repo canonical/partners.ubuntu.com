@@ -20,7 +20,7 @@ class PartnerView(TemplateFinder):
 
         partners_json = json.dumps(
             serialize(
-                Partner.objects.filter(published=True),
+                Partner.objects.filter(published=True).order_by('?'),
                 fields=[':all'],
                 exclude=['created_on', 'updated_on']
             ),
@@ -36,7 +36,7 @@ class PartnerView(TemplateFinder):
         ]
         context['partners'] = Partner.objects.filter(
             published=True,
-        ).exclude(logo="")
+        ).exclude(logo="").order_by('?')
         context['partners_json'] = partners_json
         return super(PartnerView, self).render_to_response(
             context,
@@ -45,7 +45,7 @@ class PartnerView(TemplateFinder):
 
 
 def partner_programmes(request, name):
-    base_partners = Partner.objects.filter(published=True).exclude(logo="")
+    base_partners = Partner.objects.filter(published=True).exclude(logo="").order_by('?')
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
@@ -124,6 +124,14 @@ def partner_view(request, slug):
         context
     )
 
+def find_a_partner(request):
+    context = {'partners': Partner.objects.filter(published=True).order_by('name')}
+    context = add_default_values_to_context(context, request)
+
+    return render_to_response(
+        'find-a-partner/index.html',
+        context
+    )
 
 def add_default_values_to_context(context, request):
     path_list = [p for p in request.path.split('/') if p]
