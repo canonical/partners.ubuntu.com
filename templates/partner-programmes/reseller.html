@@ -17,13 +17,15 @@
 </div>
 
 <div class="row">
-	<div class="eight-col push-two">
+	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our reseller partners</h3>
-		<ul class="inline-logos no-bullets">
-			{% for partner in programme_partners %}
-				<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-			{% endfor %}
-		</ul>
+		<div class="ten-col push-one">
+			<ul class="inline-logos no-bullets">
+				{% for partner in programme_partners %}
+					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
+				{% endfor %}
+			</ul>
+		</div>
 		<p class="align-center"><a href="/find-a-partner">Browse all reseller partners&nbsp;&rsaquo;</a></p>
 	</div>
 </div>
