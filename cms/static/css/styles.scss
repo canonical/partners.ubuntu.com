@@ -204,6 +204,18 @@ ul.inline-logos li img {
     img {
       width: 100%;
     }
+    .twelve-col .two-col,
+    .nine-col .two-col {
+      width: 30%;
+      margin-right: 2.97176%;
+      float: left;
+    }
+    .twelve-col .seven-col,
+    .nine-col .seven-col {
+      width: 66%;
+      float: left;
+      margin-bottom: 0;
+    }
   }
 }
 
