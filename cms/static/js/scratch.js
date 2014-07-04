@@ -151,7 +151,7 @@ core.rssLoader = {
 	"getFeed" : function(url, numItems, el){
 		var feedpointer = new google.feeds.Feed(url); //Google Feed API method
 		console.log(numItems);
-		if(numItems != null){
+		if(numItems !== null){
 			feedpointer.setNumEntries(numItems); //Google Feed API method
 		}else{
 			feedpointer.setNumEntries(250); //Google Feed API method
@@ -172,7 +172,7 @@ core.parallaxBackground = function() {
 core.homeAnimation = function() {
 	if(Y.one('body').hasClass('home')){
 		var anim = Y.one('.animation');
-		if(anim != null) {
+		if(anim !== null) {
 			anim.addClass('run');
 		}
 	}
@@ -180,10 +180,31 @@ core.homeAnimation = function() {
 
 core.svgFallback = function() {
 	if (!Modernizr.svg || !Modernizr.backgroundsize) {
-	 	Y.all("img[src$='.svg']").each(function(node) {
-	 		node.setAttribute("src", node.getAttribute('src').toString().match(/.*\/(.+?)\./)[0]+'png');
-	 	});
+		Y.all("img[src$='.svg']").each(function(node) {
+			node.setAttribute("src", node.getAttribute('src').toString().match(/.*\/(.+?)\./)[0]+'png');
+		});
 	}
+};
+
+core.autoLastItem = function() {
+	var y = 0,
+		lastNode = null;
+
+	Y.all('.list-auto').each(function(node) {
+		node.all('li').each(function(node) {
+			y = node.getXY()[1];
+			if(lastNode) {
+				ly = lastNode.getXY()[1];
+				if(y > ly) {
+					lastNode.addClass('last-item');
+				}
+			}
+			lastNode = node;
+		});
+		lastNode.addClass('last-item');
+		y = 0;
+		lastNode = null;
+	});
 };
 
 
@@ -196,5 +217,6 @@ core.tabbedContent();
 core.parallaxBackground();
 core.homeAnimation();
 core.svgFallback();
+core.autoLastItem();
 
 });
