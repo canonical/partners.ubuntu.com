@@ -5,7 +5,9 @@ from django.http import (
 )
 from django.template import RequestContext, loader, Context
 
-from cms.views import partner_programmes, partner_view, PartnerView
+from cms.views import (
+    partner_programmes, partner_view, PartnerView, find_a_partner
+)
 
 admin.autodiscover()
 
@@ -28,7 +30,7 @@ urlpatterns = patterns(
     url(r'^$', PartnerView.as_view()),
     url(r'^contact-us$', PartnerView.as_view()),
     url(r'^thank-you$', PartnerView.as_view()),
-    url(r'^find-a-partner$', PartnerView.as_view()),
+    url(r'^find-a-partner$', find_a_partner),
     url(r'^ubuntu-and-canonical$', PartnerView.as_view()),
     url(r'^(?P<slug>[-\w]+)$', partner_view),
     #url(r'^(?P<template>.*)$', PartnerView.as_view()),
