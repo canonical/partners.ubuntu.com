@@ -1,4 +1,4 @@
-{% extends "templates/base_index.html" %}
+list-auto {% extends "templates/base_index.html" %}
 
 {% block title %}Ubuntu Certified Public cloud | {% endblock %}
 {% block meta_description %}Canonical has partnered with the very best software and solutions companies to extend and support and build Ubuntu OpenStack clouds.{% endblock %}
@@ -41,7 +41,7 @@
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our cloud partners</h3>
 		<p>We already work with the world&rsquo;s leading public cloud providers, our Premier Certified Public Cloud partners, collaborating with them on the technological developments that are driving cloud computing forward. These include <a href="https://juju.ubuntu.com">Juju</a>, a groundbreaking service orchestration tool bringing rapid deployment of complex applications to any cloud.</p>
-		<div class="ten-col push-one append-one">
+		<div class="list-auto ten-col push-one append-one">
 			<ul class="inline-logos no-bullets">
 				{% for partner in programme_partners %}
 					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>

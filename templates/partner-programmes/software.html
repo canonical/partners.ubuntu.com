@@ -19,7 +19,7 @@
 <div class="row">
 	<div class="twelve-col">
 		<h3 class="caps-centered">A selection of our software partners</h3>
-		<div class="ten-col push-one append-one">
+		<div class="list-auto ten-col push-one append-one">
 			<ul class="inline-logos no-bullets">
 				{% for partner in programme_partners %}
 					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
