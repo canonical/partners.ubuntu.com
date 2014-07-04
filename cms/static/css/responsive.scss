@@ -102,3 +102,34 @@
 	}
 
 }
+
+/* this can be deleted once responsive guidelines is live */
+@media only screen and (min-width : 768px) {
+	body #nav-global li:first-of-type a {
+		margin-left: 10px;
+	}
+@media only screen and (min-width : 768px) {
+	#nav-global .nav-global-wrapper {
+		width: auto !important;		
+	}
+}
+}
+
+@media only screen and (max-width : 768px) {
+  body #nav-global li:first-of-type a {
+    margin-left: 10px;
+  }
+  #nav-global .nav-global-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width : 984px) {
+  body #nav-global li:first-of-type a {
+    margin-left: 0;
+  }
+	#nav-global .nav-global-wrapper {
+		width: 984px !important;		
+	}
+}
+/* end this can be deleted once responsive guidelines is live */
