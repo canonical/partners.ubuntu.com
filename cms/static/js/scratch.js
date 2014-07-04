@@ -189,22 +189,23 @@ core.svgFallback = function() {
 core.autoLastItem = function() {
 	var y = 0,
 		lastNode = null;
-
-	Y.all('.list-auto').each(function(node) {
-		node.all('li').each(function(node) {
-			y = node.getXY()[1];
-			if(lastNode) {
-				ly = lastNode.getXY()[1];
-				if(y > ly) {
-					lastNode.addClass('last-item');
+	setTimeout(function(){
+		Y.all('.list-auto').each(function(node) {
+			node.all('li').each(function(node) {
+				y = node.getXY()[1];
+				if(lastNode) {
+					ly = lastNode.getXY()[1];
+					if(y > ly) {
+						lastNode.addClass('last-item');
+					}
 				}
-			}
-			lastNode = node;
+				lastNode = node;
+			});
+			lastNode.addClass('last-item');
+			y = 0;
+			lastNode = null;
 		});
-		lastNode.addClass('last-item');
-		y = 0;
-		lastNode = null;
-	});
+	}, 1000);
 };
 
 
