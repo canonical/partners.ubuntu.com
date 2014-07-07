@@ -37,7 +37,6 @@ update-db:
 # Should be called when installed on a juju box
 update:
 	@echo $(CHARM_DIR)/charm_cache/env.json
-	@if [ -e $(CHARM_DIR)/charm_cache/env.json ]; then echo "exists"; fi
 	@if [ -e $(CHARM_DIR)/charm_cache/env.json ] && grep -q 'DATABASE_URL' $(CHARM_DIR)/charm_cache/env.json; then \
 	DATABASE_URL=`jshon -e DATABASE_URL -u < $(CHARM_DIR)/charm_cache/env.json` $(MAKE) update-db; \
 	fi
