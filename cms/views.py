@@ -26,14 +26,6 @@ class PartnerView(TemplateFinder):
             ),
             default=lambda obj: None
         )
-        Filter = namedtuple('Filter', ['name', 'items'])
-        context['filters'] = [
-            Filter("Technology",        Technology.objects.all()),
-            Filter("Industry Sector", IndustrySector.objects.all()),
-            Filter("Programme",       Programme.objects.all()),
-            Filter("Service Offered", ServiceOffered.objects.all()),
-            Filter("Region",          Region.objects.all()),
-        ]
         context['partners'] = Partner.objects.filter(
             published=True,
         ).exclude(logo="").order_by('?')
@@ -127,6 +119,14 @@ def partner_view(request, slug):
 def find_a_partner(request):
     context = {'partners': Partner.objects.filter(published=True).order_by('name')}
     context = add_default_values_to_context(context, request)
+    Filter = namedtuple('Filter', ['name', 'items'])
+    context['filters'] = [
+        Filter("Technology",        Technology.objects.all()),
+        Filter("Industry Sector", IndustrySector.objects.all()),
+        Filter("Programme",       Programme.objects.all()),
+        Filter("Service Offered", ServiceOffered.objects.all()),
+        Filter("Region",          Region.objects.all()),
+    ]
 
     return render_to_response(
         'find-a-partner/index.html',
