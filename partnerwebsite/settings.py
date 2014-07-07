@@ -70,6 +70,10 @@ DATABASES = {
     }
 }
 
+# Update database settings from DATABASE_URL environment variable
+import dj_database_url
+DATABASES['default'].update(dj_database_url.config())
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 

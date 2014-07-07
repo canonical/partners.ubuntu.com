@@ -7,3 +7,4 @@ ipython==2.1.0
 psycopg2==2.5.3
 six==1.6.1
 wsgiref==0.1.2
+dj-database-url==0.3.0
