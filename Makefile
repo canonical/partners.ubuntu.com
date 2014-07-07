@@ -1,7 +1,7 @@
 develop:
 	python bootstrap.py env
 	$(MAKE) pip-requirements
-	. env/bin/activate && $(MAKE) update
+	. env/bin/activate && $(MAKE) update-db
 	$(MAKE) sass-watch
 	$(MAKE) runserver
 
@@ -30,6 +30,14 @@ rebuild-packages:
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
 
-update:
+update-db:
 	./manage.py syncdb --noinput
 	./manage.py migrate
+
+# Should be called when installed on a juju box
+update:
+	@echo $(CHARM_DIR)/charm_cache/env.json
+	@if [ -e $(CHARM_DIR)/charm_cache/env.json ]; then echo "exists"; fi
+	@if [ -e $(CHARM_DIR)/charm_cache/env.json ] && grep -q 'DATABASE_URL' $(CHARM_DIR)/charm_cache/env.json; then \
+	$(MAKE) update-db; \
+	fi
