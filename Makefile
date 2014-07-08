@@ -33,7 +33,3 @@ graph:
 update-db:
 	./manage.py syncdb --noinput
 	./manage.py migrate
-
-# Should be called when installed on a juju box
-update-charm:
-	$(MAKE) update-db
