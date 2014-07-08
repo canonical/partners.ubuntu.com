@@ -20,7 +20,7 @@ class PartnerView(TemplateFinder):
 
         partners_json = json.dumps(
             serialize(
-                Partner.objects.filter(published=True).order_by('?'),
+                Partner.objects.filter(published=True).order_by('?')[:15],
                 fields=[':all'],
                 exclude=['created_on', 'updated_on']
             ),
