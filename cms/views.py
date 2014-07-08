@@ -78,7 +78,7 @@ def partner_programmes(request, name):
         ),
 
         "openstack": base_partners.filter(
-            programme__name="software reseller"),
+            programme__name="Openstack Interoperability Lab"),
     }
     partners = lookup_partners[name][:15]
     context = {'programme_partners': partners}
