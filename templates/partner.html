@@ -10,7 +10,11 @@
 <div class="row hero">
 	<div class="eight-col">
 		<h1>{{ partner.name }}</h1>
+		{% if partner.long_description %}
 		<p>{{ partner.long_description|linebreaks }}</p>
+		{% else %}
+		<p>{{ partner.short_description|linebreaks }}</p>
+		{% endif %}
 		<p><a href="http://{{ partner.external_page }}" class="external">Partner website</a></p>
 	</div>
 	<div class="four-col last-col">
