@@ -18,18 +18,9 @@ class PartnerView(TemplateFinder):
     """
     def render_to_response(self, context, **response_kwargs):
 
-        partners_json = json.dumps(
-            serialize(
-                Partner.objects.filter(published=True).order_by('?')[:15],
-                fields=[':all'],
-                exclude=['created_on', 'updated_on']
-            ),
-            default=lambda obj: None
-        )
         context['partners'] = Partner.objects.filter(
             published=True,
-        ).exclude(logo="").order_by('?')
-        context['partners_json'] = partners_json
+        ).exclude(logo="").order_by('?')[:15]
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
