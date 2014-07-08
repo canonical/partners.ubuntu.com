@@ -188,6 +188,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
 
     {% for filter in filters %}
     groupedFilters['{{ filter.name|slugify }}'] = getParameterByName('{{ filter.name|slugify }}');
+    //TODO - pop open any filters that are used
     {% endfor %}
     for (var key in groupedFilters) {
       if (groupedFilters[key]) {
