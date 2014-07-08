@@ -54,7 +54,7 @@
             </div>
             {% endif %}
             <div class="{% if p.logo %}seven-col{% else %}nine-col{% endif %} last-col">
-              <h3><a {% if not p.generate_page %}class="external"{% endif %} href="{% if p.generate_page %}/{{ p.slug }}{% else %}{{ p.external_page }}{% endif %}">{{ p.name }}{% if p.generate_page %}&nbsp;&rsaquo;{% endif %}</a></h3>
+              <h3><a {% if not p.generate_page %}class="external" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');"{% else %}onclick="ga('send', 'event', 'Internal Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');"{% endif %} href="{% if p.generate_page %}/{{ p.slug }}{% else %}{{ p.external_page }}{% endif %}">{{ p.name }}{% if p.generate_page %}&nbsp;&rsaquo;{% endif %}</a></h3>
               <p>{{ p.short_description }}</p>
             </div>
         </div>
