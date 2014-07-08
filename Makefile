@@ -33,3 +33,6 @@ graph:
 update-db:
 	./manage.py syncdb --noinput
 	./manage.py migrate
+
+update-charm:
+	if [ $(DATABASE_URI) ]; then $(MAKE) update-db; fi
