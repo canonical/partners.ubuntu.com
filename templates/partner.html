@@ -15,7 +15,7 @@
 		{% else %}
 		<p>{{ partner.short_description|linebreaks }}</p>
 		{% endif %}
-		<p><a href="http://{{ partner.external_page }}" class="external">Partner website</a></p>
+		<p><a href="{{ partner.external_page }}" class="external">Partner website</a></p>
 	</div>
 	<div class="four-col last-col">
 		<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />
