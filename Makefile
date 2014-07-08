@@ -35,4 +35,4 @@ update-db:
 	./manage.py migrate
 
 update-charm:
-	if [ $(DATABASE_URI) ]; then $(MAKE) update-db; fi
+	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi
