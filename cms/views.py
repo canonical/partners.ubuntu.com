@@ -150,12 +150,12 @@ def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
-        partners_json = json.dumps(
-            serialize(
-                Partner.objects.filter(published=True).order_by('?'),
-                fields=[':all'],
-                exclude=['created_on', 'updated_on']
-            ),
-            default=lambda obj: None
-        )
-        return HttpResponse(partners_json, content_type="application.json")
+    partners_json = json.dumps(
+        serialize(
+            Partner.objects.filter(published=True).order_by('?'),
+            fields=[':all'],
+            exclude=['created_on', 'updated_on', 'generate_page']
+        ),
+        default=lambda obj: None
+    )
+    return HttpResponse(partners_json, content_type="application.json")
