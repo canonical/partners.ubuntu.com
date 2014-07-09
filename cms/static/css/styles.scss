@@ -929,9 +929,9 @@ html.no-svg {
   /* @section partner programmes: openstack
   -------------------------------------------------------------- */
   body.partner-programmes-openstack {
-    .row-hero{
+    #main-content .row-hero{
       min-height: 280px;
-
+      padding-top: 0;
       img {
         margin-top: 0;
         margin-bottom: 0;
