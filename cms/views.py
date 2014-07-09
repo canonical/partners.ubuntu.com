@@ -6,6 +6,7 @@ from fenchurch import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
+from django.http import HttpResponse
 
 from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
@@ -28,6 +29,12 @@ class PartnerView(TemplateFinder):
 
 
 def partner_programmes(request, name):
+    """
+    /partner-programmes/<name>
+
+    Renders the template, 'partner-programmes/<name>.html' with the partners defined in:
+    https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
+    """
     base_partners = Partner.objects.filter(published=True).exclude(logo="").order_by('?')
     lookup_partners = {
         "public-cloud": base_partners.filter(
@@ -92,6 +99,10 @@ def partner_programmes(request, name):
 
 
 def partner_view(request, slug):
+    """
+    /<slug>
+    Gets the partner specified in <slug> and renders partner.html with that partner
+    """
     partner = get_object_or_404(
         Partner,
         slug=slug,
@@ -108,11 +119,14 @@ def partner_view(request, slug):
     )
 
 def find_a_partner(request):
+    """
+    
+    """
     context = {'partners': Partner.objects.filter(published=True).order_by('name')}
     context = add_default_values_to_context(context, request)
     Filter = namedtuple('Filter', ['name', 'items'])
     context['filters'] = [
-        Filter("Technology",        Technology.objects.all()),
+        Filter("Technology",      Technology.objects.all()),
         Filter("Industry Sector", IndustrySector.objects.all()),
         Filter("Programme",       Programme.objects.all()),
         Filter("Service Offered", ServiceOffered.objects.all()),
@@ -131,3 +145,17 @@ def add_default_values_to_context(context, request):
         context[level] = path
     context['STATIC_URL'] = settings.STATIC_URL
     return context
+
+def partners_json_view(request):
+    """
+    Returns a JSON list of partners, depending on query strings.
+    """
+        partners_json = json.dumps(
+            serialize(
+                Partner.objects.filter(published=True).order_by('?'),
+                fields=[':all'],
+                exclude=['created_on', 'updated_on']
+            ),
+            default=lambda obj: None
+        )
+        return HttpResponse(partners_json, content_type="application.json")

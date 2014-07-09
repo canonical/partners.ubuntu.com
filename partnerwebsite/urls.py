@@ -6,7 +6,7 @@ from django.http import (
 from django.template import RequestContext, loader, Context
 
 from cms.views import (
-    partner_programmes, partner_view, PartnerView, find_a_partner
+    partner_programmes, partner_view, PartnerView, find_a_partner, partners_json_view
 )
 
 admin.autodiscover()
@@ -26,6 +26,7 @@ urlpatterns = patterns(
     '',
     url(r'^admin/?$', lambda r: HttpResponseRedirect('/admincms/partner/')),
     url(r'^admin', include(admin.site.urls)),
+    url(r'^partners.json$', partners_json_view),
     url(r'^partner-programmes/?$', PartnerView.as_view()),
     url(r'^partner-programmes/(?P<name>[-\w]+)', partner_programmes),
     url(r'^$', PartnerView.as_view()),
