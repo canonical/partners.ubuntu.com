@@ -175,6 +175,6 @@ def partners_json_view(request):
         default=lambda obj: None
     )
     except FieldError as e:
-        partners_json = {"Error": e}
+        partners_json = json.dumps({"Error": e.message})
 
     return HttpResponse(partners_json, content_type="application.json")
