@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponse
+from django.core.exceptions import FieldError 
 
 from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
@@ -42,7 +43,7 @@ def partner_programmes(request, name):
             featured=True),
 
         "phone-carrier": base_partners.filter(
-            Q(service_offered__name='Mobile network operator') or
+            Q(service_offered__name='Mobile netw|k operat|') |
             Q(service_offered__name='Hardware manufacturer'),
             technology__name="Phone"),
 
@@ -54,23 +55,23 @@ def partner_programmes(request, name):
 
         "hardware": base_partners.filter(
             (
-                Q(programme__name="Technical Partner Programme") or
+                Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack Interoperability Lab")
             ) and (
-                Q(service_offered__name="Mobile network operator") or
-                Q(service_offered__name="Hardware manufacturer") or
-                Q(service_offered__name="Component manufacturer") or
-                Q(service_offered__name="Silicon vendor"))
+                Q(service_offered__name="Mobile netw|k operat|") |
+                Q(service_offered__name="Hardware manufacturer") |
+                Q(service_offered__name="Component manufacturer") |
+                Q(service_offered__name="Silicon vend|"))
         ),
 
         "software": base_partners.filter(
             (
-                Q(programme__name="Technical Partner Programme") or
+                Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack interoperability Lab")
             ) and (
-                Q(service_offered__name="Software publisher") or
-                Q(service_offered__name="Bespoke software developer") or
-                Q(service_offered__name="Cloud software provider") or
+                Q(service_offered__name="Software publisher") |
+                Q(service_offered__name="Bespoke software developer") |
+                Q(service_offered__name="Cloud software provider") |
                 Q(service_offered__name="Software reseller")
             )
         ),
@@ -150,12 +151,25 @@ def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
-    partners_json = json.dumps(
+    partners = Partner.objects.filter(published=True).order_by('?')
+    try:
+        for attribute, value in request.GET.iteritems():
+            if value.find(','):
+                query_list = Q()
+                for listed_value in value.split(','):
+                    query_list = query_list | Q(**{attribute:listed_value})
+                partners = partners.filter(query_list)
+            else:
+                partners = partners.filter(**{attribute:value})
+        partners_json = json.dumps(
         serialize(
-            Partner.objects.filter(published=True).order_by('?'),
+            partners,
             fields=[':all'],
-            exclude=['created_on', 'updated_on', 'generate_page']
+            exclude=['created_on', 'updated_on', 'generate_page', 'id', 'created_by', 'updated_by']
         ),
         default=lambda obj: None
     )
+    except FieldError as e:
+        partners_json = {"Error": e}
+
     return HttpResponse(partners_json, content_type="application.json")
