@@ -13,6 +13,17 @@ from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
 )
 
+def add_default_values_to_context(context, request):
+    """
+    Untill Fenchurch is updated to export this functionality, had to paste it in here.
+    """
+    path_list = [p for p in request.path.split('/') if p]
+    for i, path, in enumerate(path_list):
+        level = "level_%s" % str(i+1)
+        context[level] = path
+    context['STATIC_URL'] = settings.STATIC_URL
+    return context
+
 
 class PartnerView(TemplateFinder):
     """
@@ -121,7 +132,8 @@ def partner_view(request, slug):
 
 def find_a_partner(request):
     """
-    
+    /find-a-partner/
+    List all partners to the page, for frontend searching.
     """
     context = {'partners': Partner.objects.filter(published=True).order_by('name')}
     context = add_default_values_to_context(context, request)
@@ -139,13 +151,6 @@ def find_a_partner(request):
         context
     )
 
-def add_default_values_to_context(context, request):
-    path_list = [p for p in request.path.split('/') if p]
-    for i, path, in enumerate(path_list):
-        level = "level_%s" % str(i+1)
-        context[level] = path
-    context['STATIC_URL'] = settings.STATIC_URL
-    return context
 
 def partners_json_view(request):
     """
