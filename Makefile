@@ -1,3 +1,10 @@
+help:
+	@echo "Usage: 'make develop' to set up your environment, then 'make start-dev' to start the devserver and sass compilation".
+
+start-dev:
+	$(MAKE) sass-watch
+	env/bin/python manage.py runserver_plus 0.0.0.0:8000
+
 develop:
 	python bootstrap.py env
 	$(MAKE) pip-requirements
@@ -5,8 +12,10 @@ develop:
 	$(MAKE) sass-watch
 	$(MAKE) runserver
 
-pip-requirements:
+apt-requirements:
 	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
+
+pip-requirements:
 	env/bin/pip install -r requirements/dev.txt
 
 sass-watch:
@@ -16,10 +25,6 @@ sass-watch:
 sass:
 	# Build sass
 	sass --style compressed --update cms/static/css/styles.scss:cms/static/css/styles.css
-
-runserver:
-	make sass-watch
-	env/bin/python manage.py runserver_plus 0.0.0.0:8000
 
 runserver_prod:
 	gunicorn fenchurch.wsgi:application
