@@ -185,7 +185,8 @@ blockquote.pull-quote p {
 /* @section logos
 -------------------------------------------------------------- */
 ul.inline-logos li img {
-  height: 65px;
+  height: auto;
+  max-height: 65px;
 }
 
 /* @section find a partner
