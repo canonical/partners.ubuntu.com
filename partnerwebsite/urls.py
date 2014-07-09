@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.http import (
-    HttpResponseNotFound, HttpResponseServerError
+    HttpResponseNotFound, HttpResponseServerError, HttpResponseRedirect
 )
 from django.template import RequestContext, loader, Context
 
@@ -24,6 +24,7 @@ def custom_500(request):
 
 urlpatterns = patterns(
     '',
+    url(r'^admin/?$', lambda r: HttpResponseRedirect('/admincms/partner/')),
     url(r'^admin', include(admin.site.urls)),
     url(r'^partner-programmes/?$', PartnerView.as_view()),
     url(r'^partner-programmes/(?P<name>[-\w]+)', partner_programmes),
