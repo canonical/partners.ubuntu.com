@@ -254,6 +254,21 @@ html.yui3-js-enabled .find-a-partner {
   display: none;
 }
 
+/* @section partner programmes: openstack
+-------------------------------------------------------------- */
+body.partner-programmes-openstack {
+  #main-content .row-hero{
+    padding-top: 290px;
+    img {
+      margin-top: 0;
+      margin-bottom: 0;
+      position: absolute;
+      top: -20px;
+    }
+  }
+
+}
+
 /* @section contextual footer
 -------------------------------------------------------------- */
 #context-footer div+div {
@@ -832,10 +847,6 @@ footer #nav-global {
     margin-right: 10px;
   }
 
-/*    .pull-quote {
-    clear: both;
-  }*/
-
   .personal-info {
     list-style-type: none;
   }
@@ -913,6 +924,31 @@ html.no-svg {
     .twelve-col img {
       float: none;
     }
+  }
+
+  /* @section partner programmes: openstack
+  -------------------------------------------------------------- */
+  body.partner-programmes-openstack {
+    #main-content .row-hero{
+      min-height: 280px;
+      padding-top: 0;
+      img {
+        margin-top: 0;
+        margin-bottom: 0;
+        position: absolute;
+        top: -40px;
+        right: 30px;
+      }
+    }
+
+  }
+
+  .row-testing-integration {
+    background-image: url("https://assets.ubuntu.com/sites/ubuntu/latest/u/img/cloud/ecosystem/ubuntu-oil/image-ubuntuopenstackinteroperabilitylab.svg");
+    background-repeat: no-repeat;
+    background-size: 326px auto;
+    background-position: 95% 40%;
+    background-color: #fff;
   }
 
   /* @section partnering with ubuntu and canonical
