@@ -20,7 +20,7 @@ class PartnerView(TemplateFinder):
 
         context['partners'] = Partner.objects.filter(
             published=True,
-        ).exclude(logo="").order_by('?')[:15]
+        ).exclude(logo="").order_by('?')[:10]
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
@@ -48,12 +48,12 @@ def partner_programmes(request, name):
         "hardware": base_partners.filter(
             (
                 Q(programme__name="Technical Partner Programme") or
-                Q(programme__name="OpenStack interoperability Lab")
+                Q(programme__name="OpenStack Interoperability Lab")
             ) and (
                 Q(service_offered__name="Mobile network operator") or
-                Q(service_offered__name="hardware manufacturer") or
-                Q(service_offered__name="component manufacturer") or
-                Q(service_offered__name="silicon vendor"))
+                Q(service_offered__name="Hardware manufacturer") or
+                Q(service_offered__name="Component manufacturer") or
+                Q(service_offered__name="Silicon vendor"))
         ),
 
         "software": base_partners.filter(
@@ -62,16 +62,16 @@ def partner_programmes(request, name):
                 Q(programme__name="OpenStack interoperability Lab")
             ) and (
                 Q(service_offered__name="Software publisher") or
-                Q(service_offered__name="bespoke software developer") or
-                Q(service_offered__name="cloud software provider") or
-                Q(service_offered__name="software reseller")
+                Q(service_offered__name="Bespoke software developer") or
+                Q(service_offered__name="Cloud software provider") or
+                Q(service_offered__name="Software reseller")
             )
         ),
 
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name][:15]
+    partners = lookup_partners[name][:10]
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":
