@@ -203,6 +203,10 @@ ul.inline-logos li img {
   }
 
   .results {
+    .hide {
+      display: none;
+    }
+
     img {
       width: 100%;
     }

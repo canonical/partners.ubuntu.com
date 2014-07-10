@@ -49,6 +49,10 @@
       </div>
     </div>
     <div id="results" class="results nine-col last-col">
+        <div class="box noResults hide">
+          <p>Sorry, no partners matches found.</p>
+          <p>Perhaps <a href="">start your search again?</a></p>
+        </div>
         {% for p in partners %}
         <div class="box clearfix twelve-col partner" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for category in p.category.all %}category-{{ category.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
             {% if p.logo %}
@@ -171,6 +175,23 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     resultFilters: 'wordMatch'
   });
 
+  // Returns true if there are any matched results
+  function matchesExist() {
+    if (Y.all('#results > .partner').size() == (Y.all('#results > .notSearchMatch').size() + Y.all('#results > .notFilterMatch').size())){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function updateNoResultsMessage(matchesExist) {
+    if (matchesExist){
+      Y.one('#results .noResults').addClass('hide');
+    } else {
+      Y.one('#results .noResults').removeClass('hide');
+    }
+  }
+
   // Subscribe to the "results" event
   search.on('results', function (e) {
     Y.all('#results > .partner').addClass('notSearchMatch');
@@ -178,6 +199,8 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     Y.Array.each(e.results, function (result) {
       result.raw.node.removeClass('notSearchMatch');
     });
+
+    updateNoResultsMessage(matchesExist());
   });
 
   // Subscribe to the "results" event
@@ -187,6 +210,8 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     Y.Array.each(e.results, function (result) {
       result.raw.node.removeClass('notFilterMatch');
     });
+
+    updateNoResultsMessage(matchesExist());
   });
 
 
@@ -213,6 +238,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     var checked = checkbox.get('checked');
     var attributeName = checkbox.get('id')
     updateFilter(attributeName, checked);
+    updateNoResultsMessage(matchesExist());
   });
 
   //Get specified query param
