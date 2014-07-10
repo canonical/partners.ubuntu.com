@@ -36,8 +36,7 @@ graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
 
 update-db:
-	./manage.py syncdb --noinput
-	./manage.py migrate
+	./manage.py syncdb --noinput --migrate
 
 update-charm:
 	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi

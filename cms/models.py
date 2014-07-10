@@ -1,5 +1,6 @@
 from django.db import models
 from django.core import serializers
+from django.db.models.signals import pre_save
 
 
 class PartnerModel(models.Model):
@@ -144,3 +145,19 @@ class Text(models.Model):
     header = models.TextField()
     body = models.TextField()
     url = models.URLField()
+
+
+def make_user_admin(sender, instance, **kwargs):
+    """
+    Update all created users to become admin users
+    by setting is_staff and is_superuser
+    """
+
+    if type(instance).__name__ == 'User':
+        user = instance
+
+        user.is_staff = True
+        user.is_superuser = True
+
+
+pre_save.connect(make_user_admin)
