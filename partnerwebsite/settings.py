@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_extensions',
     'cms',
-    'south'
+    'south',
+    'django_openid_auth'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,3 +95,21 @@ TEMPLATE_DIRS = (BASE_DIR + "/templates")
 
 STATIC_URL = '/static/'
 STATIC_ROOT = (BASE_DIR + "/static")
+
+# Django openID auth
+# ===
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = '/openid/login/'
+LOGIN_REDIRECT_URL = '/'
+
+OPENID_CREATE_USERS = True
+OPENID_SSO_SERVER_URL = 'https://login.launchpad.net/'
+OPENID_LAUNCHPAD_TEAMS_REQUIRED = ['webteam-backend']
+OPENID_USE_AS_ADMIN_LOGIN = True
