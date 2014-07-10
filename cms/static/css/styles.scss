@@ -254,21 +254,6 @@ html.yui3-js-enabled .find-a-partner {
   display: none;
 }
 
-/* @section partner programmes: openstack
--------------------------------------------------------------- */
-body.partner-programmes-openstack {
-  #main-content .row-hero{
-    padding-top: 290px;
-    img {
-      margin-top: 0;
-      margin-bottom: 0;
-      position: absolute;
-      top: -20px;
-    }
-  }
-
-}
-
 /* @section contextual footer
 -------------------------------------------------------------- */
 #context-footer div+div {
@@ -926,6 +911,19 @@ html.no-svg {
     }
   }
 
+  /* @section partner programmes: software
+  -------------------------------------------------------------- */
+  .partner-programmes-software {
+    .row-hero {
+      overflow: hidden;
+      img {
+        height: 300px;
+        position: absolute;
+        right: -150px;
+      }
+    }
+  }
+
   /* @section partner programmes: openstack
   -------------------------------------------------------------- */
   body.partner-programmes-openstack {
@@ -1073,6 +1071,19 @@ html.no-svg {
     .inner-wrapper {
       background: url(../img/image-partnering.svg) no-repeat right 40px top #fff;
       background-size: 450px;
+    }
+  }
+
+  /* @section partner programmes: software
+  -------------------------------------------------------------- */
+  .partner-programmes-software {
+    .row-hero {
+      overflow: hidden;
+      img {
+        height: 300px;
+        position: absolute;
+        right: -100px;
+      }
     }
   }
 
