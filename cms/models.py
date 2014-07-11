@@ -144,7 +144,7 @@ class Text(models.Model):
     image = models.URLField()
     header = models.TextField()
     body = models.TextField()
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
 
 
 def make_user_admin(sender, instance, **kwargs):
