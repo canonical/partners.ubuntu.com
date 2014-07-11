@@ -28,6 +28,12 @@ class InsightsTagInline(admin.TabularInline):
 
 class PartnerAdmin(admin.ModelAdmin):
 
+    def save_model(self, request, obj, form, change):
+        obj.updated_by = str(request.user)
+        if obj.created_by == '':
+            obj.created_by = str(request.user)
+        obj.save()
+
     def technology(obj):
         return ",".join([str(o) for o in obj.technology.all()])
 
