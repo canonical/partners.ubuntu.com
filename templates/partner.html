@@ -25,14 +25,24 @@
 {% if partner.texts %}
 {% for text in partner.texts %}
 <div class="row row-image-centered">
+	{% if forloop.counter|divisibleby:2 %}
+	<span>
+		<img src="{{ text.fields.image }}" />
+	</span>
+	<div class="eight-col last-col">
+	{% else %}
 	<div class="eight-col">
+	{% endif %}
 		<h2>{{ text.fields.header }}</h2>
 		{{ text.fields.body|linebreaks }}
 		<a href="{{ text.fields.url }}">Read more&nbsp;&rsaquo;</a>
 	</div>
+	{% if forloop.counter|divisibleby:2 %}
+	{% else %}
 	<span>
 		<img src="{{ text.fields.image }}" />
 	</span>
+	{% endif %}
 </div>
 {% endfor %}
 {% endif %}
@@ -50,9 +60,10 @@
 </div>
 {% endif %}
 
-{% if partner.links %}
-<div class="row">
-	<div class="eight-col">
+
+<div class="row no-border">
+	{% if partner.links %}
+	<div class="six-col">
 		<h2>Links</h2>
 		<ul>
 			{% for link in partner.links %}
@@ -60,8 +71,18 @@
 			{% endfor %}
 		</ul>
 	</div>
+	{% endif %}
+	{% if partner.links %}
+	<div class="six-col last-col">
+		<h2>Links</h2>
+		<ul>
+			{% for link in partner.links %}
+			<li><a class="external" href="{{ link.fields.url }}">{{ link.fields.text }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
 </div>
-{% endif %}
 {% include "templates/_contextual-footer.html" %}
 
 {% endblock %}
