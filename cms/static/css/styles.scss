@@ -156,12 +156,6 @@ html.opera-mini {
   }
 }
 
-/* @section home
--------------------------------------------------------------- */
-.full-images img {
-  width: 100%;
-}
-
 /* @section partner programmes: retail
 -------------------------------------------------------------- */
 .partner-programmes-retail{
@@ -928,6 +922,7 @@ html.no-svg {
         position: absolute;
         top: -40px;
         right: 30px;
+        width: 300px;
       }
     }
 
