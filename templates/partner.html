@@ -23,8 +23,8 @@
 </div>
 
 {% if partner.texts %}
+{% for text in partner.texts %}
 <div class="row row-image-centered">
-	{% for text in partner.texts %}
 	<div class="eight-col">
 		<h2>{{ text.fields.header }}</h2>
 		{{ text.fields.body|linebreaks }}
@@ -33,8 +33,8 @@
 	<span>
 		<img src="{{ text.fields.image }}" />
 	</span>
-	{% endfor %}
 </div>
+{% endfor %}
 {% endif %}
 
 {% if partner.quotes %}
