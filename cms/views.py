@@ -33,7 +33,7 @@ class PartnerView(TemplateFinder):
 
         context['partners'] = Partner.objects.filter(
             published=True,
-        ).exclude(logo="").order_by('?')[:10]
+        ).exclude(logo="").order_by('?')[:8]
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
