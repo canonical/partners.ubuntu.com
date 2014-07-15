@@ -23,18 +23,28 @@
 </div>
 
 {% if partner.texts %}
+{% for text in partner.texts %}
 <div class="row row-image-centered">
-	{% for text in partner.texts %}
+	{% if forloop.counter|divisibleby:2 %}
+	<span>
+		<img src="{{ text.fields.image }}" />
+	</span>
+	<div class="eight-col last-col">
+	{% else %}
 	<div class="eight-col">
+	{% endif %}
 		<h2>{{ text.fields.header }}</h2>
 		{{ text.fields.body|linebreaks }}
 		<a href="{{ text.fields.url }}">Read more&nbsp;&rsaquo;</a>
 	</div>
+	{% if forloop.counter|divisibleby:2 %}
+	{% else %}
 	<span>
 		<img src="{{ text.fields.image }}" />
 	</span>
-	{% endfor %}
+	{% endif %}
 </div>
+{% endfor %}
 {% endif %}
 
 {% if partner.quotes %}
@@ -50,9 +60,10 @@
 </div>
 {% endif %}
 
-{% if partner.links %}
-<div class="row">
-	<div class="eight-col">
+
+<div class="row no-border">
+	{% if partner.links %}
+	<div class="six-col">
 		<h2>Links</h2>
 		<ul>
 			{% for link in partner.links %}
@@ -60,8 +71,45 @@
 			{% endfor %}
 		</ul>
 	</div>
+	{% endif %}
+	{% if partner.insights_tags %}
+	<div class="six-col last-col">
+		<h2>Further reading</h2>
+		<div id="insights"></div>
+	</div>
+	{% endif %}
 </div>
-{% endif %}
 {% include "templates/_contextual-footer.html" %}
+{% if partner.insights_tags %}
+  {% block head_extra %}
+  <script src="https://www.google.com/jsapi"></script>
+  <script>google.load("feeds", "1")</script>
+  {% endblock %}
+  <script>
+    var feedcontainer2=document.getElementById("insights")
+    var feedurl2=document.location.protocol+"//insights.ubuntu.com/tag/{% for tag in partner.insights_tags %}{{ tag.fields.tag }}{% endfor %}/feed/"
+    var feedlimit2=3
+    var rssoutput="<ul class='no-bullets smaller'>"
+      function rssfeedsetup2(){
+        var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
+            feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
+            feedpointer2.load(displayfeed2) //Google Feed API method
+      }
+
+      function displayfeed2(result){
+        if (!result.error){
+          var thefeeds2=result.feed.entries
+          for (var i=0; i<thefeeds2.length; i++){
+            rssoutput+="<li><a class='external' href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "</a></li>"}
+            rssoutput+="</ul>"
+            feedcontainer2.innerHTML=rssoutput
+        }
+      }
+        
+      window.onload=function(){
+        rssfeedsetup2()
+      }
+  </script>
+ {% endif %}
 
 {% endblock %}

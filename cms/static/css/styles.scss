@@ -85,6 +85,126 @@ core scss files are in /sites/core/static/css
 -------------------------------------------------------------- */
 //@import "section/.";
 
+@keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/*scaleIn*/
+
+@keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-moz-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+@-webkit-keyframes scaleIn {
+    0% {
+        background-size: 0%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/*scaleInPop*/
+
+@keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-moz-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+@-webkit-keyframes scaleInPop {
+    0% {
+        background-size: 0%;
+    }
+    60% {
+        background-size: 100%;
+    }
+    100% {
+        background-size: 90%;
+    }
+}
+
+/*rotateIn*/
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes rotateIn {
+    0% {
+        -moz-transform: rotate(-45deg);
+    }
+    100% {
+        -moz-transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes rotateIn {
+    0% {
+        -webkit-transform: rotate(-45deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
 
 /*	@section header
 -------------------------------------------------------------- */
@@ -156,23 +276,118 @@ html.opera-mini {
   }
 }
 
-/* @section pull quote
+/* @section strips
 -------------------------------------------------------------- */
-blockquote.pull-quote p {
-  font-size: 0.813em;
-  cite {
-    margin-left: 0;
-    text-indent: 0;
-    font-size: 0.75em;
-    text-indent: 0;
+.strip-dark,
+.strip-light {
+  clear: both;
+}
+
+.strip-dark {
+  background-color: $dark_aubergine;
+  background-image: url(../img/backgrounds/background-grid.png);
+  background-repeat: repeat;
+  color: #fff;
+}
+
+.strip-dark.solid {
+  background-image: none;
+  background-color: $dark_aubergine;
+}
+
+.strip-light {
+  background-color: rgba(255,255,255,0.6);
+}
+
+.strip-light ul,
+.strip-light ol {
+  margin: 0;
+  padding: 0;
+}
+
+.strip-dark ol,
+.strip-dark ul {
+  padding: 20px 0;
+}
+
+@media only screen and (min-width : 984px) {
+  .strip-dark,
+  .strip-light,
+  .strip {
+    width: 100%;
+    display: block;
   }
 }
 
 /* @section home
 -------------------------------------------------------------- */
-.full-images img {
-  width: 100%;
+.home {
+  .wrapper {
+    width: 100%;
+    background: none;
+  }
+  #main-content {
+    background: none;
+    box-shadow: none;
+  }
+
+  .strip-inner-wrapper {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0 8px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 984px;
+    float: none;
+    position: relative;
+  }
+
+  .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media only screen and (min-width : 768px) {
+    .row-hero {
+      min-height: 440px;
+    }
+    .strip-inner-wrapper {
+      padding: 0 30px;
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .row {
+
+    }
+    .strip-inner-wrapper {
+      padding: 0;
+    }
+    .cookie-policy .wrapper {
+      width: 984px;
+    }
+  }
 }
+
+/* @section partner programmes: hardware
+-------------------------------------------------------------- */
+@media only screen and (min-width : 768px) {
+  .partner-programmes-hardware {
+    .row-get-ahead {
+      overflow: hidden;
+      img {
+        position: absolute;
+        top: 110px;
+        left: 660px;
+      }
+    }
+  }
+}
+
 
 /* @section partner programmes: retail
 -------------------------------------------------------------- */
@@ -203,6 +418,10 @@ ul.inline-logos li img {
   }
 
   .results {
+    .hide {
+      display: none;
+    }
+
     img {
       width: 100%;
     }
@@ -881,6 +1100,159 @@ html.no-svg {
     display: block;
   }
 
+  .home {
+
+    #main-content .row-hero img {
+      display: none;
+    }
+
+    .row-hero {
+      position: relative;
+    }
+
+    .partners-image-container {
+        position: absolute;
+        background: url('../img/home/partners-hero-background.png') no-repeat center center;
+        width: 600px;
+        height: 600px;
+        top: -100px;
+        right: 0;
+    }
+    .partners-hero-ubuntu {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      top: 208px;
+      left: 330px;
+      background: url('../img/home/partners-hero-ubuntu.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-ubuntu.svg') 50% 50% no-repeat, none;
+      opacity: 0;
+      //background-size: 0%;
+      animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
+      -moz-animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
+      -webkit-animation: scaleIn 0.3s forwards, fadeIn 0.6s linear forwards, rotateIn 3.0s ease-out forwards;
+      animation-delay: 1s;
+      -moz-animation-delay: 1s;
+      -webkit-animation-delay: 1s;
+    }
+    .partners-hero-desktop, .partners-hero-phone, .partners-hero-tablet, .partners-hero-server, .partners-hero-cloud {
+      position: absolute;
+      width: 66px;
+      height: 66px;
+      opacity: 0;
+      animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
+      -moz-animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
+      -webkit-animation: scaleInPop 0.2s forwards, fadeIn 0.2s linear forwards;
+    }
+    .partners-hero-desktop {
+      background: url('../img/home/partners-hero-desktop.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-desktop.svg') 50% 50% no-repeat, none;
+      //background-size: 0%;
+      top: 65px;
+      left: 367px;
+      animation-delay: 1.6s;
+      -moz-animation-delay: 1.6s;
+      -webkit-animation-delay: 1.6s;
+    }
+    .partners-hero-phone {
+      background: url('../img/home/partners-hero-phone.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-phone.svg') 50% 50% no-repeat, none;
+      //background-size: 0%;
+      top: 118px;
+      left: 494px;
+      animation-delay: 1.85s;
+      -moz-animation-delay: 1.85s;
+      -webkit-animation-delay: 1.85s;
+    }
+    .partners-hero-tablet {
+      background: url('../img/home/partners-hero-tablet.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-tablet.svg') 50% 50% no-repeat, none;
+      //background-size: 0%;
+      top: 245px;
+      left: 547px;
+      animation-delay: 2s;
+      -moz-animation-delay: 2s;
+      -webkit-animation-delay: 2s;
+    }
+    .partners-hero-server {
+      background: url('../img/home/partners-hero-server.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-server.svg') 50% 50% no-repeat, none;
+      //background-size: 0%;
+      top: 425px;
+      left: 367px;
+      animation-delay: 2.15s;
+      -moz-animation-delay: 2.15s;
+      -webkit-animation-delay: 2.15s;
+    }
+    .partners-hero-cloud {
+      background: url('../img/home/partners-hero-cloud.png') 50% 50% no-repeat;
+      background: url('../img/home/partners-hero-cloud.svg') 50% 50% no-repeat, none;
+      //background-size: 0%;
+      top: 372px;
+      left: 240px;
+      animation-delay: 2.3s;
+      -moz-animation-delay: 2.3s;
+      -webkit-animation-delay: 2.3s;
+    }
+    .partners-hero-line-1, .partners-hero-line-2, .partners-hero-line-3, .partners-hero-line-4, .partners-hero-line-5 {
+      position: absolute;
+      opacity: 0;
+      animation: fadeIn 0.3s linear forwards;
+      -moz-animation: fadeIn 0.3s linear forwards;
+      -webkit-animation: fadeIn 0.3s linear forwards;
+    }
+    .partners-hero-line-1 {
+      top: 147px;
+      left: 399px;
+      width: 2px;
+      height: 52px;
+      background: url('../img/home/partners-hero-line-vertical.png');
+      animation-delay: 1.85s;
+      -moz-animation-delay: 1.85s;
+      -webkit-animation-delay: 1.85s;
+    }
+    .partners-hero-line-2 {
+      top: 185px;
+      left: 455px;
+      width: 38px;
+      height: 38px;
+      background: url('../img/home/partners-hero-line-diagonal.png');
+      animation-delay: 2s;
+      -moz-animation-delay: 2s;
+      -webkit-animation-delay: 2s;
+    }
+    .partners-hero-line-3 {
+      top: 277px;
+      left: 479px;
+      width: 52px;
+      height: 2px;
+      background: url('../img/home/partners-hero-line-horizontal.png');
+      animation-delay: 2.15s;
+      -moz-animation-delay: 2.15s;
+      -webkit-animation-delay: 2.15s;
+    }
+    .partners-hero-line-4 {
+      top: 357px;
+      left: 399px;
+      width: 2px;
+      height: 52px;
+      background: url('../img/home/partners-hero-line-vertical.png');
+      animation-delay: 2.3s;
+      -moz-animation-delay: 2.3s;
+      -webkit-animation-delay: 2.3s;
+    }
+    .partners-hero-line-5 {
+      top: 333px;
+      left: 307px;
+      width: 38px;
+      height: 38px;
+      background: url('../img/home/partners-hero-line-diagonal.png');
+      animation-delay: 2.45s;
+      -moz-animation-delay: 2.45s;
+      -webkit-animation-delay: 2.45s;
+    }
+  }
+
   /* @section partner programmes: retail
   -------------------------------------------------------------- */
   .partner-programmes-retail{
@@ -936,6 +1308,7 @@ html.no-svg {
         position: absolute;
         top: -40px;
         right: 30px;
+        width: 300px;
       }
     }
 

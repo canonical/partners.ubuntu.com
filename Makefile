@@ -1,5 +1,5 @@
 help:
-	@echo "Usage: 'make develop' to set up your environment, then 'make start-dev' to start the devserver and sass compilation".
+	@echo "Usage: 'make develop' to set up your environment, then 'make start-dev' to start the devserver and sass compilation. If stuff breaks, run 'make develop' again"
 
 start-dev:
 	$(MAKE) sass-watch

@@ -33,7 +33,7 @@ class PartnerView(TemplateFinder):
 
         context['partners'] = Partner.objects.filter(
             published=True,
-        ).exclude(logo="").order_by('?')[:10]
+        ).exclude(logo="").order_by('?')[:8]
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
@@ -90,7 +90,7 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name][:10]
+    partners = lookup_partners[name][:8]
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":

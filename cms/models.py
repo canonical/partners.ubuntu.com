@@ -11,7 +11,7 @@ class PartnerModel(models.Model):
     created_by = models.CharField(
         max_length=200,
         blank=True,
-        default="TEST_USER"
+        default=""
     )
     updated_on = models.DateTimeField(
         auto_now=True,
@@ -20,7 +20,7 @@ class PartnerModel(models.Model):
     updated_by = models.CharField(
         max_length=200,
         blank=True,
-        default="TEST_USER"
+        default=""
     )
     ordering = "name"
 
@@ -144,7 +144,7 @@ class Text(models.Model):
     image = models.URLField()
     header = models.TextField()
     body = models.TextField()
-    url = models.URLField()
+    url = models.URLField(blank=True, null=True)
 
 
 def make_user_admin(sender, instance, **kwargs):
