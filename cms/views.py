@@ -90,7 +90,7 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name][:10]
+    partners = lookup_partners[name][:8]
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":
