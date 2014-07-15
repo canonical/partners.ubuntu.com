@@ -7,71 +7,85 @@
 {% block extra_body_class %}home{% endblock %}
 
 {% block content %}
-<div class="row row-hero">
-	<div class="six-col">
-		<h1>Ubuntu partners</h1>
-		<p>At Canonical, we provide the services our partners need to ensure their hardware and software works optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For technology customers, this has created a thriving market of suppliers with Ubuntu expertise.</p>
-		<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
+<section class="row row-hero strip no-border">
+	<div class="strip-inner-wrapper">
+		<div class="six-col">
+			<h1>Ubuntu partners</h1>
+			<p>At Canonical, we provide the services our partners need to ensure their hardware and software works optimally with the Ubuntu platform. This means working with technology leaders large and small, to provide the software, services, support and certification they need to complement their core competencies. For technology customers, this has created a thriving market of suppliers with Ubuntu expertise.</p>
+			<p><a href="/partner-programmes">Learn more about our partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
+	    <img src="{{ STATIC_URL }}img/products/products-hero-small.png" alt="" />
+	    <div class= "partners-image-container">
+	        <div class= "partners-hero-ubuntu"></div>
+
+	        <div class= "partners-hero-desktop"></div>
+	        <div class= "partners-hero-line-1"></div>
+
+	        <div class= "partners-hero-phone"></div>
+	        <div class= "partners-hero-line-2"></div>
+
+	        <div class= "partners-hero-tablet"></div>
+	        <div class= "partners-hero-line-3"></div>
+
+	        <div class= "partners-hero-server"></div>
+	        <div class= "partners-hero-line-4"></div>
+
+	        <div class= "partners-hero-cloud"></div>
+	        <div class= "partners-hero-line-5"></div>
+	    </div>
 	</div>
-    <img src="{{ STATIC_URL }}img/products/products-hero-small.png" alt="" />
-    <div class= "partners-image-container">
-        <div class= "partners-hero-ubuntu"></div>
-
-        <div class= "partners-hero-desktop"></div>
-        <div class= "partners-hero-line-1"></div>
-
-        <div class= "partners-hero-phone"></div>
-        <div class= "partners-hero-line-2"></div>
-
-        <div class= "partners-hero-tablet"></div>
-        <div class= "partners-hero-line-3"></div>
-
-        <div class= "partners-hero-server"></div>
-        <div class= "partners-hero-line-4"></div>
-
-        <div class= "partners-hero-cloud"></div>
-        <div class= "partners-hero-line-5"></div>
-    </div>
-</div>
-<div class="row">
-	<div class="list-auto twelve-col">
-		<h3 class="caps-centered">A selection of Ubuntu partners</h3>
-		<ul class="inline-logos no-bullets">
-		{% for partner in partners %}
-			<li><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-		{% endfor %}
-		</ul>
-		<p class="align-center"><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
+</section>
+<section class="row strip strip-light no-border">
+	<div class="strip-inner-wrapper">
+		<div class="list-auto twelve-col">
+			<h3 class="caps-centered">A selection of Ubuntu partners</h3>
+			<ul class="inline-logos no-bullets">
+			{% for partner in partners %}
+				<li><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
+			{% endfor %}
+			</ul>
+			<p class="align-center"><a href="/find-a-partner">Browse all Ubuntu partners&nbsp;&rsaquo;</a></p>
+		</div>
 	</div>
-</div>
-<div class="row vertical-divider">
-	<div class="six-col">
-		<h2>World leaders in the cloud</h2>
-		<p>We partner with a wide range of cloud vendors, offering engineering assistance, support and ongoing <a href="">quality assurance</a> to the ecosystem that is fast developing around Ubuntu and OpenStack. As a result, Ubuntu is the now world&rsquo;s most popular OS for OpenStack, with over 60% of deployments worldwide. Meanwhile, the <a href="">Certified Public Cloud</a> programme, offers optimised Ubuntu images for users of the world&rsquo;s top public clouds. Two levels of partnership &mdash; Premier and Certified &mdash; give partners the flexibility to choose a level of involvement that best suits their needs.</p>
-		<div class="align-center">
+</section>
+<section class="row strip no-border">
+	<div class="strip-inner-wrapper row-image-centered">
+		<div class="six-col">
+			<h2>World leaders in the cloud</h2>
+			<p>We partner with a wide range of cloud vendors, offering engineering assistance, support and ongoing <a href="">quality assurance</a> to the ecosystem that is fast developing around Ubuntu and OpenStack. As a result, Ubuntu is the now world&rsquo;s most popular OS for OpenStack, with over 60% of deployments worldwide. Meanwhile, the <a href="">Certified Public Cloud</a> programme, offers optimised Ubuntu images for users of the world&rsquo;s top public clouds. Two levels of partnership &mdash; Premier and Certified &mdash; give partners the flexibility to choose a level of involvement that best suits their needs.</p>
+		</div>
+		<span>
 			<img src="{{ STATIC_URL }}img/juju-window-scaled.png" alt="Juju" />
-		</div>
-	</div>
-	<div class="six-col last-col">
-		<h2>Driving innovation</h2>
-		<p>Ubuntu re-invents how users engage with content and services on smartphones, making it quicker and easier to discover and access. We invite OEMs and carriers to get involved in bringing this new mobile user experience to consumers. Consider a rare opportunity to help shape the future of smartphones, either as a phone OEM partner or via the <a href="/phone">Ubuntu Carrier Advisory Group.</a> Thanks to Canonical&rsquo;s <a href="/heardware">OEM</a> and <a href="/retail">retail</a> partners, Ubuntu has been available pre-installed on PCs all over the world, for several years. The same underlying OS will soon be available on smartphones and tablets, as well.</p>
-		<div class="align-center">
+		</span>
+</section>
+<section class="row strip strip-light no-border">
+	<div class="strip-inner-wrapper row-image-centered">
+		<span>
 			<img src="{{ STATIC_URL }}img/image-tablet-launcher-scaled.jpg" alt="Tablet launcher" />
+		</span>
+		<div class="six-col last-col">
+			<h2>Driving innovation</h2>
+			<p>Ubuntu re-invents how users engage with content and services on smartphones, making it quicker and easier to discover and access. We invite OEMs and carriers to get involved in bringing this new mobile user experience to consumers. Consider a rare opportunity to help shape the future of smartphones, either as a phone OEM partner or via the <a href="/phone">Ubuntu Carrier Advisory Group.</a> Thanks to Canonical&rsquo;s <a href="/heardware">OEM</a> and <a href="/retail">retail</a> partners, Ubuntu has been available pre-installed on PCs all over the world, for several years. The same underlying OS will soon be available on smartphones and tablets, as well.</p>
 		</div>
 	</div>
-</div>
-<div class="row row-image-centered no-border">
-	<div class="eight-col">
-		<h2>Ubuntu is backed by Canonical</h2>
-		<p>Canonical is a software development and technology services company with staff in more than 30 countries around the world. Created alongside Ubuntu in 2004, it supports the platform’s development in many ways, from assisting with design and development to certification and the management of partner programmes.</p>
-		<p>We help you deliver your products without the cost and complexity associated with platform development. We provide training, support, QA and hands-on engineering expertise when you need it. Not to mention the marketing benefits of formalising your relationship with Ubuntu.</p>
-		<p><a href="/partnering-with-us">Learn more about Ubuntu and Canonical&nbsp;&rsaquo;</a></p>
+</section>
+<section class="row strip no-border">
+	<div class="strip-inner-wrapper row-image-centered">
+		<div class="eight-col">
+			<h2>Ubuntu is backed by Canonical</h2>
+			<p>Canonical is a software development and technology services company with staff in more than 30 countries around the world. Created alongside Ubuntu in 2004, it supports the platform’s development in many ways, from assisting with design and development to certification and the management of partner programmes.</p>
+			<p>We help you deliver your products without the cost and complexity associated with platform development. We provide training, support, QA and hands-on engineering expertise when you need it. Not to mention the marketing benefits of formalising your relationship with Ubuntu.</p>
+			<p><a href="/partnering-with-us">Learn more about Ubuntu and Canonical&nbsp;&rsaquo;</a></p>
+		</div>
+		<span>
+			<img class="priority-0" width="200" height="200" alt="Canonical Logo" src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/pictograms/picto-pack/picto-canonical.svg">
+		</span>
 	</div>
-	<span>
-		<img class="priority-0" width="200" height="200" alt="Canonical Logo" src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/pictograms/picto-pack/picto-canonical.svg">
-	</span>
-</div>
-
-{% include "templates/_contextual-footer.html" %}
+</section>
+<section class="row strip no-border">
+	<div class="strip-inner-wrapper">
+	{% include "templates/_contextual-footer.html" %}
+	</div>
+</section>
 
 {% endblock %}
