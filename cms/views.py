@@ -47,7 +47,7 @@ def partner_programmes(request, name):
     Renders the template, 'partner-programmes/<name>.html' with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
-    base_partners = Partner.objects.filter(published=True).exclude(logo="").order_by('?')
+    base_partners = Partner.objects.filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
@@ -90,7 +90,7 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name][:8]
+    partners = lookup_partners[name][:8].distinct()
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":
