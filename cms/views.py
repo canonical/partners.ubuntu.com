@@ -47,14 +47,14 @@ def partner_programmes(request, name):
     Renders the template, 'partner-programmes/<name>.html' with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
-    base_partners = Partner.objects.filter(published=True).exclude(logo="").order_by('?')
+    base_partners = Partner.objects.filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
             featured=True),
 
         "phone-carrier": base_partners.filter(
-            Q(service_offered__name='Mobile netw|k operat|') |
+            Q(service_offered__name='Mobile network operator') |
             Q(service_offered__name='Hardware manufacturer'),
             technology__name="Phone"),
 
@@ -68,18 +68,18 @@ def partner_programmes(request, name):
             (
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack Interoperability Lab")
-            ) and (
-                Q(service_offered__name="Mobile netw|k operat|") |
+            ) & (
+                Q(service_offered__name="Mobile network operator") |
                 Q(service_offered__name="Hardware manufacturer") |
                 Q(service_offered__name="Component manufacturer") |
-                Q(service_offered__name="Silicon vend|"))
+                Q(service_offered__name="Silicon vendor"))
         ),
 
         "software": base_partners.filter(
             (
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack interoperability Lab")
-            ) and (
+            ) & (
                 Q(service_offered__name="Software publisher") |
                 Q(service_offered__name="Bespoke software developer") |
                 Q(service_offered__name="Cloud software provider") |
@@ -90,14 +90,14 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name][:8]
+    partners = lookup_partners[name].distinct()[:8]
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":
         context['cag_partners'] = base_partners.filter(
             (
                 Q(technology__name="phone") or Q(technology__name="tablet")
-            ) and (
+            ) & (
                 Q(programme__name="Carrier Advisory Group")
             ),
             featured=True
