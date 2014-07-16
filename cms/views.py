@@ -54,7 +54,7 @@ def partner_programmes(request, name):
             featured=True),
 
         "phone-carrier": base_partners.filter(
-            Q(service_offered__name='Mobile netw|k operat|') |
+            Q(service_offered__name='Mobile network operator') |
             Q(service_offered__name='Hardware manufacturer'),
             technology__name="Phone"),
 
@@ -69,10 +69,10 @@ def partner_programmes(request, name):
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack Interoperability Lab")
             ) and (
-                Q(service_offered__name="Mobile netw|k operat|") |
+                Q(service_offered__name="Mobile network operator") |
                 Q(service_offered__name="Hardware manufacturer") |
                 Q(service_offered__name="Component manufacturer") |
-                Q(service_offered__name="Silicon vend|"))
+                Q(service_offered__name="Silicon vendor"))
         ),
 
         "software": base_partners.filter(
