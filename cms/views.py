@@ -68,7 +68,7 @@ def partner_programmes(request, name):
             (
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack Interoperability Lab")
-            ) and (
+            ) & (
                 Q(service_offered__name="Mobile network operator") |
                 Q(service_offered__name="Hardware manufacturer") |
                 Q(service_offered__name="Component manufacturer") |
@@ -79,7 +79,7 @@ def partner_programmes(request, name):
             (
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack interoperability Lab")
-            ) and (
+            ) & (
                 Q(service_offered__name="Software publisher") |
                 Q(service_offered__name="Bespoke software developer") |
                 Q(service_offered__name="Cloud software provider") |
@@ -97,7 +97,7 @@ def partner_programmes(request, name):
         context['cag_partners'] = base_partners.filter(
             (
                 Q(technology__name="phone") or Q(technology__name="tablet")
-            ) and (
+            ) & (
                 Q(programme__name="Carrier Advisory Group")
             ),
             featured=True
