@@ -1,5 +1,6 @@
 import json
 from collections import namedtuple
+from random import shuffle
 
 from preserialize.serialize import serialize
 from fenchurch import TemplateFinder
@@ -90,7 +91,8 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = lookup_partners[name].distinct()[:8]
+    partners = list(lookup_partners[name].distinct()[:8])
+    shuffle(partners)
     context = {'programme_partners': partners}
 
     if name == "phone-carrier":
