@@ -278,6 +278,20 @@ html.opera-mini {
 
 /* @section strips
 -------------------------------------------------------------- */
+
+.strip {
+  #context-footer {
+    padding: 0;
+    h3 {
+      font-size: 1.438em;
+      margin-bottom: .522em;
+    }
+    hr {
+      display: none;
+    }
+  }
+}
+
 .strip-dark,
 .strip-light {
   clear: both;
