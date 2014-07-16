@@ -60,7 +60,7 @@
 			<img src="{{ STATIC_URL }}img/juju-window-scaled.png" alt="Juju" />
 		</span>
 </section>
-<section class="row strip strip-light no-border">
+<section class="row strip no-border">
 	<div class="strip-inner-wrapper row-image-centered">
 		<span>
 			<img src="{{ STATIC_URL }}img/image-tablet-launcher-scaled.jpg" alt="Tablet launcher" />
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 </section>
-<section class="row strip no-border">
+<section class="row strip strip-light no-border">
 	<div class="strip-inner-wrapper row-image-centered">
 		<div class="eight-col">
 			<h2>Ubuntu is backed by Canonical</h2>
@@ -84,6 +84,10 @@
 		</span>
 	</div>
 </section>
-{% include "templates/_contextual-footer.html" %}
+<section class="row strip no-border no-padding-bottom">
+	<div class="strip-inner-wrapper">
+		{% include "templates/_contextual-footer.html" with strip=True %}
+	</div>
+</section>
 
 {% endblock %}
