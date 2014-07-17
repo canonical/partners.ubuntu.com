@@ -70,10 +70,10 @@ class Region(CategoryModel):
 
 class Partner(PartnerModel):
     published = models.BooleanField()
-    logo = models.URLField(blank=True, null=True)
-    external_page = models.URLField(blank=True, null=True)
-    external_fallback = models.URLField(blank=True, null=True)
-    short_description = models.TextField(blank=True, null=True)
+    logo = models.URLField()
+    external_page = models.URLField()
+    external_fallback = models.URLField()
+    short_description = models.TextField()
     long_description = models.TextField(blank=True, null=True)
     featured = models.BooleanField()
     generate_page = models.BooleanField()
