@@ -31,7 +31,7 @@ runserver_prod:
 
 rebuild-packages:
 	-mkdir packages
-	pip install --download packages/ -r requirements/dev.txt
+	pip install --download pip-cache/ -r requirements/dev.txt
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
