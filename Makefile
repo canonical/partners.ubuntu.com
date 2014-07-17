@@ -30,7 +30,8 @@ runserver_prod:
 	gunicorn fenchurch.wsgi:application
 
 rebuild-packages:
-	pip2tgz packages/ -r requirements/dev.txt
+	-mkdir packages
+	pip install --download packages/ -r requirements/dev.txt
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg

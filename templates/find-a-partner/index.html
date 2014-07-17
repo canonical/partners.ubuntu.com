@@ -21,7 +21,8 @@
     <div class="twelve-col">
       <form>
         <input type="text" name="search" id="search">
-        <input type="text" name="filter" id="filter" class="accessibility-aid">
+        <!--<input type="text" name="filter" id="filter" class="accessibility-aid">-->
+        <input type="text" name="filter" id="filter">
       </form>
     </div>
     <div class="twelve-col">
@@ -113,7 +114,7 @@
 
 
 <script>
-YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
+YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', function (Y) {
   // Create a custom PartnerFilter class that extends AutoCompleteBase.
   var PartnerFilter = Y.Base.create('partnerFilter', Y.Base, [Y.AutoCompleteBase], {
     initializer: function () {
@@ -215,11 +216,19 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     updateNoResultsMessage(matchesExist());
   });
 
-
-  var filterText = '';
-  var filterElement = Y.one('#filter');
+  //Add the name of checked checkboxes to #filter
+  var checkboxes = Y.all('.search-panel input[type=checkbox]');
+  checkboxes.on('change', function (e) {
+    var checkbox = e.target;
+    var checked = checkbox.get('checked');
+    var attributeName = checkbox.get('id')
+    updateFilter(attributeName, checked);
+    updateNoResultsMessage(matchesExist());
+  });
 
   function updateFilter(name, add) {
+    var filterText = '';
+    var filterElement = Y.one('#filter');
     name += ' ';
     if (add == true) {
       if (filterText.indexOf(name) == -1) { 
@@ -230,17 +239,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
     }
     filterElement.focus();
     filterElement.set('value', filterText);
+    filterElement.simulate("change");
+    filterElement.simulate("keypress", { keyCode: 97 });
+    filterElement.simulate("blur");
   }
-
-  //Add the name of checked checkboxes to #filter
-  var checkboxes = Y.all('.search-panel input[type=checkbox]');
-  checkboxes.on('change', function (e) {
-    var checkbox = e.target;
-    var checked = checkbox.get('checked');
-    var attributeName = checkbox.get('id')
-    updateFilter(attributeName, checked);
-    updateNoResultsMessage(matchesExist());
-  });
 
   //Get specified query param
   function getParameterByName(name) {
@@ -265,7 +267,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', function (Y) {
           var checkboxObject = Y.one('#'+checkbox);
           if (checkboxObject != null) {
             checkboxObject.setAttribute('checked','checked');
-            updateFilter('#'+checkbox, true);
+            updateFilter(checkbox, true);
           }
         }
       }

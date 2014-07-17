@@ -35,19 +35,19 @@ class PartnerAdmin(admin.ModelAdmin):
         obj.save()
 
     def technology(obj):
-        return ",".join([str(o) for o in obj.technology.all()])
+        return ",\n".join([str(o) for o in obj.technology.all()])
 
     def industry_sector(obj):
-        return ",".join([str(o) for o in obj.industry_sector.all()])
+        return ",\n".join([str(o) for o in obj.industry_sector.all()])
 
     def programme(obj):
-        return ",".join([str(o) for o in obj.programme.all()])
+        return ",\n".join([str(o) for o in obj.programme.all()])
 
     def service_offered(obj):
-        return ",".join([str(o) for o in obj.service_offered.all()])
+        return ",\n".join([str(o) for o in obj.service_offered.all()])
 
     def region(obj):
-        return ",".join([str(o) for o in obj.region.all()])
+        return ",\n".join([str(o) for o in obj.region.all()])
 
     list_display = ('upper_case_name',)
 
