@@ -206,6 +206,28 @@ core scss files are in /sites/core/static/css
     }
 }
 
+@media only screen and (min-width : 768px) {
+/* 
+  alternative to row-image-centered
+  requires equal-height class on row 
+  add align-vertically to the div containing the image
+  http://caniuse.com/transforms2d
+*/
+  .align-vertically {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    
+    img {
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%); // for IE9
+      transform: translateY(-50%);
+    }
+  }
+} // end @media only screen and (min-width : 768px)
+
 /*	@section header
 -------------------------------------------------------------- */
 header.banner .logo-ubuntu span {
@@ -311,6 +333,10 @@ html.opera-mini {
 
 .strip-light {
   background-color: rgba(255,255,255,0.6);
+}
+
+.strip-logos {
+  background-color: #fff;
 }
 
 .strip-light ul,
@@ -1328,17 +1354,9 @@ html.no-svg {
 
   }
 
-  .row-testing-integration {
-    background-image: url("https://assets.ubuntu.com/sites/ubuntu/latest/u/img/cloud/ecosystem/ubuntu-oil/image-ubuntuopenstackinteroperabilitylab.svg");
-    background-repeat: no-repeat;
-    background-size: 326px auto;
-    background-position: 95% 40%;
-    background-color: #fff;
-  }
-
-  /* @section partnering with ubuntu and canonical
+  /* @section partnering with us
   -------------------------------------------------------------- */
-  .ubuntu-and-canonical {
+  .partnering-with-us {
     .inner-wrapper {
       background: url(../img/image-partnering.svg) no-repeat right 40px top #fff;
       background-size: 400px;
@@ -1452,9 +1470,9 @@ html.no-svg {
     width: 984px;
   }
 
-  /* @section partnering with ubuntu and canonical
+  /* @section partnering with us
   -------------------------------------------------------------- */
-  .ubuntu-and-canonical {
+  .partnering-with-us {
     .inner-wrapper {
       background: url(../img/image-partnering.svg) no-repeat right 40px top #fff;
       background-size: 450px;
