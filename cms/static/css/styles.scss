@@ -297,10 +297,6 @@ html.opera-mini {
   clear: both;
 }
 
-.strip-logos {
-  background-color: #fff;
-}
-
 .strip-dark {
   background-color: $dark_aubergine;
   background-image: url(../img/backgrounds/background-grid.png);
@@ -315,6 +311,10 @@ html.opera-mini {
 
 .strip-light {
   background-color: rgba(255,255,255,0.6);
+}
+
+.strip-logos {
+  background-color: #fff;
 }
 
 .strip-light ul,
