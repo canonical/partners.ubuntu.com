@@ -1,22 +1,72 @@
 <div id="context-footer" class="{{ level_1 }}-context-footer no-border">
 <hr />
 	<div class="twelve-col vertical-divider">
+	{% if level_1 == Null %}
 		<div class="feature-one six-col">
 			<h3>Partner programmes</h3>
-			<p>Interested in becoming a reseller partner? Talk to us today to learn more about our programmes.</p>
-			<p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+			<p>Interested in becoming an Ubuntu partner? Learn more about the benefits of working with Canonical.</p> 
+			<p><a href="/partner-programmes">See all partner programmes&nbsp;&rsaquo;</a></p>
 		</div>
-		{% if level_1 == 'find-a-partner' %}
-		<div class="feature-two six-col last-col">
-			<h3>Further reading from Ubuntu Insights</h3>
-			<div id="insights-footer-feed"></div>
-		</div>
-		{% else %}
 		<div class="feature-two six-col last-col search">
 			<h3>Find a partner</h3>
-			<p>Do you offer more services to you customers? Learn more about our other partner programmes.</p>
-			<p><a href="/find-a-partner">Other Ubuntu partner programmes&nbsp;&rsaquo;</a></p>
+			<p>Looking for a supplier with Ubuntu expertise? Search or select from the complete list of our partners.</p>
+			<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
 		</div>
+	{% elif level_1 == 'partner-programmes' %}
+		{% if level_2 %}
+			<div class="feature-one six-col">
+				<h3>Get in touch</h3>
+				<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
+				<p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+			</div>
+			<div class="feature-two six-col last-col search">
+				<h3>Partner programmes</h3>
+				<p>Do you offer different services to you customers? Learn more about other Ubuntu partner engagements.</p>
+				<p><a href="/partner-programmes">Partner programmes&nbsp;&rsaquo;</a></p>
+			</div>
+		{% else %}
+			<div class="feature-one six-col">
+				<h3>Get in touch</h3>
+				<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
+				<p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+			</div>
+			<div class="feature-two six-col last-col search">
+				<h3>Find a partner</h3>
+				<p>Looking for a supplier with Ubuntu expertise? Search or select from the complete list of our partners.</p>
+				<p><a href="/find-a-partner">Find a partner&nbsp;&rsaquo;</a></p>
+			</div>
 		{% endif %}
-	</div>
-</div>
+	{% elif level_1 == 'find-a-partner' %}
+		<div class="feature-one six-col">
+			<h3>Become a partner</h3>
+			<p>Interested in becoming a partner? Talk to us today for more information about our programmes and certification.</p>
+			<p><a href="/contact-us">Get in touch&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col search">
+			<h3>Get services and support</h3>
+			<p>Get on-site consulting services and training, direct from engineers involved in developing Ubuntu or subscribe to Ubuntu Advantage for systems management and support.</p>
+			<p><a href="www.ubuntu.com/management/ubuntu-advantage" class="external">Learn more about Ubuntu Advantage</a></p>
+		</div>
+	{% elif level_1 == 'partnering-with-us' %}
+		<div class="feature-one six-col">
+			<h3>Become a partner</h3>
+			<p>If you’re in the industry and you&rsquo;re considering partnering with Canonical, please get in touch.</p> 
+			<p><a href="">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col search">
+			<h3>Partner programmes</h3>
+			<p>Canonical operates a range of partner programmes. Find the right one for you.</p>
+			<p><a href="/partner-programmes">Find the right programme for you&nbsp;&rsaquo;</a></p>
+		</div>
+	{% else %}
+		<div class="feature-one six-col">
+			<h3>Get in touch</h3>
+			<p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p> 
+			<p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="feature-two six-col last-col search">
+			<h3>Partner programmes</h3>
+			<p>Do you offer different services to you customers? Learn more about other Ubuntu partner engagements.</p>
+			<p><a href="/partner-programmes">Partner programmes&nbsp;&rsaquo;</a></p>
+		</div>
+	{% endif %}
