@@ -30,8 +30,10 @@ runserver_prod:
 	gunicorn fenchurch.wsgi:application
 
 rebuild-packages:
-	-mkdir pip-cache
-	pip install --download pip-cache/ -r requirements/standard.txt
+	-rm -r pip-cache
+	bzr branch lp:~0atman/ubuntu-partner-website-requirements/trunk pip-cache
+	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
+	cd pip-cache && bzr commit -m 'automatically updated partners requirements' && bzr push :parent && cd ../ && rm -r pip-cache
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
