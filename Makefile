@@ -40,7 +40,7 @@ rebuild-dependencies-cache:
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
 
-update-db:Blumenfeld
+update-db:
 	./manage.py syncdb --noinput --migrate
 
 update-charm:
