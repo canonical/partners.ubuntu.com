@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save
 class PartnerModel(models.Model):
     "Partner metadata"
     name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, help_text="Auto-generated, for use in URLs")
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     created_by = models.CharField(
         max_length=200,
@@ -69,14 +69,14 @@ class Region(CategoryModel):
 
 
 class Partner(PartnerModel):
-    published = models.BooleanField()
-    logo = models.URLField()
-    external_page = models.URLField()
-    external_fallback = models.URLField()
-    short_description = models.TextField()
-    long_description = models.TextField(blank=True, null=True)
-    featured = models.BooleanField()
-    generate_page = models.BooleanField()
+    published = models.BooleanField(help_text="Partners without this checked will never be seen by the public")
+    logo = models.URLField(help_text="The URL to the logo. (must start with with http or https)")
+    external_page = models.URLField(help_text="The URL to the partner's site where the info about partnering with Canonical is.")
+    external_fallback = models.URLField(help_text="If our partner changes their site without us realising it, and the 'external page' errors, this will be used instead.")
+    short_description = models.TextField(help_text="Used in search results, max 70 characters")
+    long_description = models.TextField(blank=True, null=True, help_text="Only displayed on the dedicated partner page (when 'generate page' is selected)")
+    featured = models.BooleanField(help_text="Promote to the front page")
+    generate_page = models.BooleanField(help_text="Does this partner have it's own dedicated page?")
     technology = models.ManyToManyField(
         Technology,
         related_name='partners',
@@ -107,7 +107,7 @@ class Partner(PartnerModel):
         blank=True,
         null=True
     )
-    notes = models.TextField(blank=True)
+    notes = models.TextField(blank=True, help_text="Private, for internal Canonical use")
 
     def quotes(self):
         return serializers.serialize('python', self.quote_set.all())
@@ -136,7 +136,7 @@ class Link(models.Model):
 
 class InsightsTag(models.Model):
     partner = models.ForeignKey(Partner)
-    tag = models.CharField(max_length=200)
+    tag = models.CharField(max_length=200, help_text="Link to a tag on insights.ubuntu.com and pulls in the RSS feed to the partner page.")
 
 
 class Text(models.Model):
