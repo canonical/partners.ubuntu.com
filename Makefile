@@ -31,14 +31,14 @@ runserver_prod:
 
 rebuild-packages:
 	-rm -r pip-cache
-	bzr branch lp:~0atman/ubuntu-partner-website-requirements/trunk pip-cache
+	bzr branch lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
 	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
-	cd pip-cache && bzr commit -m 'automatically updated partners requirements' && bzr push :parent && cd ../ && rm -r pip-cache
+	cd pip-cache && bzr commit -m 'automatically updated partners requirements' &&  bzr push lp:~webteam-backend/ubuntu-partner-website/dependencies && cd ../ && rm -r pip-cache
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
 
-update-db:
+update-db:Blumenfeld
 	./manage.py syncdb --noinput --migrate
 
 update-charm:
