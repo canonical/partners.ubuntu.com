@@ -189,9 +189,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     updateNoResultsMessage(matchesExist());
   });
 
+  //Updates the filter input element; adds/removes the specified name
   function updateFilter(name, add) {
-    var filterText = '';
     var filterElement = Y.one('#filter');
+    var filterText = Y.one('#filter').get('value');
     name += ' ';
     if (add == true) {
       if (filterText.indexOf(name) == -1) { 
@@ -202,9 +203,6 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     }
     filterElement.focus();
     filterElement.set('value', filterText);
-    filterElement.simulate("change");
-    filterElement.simulate("keypress", { keyCode: 97 });
-    filterElement.simulate("blur");
   }
 
   //Get specified query param
@@ -217,7 +215,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
   //check any checkboxes that match
   function populateCheckboxes() {
     var filters = [], groupedFilters = [];
-
+    console.log(getParameterByName('{{ filter.name|slugify }}'));
     {% for filter in filters %}
     groupedFilters['{{ filter.name|slugify }}'] = getParameterByName('{{ filter.name|slugify }}');
     //TODO - pop open any filters that are used
@@ -247,8 +245,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     }
   }
 
-  populateCheckboxes();
-  populateTextbox();
+  Y.on('domready', function () {
+    populateCheckboxes();
+    populateTextbox();
+  });
 });
 </script>
 
