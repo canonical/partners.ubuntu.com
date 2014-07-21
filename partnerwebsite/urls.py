@@ -4,6 +4,7 @@ from django.http import (
     HttpResponseNotFound, HttpResponseServerError, HttpResponseRedirect
 )
 from django.template import RequestContext, loader, Context
+from django.views.generic import TemplateView
 
 from cms.views import (
     partner_programmes, partner_view, PartnerView,
@@ -26,6 +27,7 @@ def handler500(request):
 urlpatterns = patterns(
     '',
     url(r'^openid/', include('django_openid_auth.urls')),
+    url(r'^admin/help/$', TemplateView.as_view(template_name='admin/help.html'), name='admin_help'),
     url(r'^admin/?$', lambda r: HttpResponseRedirect('/admincms/partner/')),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^partners.json$', partners_json_view),
