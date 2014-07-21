@@ -29,11 +29,13 @@ sass:
 runserver_prod:
 	gunicorn fenchurch.wsgi:application
 
-rebuild-packages:
-	-rm -r pip-cache
+rebuild-dependencies-cache:
+	-rm -rf pip-cache
 	bzr branch lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
 	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
-	cd pip-cache && bzr commit -m 'automatically updated partners requirements' &&  bzr push lp:~webteam-backend/ubuntu-partner-website/dependencies && cd ../ && rm -r pip-cache
+	bzr commit pip-cache/ -m 'automatically updated partners requirements'
+	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-partner-website/dependencies
+	rm -rf pip-cache src
 
 graph:
 	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
