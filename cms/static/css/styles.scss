@@ -206,6 +206,10 @@ core scss files are in /sites/core/static/css
     }
 }
 
+.hide {
+  display: none;
+}
+
 @media only screen and (min-width : 768px) {
 /* 
   alternative to row-image-centered
