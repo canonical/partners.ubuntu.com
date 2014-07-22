@@ -7,21 +7,6 @@ class PartnerModel(models.Model):
     "Partner metadata"
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True, help_text="Auto-generated, for use in URLs")
-    created_on = models.DateTimeField(auto_now_add=True, blank=True)
-    created_by = models.CharField(
-        max_length=200,
-        blank=True,
-        default=""
-    )
-    updated_on = models.DateTimeField(
-        auto_now=True,
-        blank=True
-    )
-    updated_by = models.CharField(
-        max_length=200,
-        blank=True,
-        default=""
-    )
     ordering = "name"
 
     class Meta:

@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import admin
 
 from cms.models import (
@@ -27,12 +29,6 @@ class InsightsTagInline(admin.TabularInline):
 
 
 class PartnerAdmin(admin.ModelAdmin):
-
-    def save_model(self, request, obj, form, change):
-        obj.updated_by = str(request.user)
-        if obj.created_by == '':
-            obj.created_by = str(request.user)
-        obj.save()
 
     def technology(obj):
         return ",\n".join([str(o) for o in obj.technology.all()])
@@ -65,6 +61,7 @@ class PartnerAdmin(admin.ModelAdmin):
     service_offered.short_description = 'Service Offered'
     region.short_description = 'Region'
 
+
     prepopulated_fields = {"slug": ("name",)}
 
     list_display = (
@@ -95,11 +92,12 @@ class PartnerAdmin(admin.ModelAdmin):
         'logo'
     )
     search_fields = ['name']
-    readonly_fields = (
-        'created_by',
-        'updated_by'
-    )
+
     fieldsets = (
+        ("Notes", {
+            'classes': ('collapse',),
+            'fields': ('notes',)
+        }),
         ('Partner Information', {
             'fields': (
                 'name',
@@ -112,6 +110,13 @@ class PartnerAdmin(admin.ModelAdmin):
                 'external_fallback',
             )
         }),
+        ('Detailed partner Information', {
+            'classes': ('collapse',),
+            'fields': (
+                'generate_page',
+                'long_description',
+            )
+        }),
         ('Categories', {
             'fields': (
                 'technology',
@@ -120,16 +125,6 @@ class PartnerAdmin(admin.ModelAdmin):
                 'service_offered',
                 'region'
             )
-        }),
-        ('Detailed partner Information', {
-            'classes': ('collapse',),
-            'fields': (
-                'generate_page',
-                'long_description',
-            )
-        }),
-        ("Other", {
-            'fields': ('notes', 'created_by', 'updated_by')
         }),
     )
     inlines = [
@@ -169,11 +164,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 
 class MetadataAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'created_by',
-        'updated_by'
-    )
-
+    pass
 
 class QuoteAdmin(admin.ModelAdmin):
     pass
