@@ -21,7 +21,13 @@
     <div class="twelve-col">
       <form>
         <input type="text" name="search" id="search">
-        <input type="text" name="filter" id="filter" class="accessibility-aid">
+        <!--<input type="text" name="filter" id="filter" class="accessibility-aid">-->
+        <div id="debug" style="position: fixed; left: 0px; bottom: 0px; z-index: 100; background-color: #ccc; width: 70%; border: 2px solid #990000; padding: 10px; margin: 10px;">
+          <h2>Debug info:</h2>
+          <p>Active filters:</p>
+          <a onclick="YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', function (Y) {Y.one('#debug').addClass('hide');});" style="position: absolute; top: 10px; right: 10px;">[X]</a>
+          <input type="text" name="filter" id="filter">
+        </div>
       </form>
     </div>
     <div class="twelve-col">
@@ -214,12 +220,12 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
   //check any checkboxes that match
   function populateCheckboxes() {
     var filters = [], groupedFilters = [];
-    console.log(getParameterByName('{{ filter.name|slugify }}'));
     {% for filter in filters %}
     groupedFilters['{{ filter.name|slugify }}'] = getParameterByName('{{ filter.name|slugify }}');
     //TODO - pop open any filters that are used
     {% endfor %}
     for (var key in groupedFilters) {
+    console.log(key);
       if (groupedFilters[key]) {
         var filters = groupedFilters[key].split(' ');
         for (var filter in filters) {
@@ -228,6 +234,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
           if (checkboxObject != null) {
             checkboxObject.setAttribute('checked','checked');
             updateFilter(checkbox, true);
+            Y.one('#'+key).addClass('open');
           }
         }
       }
