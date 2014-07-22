@@ -110,13 +110,6 @@ class PartnerAdmin(admin.ModelAdmin):
                 'external_fallback',
             )
         }),
-        ('Detailed partner Information', {
-            'classes': ('collapse',),
-            'fields': (
-                'generate_page',
-                'long_description',
-            )
-        }),
         ('Categories', {
             'fields': (
                 'technology',
@@ -124,6 +117,13 @@ class PartnerAdmin(admin.ModelAdmin):
                 'programme',
                 'service_offered',
                 'region'
+            )
+        }),
+        ('Detailed partner Information', {
+            'classes': ('collapse',),
+            'fields': (
+                'generate_page',
+                'long_description',
             )
         }),
     )
