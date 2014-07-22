@@ -80,7 +80,7 @@ DATABASES['default'].update(dj_database_url.config())
 
 LANGUAGE_CODE = 'en-uk'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = False
 
