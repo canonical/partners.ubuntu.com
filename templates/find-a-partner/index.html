@@ -254,6 +254,8 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
   Y.on('domready', function () {
     populateCheckboxes();
     populateTextbox();
+    //simulate a keydown on the esc key
+    Y.one('#filter').simulate("keydown", { keyCode: 13 });
   });
 });
 </script>
