@@ -21,8 +21,7 @@
     <div class="twelve-col">
       <form>
         <input type="text" name="search" id="search">
-        <!--<input type="text" name="filter" id="filter" class="accessibility-aid">-->
-        <input type="text" name="filter" id="filter">
+        <input type="text" name="filter" id="filter" class="accessibility-aid">
       </form>
     </div>
     <div class="twelve-col">
@@ -189,9 +188,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     updateNoResultsMessage(matchesExist());
   });
 
+  //Updates the filter input element; adds/removes the specified name
   function updateFilter(name, add) {
-    var filterText = '';
     var filterElement = Y.one('#filter');
+    var filterText = Y.one('#filter').get('value');
     name += ' ';
     if (add == true) {
       if (filterText.indexOf(name) == -1) { 
@@ -202,9 +202,6 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     }
     filterElement.focus();
     filterElement.set('value', filterText);
-    filterElement.simulate("change");
-    filterElement.simulate("keypress", { keyCode: 97 });
-    filterElement.simulate("blur");
   }
 
   //Get specified query param
@@ -217,7 +214,6 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
   //check any checkboxes that match
   function populateCheckboxes() {
     var filters = [], groupedFilters = [];
-
     {% for filter in filters %}
     groupedFilters['{{ filter.name|slugify }}'] = getParameterByName('{{ filter.name|slugify }}');
     //TODO - pop open any filters that are used
@@ -231,6 +227,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
           if (checkboxObject != null) {
             checkboxObject.setAttribute('checked','checked');
             updateFilter(checkbox, true);
+            Y.one('#'+key).addClass('open');
           }
         }
       }
@@ -249,6 +246,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   populateCheckboxes();
   populateTextbox();
+  //simulate a keydown on the esc key
+  console.log(Y.one('#filter'));
+  Y.one('#filter').focus();
+  Y.one('#filter').set('value', Y.one('#filter').get('value') + ' ');
 });
 </script>
 
