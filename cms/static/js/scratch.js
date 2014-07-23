@@ -195,7 +195,7 @@ core.autoLastItem = function() {
 				y = node.getXY()[1];
 				if(lastNode) {
 					ly = lastNode.getXY()[1];
-					if(y > ly) {
+					if(y > ly + 50) { //Added +50 to stop differing-height images breaking this
 						lastNode.addClass('last-item');
 					}
 				}
