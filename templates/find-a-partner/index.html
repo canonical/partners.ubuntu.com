@@ -165,10 +165,14 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
         }
       }
     });
-    if (partners.size() == Y.all('.notFilterMatch').size()) {
-      partners.each(function(node){
-        node.removeClass('notFilterMatch');
-      });
+    
+
+    if (filters.indexOf(true) == -1) {
+      if (partners.size() == Y.all('.notFilterMatch').size()) {
+        partners.each(function(node){
+          node.removeClass('notFilterMatch');
+        });
+      }
     }
   }
 
