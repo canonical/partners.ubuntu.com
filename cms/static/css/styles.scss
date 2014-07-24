@@ -870,14 +870,17 @@ footer #nav-global h2.active span {
   background-position: 0 0;
 }
 
-
-
 footer #nav-global {
   margin: 0 -10px;
   margin-bottom: 10px;
   padding-top: 10px;
   margin-top: -4px;
 
+	.nav-global-wrapper.active {
+		margin-bottom: -10px;
+		float: left;
+	}
+	
   footer #nav-global li ul {
     clear: both;
     display: block;
@@ -909,6 +912,7 @@ footer #nav-global {
   }
 
   h2 {
+		border: 0;
     color: $warm_grey;
     margin: 0;
     padding: 0 10px 0;
