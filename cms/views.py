@@ -160,14 +160,12 @@ def partners_json_view(request):
     """
     partners = Partner.objects.filter(published=True).order_by('?')
     try:
-        for attribute, value in request.GET.iteritems():
-            if value.find(','):
-                query_list = Q()
-                for listed_value in value.split(','):
-                    query_list = query_list | Q(**{attribute:listed_value})
-                partners = partners.filter(query_list)
-            else:
-                partners = partners.filter(**{attribute:value})
+        for attribute, value in request.GET.iterlists():
+            query_list = Q()
+            for listed_value in value:
+                query_list = query_list | Q(**{attribute:listed_value})
+        partners = partners.filter(query_list)
+
         partners_json = json.dumps(
         serialize(
             partners,
