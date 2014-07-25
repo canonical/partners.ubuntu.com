@@ -48,6 +48,7 @@ def partner_programmes(request, name):
     Renders the template, 'partner-programmes/<name>.html' with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
+    max_num_of_partners = 8
     base_partners = Partner.objects.filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
@@ -55,9 +56,13 @@ def partner_programmes(request, name):
             featured=True),
 
         "phone-carrier": base_partners.filter(
-            Q(service_offered__name='Mobile network operator') |
-            Q(service_offered__name='Hardware manufacturer'),
-            technology__name="Phone"),
+            (
+                Q(technology__name="Phone") or Q(technology__name="Tablet")
+            ) & (
+                Q(programme__name="Carrier Advisory Group")
+            ),
+            featured=True
+        ),
 
         "reseller": base_partners.filter(
             programme__name="Reseller"),
@@ -91,19 +96,9 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="Openstack Interoperability Lab"),
     }
-    partners = list(lookup_partners[name].distinct()[:8])
+    partners = list(lookup_partners[name].distinct()[:max_num_of_partners])
     shuffle(partners)
     context = {'programme_partners': partners}
-
-    if name == "phone-carrier":
-        context['cag_partners'] = base_partners.filter(
-            (
-                Q(technology__name="Phone") or Q(technology__name="Tablet")
-            ) & (
-                Q(programme__name="Carrier Advisory Group")
-            ),
-            featured=True
-        )
 
     context = add_default_values_to_context(context, request)
     return render_to_response(

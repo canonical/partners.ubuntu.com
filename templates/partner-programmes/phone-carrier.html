@@ -73,7 +73,7 @@
 		<h3 class="caps-centered">Carrier Advisory Group participants</h3>
 		<div class="list-auto twelve-col">
 			<ul class="inline-logos no-bullets">
-				{% for partner in cag_partners %}
+				{% for partner in programme_partners %}
 					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 				{% endfor %}
 			</ul>
