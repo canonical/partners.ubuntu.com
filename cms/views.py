@@ -98,7 +98,7 @@ def partner_programmes(request, name):
     if name == "phone-carrier":
         context['cag_partners'] = base_partners.filter(
             (
-                Q(technology__name="phone") or Q(technology__name="tablet")
+                Q(technology__name="Phone") or Q(technology__name="Tablet")
             ) & (
                 Q(programme__name="Carrier Advisory Group")
             ),
