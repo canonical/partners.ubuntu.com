@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -40,7 +41,8 @@ INSTALLED_APPS = (
     'django_extensions',
     'cms',
     'south',
-    'django_openid_auth'
+    'django_openid_auth',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,9 +73,16 @@ DATABASES = {
     }
 }
 
+
 # Update database settings from DATABASE_URL environment variable
 import dj_database_url
 DATABASES['default'].update(dj_database_url.config())
+
+if 'test' in sys.argv:
+  DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
