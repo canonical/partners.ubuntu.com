@@ -155,8 +155,8 @@ def partners_json_view(request):
     """
     partners = Partner.objects.filter(published=True).order_by('?')
     try:
+        query_list = Q()
         for attribute, value in request.GET.iterlists():
-            query_list = Q()
             for listed_value in value:
                 query_list = query_list | Q(**{attribute:listed_value})
         partners = partners.filter(query_list)
