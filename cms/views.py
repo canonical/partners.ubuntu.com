@@ -7,7 +7,7 @@ from fenchurch import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.exceptions import FieldError 
 
 from cms.models import (
@@ -148,7 +148,6 @@ def find_a_partner(request):
         context
     )
 
-
 def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
@@ -171,5 +170,11 @@ def partners_json_view(request):
     )
     except FieldError as e:
         partners_json = json.dumps({"Error": e.message})
+        HttpResponse(partners_json, content_type="application.json")
+
+    except ValueError as e:
+        partners_json = json.dumps({"Error": e.message})
+        return HttpResponseBadRequest(partners_json, content_type="application.json")
+
 
     return HttpResponse(partners_json, content_type="application.json")
