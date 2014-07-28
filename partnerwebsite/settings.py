@@ -42,7 +42,6 @@ INSTALLED_APPS = (
     'cms',
     'south',
     'django_openid_auth',
-    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
