@@ -19,5 +19,5 @@ class APITestCase(TestCase):
     	self.response = c.get('/partners.json', {'name': 'Vendor'})
     	self.json_response = json.loads(self.response.content)
 
-    def test_(self):
+    def test_get_slug(self):
 		self.assertEqual(self.json_response[0]['slug'], 'vendor')
