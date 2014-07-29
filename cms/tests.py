@@ -39,3 +39,11 @@ class APITestCase(TestCase):
     def test_bad_type(self):
         response = c.get('/partners.json', {'programme': 'nothing-here'})
         self.assertEqual(response.status_code, 400)
+
+    def test_unique_partners(self):
+        response = c.get('/partners.json')
+        json_response = json.loads(response.content)
+        self.assertEqual(
+            len(json_response),
+            len(set([r['name'] for r in json_response]))
+        )
