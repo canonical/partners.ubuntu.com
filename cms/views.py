@@ -194,15 +194,15 @@ def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
-    partners = Partner.objects.filter(published=True).order_by('?')
+    partners = Partner.objects.filter(published=True)
     try:
         query_list = Q()
         for attribute, value in request.GET.iterlists():
             if attribute != "callback":
                 for listed_value in value:
                     query_list = query_list | Q(**{attribute:listed_value})
-        partners = partners.filter(query_list)
-
+        partners = list(partners.filter(query_list).distinct())
+        shuffle(partners)
         partners_json = json.dumps(
         serialize(
             partners,
