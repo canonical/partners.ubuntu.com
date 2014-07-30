@@ -197,26 +197,30 @@ def partners_json_view(request):
     partners = Partner.objects.filter(published=True)
     try:
         query_list = Q()
+        andable_query_list = []
         for attribute, value in request.GET.iterlists():
             if attribute != "callback":
-                for listed_value in value:
-                    query_list = query_list | Q(**{attribute:listed_value})
+                if len(value) > 1:
+                    for listed_value in value:
+                        query_list = query_list | Q(**{attribute:listed_value})
+                else:
+                    partners = partners.filter(Q(**{attribute:value[0]}))
         partners = list(partners.filter(query_list).distinct())
         shuffle(partners)
         partners_json = json.dumps(
-        serialize(
-            partners,
-            fields=[':all'],
-            exclude=['created_on', 'updated_on', 'generate_page', 'id', 'created_by', 'updated_by']
-        ),
-        default=lambda obj: None
-    )
+            serialize(
+                partners,
+                fields=[':all'],
+                exclude=['created_on', 'updated_on', 'generate_page', 'id', 'created_by', 'updated_by']
+            ),
+            default=lambda obj: None
+        )
     except FieldError as e:
-        partners_json = json.dumps({"Error": e.message})
+        partners_json = json.dumps({"Error": e.args[0]})
         HttpResponse(partners_json, content_type="application.json")
 
     except ValueError as e:
-        partners_json = json.dumps({"Error": e.message})
+        partners_json = json.dumps({"Error": e.args[0]})
         return HttpResponseBadRequest(partners_json, content_type="application.json")
 
 
