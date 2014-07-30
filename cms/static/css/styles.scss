@@ -490,9 +490,10 @@ html.yui3-js-enabled .find-a-partner {
       font-size: 14px;
     }
     .tabbed-content {
-      padding: 8px 0 0 0;
+    	background: none;
       margin-bottom: 8px;
       opacity: 1 !important;
+      padding: 8px 0 0 0;
       ul {
         display: none;
       }
