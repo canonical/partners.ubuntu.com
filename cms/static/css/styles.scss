@@ -432,7 +432,6 @@ html.opera-mini {
   }
 }
 
-
 /* @section partner programmes: retail
 -------------------------------------------------------------- */
 .partner-programmes-retail{
@@ -455,8 +454,8 @@ ul.inline-logos li img {
   #search {
     background: url(http://www.canonical.com/static/img/pictograms/image-footer-search.svg) no-repeat;
     background-size: 20px;
-    padding-left: 35px;
     background-position: 7px 7px;
+    padding-left: 35px;
     height: 36px;
     line-height: 36px;
   }
@@ -1499,7 +1498,7 @@ html.no-svg {
 
   /* @section footer
   -------------------------------------------------------------- */
-  footer .row {
+  footer.global .row {
     width: 984px;
     margin: 0 auto;
     padding-left: 0;
