@@ -7,7 +7,7 @@ from fenchurch import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.exceptions import FieldError 
 
 from cms.models import (
@@ -148,19 +148,61 @@ def find_a_partner(request):
         context
     )
 
+class AllowJSONPCallback(object):
+    """
+    This decorator function wraps a normal view function                                                                                      
+    so that it can be read through a jsonp callback.   
+    Source: https://djangosnippets.org/snippets/2208/                                                                                          
+                                                                                                                                                 
+    Usage:                                                                                                                                       
+                                                                                                                                                 
+    @AllowJSONPCallback                                                                                                                          
+    def my_view_function(request):                                                                                                               
+        return HttpResponse('this should be viewable through jsonp')                                                                             
+                                                                                                                                                 
+    It looks for a GET parameter called "callback", and if one exists,                                                                           
+    wraps the payload in a javascript function named per the value of callback.                                                                  
+                                                                                                                                                 
+    If the input does not appear to be json, wrap the input in quotes                                                                            
+    so as not to throw a javascript error upon receipt of the response."""
+    def __init__(self, f):
+        self.f = f
 
+    def __call__(self, *args, **kwargs):
+        request = args[0]
+        callback = request.GET.get('callback')
+        # if callback parameter is present,                                                                                                      
+        # this is going to be a jsonp callback.                                                                                                  
+        if callback:
+            try:
+                response = self.f(*args, **kwargs)
+            except:
+                response = HttpResponse('error', status=500)
+            if response.status_code / 100 != 2:
+                response.content = 'error'
+            if response.content[0] not in ['"', '[', '{'] \
+                    or response.content[-1] not in ['"', ']', '}']:
+                response.content = '"%s"' % response.content
+            response.content = "%s(%s)" % (callback, response.content)
+            response['Content-Type'] = 'application/javascript'
+        else:
+            response = self.f(*args, **kwargs)
+        return response
+
+@AllowJSONPCallback
 def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
-    partners = Partner.objects.filter(published=True).order_by('?')
+    partners = Partner.objects.filter(published=True)
     try:
+        query_list = Q()
         for attribute, value in request.GET.iterlists():
-            query_list = Q()
-            for listed_value in value:
-                query_list = query_list | Q(**{attribute:listed_value})
-        partners = partners.filter(query_list)
-
+            if attribute != "callback":
+                for listed_value in value:
+                    query_list = query_list | Q(**{attribute:listed_value})
+        partners = list(partners.filter(query_list).distinct())
+        shuffle(partners)
         partners_json = json.dumps(
         serialize(
             partners,
@@ -171,5 +213,11 @@ def partners_json_view(request):
     )
     except FieldError as e:
         partners_json = json.dumps({"Error": e.message})
+        HttpResponse(partners_json, content_type="application.json")
+
+    except ValueError as e:
+        partners_json = json.dumps({"Error": e.message})
+        return HttpResponseBadRequest(partners_json, content_type="application.json")
+
 
     return HttpResponse(partners_json, content_type="application.json")

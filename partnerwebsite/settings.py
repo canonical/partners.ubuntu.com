@@ -81,8 +81,6 @@ if 'test' in sys.argv:
   DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
