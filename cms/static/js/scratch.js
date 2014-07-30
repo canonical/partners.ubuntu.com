@@ -117,13 +117,6 @@ core.cookiePolicy = function() {
 	}
 };
 
-core.tabbedContent = function() {
-	Y.all('.tabbed-content .accordion-button').on('click', function(e){
-		e.preventDefault();
-		e.target.get('parentNode').toggleClass('open');
-	});
-};
-
 core.rssLoader = {
 	"outputFeed" : function(el) {
 		var element = document.getElementById(el);
@@ -214,7 +207,6 @@ core.resizeListener();
 core.cookiePolicy();
 core.setupGlobalNavAccordion();
 core.setupHtmlClass();
-core.tabbedContent();
 core.parallaxBackground();
 core.homeAnimation();
 core.svgFallback();
