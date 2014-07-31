@@ -24,11 +24,11 @@
 
 {% if partner.texts %}
 {% for text in partner.texts %}
-<div class="row row-image-centered">
+<div class="row equal-height">
 	{% if forloop.counter|divisibleby:2 %}
-	<span>
+	<div class="four-col align-center align-vertically">
 		<img src="{{ text.fields.image }}" alt="" />
-	</span>
+	</div>
 	<div class="eight-col last-col">
 	{% else %}
 	<div class="eight-col">
@@ -39,11 +39,11 @@
 	</div>
 	{% if forloop.counter|divisibleby:2 %}
 	{% else %}
-	<span>
+	<div class="last-col four-col align-center align-vertically">
 		<img src="{{ text.fields.image }}" alt="" />
-	</span>
+	</div>
 	{% endif %}
-</div>
+</div><!-- /row -->
 {% endfor %}
 {% endif %}
 
@@ -57,7 +57,7 @@
 		</blockquote>
 	</div>
 	{% endfor %}
-</div>
+</div><!-- /row -->
 {% endif %}
 
 
@@ -78,7 +78,7 @@
 		<div id="insights"></div>
 	</div>
 	{% endif %}
-</div>
+</div><!-- /row -->
 {% include "templates/_contextual-footer.html" %}
 {% if partner.insights_tags %}
   {% block head_extra %}
