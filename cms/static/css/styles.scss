@@ -1514,6 +1514,11 @@ html.no-svg {
     padding-left: 0;
     padding-right: 0;
   }
+  
+  html.yui3-js-enabled footer.global .row {
+		padding-left: 0;
+		padding-right: 0;
+  }
 
   body footer.global {
     padding-top: 30px;
