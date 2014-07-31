@@ -1507,12 +1507,16 @@ html.no-svg {
 
   footer.global {
     padding-top: 30px;
-
-    .legal p,
-    .legal ul {
-      padding-left: 0;
-      padding-right: 0;
-    }
+    
+    .legal {
+	    padding-left: 0;
+    	padding-right: 0;
+    	
+	    p, ul {
+	      padding-left: 0;
+	      padding-right: 0;
+	    }
+		}
   }
 
   footer.global .legal.has-cookie {
