@@ -7,7 +7,7 @@
 {% block extra_body_class %}partner{% endblock %}
 
 {% block content %}
-<div class="row hero">
+<div class="row hero{% if partner.links or partner.insights_tags %}{% else %} no-border{% endif %}">
 	<div class="eight-col">
 		<h1>{{ partner.name }}</h1>
 		{% if partner.long_description %}
@@ -60,8 +60,7 @@
 </div><!-- /row -->
 {% endif %}
 
-
-<div class="row no-border">
+{% if partner.links or partner.insights_tags %}<div class="row no-border">{% endif %}
 	{% if partner.links %}
 	<div class="six-col">
 		<h2>Links</h2>
@@ -78,8 +77,10 @@
 		<div id="insights"></div>
 	</div>
 	{% endif %}
-</div><!-- /row -->
+{% if partner.links or partner.insights_tags %}</div><!-- /row -->{% endif %}
+
 {% include "templates/_contextual-footer.html" %}
+
 {% if partner.insights_tags %}
   {% block head_extra %}
   <script src="https://www.google.com/jsapi"></script>
