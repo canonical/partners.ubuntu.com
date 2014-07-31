@@ -194,12 +194,27 @@ def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
+    filter_whitelist = [
+        'featured',
+        'generate_page',
+        'industry_sector__name',
+        'name',
+        'programme__name',
+        'region__name',
+        'service_offered__name',
+        'slug',
+        'technology__name',
+    ]
     partners = Partner.objects.filter(published=True)
     try:
         query_list = Q()
         andable_query_list = []
         for attribute, value in request.GET.iterlists():
-            if attribute != "callback":
+            query_in_whitelist = reduce(
+                lambda a, b: (a or b),
+                map(lambda x: x in attribute, filter_whitelist)
+            )
+            if query_in_whitelist:
                 if len(value) > 1:
                     for listed_value in value:
                         query_list = query_list | Q(**{attribute:listed_value})
@@ -215,13 +230,12 @@ def partners_json_view(request):
             ),
             default=lambda obj: None
         )
-    except FieldError as e:
+    except Exception as e:
+        raise e
+    """except FieldError as e:
         partners_json = json.dumps({"Error": e.args[0]})
         HttpResponse(partners_json, content_type="application.json")
-
     except ValueError as e:
         partners_json = json.dumps({"Error": e.args[0]})
-        return HttpResponseBadRequest(partners_json, content_type="application.json")
-
-
+        return HttpResponseBadRequest(partners_json, content_type="application.json")"""
     return HttpResponse(partners_json, content_type="application.json")
