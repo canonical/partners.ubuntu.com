@@ -27,7 +27,7 @@
 <div class="row row-image-centered">
 	{% if forloop.counter|divisibleby:2 %}
 	<span>
-		<img src="{{ text.fields.image }}" />
+		<img src="{{ text.fields.image }}" alt="" />
 	</span>
 	<div class="eight-col last-col">
 	{% else %}
@@ -40,7 +40,7 @@
 	{% if forloop.counter|divisibleby:2 %}
 	{% else %}
 	<span>
-		<img src="{{ text.fields.image }}" />
+		<img src="{{ text.fields.image }}" alt="" />
 	</span>
 	{% endif %}
 </div>
