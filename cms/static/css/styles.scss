@@ -649,6 +649,10 @@ footer.global {
     a#item-facebook:hover { background-position: -90px -45px; }
     a#item-canonical:hover { background-position: -135px -45px; }
   }
+  
+  .list-social li:last-child {
+    margin-right: 0;
+  }
 }
 html.opera-mini footer.global .list-social li,
 html.no-svg footer.global .list-social li {
