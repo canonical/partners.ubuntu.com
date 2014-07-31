@@ -1,10 +1,10 @@
 	<ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
 		<li class="first{% if level_1 == 'partner-programmes' and not level_2 %} active{% endif %}"><a href="/partner-programmes">Overview</a></li>
 		<li{% if level_2 == 'public-cloud' %} class="active" {% endif %}><a href="/partner-programmes/public-cloud">Public cloud</a></li>
-		<li{% if level_2 == 'phone-carrier' %} class="active" {% endif %}><a href="/partner-programmes/phone-carrier">Phone carrier</a></li>
-		<li{% if level_2 == 'reseller' %} class="active" {% endif %}><a href="/partner-programmes/reseller">Reseller</a></li>
-		<li{% if level_2 == 'retail' %} class="active"{% endif %}><a href="/partner-programmes/retail">Retail</a></li>
-		<li{% if level_2 == 'hardware' %} class="active"{% endif %}><a href="/partner-programmes/hardware">Hardware</a></li>
+		<li{% if level_2 == 'openstack' %} class="active" {% endif %}><a href="/partner-programmes/openstack">OpenStack</a></li>
 		<li{% if level_2 == 'software' %} class="active"{% endif %}><a href="/partner-programmes/software">Software</a></li>
-		<li{% if level_2 == 'openstack' %} class="last-item active" {% endif %}><a href="/partner-programmes/openstack">OpenStack</a></li>
+		<li{% if level_2 == 'hardware' %} class="active"{% endif %}><a href="/partner-programmes/hardware">Hardware</a></li>
+		<li{% if level_2 == 'phone-carrier' %} class="last-item active" {% endif %}><a href="/partner-programmes/phone-carrier">Phone carrier</a></li>
+		<li{% if level_2 == 'retail' %} class="active"{% endif %}><a href="/partner-programmes/retail">Retail</a></li>
+		<li{% if level_2 == 'reseller' %} class="active" {% endif %}><a href="/partner-programmes/reseller">Reseller</a></li>
 	</ul>
