@@ -222,7 +222,9 @@ core scss files are in /sites/core/static/css
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
     
-    img {
+    img,
+    div,
+    ul {
       position: relative;
       top: 50%;
       -webkit-transform: translateY(-50%);
