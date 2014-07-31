@@ -7,7 +7,7 @@
 {% block extra_body_class %}partner{% endblock %}
 
 {% block content %}
-<div class="row hero{% if partner.links or partner.insights_tags %}{% else %} no-border{% endif %}">
+<div class="row hero equal-height{% if partner.links or partner.insights_tags %}{% else %} no-border{% endif %}">
 	<div class="eight-col">
 		<h1>{{ partner.name }}</h1>
 		{% if partner.long_description %}
@@ -17,7 +17,7 @@
 		{% endif %}
 		<p><a href="{{ partner.external_page }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website link');">Partner website</a></p>
 	</div>
-	<div class="four-col last-col">
+	<div class="four-col last-col align-center align-vertically">
 		<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />
 	</div>
 </div>
