@@ -31,6 +31,15 @@ class PartnerAdmin(admin.ModelAdmin):
     # Methods
     # ==
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def delete_selected(self, request, queryset):
+        queryset.update(published=False)
+
+    def publish_selected(self, request, queryset):
+        queryset.update(published=True)
+
     def shorter_description(self, obj):
         if len(obj.short_description) < 70:
             return obj.short_description
@@ -58,6 +67,11 @@ class PartnerAdmin(admin.ModelAdmin):
 
     def region(obj):
         return ",\n".join([str(o) for o in obj.region.all()])
+
+    actions = ['delete_selected', 'publish_selected']
+
+    delete_selected.short_description = "Unpublish selected partners"
+    publish_selected.short_description = "Publish selected partners"
 
     page_url.short_description = 'Page URL'
     page_url.allow_tags = True
