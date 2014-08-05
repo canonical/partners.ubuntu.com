@@ -183,7 +183,9 @@ class InsightsTag(models.Model):
 
 class Text(models.Model):
     partner = models.ForeignKey(Partner)
-    image = models.URLField()
+    image_url = models.URLField(
+        help_text="A URL for an image to appear alongside the text"
+    )
     header = models.TextField()
     body = models.TextField()
     url = models.URLField(blank=True, null=True)
