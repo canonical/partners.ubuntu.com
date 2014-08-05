@@ -188,7 +188,7 @@ class Text(models.Model):
     )
     header = models.TextField()
     body = models.TextField()
-    url = models.URLField(blank=True, null=True)
+    read_more_link = models.URLField(blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.header)

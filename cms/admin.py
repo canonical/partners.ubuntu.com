@@ -47,7 +47,7 @@ class PartnerAdmin(admin.ModelAdmin):
             return obj.short_description[0:64-1] + "[...]"
 
     def page_url(self, obj):
-        if obj.dedicated_partner_page:
+        if obj.dedicated_partner_page and obj.published:
             return '<a href="/{slug}">{slug}</a>'.format(slug=obj.slug)
 
     # Standalone functions
