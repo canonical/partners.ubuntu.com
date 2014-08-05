@@ -154,11 +154,17 @@ class Quote(models.Model):
     text = models.TextField(blank=True)
     attribution = models.CharField(max_length=200)
 
+    def __unicode__(self):
+        return unicode(self.text)
+
 
 class Link(models.Model):
     partner = models.ForeignKey(Partner)
     url = models.URLField()
     text = models.TextField()
+
+    def __unicode__(self):
+        return unicode(self.text)
 
 
 class InsightsTag(models.Model):
@@ -171,6 +177,9 @@ class InsightsTag(models.Model):
         )
     )
 
+    def __unicode__(self):
+        return unicode(self.tag)
+
 
 class Text(models.Model):
     partner = models.ForeignKey(Partner)
@@ -178,6 +187,9 @@ class Text(models.Model):
     header = models.TextField()
     body = models.TextField()
     url = models.URLField(blank=True, null=True)
+
+    def __unicode__(self):
+        return unicode(self.header)
 
 
 def make_user_admin(sender, instance, **kwargs):
