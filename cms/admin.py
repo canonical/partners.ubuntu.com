@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib import admin
 
 from cms.models import (
@@ -30,6 +28,22 @@ class InsightsTagInline(admin.TabularInline):
 
 class PartnerAdmin(admin.ModelAdmin):
 
+    # Methods
+    # ==
+
+    def shorter_description(self, obj):
+        if len(obj.short_description) < 70:
+            return obj.short_description
+        else:
+            return obj.short_description[0:64-1] + "[...]"
+
+    def page_url(self, obj):
+        if obj.dedicated_partner_page:
+            return '<a href="/{slug}">{slug}</a>'.format(slug=obj.slug)
+
+    # Standalone functions
+    # ==
+
     def technology(obj):
         return ",\n".join([str(o) for o in obj.technology.all()])
 
@@ -45,13 +59,8 @@ class PartnerAdmin(admin.ModelAdmin):
     def region(obj):
         return ",\n".join([str(o) for o in obj.region.all()])
 
-    list_display = ('upper_case_name',)
-
-    def shorter_description(self, obj):
-        if len(obj.short_description) < 70:
-            return obj.short_description
-        else:
-            return obj.short_description[0:64-1] + "[...]"
+    page_url.short_description = 'Page URL'
+    page_url.allow_tags = True
 
     shorter_description.short_description = 'Short Description'
 
@@ -61,16 +70,14 @@ class PartnerAdmin(admin.ModelAdmin):
     service_offered.short_description = 'Service Offered'
     region.short_description = 'Region'
 
-
-    prepopulated_fields = {"slug": ("name",)}
-
     list_display = (
         'name',
+        'page_url',
         'logo',
         'published',
         'shorter_description',
         'featured',
-        'generate_page',
+        'dedicated_partner_page',
         technology,
         industry_sector,
         programme,
@@ -80,7 +87,7 @@ class PartnerAdmin(admin.ModelAdmin):
     list_filter = (
         'published',
         'featured',
-        'generate_page',
+        'dedicated_partner_page',
         'technology',
         'industry_sector',
         'programme',
@@ -101,13 +108,12 @@ class PartnerAdmin(admin.ModelAdmin):
         ('Partner Information', {
             'fields': (
                 'name',
-                'slug',
                 'featured',
                 'short_description',
                 'published',
                 'logo',
-                'external_page',
-                'external_fallback',
+                'partner_website',
+                'fallback_website',
             )
         }),
         ('Categories', {
@@ -122,7 +128,7 @@ class PartnerAdmin(admin.ModelAdmin):
         ('Detailed partner Information', {
             'classes': ('collapse',),
             'fields': (
-                'generate_page',
+                'dedicated_partner_page',
                 'long_description',
             )
         }),
@@ -165,6 +171,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 class MetadataAdmin(admin.ModelAdmin):
     pass
+
 
 class QuoteAdmin(admin.ModelAdmin):
     pass

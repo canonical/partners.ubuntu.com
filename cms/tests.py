@@ -7,17 +7,18 @@ from cms.models import Partner
 
 c = Client()
 
+
 class APITestCase(TestCase):
     """
     Tests /partners.json
     """
     def setUp(self):
         Partner.objects.create(
-            name="Vendor", 
+            name="Vendor",
             slug="vendor",
             published=True,
             featured=True,
-            generate_page=False
+            dedicated_partner_page=False
         )
 
     def test_get_slug(self):

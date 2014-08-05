@@ -1,12 +1,16 @@
 from django.db import models
 from django.core import serializers
 from django.db.models.signals import pre_save
+from django.template.defaultfilters import slugify
 
 
 class PartnerModel(models.Model):
     "Partner metadata"
     name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(unique=True, help_text="Auto-generated, for use in URLs")
+    slug = models.SlugField(
+        unique=True,
+        help_text="Auto-generated, for use in URLs"
+    )
     ordering = "name"
 
     class Meta:
@@ -14,6 +18,10 @@ class PartnerModel(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(PartnerModel, self).save(*args, **kwargs)
 
 
 class CategoryModel(models.Model):
@@ -54,14 +62,44 @@ class Region(CategoryModel):
 
 
 class Partner(PartnerModel):
-    published = models.BooleanField(help_text="Partners without this checked will never be seen by the public")
-    logo = models.URLField(help_text="The URL to the logo. (must start with with http or https)")
-    external_page = models.URLField(help_text="The URL to the partner's site where the info about partnering with Canonical is.")
-    external_fallback = models.URLField(help_text="If our partner changes their site without us realising it, and the 'external page' errors, this will be used instead.")
-    short_description = models.TextField(help_text="Used in search results, max 70 characters")
-    long_description = models.TextField(blank=True, null=True, help_text="Only displayed on the dedicated partner page (when 'generate page' is selected)")
+    published = models.BooleanField(
+        help_text=(
+            "Partners without this checked will "
+            "never be seen by the public"
+        )
+    )
+    logo = models.URLField(
+        help_text=(
+            "The URL to the logo. "
+            "(must start with with http or https)"
+        )
+    )
+    partner_website = models.URLField(
+        help_text=(
+            "The URL to the partner's site "
+            "where the info about partnering with Canonical is."
+        )
+    )
+    fallback_website = models.URLField(
+        help_text=(
+            "If our partner changes their site without us realising it, "
+            "and the 'external page' errors, this will be` used instead."
+        )
+    )
+    short_description = models.TextField(
+        help_text="Used in search results, max 70 characters"
+    )
+    long_description = models.TextField(
+        blank=True, null=True,
+        help_text=(
+            "Only displayed on the dedicated partner page "
+            "(when 'generate page' is selected)"
+        )
+    )
     featured = models.BooleanField(help_text="Promote to the front page")
-    generate_page = models.BooleanField(help_text="Does this partner have it's own dedicated page?")
+    dedicated_partner_page = models.BooleanField(
+        help_text="Does this partner have it's own dedicated page?"
+    )
     technology = models.ManyToManyField(
         Technology,
         related_name='partners',
@@ -92,7 +130,10 @@ class Partner(PartnerModel):
         blank=True,
         null=True
     )
-    notes = models.TextField(blank=True, help_text="Private, for internal Canonical use")
+    notes = models.TextField(
+        blank=True,
+        help_text="Private, for internal Canonical use"
+    )
 
     def quotes(self):
         return serializers.serialize('python', self.quote_set.all())
@@ -121,7 +162,13 @@ class Link(models.Model):
 
 class InsightsTag(models.Model):
     partner = models.ForeignKey(Partner)
-    tag = models.CharField(max_length=200, help_text="Link to a tag on insights.ubuntu.com and pulls in the RSS feed to the partner page.")
+    tag = models.CharField(
+        max_length=200,
+        help_text=(
+            "Link to a tag on insights.ubuntu.com "
+            "and pulls in the RSS feed to the partner page."
+        )
+    )
 
 
 class Text(models.Model):
