@@ -70,8 +70,9 @@ class Partner(PartnerModel):
     )
     logo = models.URLField(
         help_text=(
-            "The URL to the logo. "
-            "(must start with with http or https)"
+            "The URL to the logo (e.g. http://example.com/logo.svg).\n"
+            "Please only upload .png and .svg files, "
+            "no less than 200 pixels wide.\n"
         )
     )
     partner_website = models.URLField(
