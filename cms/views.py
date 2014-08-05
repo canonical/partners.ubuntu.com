@@ -7,17 +7,19 @@ from fenchurch import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseBadRequest
-from django.core.exceptions import FieldError 
+from django.http import HttpResponse
 
 from cms.models import (
     Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
 )
 
+
 def add_default_values_to_context(context, request):
     """
-    Untill Fenchurch is updated to export this functionality, had to paste it in here.
+    Until Fenchurch is updated to export this functionality,
+    had to paste it in here.
     """
+
     path_list = [p for p in request.path.split('/') if p]
     for i, path, in enumerate(path_list):
         level = "level_%s" % str(i+1)
@@ -30,6 +32,7 @@ class PartnerView(TemplateFinder):
     """
     This view injects Partners into every template. You know, for prototyping.
     """
+
     def render_to_response(self, context, **response_kwargs):
 
         context['partners'] = Partner.objects.filter(
@@ -45,15 +48,18 @@ def partner_programmes(request, name):
     """
     /partner-programmes/<name>
 
-    Renders the template, 'partner-programmes/<name>.html' with the partners defined in:
+    Renders the template, 'partner-programmes/<name>.html'
+    with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
+
     max_num_of_partners = 8
     base_partners = Partner.objects.filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
-            featured=True),
+            featured=True
+        ),
 
         "phone-carrier": base_partners.filter(
             (
@@ -65,10 +71,12 @@ def partner_programmes(request, name):
         ),
 
         "reseller": base_partners.filter(
-            programme__name="Reseller"),
+            programme__name="Reseller"
+        ),
 
         "retail": base_partners.filter(
-            programme__name="Retailer"),
+            programme__name="Retailer"
+        ),
 
         "hardware": base_partners.filter(
             (
@@ -94,7 +102,8 @@ def partner_programmes(request, name):
         ),
 
         "openstack": base_partners.filter(
-            programme__name="Openstack Interoperability Lab"),
+            programme__name="Openstack Interoperability Lab"
+        ),
     }
     partners = list(lookup_partners[name].distinct()[:max_num_of_partners])
     shuffle(partners)
@@ -110,13 +119,15 @@ def partner_programmes(request, name):
 def partner_view(request, slug):
     """
     /<slug>
-    Gets the partner specified in <slug> and renders partner.html with that partner
+    Gets the partner specified in <slug>
+    and renders partner.html with that partner
     """
+
     partner = get_object_or_404(
         Partner,
         slug=slug,
         published=True,
-        generate_page=True
+        dedicated_partner_page=True
     )
 
     context = {'partner': partner}
@@ -127,12 +138,16 @@ def partner_view(request, slug):
         context
     )
 
+
 def find_a_partner(request):
     """
     /find-a-partner/
     List all partners to the page, for frontend searching.
     """
-    context = {'partners': Partner.objects.filter(published=True).order_by('name')}
+
+    context = {
+        'partners': Partner.objects.filter(published=True).order_by('name')
+    }
     context = add_default_values_to_context(context, request)
     Filter = namedtuple('Filter', ['name', 'items'])
     context['filters'] = [
@@ -148,31 +163,34 @@ def find_a_partner(request):
         context
     )
 
+
 class AllowJSONPCallback(object):
     """
-    This decorator function wraps a normal view function                                                                                      
-    so that it can be read through a jsonp callback.   
-    Source: https://djangosnippets.org/snippets/2208/                                                                                          
-                                                                                                                                                 
-    Usage:                                                                                                                                       
-                                                                                                                                                 
-    @AllowJSONPCallback                                                                                                                          
-    def my_view_function(request):                                                                                                               
-        return HttpResponse('this should be viewable through jsonp')                                                                             
-                                                                                                                                                 
-    It looks for a GET parameter called "callback", and if one exists,                                                                           
-    wraps the payload in a javascript function named per the value of callback.                                                                  
-                                                                                                                                                 
-    If the input does not appear to be json, wrap the input in quotes                                                                            
-    so as not to throw a javascript error upon receipt of the response."""
+    This decorator function wraps a normal view function
+    so that it can be read through a jsonp callback.
+    Source: https://djangosnippets.org/snippets/2208/
+
+    Usage:
+
+    @AllowJSONPCallback
+    def my_view_function(request):
+        return HttpResponse('this should be viewable through jsonp')
+
+    It looks for a GET parameter called "callback", and if one exists,
+    wraps the payload in a javascript function named per the value of callback.
+
+    If the input does not appear to be json, wrap the input in quotes
+    so as not to throw a javascript error upon receipt of the response.
+    """
+
     def __init__(self, f):
         self.f = f
 
     def __call__(self, *args, **kwargs):
         request = args[0]
         callback = request.GET.get('callback')
-        # if callback parameter is present,                                                                                                      
-        # this is going to be a jsonp callback.                                                                                                  
+        # if callback parameter is present,
+        # this is going to be a jsonp callback.
         if callback:
             try:
                 response = self.f(*args, **kwargs)
@@ -189,14 +207,16 @@ class AllowJSONPCallback(object):
             response = self.f(*args, **kwargs)
         return response
 
+
 @AllowJSONPCallback
 def partners_json_view(request):
     """
     Returns a JSON list of partners, depending on query strings.
     """
+
     filter_whitelist = [
         'featured',
-        'generate_page',
+        'dedicated_partner_page',
         'industry_sector__name',
         'name',
         'programme__name',
@@ -205,10 +225,11 @@ def partners_json_view(request):
         'slug',
         'technology__name',
     ]
+
     partners = Partner.objects.filter(published=True)
+
     try:
         query_list = Q()
-        andable_query_list = []
         for attribute, value in request.GET.iterlists():
             query_in_whitelist = reduce(
                 lambda a, b: (a or b),
@@ -217,25 +238,23 @@ def partners_json_view(request):
             if query_in_whitelist:
                 if len(value) > 1:
                     for listed_value in value:
-                        query_list = query_list | Q(**{attribute:listed_value})
+                        query_list = query_list | Q(**{attribute: listed_value})
                 else:
-                    partners = partners.filter(Q(**{attribute:value[0]}))
+                    partners = partners.filter(Q(**{attribute: value[0]}))
         partners = list(partners.filter(query_list).distinct())
         shuffle(partners)
         partners_json = json.dumps(
             serialize(
                 partners,
                 fields=[':all'],
-                exclude=['created_on', 'updated_on', 'generate_page', 'id', 'created_by', 'updated_by']
+                exclude=[
+                    'created_on', 'updated_on', 'dedicated_partner_page',
+                    'id', 'created_by', 'updated_by'
+                ]
             ),
             default=lambda obj: None
         )
     except Exception as e:
         raise e
-    """except FieldError as e:
-        partners_json = json.dumps({"Error": e.args[0]})
-        HttpResponse(partners_json, content_type="application.json")
-    except ValueError as e:
-        partners_json = json.dumps({"Error": e.args[0]})
-        return HttpResponseBadRequest(partners_json, content_type="application.json")"""
+
     return HttpResponse(partners_json, content_type="application.json")
