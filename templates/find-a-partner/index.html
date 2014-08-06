@@ -62,7 +62,19 @@
           </div>
           {% endif %}
           <div class="{% if p.logo %}seven-col{% else %}nine-col{% endif %} last-col">
-            <h3><a {% if not p.dedicated_partner_page %}class="external" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');"{% else %}onclick="ga('send', 'event', 'Internal Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');"{% endif %} href="{% if p.dedicated_partner_page %}/{{ p.slug }}{% else %}{{ p.external_page }}{% endif %}">{{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}</a></h3>
+            <h3>
+            	{% if p.dedicated_partner_page or p.external_page %}
+	            	{% if p.external_page %}
+	            		<a class="external" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="{{ p.external_page }}">
+	            	{% else %}
+	            		<a onclick="ga('send', 'event', 'Internal Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="/{{ p.slug }}">
+	            	{% endif %}
+	            		{{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}
+									</a>
+							{% else %}
+									{{ p.name }}
+							{% endif %}
+            </h3>
             <p>{{ p.short_description }}</p>
           </div>
       </div>
