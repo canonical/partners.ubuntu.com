@@ -48,7 +48,7 @@
 {% endif %}
 
 {% if partner.quotes %}
-<div class="row">
+<div class="row equal-height">
 	{% for quote in partner.quotes %}
 	<div class="box six-col{% if forloop.counter|divisibleby:2 %} last-col{% endif %}">
 		<blockquote class="pull-quote">
