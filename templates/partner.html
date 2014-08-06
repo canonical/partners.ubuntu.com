@@ -18,7 +18,7 @@
 		{% if partner.partner_website %}<p><a href="{{ partner.partner_website }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website link');">{{ partner.name }} website</a></p>{% endif %}
 	</div>
 	<div class="four-col last-col align-center align-vertically">
-		<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />
+		{% if partner.partner_website %}<a href="{{ partner.partner_website }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website logo link');"><img src="{{ partner.logo }}" alt="{{ partner.name }} logo" /></a>{% else %}<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />{% endif %}
 	</div>
 </div>
 
