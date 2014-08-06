@@ -55,7 +55,7 @@
         <p>Perhaps <a href="/find-a-partner">start your search again?</a></p>
       </div>
       {% for p in partners %}
-      <div class="box box-highlight clearfix twelve-col partner equal-height" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
+      <div class="box clearfix twelve-col partner equal-height" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
           <div class="two-col align-center align-vertically no-margin-bottom">
 								{% if p.partner_website and not p.dedicated_partner_page %}
 	            		<a onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result image link');" href="{{ p.partner_website }}">{% else %}
