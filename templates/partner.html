@@ -27,7 +27,7 @@
 <div class="row equal-height">
 	{% if forloop.counter|divisibleby:2 %}
 	<div class="four-col align-center align-vertically">
-		<img src="{{ text.fields.image }}" alt="" />
+		{% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" />{% endif %}
 	</div>
 	<div class="eight-col last-col">
 	{% else %}
@@ -40,7 +40,7 @@
 	{% if forloop.counter|divisibleby:2 %}
 	{% else %}
 	<div class="last-col four-col align-center align-vertically">
-		<img src="{{ text.fields.image }}" alt="" />
+		{% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" />{% endif %}
 	</div>
 	{% endif %}
 </div><!-- /row -->
