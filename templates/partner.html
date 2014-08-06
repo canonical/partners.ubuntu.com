@@ -60,11 +60,11 @@
 </div><!-- /row -->
 {% endif %}
 
-{% if partner.links or partner.insights_tags %}<div class="row no-border">{% endif %}
+{% if partner.links or partner.insights_tags %}<div class="row no-border{% if partner.links and partner.insights_tags %} vertical-divider{% endif %}">{% endif %}
 	{% if partner.links %}
 	<div class="six-col">
 		<h2>Links</h2>
-		<ul>
+		<ul class="no-bullets">
 			{% for link in partner.links %}
 			<li><a class="external" href="{{ link.fields.url }}">{{ link.fields.text }}</a></li>
 			{% endfor %}
