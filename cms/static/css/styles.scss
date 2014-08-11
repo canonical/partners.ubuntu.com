@@ -270,6 +270,13 @@ header.banner .nav-primary ul li {
 	} // end header.banner .nav-primary ul li
 } // end @media only screen and (min-width : 768px)
  
+@media only screen and (min-width : 769px) {
+	header.banner .nav-primary ul li {
+	 	border-right: 0;
+	  width: auto;
+	}
+} // end @media only screen and (min-width : 769px)
+
 /*
  * Cookie policy style updates
  * To be updated in core-patterns
