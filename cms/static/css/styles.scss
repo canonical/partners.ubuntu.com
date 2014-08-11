@@ -263,7 +263,7 @@ header.banner .nav-primary ul li {
 	  &:nth-last-child(-n+2) a:link,
 	  &:nth-last-child(-n+2) a:visited,
 		&:last-child,
-	  &:last-child {
+	  &:last-child a {
 		  border-bottom: 0;
 	  }
 	  
