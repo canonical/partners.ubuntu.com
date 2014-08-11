@@ -254,17 +254,21 @@ header.banner .nav-primary ul li {
 	  border-bottom: 1px solid #d4d7d4;
   }
 }
+
 @media only screen and (min-width : 768px) {
 	header.banner .nav-primary ul li {
 	 	border-right: 1px solid #d4d7d4;
 	  width: 50%;
 	  
 	  &:nth-last-child(-n+2) a:link,
-	  &:nth-last-child(-n+2) a:visited {
+	  &:nth-last-child(-n+2) a:visited,
+		&:last-child,
+	  &:last-child {
 		  border-bottom: 0;
 	  }
-	}
-}
+	  
+	} // end header.banner .nav-primary ul li
+} // end @media only screen and (min-width : 768px)
  
 /*
  * Cookie policy style updates
