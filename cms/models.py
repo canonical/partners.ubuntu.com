@@ -39,12 +39,6 @@ class Technology(CategoryModel):
         verbose_name_plural = 'technology'
 
 
-class IndustrySector(CategoryModel):
-    class Meta:
-        verbose_name_plural = 'industry sector'
-    pass
-
-
 class Programme(CategoryModel):
     class Meta:
         verbose_name_plural = 'programme'
@@ -54,11 +48,6 @@ class Programme(CategoryModel):
 class ServiceOffered(CategoryModel):
     class Meta:
         verbose_name_plural = 'service offered'
-
-
-class Region(CategoryModel):
-    class Meta:
-        verbose_name_plural = 'region'
 
 
 class Partner(PartnerModel):
@@ -107,12 +96,6 @@ class Partner(PartnerModel):
         blank=True,
         null=True
     )
-    industry_sector = models.ManyToManyField(
-        IndustrySector,
-        related_name='partners',
-        blank=True,
-        null=True
-    )
     programme = models.ManyToManyField(
         Programme,
         related_name='partners',
@@ -121,12 +104,6 @@ class Partner(PartnerModel):
     )
     service_offered = models.ManyToManyField(
         ServiceOffered,
-        related_name='partners',
-        blank=True,
-        null=True
-    )
-    region = models.ManyToManyField(
-        Region,
         related_name='partners',
         blank=True,
         null=True

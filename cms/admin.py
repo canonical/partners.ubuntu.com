@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from cms.models import (
-    Partner, Technology, IndustrySector, Programme, ServiceOffered, Region,
+    Partner, Technology, Programme, ServiceOffered,
     Quote, Link, InsightsTag, Text
 )
 
@@ -56,17 +56,11 @@ class PartnerAdmin(admin.ModelAdmin):
     def technology(obj):
         return ",\n".join([str(o) for o in obj.technology.all()])
 
-    def industry_sector(obj):
-        return ",\n".join([str(o) for o in obj.industry_sector.all()])
-
     def programme(obj):
         return ",\n".join([str(o) for o in obj.programme.all()])
 
     def service_offered(obj):
         return ",\n".join([str(o) for o in obj.service_offered.all()])
-
-    def region(obj):
-        return ",\n".join([str(o) for o in obj.region.all()])
 
     actions = ['delete_selected', 'publish_selected']
 
@@ -79,10 +73,8 @@ class PartnerAdmin(admin.ModelAdmin):
     shorter_description.short_description = 'Short Description'
 
     technology.short_description = 'Technology'
-    industry_sector.short_description = 'Industry Sector'
     programme.short_description = 'Programme'
     service_offered.short_description = 'Service Offered'
-    region.short_description = 'Region'
 
     list_display = (
         'name',
@@ -93,20 +85,16 @@ class PartnerAdmin(admin.ModelAdmin):
         'featured',
         'dedicated_partner_page',
         technology,
-        industry_sector,
         programme,
         service_offered,
-        region,
     )
     list_filter = (
         'published',
         'featured',
         'dedicated_partner_page',
         'technology',
-        'industry_sector',
         'programme',
         'service_offered',
-        'region'
     )
     list_editable = (
         'published',
@@ -133,10 +121,8 @@ class PartnerAdmin(admin.ModelAdmin):
         ('Categories', {
             'fields': (
                 'technology',
-                'industry_sector',
                 'programme',
                 'service_offered',
-                'region'
             )
         }),
         ('Detailed partner Information', {
@@ -155,10 +141,8 @@ class PartnerAdmin(admin.ModelAdmin):
     ]
     filter_horizontal = [
         'technology',
-        'industry_sector',
         'programme',
         'service_offered',
-        'region'
     ]
     change_form_template = 'admin/asterix_change_form.html'
 
@@ -167,19 +151,11 @@ class TechnologyAdmin(admin.ModelAdmin):
     pass
 
 
-class IndustrySectorAdmin(admin.ModelAdmin):
-    pass
-
-
 class ProgrammeAdmin(admin.ModelAdmin):
     pass
 
 
 class ServiceOfferedAdmin(admin.ModelAdmin):
-    pass
-
-
-class RegionAdmin(admin.ModelAdmin):
     pass
 
 
@@ -205,10 +181,8 @@ class TextAdmin(admin.ModelAdmin):
 
 admin.site.register(Partner, PartnerAdmin)
 admin.site.register(Technology, TechnologyAdmin)
-admin.site.register(IndustrySector, IndustrySectorAdmin)
 admin.site.register(Programme, ProgrammeAdmin)
 admin.site.register(ServiceOffered, ServiceOfferedAdmin)
-admin.site.register(Region, RegionAdmin)
 admin.site.register(Quote, QuoteAdmin)
 admin.site.register(Link, LinkAdmin)
 admin.site.register(InsightsTag, InsightsTagAdmin)
