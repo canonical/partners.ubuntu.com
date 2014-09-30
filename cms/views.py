@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 
 from cms.models import (
-    Partner, Technology, IndustrySector, Programme, ServiceOffered, Region
+    Partner, Technology, Programme, ServiceOffered
 )
 
 
@@ -152,10 +152,8 @@ def find_a_partner(request):
     Filter = namedtuple('Filter', ['name', 'items'])
     context['filters'] = [
         Filter("Technology",      Technology.objects.all()),
-        Filter("Industry Sector", IndustrySector.objects.all()),
         Filter("Programme",       Programme.objects.all()),
         Filter("Service Offered", ServiceOffered.objects.all()),
-        Filter("Region",          Region.objects.all()),
     ]
 
     return render_to_response(
@@ -217,10 +215,8 @@ def partners_json_view(request):
     filter_whitelist = [
         'featured',
         'dedicated_partner_page',
-        'industry_sector__name',
         'name',
         'programme__name',
-        'region__name',
         'service_offered__name',
         'slug',
         'technology__name',
