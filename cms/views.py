@@ -63,7 +63,7 @@ def partner_programmes(request, name):
 
         "phone-carrier": base_partners.filter(
             (
-                Q(technology__name="Phone") or Q(technology__name="Tablet")
+                Q(technology__name="Personal computing/devices")
             ) & (
                 Q(programme__name="Carrier Advisory Group")
             ),
@@ -83,10 +83,8 @@ def partner_programmes(request, name):
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack Interoperability Lab")
             ) & (
-                Q(service_offered__name="Mobile network operator") |
-                Q(service_offered__name="Hardware manufacturer") |
-                Q(service_offered__name="Component manufacturer") |
-                Q(service_offered__name="Silicon vendor"))
+                Q(service_offered__name="Network operator") |
+                Q(service_offered__name="Hardware manufacturer"))
         ),
 
         "software": base_partners.filter(
@@ -94,10 +92,7 @@ def partner_programmes(request, name):
                 Q(programme__name="Technical Partner Programme") |
                 Q(programme__name="OpenStack interoperability Lab")
             ) & (
-                Q(service_offered__name="Software publisher") |
-                Q(service_offered__name="Bespoke software developer") |
-                Q(service_offered__name="Cloud software provider") |
-                Q(service_offered__name="Software reseller")
+                Q(service_offered__name="Software/content publisher")
             )
         ),
 
