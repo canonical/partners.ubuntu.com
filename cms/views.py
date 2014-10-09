@@ -81,7 +81,7 @@ def partner_programmes(request, name):
         "hardware": base_partners.filter(
             (
                 Q(programme__name="Technical Partner Programme") |
-                Q(programme__name="OpenStack Interoperability Lab")
+                Q(programme__name="OpenStack")
             ) & (
                 Q(service_offered__name="Network operator") |
                 Q(service_offered__name="Hardware manufacturer"))
@@ -90,14 +90,14 @@ def partner_programmes(request, name):
         "software": base_partners.filter(
             (
                 Q(programme__name="Technical Partner Programme") |
-                Q(programme__name="OpenStack interoperability Lab")
+                Q(programme__name="OpenStack")
             ) & (
                 Q(service_offered__name="Software/content publisher")
             )
         ),
 
         "openstack": base_partners.filter(
-            programme__name="Openstack Interoperability Lab"
+            programme__name="OpenStack"
         ),
     }
     partners = list(lookup_partners[name].distinct()[:max_num_of_partners])
