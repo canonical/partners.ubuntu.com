@@ -514,9 +514,11 @@ ul.inline-logos li img {
   }
   .partner {
     display: table;
+    table-layout: fixed;
     div {
       display: table-cell;
       vertical-align: top;
+      width: 66.9%;
     }
     .logo-container {
       padding-right: 20px;
