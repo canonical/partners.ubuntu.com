@@ -98,7 +98,6 @@ class PartnerAdmin(admin.ModelAdmin):
     )
     list_editable = (
         'published',
-        'logo'
     )
     search_fields = ['name']
 
