@@ -512,6 +512,21 @@ ul.inline-logos li img {
       margin-bottom: 0;
     }
   }
+  .partner {
+    display: table;
+    div {
+      display: table-cell;
+      vertical-align: top;
+    }
+    .logo-container {
+      padding-right: 20px;
+      width: 33%;
+      vertical-align: middle;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
 }
 
 html.yui3-js-enabled .find-a-partner {
@@ -539,8 +554,9 @@ html.yui3-js-enabled .find-a-partner {
 /* Find a partner */
 
 .hidden,
-.notSearchMatch,
-.notFilterMatch {
+.find-a-partner .partner.notSearchMatch,
+.find-a-partner .partner.notFilterMatch,
+.find-a-partner .partner.matchHide {
   display: none;
 }
 
