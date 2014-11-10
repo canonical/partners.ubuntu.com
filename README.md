@@ -3,7 +3,8 @@ extra requirements::
     sudo apt-get install postgresql
     sudo apt-get install postgresql-server-dev-9.x
     sudo apt-get install graphviz-dev
-
+    sudo apt-get install rubygems
+    sudo gem install sass
 
 To create your postgres user and database::
 
