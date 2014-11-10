@@ -6,13 +6,13 @@ clean:
 
 start-dev:
 	$(MAKE) sass-watch
-	env/bin/python manage.py runserver_plus 0.0.0.0:8000
+	env/bin/python manage.py runserver_plus 0.0.0.0:7500
 
 develop:
 	python bootstrap.py env
 	$(MAKE) pip-requirements
 	. env/bin/activate && $(MAKE) update-db
-	$(MAKE) sass-watch
+	$(MAKE) sass
 	$(MAKE) runserver
 
 apt-requirements:
