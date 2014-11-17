@@ -7,3 +7,5 @@ cms/static/css/styles.css
 static
 pip-cache
 *.pyc
+*.~*
+.bzr/
