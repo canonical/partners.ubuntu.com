@@ -3,6 +3,14 @@ Ubuntu Partners
 
 The Django-based website project for <http://partners.ubuntu.com>.
 
+Local development
+---
+
+``` bash
+make setup    # Install dependencies & setup environment
+make develop  # Auto-compile sass files and run the dev server
+```
+
 Dependencies
 ---
 
