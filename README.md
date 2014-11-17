@@ -1,4 +1,10 @@
-extra requirements::
+Ubuntu Partners
+===
+
+The Django-based website project for <http://partners.ubuntu.com>.
+
+Dependencies
+---
 
     sudo apt-get install postgresql
     sudo apt-get install postgresql-server-dev-9.x
