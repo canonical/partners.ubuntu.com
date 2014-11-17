@@ -11,6 +11,12 @@ make setup    # Install dependencies & setup environment
 make develop  # Auto-compile sass files and run the dev server
 ```
 
+Or to start the repository on a different port:
+
+``` bash
+PORT=4321 make develop  # Start server on port 4321
+```
+
 Dependencies
 ---
 
