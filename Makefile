@@ -4,7 +4,6 @@ Canonical.com website project
 
 Usage:
 
-> make setup    # Install dependencies & setup environment
 > make develop  # Auto-compile sass files and run the dev server
 
 endef
