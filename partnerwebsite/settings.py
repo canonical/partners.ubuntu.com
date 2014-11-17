@@ -72,13 +72,12 @@ DATABASES = {
     }
 }
 
-
 # Update database settings from DATABASE_URL environment variable
 import dj_database_url
 DATABASES['default'].update(dj_database_url.config())
 
 if 'test' in sys.argv:
-  DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 
 # Internationalization

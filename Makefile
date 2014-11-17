@@ -1,5 +1,30 @@
+define HELP_TEXT
+Canonical.com website project
+===
+
+Usage:
+
+> make setup    # Install dependencies & setup environment
+> make develop  # Auto-compile sass files and run the dev server
+
+endef
+
+# Variables
+##
+
+ENVPATH=${VIRTUAL_ENV}
+VEX=vex --path ${ENVPATH}
+
+ifeq ($(ENVPATH),)
+	ENVPATH=env
+endif
+
+ifeq ($(PORT),)
+	PORT=8002
+endif
+
 help:
-	@echo "Usage: 'make develop' to set up your environment, then 'make start-dev' to start the devserver and sass compilation. If stuff breaks, run 'make develop' again"
+	$(info ${HELP_TEXT})
 
 clean:
 	rm -rf pip-cache
