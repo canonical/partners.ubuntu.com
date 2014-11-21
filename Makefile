@@ -66,14 +66,22 @@ rebuild-dependencies-cache:
 	rm -rf pip-cache src
 	@echo "** Remember to commit pip-cache-revno.txt"
 
-pip-cache:
-	bzr branch -r `cat pip-cache-revno.txt` lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
 
-graph:
-	./manage.py graph_models cms -o cms.svg -X PartnerModel,CategoryModel && xdg-open cms.svg
+# New docker instructions
+# ===
+
+build:
+	docker build -t ubuntu-partners .
+
+reset-db:
+	docker rm -f ubuntu-partners-postgres
+	docker run --name ubuntu-partners-postgres -d postgres
+	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ubuntu-partners-postgres` 5432; do sleep 0.01; done
+	${MAKE} update-db
 
 update-db:
-	./manage.py syncdb --noinput --migrate
+	docker run --volume `pwd`/app --link ubuntu-partners-postgres:postgres ubuntu-partners bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
 
-update-charm:
-	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi
+run:
+	docker start ubuntu-partners-postgres
+	docker run --tty --interactive --volume `pwd`/app --publish 8003:8000 --link ubuntu-partners-postgres:postgres ubuntu-partners
