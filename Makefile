@@ -74,7 +74,7 @@ build:
 	docker build -t ubuntu-partners .
 
 reset-db:
-	docker rm -f ubuntu-partners-postgres
+	-docker rm -f ubuntu-partners-postgres
 	docker run --name ubuntu-partners-postgres -d postgres
 	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ubuntu-partners-postgres` 5432; do sleep 0.01; done
 	${MAKE} update-db
