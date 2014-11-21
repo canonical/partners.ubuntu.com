@@ -66,6 +66,12 @@ rebuild-dependencies-cache:
 	rm -rf pip-cache src
 	@echo "** Remember to commit pip-cache-revno.txt"
 
+update-db:
+	./manage.py syncdb --noinput --migrate
+ 
+update-charm:
+	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi
+
 
 # New docker instructions
 # ===
@@ -77,9 +83,9 @@ reset-db:
 	-docker rm -f ubuntu-partners-postgres
 	docker run --name ubuntu-partners-postgres -d postgres
 	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ubuntu-partners-postgres` 5432; do sleep 0.01; done
-	${MAKE} update-db
+	${MAKE} update-docker-db
 
-update-db:
+update-docker-db:
 	docker run --volume `pwd`/app --link ubuntu-partners-postgres:postgres ubuntu-partners bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
 
 run:
