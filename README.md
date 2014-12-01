@@ -40,3 +40,4 @@ postgres=# \q
 
 $ sudo -u postgres createdb partners
 ```
+
