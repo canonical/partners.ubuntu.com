@@ -72,6 +72,9 @@ update-db:
 update-charm:
 	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi
 
+pip-cache:
+	bzr branch -r `cat pip-cache-revno.txt` lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
+
 
 # New docker instructions
 # ===
