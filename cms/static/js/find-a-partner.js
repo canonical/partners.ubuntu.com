@@ -35,7 +35,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   // Returns true if there are any matched results
   function matchesExist() {
-    if (Y.all('#results > .partner').size() == (Y.all('#results > .notSearchMatch').size() + Y.all('#results > .notFilterMatch').size())){
+    if (Y.all('#results > .notSearchMatch').size() == 0 &&  Y.all('#results > .notFilterMatch').size() == 0) {
       return false;
     } else {
       return true;
