@@ -1,4 +1,5 @@
 YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', function (Y) {
+
   // Create a custom PartnerFilter class that extends AutoCompleteBase.
   var PartnerFilter = Y.Base.create('partnerFilter', Y.Base, [Y.AutoCompleteBase], {
     initializer: function () {
@@ -72,7 +73,6 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
       } else {
         if (partnerTitle.indexOf(search) != -1) {
           cloneItem(partner, false);
-          console.log(partnerTitle);
         }
       }
     });
@@ -92,7 +92,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   //Adds a listener to checkboxes to filter results
   var checkboxes = Y.all('.search-panel input[type=checkbox]');
-  checkboxes.on('change', function (e) { console.log('change detected');
+  checkboxes.on('change', function (e) {
     var checkbox = e.target;
     var checked = checkbox.get('checked');
     var attributeName = checkbox.get('id')
@@ -123,7 +123,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
           node.removeClass('notFilterMatch');
         });
       }
-    } console.log(filters);
+    };
   }
 
   //Get specified query param
@@ -178,4 +178,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   populateCheckboxes();
   populateTextbox();
+
+
+  Y.all('.search-not-run').removeClass('search-not-run');
 });
