@@ -100,8 +100,9 @@ def partner_programmes(request, name):
             programme__name="OpenStack"
         ),
     }
-    partners = list(lookup_partners[name].distinct()[:max_num_of_partners])
-    shuffle(partners)
+    distinct_partners = list(lookup_partners[name].distinct())
+    shuffle(distinct_partners)
+    partners = distinct_partners[:max_num_of_partners]
     context = {'programme_partners': partners}
 
     context = add_default_values_to_context(context, request)
