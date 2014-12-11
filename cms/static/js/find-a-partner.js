@@ -145,12 +145,12 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
       for (var i = 0; i < queryString.length; ++i) {
         var queryArray=queryString[i].split('=', 2);
         if ( Object.prototype.toString.call( returnParams[queryArray[0]] ) !== '[object Array]' ) {
-          returnParams[queryArray[0]] = new Array;
+          returnParams[queryArray[0].toLowerCase()] = new Array;
         }
         if (queryArray.length == 1) {
           //returnParams[queryArray[0]] = "";
         } else {
-          returnParams[queryArray[0]].push(decodeURIComponent(queryArray[1].replace(/\+/g, " ")));
+          returnParams[queryArray[0].toLowerCase()].push(decodeURIComponent(queryArray[1].replace(/\W+/g, "").toLowerCase()));
         }
       }
       return returnParams;
