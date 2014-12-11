@@ -4,7 +4,7 @@ distribute-0.6.34.tar.gz
 env
 cms.svg
 cms/static/css/styles.css
-static
+./static
 pip-cache
 *.pyc
 *.~*
