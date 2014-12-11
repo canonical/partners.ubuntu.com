@@ -35,7 +35,7 @@
 	{% endif %}
 		<h2>{{ text.fields.header }}</h2>
 		{{ text.fields.body|linebreaks }}
-		{% if text.fields.url %}<p><a href="{{ text.fields.url }}">Read more&nbsp;&rsaquo;</a></p>{% endif %}
+		{% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}">Read more&nbsp;&rsaquo;</a></p>{% endif %}
 	</div>
 	{% if forloop.counter|divisibleby:2 %}
 	{% else %}
