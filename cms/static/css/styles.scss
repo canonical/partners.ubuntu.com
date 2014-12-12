@@ -343,6 +343,7 @@ html.opera-mini {
     padding: 0;
     h3 {
       font-size: 1.438em;
+      font-weight: 300;
       margin-bottom: .522em;
     }
     hr {
@@ -467,11 +468,11 @@ html.opera-mini {
 
 /* @section partner programmes: retail
 -------------------------------------------------------------- */
-.partner-programmes-retail{
-  .image-container img {
-  	width: 100%;
-    max-width: 100px;
-  }
+.partner-programmes-retail .box img {
+  max-height: 100px;
+  max-width: 250px;
+  margin: 10px 0;
+  float: left;
 }
 
 /* @section logos
@@ -1366,36 +1367,6 @@ html.no-svg {
       animation-delay: 2.45s;
       -moz-animation-delay: 2.45s;
       -webkit-animation-delay: 2.45s;
-    }
-  }
-
-  /* @section partner programmes: retail
-  -------------------------------------------------------------- */
-  .partner-programmes-retail{
-    .image-container {
-      height: 100px;      /* equals max image height */
-      width: 100%;
-      white-space: nowrap;
-      text-align: center;
-      margin: 30px 0;
-      .helper {
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-      }
-      img {
-        vertical-align: middle;
-        max-height: 100px;
-        max-width: 100%;
-      }
-    }
-  }
-
-  /* @section partner programmes: retail
-  -------------------------------------------------------------- */
-  .partner-programmes-retail {
-    .twelve-col img {
-      float: none;
     }
   }
 

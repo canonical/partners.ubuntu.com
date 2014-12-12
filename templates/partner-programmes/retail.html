@@ -12,14 +12,21 @@
 {% endblock second_level_nav_items %}
 
 {% block content %}
-<div class="row row-hero no-border equal-height">
-	<div class="eight-col">
-		<h1>Ubuntu retail partners</h1>
-		<p class="intro">Computers with Ubuntu pre-loaded are available globally</p>
-		<p>We partner with the world&rsquo;s biggest manufacturers to optimise and certify Ubuntu on their laptops and PCs.  And we work with them and retailers to ensure home users, students, the self-employed, small businesses and everyone else has access to Ubuntu&rsquo;s security, speed and stability, from wherever they are.  As a result Ubuntu pre-installed computers now sell in all the world&rsquo;s major markets. </p>
+<div class="row row-hero no-border no-padding-bottom">
+	<div class="twelve-col equal-height no-margin-bottom">
+		<div class="eight-col no-margin-bottom">
+			<h1>Ubuntu retail partners</h1>
+			<p class="intro">Computers with Ubuntu pre-loaded are available globally</p>
+			<p>We partner with the world&rsquo;s biggest manufacturers to optimise and certify Ubuntu on their laptops and PCs.  And we work with them and retailers to ensure home users, students, the self-employed, small businesses and everyone else has access to Ubuntu&rsquo;s security, speed and stability, from wherever they are.  As a result Ubuntu pre-installed computers now sell in all the world&rsquo;s major markets. </p>
+		</div>
+		<div class="four-col last-col align-center align-vertically no-margin-bottom">
+			<img class="priority-0" width="180" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-shop-warmgrey.svg">
+		</div>
 	</div>
-	<div class="four-col last-col align-center align-vertically">
-		<img class="priority-0" width="180" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-shop-warmgrey.svg">
+</div>
+<div class="row no-border no-padding-top">
+	<div class="twelve-col">
+		<img src="{{ STATIC_URL }}img/map-retail.svg" width="100%" alt="World map" class="priority-0" />
 	</div>
 </div>
 <div class="row no-border strip-dark">
@@ -43,36 +50,34 @@
 	<div class="eight-col append-four">
 		<p>We&rsquo;ve been working with partners like Dell, HP  and Lenovo for years to ensure that Ubuntu devices reach market as effectively as possible. With the help of these partners, Ubuntu machines are distributed around the world and can be found in both their exclusive and partner stores.</p>
 	</div>
-	<div class="twelve-col">
-		<div class="vertical-divider">
-			<div class="three-col">
-				<div class="image-container">
-					<span class="helper"></span><img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-dell.svg" width="100%" alt="Dell logo" />
-				</div>
-				<p>Canonical and Dell work together to deliver Ubuntu computers from entry-level laptops to high-end developer machines.  They are available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
-				<p><a href="http://www.dell.com/content/public/choosecountry.aspx" onclick="ga('send', 'event', 'External Link', 'Dell - retail page', 'From Shop for Ubuntu with Dell link');">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+	<div class="twelve-col equal-height">
+		<div class="six-col box">
+			<div class="twelve-col">
+				<img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-dell.svg" alt="Dell logo" />
 			</div>
-			<div class="three-col">
-				<div class="image-container">
-					<span class="helper"></span><img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-hp.svg" width="100%" alt="HP logo" />
-				</div>
-				<p>HP enthusiastically market Ubuntu products globally.  1500 stores in China carry HP laptops as do 500 stores of Bodega Aurrera, the Wal-Mart owned Mexican retailer.  Online HP sell Ubuntu laptops globally.</p>
-				<p><a href="http://www8.hp.com/us/en/m/cselector.do" onclick="ga('send', 'event', 'External Link', 'HP - retail page', 'From Shop for Ubuntu with HP link');">Shop for Ubuntu with&nbsp;HP&nbsp;&rsaquo;</a></p>
+			<p>Canonical and Dell work together to deliver Ubuntu computers from entry-level laptops to high-end developer machines.  They are available in nearly 2,500 Dell stores across China, India, Indonesia, Russia and Thailand and globally online.</p>
+			<p><a href="http://www.dell.com/content/public/choosecountry.aspx" onclick="ga('send', 'event', 'External Link', 'Dell - retail page', 'From Shop for Ubuntu with Dell link');">Shop for Ubuntu with Dell&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="six-col box last-col">
+			<div class="twelve-col">
+				<img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-hp.svg" alt="HP logo" />
 			</div>
-			<div class="three-col">
-				<div class="image-container">
-					<span class="helper"></span><img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-lenovo.svg" width="100%" alt="Lenovo logo" />
-				</div>
-				<p>Canonical has been shipping Ubuntu on Lenovo&rsquo;s popular Think Center and Idea Center machines for over 12 months to Brazil and China through their in-country websites.</p>
-				<p><a href="http://shop.lenovo.com/SEUILibrary/controller/e/na/LenovoPortal/en_US/special-offers.workflow:ShowPromo?LandingPage=/All/US/Portals/Consumer/country-selector" onclick="ga('send', 'event', 'External Link', 'Lenovo - retail page', 'From Shop for Ubuntu with Lenovo link');">Shop for Ubuntu with&nbsp;Lenovo&nbsp;&rsaquo;</a></p>
+			<p>HP enthusiastically market Ubuntu products globally.  1500 stores in China carry HP laptops as do 500 stores of Bodega Aurrera, the Wal-Mart owned Mexican retailer.  Online HP sell Ubuntu laptops globally.</p>
+			<p><a href="http://www8.hp.com/us/en/m/cselector.do" onclick="ga('send', 'event', 'External Link', 'HP - retail page', 'From Shop for Ubuntu with HP link');">Shop for Ubuntu with&nbsp;HP&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="six-col box">
+			<div class="twelve-col">
+				</span><img src="http://assets.ubuntu.com/sites/ubuntu/1054/u/img/logos/logo-pack/logo-lenovo.svg" alt="Lenovo logo" />
 			</div>
-			<div class="three-col">
-				<div class="image-container">
-					<span class="helper"></span><img src="{{ STATIC_URL }}img/logos/logo-amazon.jpg" width="100%" alt="Amazon logo" />
-				</div>
-				<p>Amazon are a keen partner in selling Ubuntu preloaded machines on both their French website Amazon.fr and in the US on Amazon.com.</p>
-				<p><a href="http://www.amazon.com?tag=wwwcanoniccom-20" onclick="ga('send', 'event', 'External Link', 'Amazon - retail page', 'From Shop for Ubuntu with Amazon link');">Shop for Ubuntu with&nbsp;Amazon&nbsp;&rsaquo;</a></p>
+			<p>Canonical has been shipping Ubuntu on Lenovo&rsquo;s popular Think Center and Idea Center machines for over 12 months to Brazil and China through their in-country websites.</p>
+			<p><a href="http://shop.lenovo.com/SEUILibrary/controller/e/na/LenovoPortal/en_US/special-offers.workflow:ShowPromo?LandingPage=/All/US/Portals/Consumer/country-selector" onclick="ga('send', 'event', 'External Link', 'Lenovo - retail page', 'From Shop for Ubuntu with Lenovo link');">Shop for Ubuntu with&nbsp;Lenovo&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="six-col box last-col">
+			<div class="twelve-col">
+				<img src="{{ STATIC_URL }}img/logos/logo-amazon.jpg" alt="Amazon logo" />
 			</div>
+			<p>Amazon are a keen partner in selling Ubuntu preloaded machines on both their French website Amazon.fr and in the US on Amazon.com.</p>
+			<p><a href="http://www.amazon.com?tag=wwwcanoniccom-20" onclick="ga('send', 'event', 'External Link', 'Amazon - retail page', 'From Shop for Ubuntu with Amazon link');">Shop for Ubuntu with&nbsp;Amazon&nbsp;&rsaquo;</a></p>
 		</div>
 	</div>
 </div>
