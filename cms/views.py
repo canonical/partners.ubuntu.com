@@ -38,6 +38,10 @@ class PartnerView(TemplateFinder):
         context['partners'] = Partner.objects.filter(
             published=True,
         ).exclude(logo="").order_by('?')[:8]
+        context['alliance_partners'] = Partner.objects.filter(
+            published=True,
+            dedicated_partner_page=True,
+        ).exclude(logo="").order_by('?')[:8]
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
