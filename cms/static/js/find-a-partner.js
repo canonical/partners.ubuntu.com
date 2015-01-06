@@ -36,7 +36,10 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   // Returns true if there are any matched results
   function matchesExist() {
-    if (Y.all('#results > .notSearchMatch').size() == 0 &&  Y.all('#results > .notFilterMatch').size() == 0) {
+    var numberOfPartners = Y.all('#results > .partner').size();
+    var numberOfSearchMisses = Y.all('#results > .notSearchMatch').size();
+    var numberOfFilterMisses = Y.all('#results > .notFilterMatch').size();
+    if (numberOfSearchMisses == numberOfPartners || numberOfFilterMisses == numberOfPartners) {
       return false;
     } else {
       return true;
@@ -142,12 +145,12 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
       for (var i = 0; i < queryString.length; ++i) {
         var queryArray=queryString[i].split('=', 2);
         if ( Object.prototype.toString.call( returnParams[queryArray[0]] ) !== '[object Array]' ) {
-          returnParams[queryArray[0]] = new Array;
+          returnParams[queryArray[0].toLowerCase()] = new Array;
         }
         if (queryArray.length == 1) {
           //returnParams[queryArray[0]] = "";
         } else {
-          returnParams[queryArray[0]].push(decodeURIComponent(queryArray[1].replace(/\+/g, " ")));
+          returnParams[queryArray[0].toLowerCase()].push(decodeURIComponent(queryArray[1].replace(/\W+/g, "").toLowerCase()));
         }
       }
       return returnParams;
