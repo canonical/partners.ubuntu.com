@@ -148,9 +148,13 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
           returnParams[queryArray[0].toLowerCase()] = new Array;
         }
         if (queryArray.length == 1) {
-          //returnParams[queryArray[0]] = "";
+          //query param is just a key
+          returnParams[queryArray[0]] = "";
         } else {
-          returnParams[queryArray[0].toLowerCase()].push(decodeURIComponent(queryArray[1].replace(/\W+/g, "").toLowerCase()));
+          //query param is key/value
+          var rawQueryParam = decodeURIComponent(queryArray[1]);
+          var cleanQueryParam = rawQueryParam.replace("/", "").replace(/\W+/g, "-").toLowerCase(); //sanitise raw input
+          returnParams[queryArray[0].toLowerCase()].push(cleanQueryParam);
         }
       }
       return returnParams;
