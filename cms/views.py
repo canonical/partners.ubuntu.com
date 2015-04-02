@@ -65,7 +65,7 @@ def partner_programmes(request, name):
             featured=True
         ),
 
-        "phone-carrier": base_partners.filter(
+        "phone": base_partners.filter(
             (
                 Q(technology__name="Personal computing/devices")
             ) & (
