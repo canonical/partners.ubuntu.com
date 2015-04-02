@@ -37,7 +37,7 @@ develop:
 	$(MAKE) pip-requirements
 	. env/bin/activate && $(MAKE) update-db
 	$(MAKE) sass
-	$(MAKE) runserver
+	$(MAKE) start-dev
 
 apt-requirements:
 	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
