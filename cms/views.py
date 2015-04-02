@@ -50,9 +50,9 @@ class PartnerView(TemplateFinder):
 
 def partner_programmes(request, name):
     """
-    /partner-programmes/<name>
+    /programmes/<name>
 
-    Renders the template, 'partner-programmes/<name>.html'
+    Renders the template, 'programmes/<name>.html'
     with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
@@ -115,7 +115,7 @@ def partner_programmes(request, name):
 
     context = add_default_values_to_context(context, request)
     return render_to_response(
-        'partner-programmes/%s.html' % name,
+        'programmes/%s.html' % name,
         context
     )
 
