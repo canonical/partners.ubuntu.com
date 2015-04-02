@@ -1,0 +1,70 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu IoT partners | {% endblock %}
+{% block meta_description %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+
+{% block second_level_nav_items %}
+	<nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="Hardware" %}</nav>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+
+<section class="row row-hero">
+	<div class="six-col">
+		<h1>Internet of Things</h1>
+		<p>Commercial vendors of drones and other smart things can now deliver reliable software updates automatically, and sell software to their customers, all on an open platform. Ubuntu Core provides a production-ready platform for products that will ship across the globe, be hard to access physically and be connected to the internet for updates and security fixes with a store to make it easy for customer to find and install your apps.</p>
+	</div>
+</section>
+
+<section class="row">
+	<div class="twelve-col">
+		<h3 class="caps-centered">A selection of our Internet of Things partners</h3>
+		<div class="list-auto twelve-col">
+			<ul class="inline-logos no-bullets">
+				{% for partner in programme_partners %}
+					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="twelve-col">
+			<p class="align-center"><a href="/find-a-partner?programme=iot">See all IoT partners&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</section>
+
+<section class="row">
+	<div class="eight-col">
+		<h2>A single identical platform from cloud to device</h2>
+		<p>The Snappy Ubuntu Core on smart devices delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem at your fingertips &ndash; bringing the developer&rsquo;s favourite cloud platform to a wide range of internet things, connected devices and autonomous machines.</p>
+	</div>
+</section>
+
+<section class="row">
+	<div class="eight-col">
+		<h2>A marketplace for incredible apps</h2>
+		<p>General-purpose, extensible devices like hubs, set-top boxes and gateways create a market for apps from a global developer community. Ubuntu makes it easy to develop amazing apps for incredible devices on your laptop, test on the cloud and publish straight to a global market of diverse devices.</p>
+	</div>
+</section>
+
+<section class="row no-border strip-dark">
+	<div class="eight-col">
+		<h2>What&rsquo;s included?</h2>
+		<p>As a partner involved in the Internet of Things Partner Programme you can expect:</p>
+	</div>
+	<div class="six-col">
+		<ul class="list-ubuntu">
+			<li>Training and guidance on getting your hardware working with Ubuntu Core and writing apps for your products</li>
+			<li>QA to ensure your apps meets the highest quality standards</li>
+		</ul>
+	</div>
+	<div class="six-col last-col">
+		<ul class="list-ubuntu">
+			<li>Co-marketing opportunities including joint events, videos, blogs,  PR and demos to potential customers</li>
+			<li>Support for getting your software in our store</li>
+		</ul>
+	</div>
+</section>
+{% include "templates/_contextual-footer.html" %}
+
+{% endblock %}
