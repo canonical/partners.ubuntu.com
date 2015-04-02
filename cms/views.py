@@ -107,6 +107,10 @@ def partner_programmes(request, name):
         "iot": base_partners.filter(
             programme__name="IoT"
         ),
+
+        "charm": base_partners.filter(
+            programme__name="Charm"
+        ),
     }
     distinct_partners = list(lookup_partners[name].distinct())
     shuffle(distinct_partners)
