@@ -50,9 +50,9 @@ class PartnerView(TemplateFinder):
 
 def partner_programmes(request, name):
     """
-    /partner-programmes/<name>
+    /programmes/<name>
 
-    Renders the template, 'partner-programmes/<name>.html'
+    Renders the template, 'programmes/<name>.html'
     with the partners defined in:
     https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
@@ -65,7 +65,7 @@ def partner_programmes(request, name):
             featured=True
         ),
 
-        "phone-carrier": base_partners.filter(
+        "phone": base_partners.filter(
             (
                 Q(technology__name="Personal computing/devices")
             ) & (
@@ -103,6 +103,10 @@ def partner_programmes(request, name):
         "openstack": base_partners.filter(
             programme__name="OpenStack"
         ),
+
+        "iot": base_partners.filter(
+            programme__name="IoT"
+        ),
     }
     distinct_partners = list(lookup_partners[name].distinct())
     shuffle(distinct_partners)
@@ -111,7 +115,7 @@ def partner_programmes(request, name):
 
     context = add_default_values_to_context(context, request)
     return render_to_response(
-        'partner-programmes/%s.html' % name,
+        'programmes/%s.html' % name,
         context
     )
 

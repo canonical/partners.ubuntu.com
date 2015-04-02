@@ -454,7 +454,7 @@ html.opera-mini {
 /* @section partner programmes: hardware
 -------------------------------------------------------------- */
 @media only screen and (min-width : 768px) {
-  .partner-programmes-hardware {
+  .programmes-hardware {
     .row-get-ahead {
       overflow: hidden;
       img {
@@ -468,7 +468,7 @@ html.opera-mini {
 
 /* @section partner programmes: retail
 -------------------------------------------------------------- */
-.partner-programmes-retail .box img {
+.programmes-retail .box img {
   max-height: 100px;
   max-width: 250px;
   margin: 10px 0;
@@ -1380,7 +1380,7 @@ html.no-svg {
 
   /* @section partner programmes: software
   -------------------------------------------------------------- */
-  .partner-programmes-software {
+  .programmes-software {
     .row-hero {
       overflow: hidden;
       img {
@@ -1393,7 +1393,7 @@ html.no-svg {
 
   /* @section partner programmes: openstack
   -------------------------------------------------------------- */
-  body.partner-programmes-openstack {
+  body.programmes-openstack {
     #main-content .row-hero{
       min-height: 280px;
       padding-top: 0;
@@ -1536,7 +1536,7 @@ html.no-svg {
 
   /* @section partner programmes: software
   -------------------------------------------------------------- */
-  .partner-programmes-software {
+  .programmes-software {
     .row-hero {
       overflow: hidden;
       img {

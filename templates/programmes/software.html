@@ -1,0 +1,99 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu software partners | {% endblock %}
+{% block meta_description %}The Canonical Technical Partner Program defines a process for collaboration between Canonical and IHV's. It helps IHVs understand how Ubuntu is developed and enhanced, and what is planned for the next release.{% endblock %}
+{% block meta_keywords %}Ubuntu, Technical Partners,IHVs,Technical Partner program,Technical collaboration,technical partnership,Technical certification,software,certification,driver support,driver certification,Canonical certification programs,component certification{% endblock %}
+
+{% block second_level_nav_items %}
+	<nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="software" %}</nav>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<section class="row row-hero">
+	<div class="eight-col">
+		<h1>Ubuntu software partners</h1>
+		<p>Ubuntu has a thriving software ecosystem, with thousands of applications available for the PC, the server and the cloud &mdash; targeting both the enterprise and consumer markets. </p>
+		<p>We offer a range of benefits for ISVs looking to formalise their work with Ubuntu, through Canonical. As a certified partner, you&rsquo;ll get inside information on forthcoming Ubuntu developments, assistance in testing and optimising your applications with Ubuntu and OpenStack &mdash; and priority access to Ubuntu engineers.</p>
+	</div>
+	<img class="priority-0" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/phone/scopes/image-scopes.jpg" alt="scopes">
+</section>
+
+<section class="row">
+	<div class="twelve-col">
+		<h3 class="caps-centered">A selection of our software partners</h3>
+		<div class="list-auto twelve-col">
+			<ul class="inline-logos no-bullets">
+				{% for partner in programme_partners %}
+					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="twelve-col">
+			<p class="align-center"><a href="/find-a-partner?programme=openstack&service-offered=softwarecontent-publisher">See all OpenStack software partners&nbsp;&rsaquo;</a></p>
+			<p class="align-center"><a href="/find-a-partner?service-offered=softwarecontent-publisher">ISV and software partners&nbsp;&rsaquo;</a></p>
+		</div>
+	</div>
+</section>
+
+<section class="row no-border">
+	<div class="twelve-col equal-height">
+		<div class="eight-col">
+			<h2>App developer partners</h2>
+			<p>Thanks to the ease with which users can find and install software using the Ubuntu Software Centre, Ubuntu already supports thousands of client applications. With the launch of Ubuntu phones and tablets &mdash; and the resulting opportunity to target three client platforms with just one codebase &mdash; the Ubuntu app market is set to grow exponentially. </p>
+		</div>
+		<div class="four-col last-col align-center align-vertically">
+			<img class="priority-0" width="150" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-developer-warmgrey.svg" alt="developer pictogram">
+		</div>
+	</div>
+	<div class="twelve-col">
+		<h3>What&rsquo;s included?</h3>
+		<div class="six-col">
+			<ul class="list-ubuntu">
+				<li>The Ubuntu SDK, allowing you to build one app for PC, smartphone and cloud</li>
+				<li class="last-item">Easy, single upload to the Ubuntu Software Centre</li>
+			</ul>
+		</div>
+		<div class="six-col last-col">
+			<ul class="list-ubuntu">
+				<li>Priority access to the engineers that develop Ubuntu</li>
+				<li class="last-item">Marketing assistance and assets to help promote your apps</li>
+			</ul>
+		</div>
+		<p><a href="https://developer.ubuntu.com/en/start/ubuntu-sdk/installing-the-sdk/" class="external">Learn more about Ubuntu SDK</a></p>
+		<p><a href="https://design.ubuntu.com/apps" class="external">Explore our App Design Guide</a></p>
+	</div>
+</section>
+
+<section class="row row-grey">
+	<div class="equal-height">
+		<div class="eight-col no-margin-bottom">
+			<h2>Cloud software partners</h2>
+			<p>Ubuntu is the world&rsquo;s leading cloud operating system, both as a guest on public clouds &mdash; like Amazon and Windows Azure &mdash; and as a platform on which to build OpenStack clouds.</p>
+			<p>There are two Canonical partner programmes that can help you reach this global market of users and developers: the OpenStack Interoperability Lab and the Charm Partner Programme.  Whether you want to improve interoperability in OpenStack, streamline application delivery or simply access more customers, we can help. </p>
+		</div>
+		<div class="four-col last-col align-center align-vertically">
+			<img class="priority-0" width="250" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/cloud/image-ecosystem.svg" alt="clouds">
+		</div>
+	</div>
+</section>
+
+<section class="row">
+	<div class="six-col" id="charm-partner-programme">
+		<div class="twelve-col align-center">
+			<img class="priority-0" width="180" height="180" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-juju.svg" alt="">
+		</div>
+		<h3>Charm Partner Programme</h3>
+		<p>Canonical&rsquo;s award&mdash;winning cloud orchestrator, Juju, uses charms to demo software, integrate it and scale it up and down at the click of button. With Juju charms, any customer can deploy, integrate and scale your products the same way your engineers would.</p>
+		<p><a href="/contact-us">Contact us&nbsp;&rsaquo;</a></p>
+	</div>
+	<div class="six-col last-col" id="openstack-interoperability-lab">
+		<div class="twelve-col align-center">
+			<img class="priority-0"width="180" height="180" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-openstack.svg" alt="">
+		</div>
+		<h3>Openstack Interoperability Lab for Software Partners</h3>
+		<p>In launching the Ubuntu OpenStack Interoperability Lab (OIL), Canonical has invested heavily in interoperability testing for OpenStack and Ubuntu. OIL offers significant benefits for partners looking to QA their products quickly and cost-effectively, ensuring they are are compatible with all versions of Ubuntu OpenStack.</p>
+		<p><a href="/programmes/openstack">Learn more about OpenStack Interoperability Lab&nbsp;&rsaquo;</a></p>
+	</div>
+</section>
+{% include "templates/_contextual-footer.html" %}
+{% endblock %}
