@@ -24,12 +24,12 @@
 		<div class="list-auto twelve-col">
 			<ul class="inline-logos no-bullets">
 				{% for partner in programme_partners %}
-					<li{% if forloop.last %} class='last-item'{% endease your sales by becoming Ubuntu Certifieif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
+					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
 				{% endfor %}
 			</ul>
 		</div>
 		<div class="twelve-col">
-			<p class="align-center"><a href="/find-a-partner?programme=openstack&service-offered=hardware-manufacturer">See all OpenStack hardware partners&nbsp;&rsaquo;</a></p>
+			<p class="align-center"><a href="/find-a-partner?programme=openstack&amp;service-offered=hardware-manufacturer">See all OpenStack hardware partners&nbsp;&rsaquo;</a></p>
 			<p class="align-center"><a href="/find-a-partner?service-offered=hardware-manufacturer">See all OEM and chipset partners&nbsp;&rsaquo;</a></p>
 		</div>
 	</div>
