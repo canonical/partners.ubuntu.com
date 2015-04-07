@@ -18,9 +18,6 @@ endif
 help:
 	$(info ${HELP_TEXT})
 
-clean:
-	rm -rf pip-cache
-
 update-db:
 	./manage.py syncdb --noinput --migrate
  
@@ -62,3 +59,7 @@ run:
 	@echo "======================================="
 	@echo ""
 	docker run --tty --interactive --volume `pwd`:/app --publish ${PORT}:8000 --link ${DB_CONTAINER}:postgres ${APP_IMAGE}
+
+clean:
+	-docker rm -f ${DB_CONTAINER} ${SASS_CONTAINER}
+	-docker rmi -f ${APP_IMAGE}
