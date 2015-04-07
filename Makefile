@@ -4,67 +4,19 @@ Canonical.com website project
 
 Usage:
 
-> make develop  # Auto-compile sass files and run the dev server
+> make run  # Run the Docker containers, mapping 8003 to the site
 
 endef
 
 # Variables
 ##
 
-ENVPATH=${VIRTUAL_ENV}
-VEX=vex --path ${ENVPATH}
-
-ifeq ($(ENVPATH),)
-	ENVPATH=env
-endif
-
 ifeq ($(PORT),)
-	PORT=8002
+	PORT=8003
 endif
 
 help:
 	$(info ${HELP_TEXT})
-
-clean:
-	rm -rf pip-cache
-
-start-dev:
-	$(MAKE) sass-watch
-	env/bin/python manage.py runserver_plus 0.0.0.0:7500
-
-develop:
-	python bootstrap.py env
-	$(MAKE) pip-requirements
-	. env/bin/activate && $(MAKE) update-db
-	$(MAKE) sass
-	$(MAKE) start-dev
-
-apt-requirements:
-	sudo apt-get -y install libjpeg-dev graphviz zlib1g-dev libpng12-dev python-dev
-
-pip-requirements:
-	env/bin/pip install -r requirements/dev.txt
-
-sass-watch:
-	# Build sass
-	sass --debug-info --watch cms/static/css/styles.scss:cms/static/css/styles.css &
-
-sass:
-	# Build sass
-	sass --style compressed --update cms/static/css/styles.scss:cms/static/css/styles.css
-
-runserver_prod:
-	gunicorn fenchurch.wsgi:application
-
-rebuild-dependencies-cache:
-	-rm -rf pip-cache
-	bzr branch lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
-	pip install --exists-action=w --download pip-cache/ -r requirements/standard.txt
-	bzr commit pip-cache/ -m 'automatically updated partners requirements'
-	bzr push --directory pip-cache lp:~webteam-backend/ubuntu-partner-website/dependencies
-	bzr revno pip-cache > pip-cache-revno.txt
-	rm -rf pip-cache src
-	@echo "** Remember to commit pip-cache-revno.txt"
 
 update-db:
 	./manage.py syncdb --noinput --migrate
@@ -75,22 +27,39 @@ update-charm:
 pip-cache:
 	bzr branch -r `cat pip-cache-revno.txt` lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
 
-
 # New docker instructions
 # ===
 
-build:
+APP_IMAGE=ubuntudesign/ubuntu-partners
+DB_CONTAINER=ubuntu-partners-postgres
+SASS_CONTAINER=ubuntu-partners-sass
+
+rebuild-app-image:
+	-docker rm -f ${APP_IMAGE}
 	docker build -t ubuntu-partners .
 
-reset-db:
-	-docker rm -f ubuntu-partners-postgres
-	docker run --name ubuntu-partners-postgres -d postgres
-	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ubuntu-partners-postgres` 5432; do sleep 0.01; done
-	${MAKE} update-docker-db
+sass-watch:
+	docker start ${SASS_CONTAINER} || docker run --name ${SASS_CONTAINER} -d -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/cms/static/css
 
-update-docker-db:
-	docker run --volume `pwd`/app --link ubuntu-partners-postgres:postgres ubuntu-partners bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
+start-db:
+	-docker rm -f ${DB_CONTAINER}
+	docker run --name ${DB_CONTAINER} -d postgres
+	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${DB_CONTAINER}` 5432; do sleep 0.01; done
+	${MAKE} update-db-container
+
+update-db-container:
+	docker run --volume `pwd`/app --link ${DB_CONTAINER}:postgres ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
 
 run:
-	docker start ubuntu-partners-postgres
-	docker run --tty --interactive --volume `pwd`/app --publish 8003:8000 --link ubuntu-partners-postgres:postgres ubuntu-partners
+	docker start ${DB_CONTAINER} || ${MAKE} start-db
+	${MAKE} sass-watch
+	@echo ""
+	@echo "======================================="
+	@echo "Running server on http://localhost:${PORT}"
+	@echo "======================================="
+	@echo ""
+	docker run --tty --interactive --volume `pwd`:/app --publish ${PORT}:8000 --link ${DB_CONTAINER}:postgres ${APP_IMAGE}
+
+clean:
+	-docker rm -f ${DB_CONTAINER} ${SASS_CONTAINER}
+	-docker rmi -f ${APP_IMAGE}
