@@ -42,8 +42,8 @@
 
 <div class="row">
 	<div class="eight-col">
-		<h2>A growing partner ecosystem</h2> 
-		<p>Ubuntu is scheduled for release on phones from its launch partners, BQ and Meizu, in late 2014. Opportunities now exist for both mobile carriers and handset manufacturers to partner with Canonical to deliver Ubuntu smartphones in their markets. Contact us today to learn more about the Ubuntu opportunity.</p> 
+		<h2>A growing partner ecosystem</h2>
+		<p>Ubuntu is scheduled for release on phones from its launch partners, BQ and Meizu, in late 2014. Opportunities now exist for both mobile carriers and handset manufacturers to partner with Canonical to deliver Ubuntu smartphones in their markets. Contact us today to learn more about the Ubuntu opportunity.</p>
 		<p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
 	</div>
 	<div class="four-col last-col">
@@ -55,7 +55,7 @@
 </div><!-- /.row -->
 
 <div class="row equal-height">
-	<div class="eight-col">	
+	<div class="eight-col">
 		<h2>Ubuntu Carrier Advisory Group</h2>
 		<p>The Ubuntu Carrier Advisory Group (CAG) lets mobile operators shape Ubuntu&rsquo;s mobile strategy. Members receive advance confidential briefings and provide us with industry insight to ensure that Ubuntu meets their needs.</p>
 		<p>Members of the CAG have the opportunity to be a launch partner and gain the right to ship Ubuntu in markets they serve. They also benefit from regular CAG meetings, wide industry participation and launch priority.</p>
@@ -66,21 +66,7 @@
 	</div>
 </div><!-- /.row -->
 
-<div class="row no-border">
-	<div class="twelve-col">
-		<h3 class="caps-centered">Carrier Advisory Group participants</h3>
-		<div class="list-auto twelve-col">
-			<ul class="inline-logos no-bullets">
-				{% for partner in programme_partners %}
-					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="twelve-col">
-			<p class="align-center"><a href="/find-a-partner?programme=carrier-advisory-group">Browse all CAG participants&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</div><!-- /.row -->
+{% include "block/_logo-list.html" with name="Carrier Advisory Group participants" link="?programme=carrier-advisory-group" %}
 
 {% include "templates/_contextual-footer.html" %}
 
