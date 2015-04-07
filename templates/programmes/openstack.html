@@ -16,21 +16,9 @@
 		<p>The Ubuntu OpenStack Interoperability Lab (OIL)  is an integration lab in which we test our cloud partners&rsquo; products in countless Ubuntu OpenStack configurations, over and over again. Currently we are working with over 3,000 combinations per month. </p>
 	</div>
 </div>
-<div class="row">
-	<div class="twelve-col">
-		<h3 class="caps-centered">A selection of our OpenStack partners</h3>
-		<div class="list-auto twelve-col">
-			<ul class="inline-logos no-bullets">
-				{% for partner in programme_partners %}
-					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="twelve-col">
-			<p class="align-center"><a href="/find-a-partner?programme=openstack">See all OpenStack partners&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</div>
+
+{% include "block/_logo-list.html" with name="OpenStack partners" link="?programme=openstack" %}
+
 <div class="row equal-height">
 	<div class="seven-col">
 		<h2>Proven integration testing</h2>
