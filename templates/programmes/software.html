@@ -18,22 +18,7 @@
 	<img class="priority-0" src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/phone/scopes/image-scopes.jpg" alt="scopes">
 </section>
 
-<section class="row">
-	<div class="twelve-col">
-		<h3 class="caps-centered">A selection of our software partners</h3>
-		<div class="list-auto twelve-col">
-			<ul class="inline-logos no-bullets">
-				{% for partner in programme_partners %}
-					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="twelve-col">
-			<p class="align-center"><a href="/find-a-partner?programme=openstack&service-offered=softwarecontent-publisher">See all OpenStack software partners&nbsp;&rsaquo;</a></p>
-			<p class="align-center"><a href="/find-a-partner?service-offered=softwarecontent-publisher">ISV and software partners&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</section>
+{% include "block/_logo-list.html" with name="Software partners" query="programme=openstack&amp;service-offered=softwarecontent-publisher" %}
 
 <section class="row no-border">
 	<div class="twelve-col equal-height">
