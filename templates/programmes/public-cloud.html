@@ -1,7 +1,7 @@
 {% extends "templates/base_index.html" %}
 
 {% block title %}Ubuntu Certified Public cloud | {% endblock %}
-{% block meta_description %}Canonical has partnered with the very best software and solutions companies to extend and support and build Ubuntu OpenStack clouds.{% endblock %}
+{% block meta_description %}Canonical has partnered with the very best cloud service providers to ensure that the best of Ubuntu - consistent, up-to-date, secure - is available to our joint user base.{% endblock %}
 {% block meta_keywords %}CPC, Certified Public Cloud, cloud ecosystem, cloud partners, cloud tools, Juju, Charm, orchestration, Ubuntu cloud, guest, Canonical{% endblock %}
 
 {% block second_level_nav_items %}
@@ -11,12 +11,12 @@
 {% block content %}
 <div class="row row-hero no-border equal-height">
 	<div class="eight-col">
-		<h1>Ubuntu Certified Public Cloud</h1>
+		<h1 itemprop="name">Ubuntu Certified Public Cloud</h1>
 		<p>Ubuntu is enormously popular with providers delivering public cloud services today. Together with significant developer mindshare, a favourable licensing model and a policy of regular updates have made Ubuntu the number one platform for cloud guests, the world over.</p>
-		<p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical – all of which represent additional revenue opportunities. </p>
+		<p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities. </p>
 	</div>
-	<div class="four-col last-col align-center align-vertically">
-		<img class="priority-0" width="250" src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/cloud/ecosystem/ubuntu-public-cloud-programme/image-ubuntupubliccloudprogram.png" alt="" />
+	<div class="three-col last-col prepend-one align-center align-vertically">
+		<img class="priority-0" width="250" src="{{ STATIC_URL }}img/logos/certified_cloud_partner_hex.png" itemprop="image" alt="" />
 	</div>
 </div>
 <div class="row no-border strip-dark">
@@ -50,21 +50,7 @@
 	</div>
 </div>
 
-<div class="row no-border">
-	<div class="twelve-col">
-		<h3 class="caps-centered">A selection of our cloud partners</h3>
-		<div class="list-auto twelve-col">
-			<ul class="inline-logos no-bullets">
-				{% for partner in programme_partners %}
-					<li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="twelve-col">
-			<p class="align-center"><a href="/find-a-partner?programme=certified-public-cloud">See all public cloud partners&nbsp;&rsaquo;</a></p>
-		</div>
-	</div>
-</div>
+{% include "block/_logo-list.html" with name="public cloud partners" link="?programme=certified-public-cloud" %}
 
 {% include "templates/_contextual-footer.html" %}
 
