@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 from cms.views import (
     partner_programmes, partner_view, PartnerView,
-    find_a_partner, partners_json_view
+    find_a_partner, partners_json_view, customers_json_view
 )
 
 admin.autodiscover()
@@ -31,6 +31,7 @@ urlpatterns = patterns(
     url(r'^admin/?$', lambda r: HttpResponseRedirect('/admincms/partner/')),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^partners.json$', partners_json_view),
+    url(r'^customers.json$', customers_json_view),
     url(r'^programmes/?$', PartnerView.as_view()),
     url(r'^partner-programmes/?$', lambda r: HttpResponseRedirect('/programmes/')),
     url(r'^partner-programmes/(?P<name>[-\w]+)', lambda r, name: HttpResponseRedirect('/programmes/' + name)),
