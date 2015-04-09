@@ -34,6 +34,11 @@ class CategoryModel(models.Model):
         return unicode(self.name)
 
 
+class PartnerType(CategoryModel):
+    class Meta:
+        verbose_name_plural = 'partner type'
+
+
 class Technology(CategoryModel):
     class Meta:
         verbose_name_plural = 'technology'
@@ -107,6 +112,15 @@ class Partner(PartnerModel):
         related_name='partners',
         blank=True,
         null=True
+    )
+    partner_type = models.ManyToManyField(
+        PartnerType,
+        related_name='partners',
+        blank=True,
+        null=True,
+        help_text=(
+            "test"
+        )
     )
     notes = models.TextField(
         blank=True,

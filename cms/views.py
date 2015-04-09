@@ -214,8 +214,7 @@ class AllowJSONPCallback(object):
         return response
 
 
-@AllowJSONPCallback
-def partners_json_view(request):
+def filter_partners(request, partners):
     """
     Returns a JSON list of partners, depending on query strings.
     """
@@ -230,15 +229,10 @@ def partners_json_view(request):
         'technology__name',
     ]
 
-    partners = Partner.objects.filter(published=True)
-
     try:
         query_list = Q()
         for attribute, value in request.GET.iterlists():
-            query_in_whitelist = reduce(
-                lambda a, b: (a or b),
-                map(lambda x: x in attribute, filter_whitelist)
-            )
+            query_in_whitelist = attribute in filter_whitelist
             if query_in_whitelist:
                 if len(value) > 1:
                     for listed_value in value:
@@ -261,4 +255,29 @@ def partners_json_view(request):
     except Exception as e:
         raise e
 
-    return HttpResponse(partners_json, content_type="application.json")
+    return partners_json
+
+
+@AllowJSONPCallback
+def partners_json_view(request):
+    return HttpResponse(
+        filter_partners(
+            request,
+            Partner.objects.filter(published=True).exclude(partner_type__name="Customer")
+        ),
+        content_type="application.json"
+    )
+
+
+@AllowJSONPCallback
+def customers_json_view(request):
+    return HttpResponse(
+        filter_partners(
+            request,
+            Partner.objects.filter(
+                published=True,
+                partner_type__name="Customer"
+            )
+        ),
+        content_type="application.json"
+    )
