@@ -55,6 +55,7 @@
         <p>Perhaps <a href="/find-a-partner">start your search again?</a></p>
       </div>
       <div class="prioritisedResults"></div>
+      {% if partners %}
       <ul>
         {% for p in partners %}
         <li id="{{ p.name|slugify }}" class="box clearfix twelve-col partner" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
@@ -69,15 +70,15 @@
             <div class="no-margin-bottom">
               <h3>
                 {% if p.dedicated_partner_page or p.partner_website %}
-                  {% if p.partner_website and not p.dedicated_partner_page %}
-                    <a title="Vist the {{ p.name }} website" class="external" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="{{ p.partner_website }}">
-                  {% else %}
-                    <a onclick="ga('send', 'event', 'Internal Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="/{{ p.slug }}">
-                  {% endif %}
-                    {{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}
-                    </a>
+                {% if p.partner_website and not p.dedicated_partner_page %}
+                <a title="Vist the {{ p.name }} website" class="external" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="{{ p.partner_website }}">
                 {% else %}
-                    {{ p.name }}
+                <a onclick="ga('send', 'event', 'Internal Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result link');" href="/{{ p.slug }}">
+                {% endif %}
+                {{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}
+                </a>
+                {% else %}
+                {{ p.name }}
                 {% endif %}
               </h3>
               <p>{{ p.short_description }}</p>
@@ -86,6 +87,8 @@
             {% endif %}
         </li><!-- /.box -->
         {% endfor %}
+      </ul>
+      {% endif %}
   </div><!-- /#results -->
 </div><!-- /row -->
 
