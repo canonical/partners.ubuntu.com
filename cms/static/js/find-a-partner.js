@@ -18,7 +18,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
     source: (function () {
       var results = [];
 
-      Y.all('#results > .partner').each(function (node) {
+      Y.all('#results .partner').each(function (node) {
         results.push({
           node: node,
           searchText: node.getAttribute('data-searchText')
@@ -36,9 +36,9 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   // Returns true if there are any matched results
   function matchesExist() {
-    var numberOfPartners = Y.all('#results > .partner').size();
-    var numberOfSearchMisses = Y.all('#results > .notSearchMatch').size();
-    var numberOfFilterMisses = Y.all('#results > .notFilterMatch').size();
+    var numberOfPartners = Y.all('#results .partner').size();
+    var numberOfSearchMisses = Y.all('#results .notSearchMatch').size();
+    var numberOfFilterMisses = Y.all('#results .notFilterMatch').size();
     if (numberOfSearchMisses == numberOfPartners || numberOfFilterMisses == numberOfPartners) {
       return false;
     } else {
@@ -67,7 +67,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   function prioritiseTitleMatches(search) {
     //clone any exact title matches and hide the original
-    partners = Y.all('#results > .partner');
+    partners = Y.all('#results .partner');
     
     partners.each(function(partner) {
       partnerTitle = partner.getAttribute('ID');
@@ -83,7 +83,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
 
   // Subscribe to the "results" event
   search.on('results', function (e) {
-    Y.all('#results > .partner').addClass('notSearchMatch');
+    Y.all('#results .partner').addClass('notSearchMatch');
     Y.one('.prioritisedResults').empty();
     Y.Array.each(e.results, function (result) {
       result.raw.node.removeClass('notSearchMatch');
