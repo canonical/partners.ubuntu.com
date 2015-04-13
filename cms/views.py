@@ -216,7 +216,7 @@ class AllowJSONPCallback(object):
 
 def filter_partners(request, partners):
     """
-    Returns a JSON list of partners, depending on query strings.
+    Returns a JSON list of partners, depending on request.GET query strings.
     """
 
     filter_whitelist = [
@@ -231,14 +231,13 @@ def filter_partners(request, partners):
 
     try:
         query_list = Q()
-        for attribute, value in request.GET.iterlists():
-            query_in_whitelist = attribute in filter_whitelist
-            if query_in_whitelist:
+        for query, value in request.GET.iterlists():
+            if query in filter_whitelist:
                 if len(value) > 1:
                     for listed_value in value:
-                        query_list = query_list | Q(**{attribute: listed_value})
+                        query_list = query_list | Q(**{query: listed_value})
                 else:
-                    partners = partners.filter(Q(**{attribute: value[0]}))
+                    partners = partners.filter(Q(**{query: value[0]}))
         partners = list(partners.filter(query_list).distinct())
         shuffle(partners)
         partners_json = json.dumps(
@@ -263,7 +262,11 @@ def partners_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            Partner.objects.filter(published=True).exclude(partner_type__name="Customer")
+            Partner.objects.filter(
+                published=True
+            ).exclude(
+                partner_type__name="Customer"
+            )
         ),
         content_type="application.json"
     )
