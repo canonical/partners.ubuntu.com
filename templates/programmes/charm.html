@@ -10,23 +10,26 @@
 
 {% block content %}
 
-<section class="row row-hero">
+<section class="row row-hero equal-height">
 	<div class="six-col">
 		<h1>Charm Partner Programme</h1>
 		<p>If you&rsquo;re an ISV or solution provider focused on the cloud or big data, you know how difficult it can be for your customers to realise the full value of your software. Releasing your solutions with Juju, the award-winning service orchestration tool from Canonical, can help your customers use your product at every stage; from the initial proof of concept, to development, through to full scale deployment.</p>
 	</div>
-	<div class="six-col last-col">
+	<div class="five-col prepend-one last-col align-vertically">
 		<img src="{{ STATIC_URL }}img/image-charm-hero.png" alt="Collection of juju charm icons" />
 	</div>
 </section>
 
 {% include "block/_logo-list.html" with name="Charm partners" query="programme=charm" %}
 
-<section class="row">
-	<div class="eight-col">
+<section class="row equal-height">
+	<div class="seven-col append-one">
 		<h2>Deploy your software the right way</h2>
 		<p>Juju automates and speeds up the deployment, scaling and managing of distributed applications. By creating a Juju charm for your product, you make it easy for administrators and devops teams to integrate it with hundreds of other solutions.</p>
 		<p>It gets better. Juju charms can be combined in bundles: if your software is usually deployed with other services,  a customer can use a charm bundle to deploy all the services together. All the detailed configuration settings and relationships between services are handled by Juju.</p>
+	</div>
+	<div class="four-col last-col align-vertically">
+		<img src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-juju.svg" alt="Juju logo" />
 	</div>
 </section>
 
