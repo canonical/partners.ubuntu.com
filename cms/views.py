@@ -105,11 +105,11 @@ def partner_programmes(request, name):
         ),
 
         "iot": base_partners.filter(
-            programme__name="IoT"
+            programme__name="Internet of Things"
         ),
 
         "charm": base_partners.filter(
-            programme__name="Charm"
+            programme__name="Charm Partner Programme"
         ),
     }
     distinct_partners = list(lookup_partners[name].distinct())
