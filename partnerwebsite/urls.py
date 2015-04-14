@@ -33,6 +33,7 @@ urlpatterns = patterns(
     url(r'^partners.json$', partners_json_view),
     url(r'^customers.json$', customers_json_view),
     url(r'^programmes/?$', PartnerView.as_view()),
+    url(r'^partner-programmes/phone-carrier$', lambda r: HttpResponseRedirect('/programmes/phone')),
     url(r'^partner-programmes/?$', lambda r: HttpResponseRedirect('/programmes/')),
     url(r'^partner-programmes/(?P<name>[-\w]+)', lambda r, name: HttpResponseRedirect('/programmes/' + name)),
     url(r'^programmes/(?P<name>[-\w]+)', partner_programmes),
