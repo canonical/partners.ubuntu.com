@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from cms.models import (
-    Partner, Technology, Programme, ServiceOffered,
+    Partner, Technology, PartnerType, Programme, ServiceOffered,
     Quote, Link, InsightsTag, Text
 )
 
@@ -56,6 +56,9 @@ class PartnerAdmin(admin.ModelAdmin):
     def technology(obj):
         return ",\n".join([str(o) for o in obj.technology.all()])
 
+    def partner_type(obj):
+        return ",\n".join([str(o) for o in obj.partner_type.all()])
+
     def programme(obj):
         return ",\n".join([str(o) for o in obj.programme.all()])
 
@@ -84,6 +87,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'shorter_description',
         'featured',
         'dedicated_partner_page',
+        partner_type,
         technology,
         programme,
         service_offered,
@@ -93,6 +97,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'featured',
         'dedicated_partner_page',
         'technology',
+        'partner_type',
         'programme',
         'service_offered',
     )
@@ -122,6 +127,7 @@ class PartnerAdmin(admin.ModelAdmin):
                 'technology',
                 'programme',
                 'service_offered',
+                'partner_type'
             )
         }),
         ('Detailed partner Information', {
@@ -139,6 +145,7 @@ class PartnerAdmin(admin.ModelAdmin):
         InsightsTagInline
     ]
     filter_horizontal = [
+        'partner_type',
         'technology',
         'programme',
         'service_offered',
@@ -147,6 +154,10 @@ class PartnerAdmin(admin.ModelAdmin):
 
 
 class TechnologyAdmin(admin.ModelAdmin):
+    pass
+
+
+class PartnerTypeAdmin(admin.ModelAdmin):
     pass
 
 
@@ -180,6 +191,7 @@ class TextAdmin(admin.ModelAdmin):
 
 admin.site.register(Partner, PartnerAdmin)
 admin.site.register(Technology, TechnologyAdmin)
+admin.site.register(PartnerType, PartnerTypeAdmin)
 admin.site.register(Programme, ProgrammeAdmin)
 admin.site.register(ServiceOffered, ServiceOfferedAdmin)
 admin.site.register(Quote, QuoteAdmin)
