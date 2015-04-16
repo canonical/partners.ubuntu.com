@@ -35,13 +35,27 @@ class PartnerView(TemplateFinder):
 
     def render_to_response(self, context, **response_kwargs):
 
-        context['partners'] = Partner.objects.filter(
+        published_partners = Partner.objects.filter(
             published=True,
-        ).exclude(logo="").order_by('?')[:8]
-        context['alliance_partners'] = Partner.objects.filter(
-            published=True,
+        ).exclude(logo="")
+        context['partners'] = (
+            list(published_partners.filter(
+                always_featured=True).order_by('?')) +
+            list(published_partners.filter(
+                always_featured=False).order_by('?'))
+        )[:8]
+
+        alliance_partners = published_partners.filter(
             dedicated_partner_page=True,
-        ).exclude(logo="").order_by('?')[:8]
+        )
+
+        context['alliance_partners'] = (
+            list(alliance_partners.filter(
+                always_featured=True).order_by('?')) +
+            list(alliance_partners.filter(
+                always_featured=False).order_by('?'))
+        )[:8]
+
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
