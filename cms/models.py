@@ -92,6 +92,10 @@ class Partner(PartnerModel):
         )
     )
     featured = models.BooleanField(help_text="Promote to the front page")
+    always_featured = models.BooleanField(
+        help_text="Always put at the top of lists.",
+        default=False
+    )
     dedicated_partner_page = models.BooleanField(
         help_text="Does this partner have it's own dedicated page?"
     )
