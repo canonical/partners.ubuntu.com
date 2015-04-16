@@ -119,3 +119,24 @@ OPENID_SSO_SERVER_URL = 'https://login.launchpad.net/'
 OPENID_LAUNCHPAD_TEAMS_REQUIRED = ['partners.u.c-authors']
 OPENID_USE_AS_ADMIN_LOGIN = True
 OPENID_LAUNCHPAD_TEAMS_MAPPING_AUTO = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'error_file': {
+            'level': 'WARNING',
+            'filename': os.path.join(BASE_DIR, 'django-error.log'),
+            'class': 'logging.handlers.RotatingFileHandler',
+            'maxBytes': 1 * 1024 * 1024,
+            'backupCount': 2
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['error_file'],
+            'level': 'WARNING',
+            'propagate': True
+        }
+    }
+}
