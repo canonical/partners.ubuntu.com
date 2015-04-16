@@ -1,6 +1,5 @@
 import json
 from collections import namedtuple
-from random import shuffle
 
 from preserialize.serialize import serialize
 from fenchurch import TemplateFinder
@@ -12,6 +11,14 @@ from django.http import HttpResponse
 from cms.models import (
     Partner, Technology, Programme, ServiceOffered
 )
+
+
+def get_grouped_random_partners():
+    """
+    Group the partners by `always_featured` first, and then randomise
+    within those two groups.
+    """
+    return Partner.objects.order_by('-always_featured', '?')
 
 
 def add_default_values_to_context(context, request):
@@ -35,13 +42,16 @@ class PartnerView(TemplateFinder):
 
     def render_to_response(self, context, **response_kwargs):
 
-        context['partners'] = Partner.objects.filter(
+        published_partners = get_grouped_random_partners().filter(
             published=True,
-        ).exclude(logo="").order_by('?')[:8]
-        context['alliance_partners'] = Partner.objects.filter(
-            published=True,
+        ).exclude(logo="")
+
+        context['partners'] = published_partners[:8]
+
+        context['alliance_partners'] = published_partners.filter(
             dedicated_partner_page=True,
-        ).exclude(logo="").order_by('?')[:8]
+        )[:8]
+
         return super(PartnerView, self).render_to_response(
             context,
             **response_kwargs
@@ -58,7 +68,7 @@ def partner_programmes(request, name):
     """
 
     max_num_of_partners = 8
-    base_partners = Partner.objects.filter(published=True).exclude(logo="")
+    base_partners = get_grouped_random_partners().filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
@@ -112,8 +122,7 @@ def partner_programmes(request, name):
             programme__name="Charm"
         ),
     }
-    distinct_partners = list(lookup_partners[name].distinct())
-    shuffle(distinct_partners)
+    distinct_partners = list(set(lookup_partners[name]))
     partners = distinct_partners[:max_num_of_partners]
     context = {'programme_partners': partners}
 
@@ -154,7 +163,7 @@ def find_a_partner(request):
     """
 
     context = {
-        'partners': Partner.objects.filter(published=True).order_by('name')
+        'partners': get_grouped_random_partners().filter(published=True).order_by('name')
     }
     context = add_default_values_to_context(context, request)
     Filter = namedtuple('Filter', ['name', 'items'])
@@ -239,7 +248,6 @@ def filter_partners(request, partners):
                 else:
                     partners = partners.filter(Q(**{query: value[0]}))
         partners = list(partners.filter(query_list).distinct())
-        shuffle(partners)
         partners_json = json.dumps(
             serialize(
                 partners,
@@ -262,7 +270,7 @@ def partners_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            Partner.objects.filter(
+            get_grouped_random_partners().filter(
                 published=True
             ).exclude(
                 partner_type__name="Customer"
@@ -277,7 +285,7 @@ def customers_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            Partner.objects.filter(
+            get_grouped_random_partners().filter(
                 published=True,
                 partner_type__name="Customer"
             )
