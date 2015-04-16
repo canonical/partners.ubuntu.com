@@ -56,8 +56,6 @@ class ServiceOffered(CategoryModel):
 
 
 class Partner(PartnerModel):
-    class Meta:
-        ordering = ['-always_featured', '?']
 
     published = models.BooleanField(
         help_text=(
