@@ -13,6 +13,10 @@ from cms.models import (
 )
 
 
+def get_ordered_partners():
+    return Partner.objects.order_by('-always_featured', '?')
+
+
 def add_default_values_to_context(context, request):
     """
     Until Fenchurch is updated to export this functionality,
@@ -34,7 +38,7 @@ class PartnerView(TemplateFinder):
 
     def render_to_response(self, context, **response_kwargs):
 
-        published_partners = Partner.objects.filter(
+        published_partners = get_ordered_partners().filter(
             published=True,
         ).exclude(logo="")
 
@@ -60,7 +64,7 @@ def partner_programmes(request, name):
     """
 
     max_num_of_partners = 8
-    base_partners = Partner.objects.filter(published=True).exclude(logo="")
+    base_partners = get_ordered_partners().filter(published=True).exclude(logo="")
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
@@ -114,7 +118,7 @@ def partner_programmes(request, name):
             programme__name="Charm"
         ),
     }
-    distinct_partners = list(lookup_partners[name].distinct())
+    distinct_partners = list(set(lookup_partners[name]))
     partners = distinct_partners[:max_num_of_partners]
     context = {'programme_partners': partners}
 
@@ -155,7 +159,7 @@ def find_a_partner(request):
     """
 
     context = {
-        'partners': Partner.objects.filter(published=True).order_by('name')
+        'partners': get_ordered_partners().filter(published=True).order_by('name')
     }
     context = add_default_values_to_context(context, request)
     Filter = namedtuple('Filter', ['name', 'items'])
@@ -262,7 +266,7 @@ def partners_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            Partner.objects.filter(
+            get_ordered_partners().filter(
                 published=True
             ).exclude(
                 partner_type__name="Customer"
@@ -277,7 +281,7 @@ def customers_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            Partner.objects.filter(
+            get_ordered_partners().filter(
                 published=True,
                 partner_type__name="Customer"
             )
