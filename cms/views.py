@@ -1,6 +1,5 @@
 import json
 from collections import namedtuple
-from random import shuffle
 
 from preserialize.serialize import serialize
 from fenchurch import TemplateFinder
@@ -38,22 +37,11 @@ class PartnerView(TemplateFinder):
         published_partners = Partner.objects.filter(
             published=True,
         ).exclude(logo="")
-        context['partners'] = (
-            list(published_partners.filter(
-                always_featured=True).order_by('?')) +
-            list(published_partners.filter(
-                always_featured=False).order_by('?'))
-        )[:8]
 
-        alliance_partners = published_partners.filter(
+        context['partners'] = published_partners[:8]
+
+        context['alliance_partners'] = published_partners.filter(
             dedicated_partner_page=True,
-        )
-
-        context['alliance_partners'] = (
-            list(alliance_partners.filter(
-                always_featured=True).order_by('?')) +
-            list(alliance_partners.filter(
-                always_featured=False).order_by('?'))
         )[:8]
 
         return super(PartnerView, self).render_to_response(
@@ -127,7 +115,6 @@ def partner_programmes(request, name):
         ),
     }
     distinct_partners = list(lookup_partners[name].distinct())
-    shuffle(distinct_partners)
     partners = distinct_partners[:max_num_of_partners]
     context = {'programme_partners': partners}
 
@@ -253,7 +240,6 @@ def filter_partners(request, partners):
                 else:
                     partners = partners.filter(Q(**{query: value[0]}))
         partners = list(partners.filter(query_list).distinct())
-        shuffle(partners)
         partners_json = json.dumps(
             serialize(
                 partners,
