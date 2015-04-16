@@ -86,6 +86,7 @@ class PartnerAdmin(admin.ModelAdmin):
         'published',
         'shorter_description',
         'featured',
+        'always_featured',
         'dedicated_partner_page',
         partner_type,
         technology,
@@ -94,7 +95,7 @@ class PartnerAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'published',
-        'featured',
+        'always_featured',
         'dedicated_partner_page',
         'technology',
         'partner_type',
@@ -115,6 +116,7 @@ class PartnerAdmin(admin.ModelAdmin):
             'fields': (
                 'name',
                 'featured',
+                'always_featured',
                 'short_description',
                 'published',
                 'logo',
