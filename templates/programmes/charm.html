@@ -5,7 +5,7 @@
 {% block meta_keywords %}Ubuntu, Canonical, partner, program, programme, partnership, ISV, independent, software, vendor, developer, publisher, application, app, service, global, local, cloud, server,   customer, client, OpenStack, Landscape, Juju, MAAS, IT, provider, open source, Linux, Big Data, cloud orchestration, charm, bundles, solutions, scale, integration, container, LXD, LXC, docker, scale out, bare metal{% endblock %}
 
 {% block second_level_nav_items %}
-	<nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Partner programmes" page_title="Charm" %}</nav>
+	<nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Charm" %}</nav>
 {% endblock second_level_nav_items %}
 
 {% block content %}
@@ -20,7 +20,7 @@
 	</div>
 </section>
 
-{% include "block/_logo-list.html" with name="Charm partners" query="programme=charm" %}
+{% include "block/_logo-list.html" with name="Charm partners" query="programme=charm partner programme" %}
 
 <section class="row equal-height">
 	<div class="seven-col append-one">
@@ -28,7 +28,7 @@
 		<p>Juju automates and speeds up the deployment, scaling and managing of distributed applications. By creating a Juju charm for your product, you make it easy for administrators and devops teams to integrate it with hundreds of other solutions.</p>
 		<p>It gets better. Juju charms can be combined in bundles: if your software is usually deployed with other services,  a customer can use a charm bundle to deploy all the services together. All the detailed configuration settings and relationships between services are handled by Juju.</p>
 	</div>
-	<div class="four-col last-col align-vertically">
+	<div class="three-col last-col align-vertically">
 		<img src="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-pack/logo-juju.svg" alt="Juju logo" />
 	</div>
 </section>
@@ -40,7 +40,7 @@
 	</div>
 	<div class="six-col">
 		<ul class="list-ubuntu">
-			<li>Inclusion in our <a href="https://jujucharms.com/">online charm database</a>, available for instant download</li>
+			<li>Inclusion in our <a href="https://jujucharms.com/" class="external">online charm database</a>, available for instant download</li>
 			<li>QA to ensure your charms meets the highest quality standards</li>
 		</ul>
 	</div>
