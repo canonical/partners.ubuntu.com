@@ -100,7 +100,7 @@ TEMPLATE_DIRS = (BASE_DIR + "/templates")
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = (BASE_DIR + "/static")
+STATIC_ROOT = (BASE_DIR + "/cms/static")
 
 # Django openID auth
 # ===
