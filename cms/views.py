@@ -247,10 +247,13 @@ def filter_partners(request, partners):
                         query_list = query_list | Q(**{query: listed_value})
                 else:
                     partners = partners.filter(Q(**{query: value[0]}))
-        partners = list(partners.filter(query_list).distinct())
+
+        distinct_partners = list(partners.filter(query_list).order_by(
+            '-always_featured', '?'
+        ))
         partners_json = json.dumps(
             serialize(
-                partners,
+                distinct_partners,
                 fields=[':all'],
                 exclude=[
                     'created_on', 'updated_on', 'dedicated_partner_page',
