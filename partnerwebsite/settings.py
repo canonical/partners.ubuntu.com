@@ -24,10 +24,7 @@ SECRET_KEY = '-q7g=b=d0($mr8vxb!_*-1aly29)v3@$ku(n5))z=orggymy9)'
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = [
-    '.ubuntu.qa',
-    'localhost'
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
