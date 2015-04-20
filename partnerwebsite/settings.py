@@ -21,11 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '-q7g=b=d0($mr8vxb!_*-1aly29)v3@$ku(n5))z=orggymy9)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
-    '.ubuntu.qa'
+    '.ubuntu.qa',
+    'localhost'
 ]
 
 
