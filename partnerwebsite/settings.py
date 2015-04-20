@@ -25,7 +25,8 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = [
-    '.ubuntu.qa'
+    '.ubuntu.qa',
+    'localhost'
 ]
 
 
