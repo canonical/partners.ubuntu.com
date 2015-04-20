@@ -10,3 +10,4 @@ pip-cache
 *.~*
 .bzr/
 cms/static/css/styles.css.map
+django-error.log
