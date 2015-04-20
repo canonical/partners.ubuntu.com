@@ -9,4 +9,4 @@ pip-cache
 *.pyc
 *.~*
 .bzr/
-cms/static/css/styles.css.map
+*.css.map

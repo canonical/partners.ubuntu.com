@@ -39,7 +39,7 @@ rebuild-app-image:
 	docker build -t ubuntu-partners .
 
 sass-watch:
-	docker start ${SASS_CONTAINER} || docker run --name ${SASS_CONTAINER} -d -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/cms/static/css
+	docker start ${SASS_CONTAINER} || docker run --name ${SASS_CONTAINER} -d -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css
 
 start-db:
 	-docker rm -f ${DB_CONTAINER}
