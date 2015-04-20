@@ -9,6 +9,5 @@ pip-cache
 *.pyc
 *.~*
 .bzr/
-<<<<<<< HEAD
 *.css.map
 django-error.log
