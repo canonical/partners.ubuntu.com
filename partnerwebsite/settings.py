@@ -98,6 +98,7 @@ TEMPLATE_DIRS = (BASE_DIR + "/templates")
 
 STATIC_URL = '/static/'
 STATIC_ROOT = (BASE_DIR + "/static")
+STATICFILES_FINDERS = ['django_static_root_finder.finders.StaticRootFinder']
 
 # Django openID auth
 # ===
