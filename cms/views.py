@@ -19,15 +19,14 @@ def get_grouped_random_partners():
     within those two groups.
     "no customers if they also have no other programmes"
     """
-    non_partner_customers = Partner.objects.filter(
+
+    return Partner.objects.exclude(
         partner_type__name="Customer",
         programme__isnull=True,
         service_offered__isnull=True,
-        technology__isnull=True
-    )
-    return Partner.objects.exclude(
-        pk__in=[c.pk for c in non_partner_customers]
-        ).order_by(
+        technology__isnull=True,
+        published=True
+    ).order_by(
         '-always_featured', '?'
     )
 
@@ -284,9 +283,7 @@ def partners_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            get_grouped_random_partners().filter(
-                published=True
-            )
+            get_grouped_random_partners()
         ),
         content_type="application.json"
     )
