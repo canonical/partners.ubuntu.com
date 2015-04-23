@@ -17,8 +17,18 @@ def get_grouped_random_partners():
     """
     Group the partners by `always_featured` first, and then randomise
     within those two groups.
+    "no customers if they also have no other programmes"
     """
-    return Partner.objects.order_by('-always_featured', '?')
+
+    return Partner.objects.exclude(
+        partner_type__name="Customer",
+        programme__isnull=True,
+        service_offered__isnull=True,
+        technology__isnull=True,
+        published=True
+    ).order_by(
+        '-always_featured', '?'
+    )
 
 
 def add_default_values_to_context(context, request):
@@ -273,11 +283,7 @@ def partners_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            get_grouped_random_partners().filter(
-                published=True
-            ).exclude(
-                partner_type__name="Customer"
-            )
+            get_grouped_random_partners()
         ),
         content_type="application.json"
     )
@@ -288,7 +294,7 @@ def customers_json_view(request):
     return HttpResponse(
         filter_partners(
             request,
-            get_grouped_random_partners().filter(
+            Partner.objects.order_by('-always_featured', '?').filter(
                 published=True,
                 partner_type__name="Customer"
             )
