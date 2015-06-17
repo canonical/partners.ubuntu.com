@@ -1,12 +1,10 @@
 FROM ubuntudesign/python-auth
 
+# System dependencies
 RUN apt-get update && apt-get install -y graphviz-dev
 
-ADD . /app
-WORKDIR /app
+# Pip requirements files
+ADD requirements /requirements
 
-RUN pip install -r requirements/dev.txt
-
-VOLUME /app
-
-CMD DATABASE_URL=`echo $POSTGRES_PORT | sed "s!tcp://!postgres://postgres@!"`/postgres python manage.py runserver 0.0.0.0:8000
+# Install pip requirements
+RUN pip install -r /requirements/dev.txt
