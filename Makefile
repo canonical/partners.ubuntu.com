@@ -78,9 +78,13 @@ build-app-image:
 # Run the Django site using the docker image
 ##
 run-site:
+	# Make sure IP is correct for mac etc.
+	$(eval docker_ip := 127.0.0.1)
+	if hash boot2docker 2> /dev/null; then `eval docker_ip := $(boot2docker ip)`; fi
+
 	@echo ""
 	@echo "======================================="
-	@echo "Running server on http://127.0.0.1:${PORT}"
+	@echo "Running server on http://${docker_ip}:${PORT}"
 	@echo "======================================="
 	@echo ""
 	docker run -p 0.0.0.0:${PORT}:8000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:8000"
@@ -118,7 +122,7 @@ rebuild-app-image:
 ##
 prepare-db:
 	${MAKE} start-db
-	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${DB_CONTAINER}` 5432; do sleep 0.01; done
+	while ! docker logs ${DB_CONTAINER} 2>&1 | grep 'database system is ready'; do sleep 0.01; done
 	${MAKE} update-db
 
 ##
