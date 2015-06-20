@@ -86,7 +86,7 @@ run-site:
 	@echo "Running server on http://${docker_ip}:${PORT}"
 	@echo "======================================="
 	@echo ""
-	docker run -p 0.0.0.0:${PORT}:8000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:8000"
+	docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:5000"
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
