@@ -106,7 +106,7 @@ watch-sass:
 # Force a rebuild of the sass files
 ##
 compile-sass:
-	docker run -ti -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
+	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
 
 ##
 # If the watcher is running in the background, stop it
