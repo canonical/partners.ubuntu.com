@@ -81,21 +81,26 @@ run-site:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
 
+	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
+	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
+	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
+
 	@echo ""
 	@echo "======================================="
 	@echo "Running server on http://${docker_ip}:${PORT}"
+	@echo "Using database at postgres://postgres@${db_ip}:${db_port}/postgres"
 	@echo "======================================="
 	@echo ""
-	-docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:5000"
+	@docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app -e "DATABASE_URL=${db_url}" ${APP_IMAGE}
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
 ##
 watch-sass:
 	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ubuntu-partners-sass 2>/dev/null || echo "missing"`)
-	if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
-	if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
-	if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
+	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
+	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
+	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
 
 ##
 # Force a rebuild of the sass files
@@ -131,7 +136,7 @@ prepare-db:
 # Start the database container
 ##
 start-db:
-	docker start ${DB_CONTAINER} || docker run --name ${DB_CONTAINER} -d postgres
+	docker start ${DB_CONTAINER} 2>/dev/null || docker run -p 5432 --name ${DB_CONTAINER} -d postgres
 
 ##
 # Stop the database container
@@ -150,7 +155,11 @@ reset-db:
 # Update postgres from the Django application
 ##
 update-db:
-	docker run --volume `pwd`:/app -w /app --link ${DB_CONTAINER}:postgres ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
+	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
+	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
+	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
+
+	docker run -w /app -e "DATABASE_URL=${db_url}" ${APP_IMAGE} python manage.py syncdb --noinput --migrate
 
 ##
 # Connect to the postgres database container, for direct editing

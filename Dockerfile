@@ -12,4 +12,4 @@ RUN pip install -r /requirements/dev.txt
 ADD . /app
 WORKDIR /app
 
-CMD DATABASE_URL=`echo $POSTGRES_PORT | sed 's|tcp://|postres://postgres@|'`/postgres python manage.py runserver 0.0.0.0:5000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
