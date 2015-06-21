@@ -66,7 +66,7 @@ run:
 	${MAKE} build-app-image
 	${MAKE} prepare-db
 	${MAKE} watch-sass &
-	${MAKE} run-site && ${MAKE} stop-db
+	trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
 
 ##
 # Build the docker image
@@ -86,13 +86,16 @@ run-site:
 	@echo "Running server on http://${docker_ip}:${PORT}"
 	@echo "======================================="
 	@echo ""
-	docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:5000"
+	-docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py runserver 0.0.0.0:5000"
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
 ##
 watch-sass:
-	docker attach ${SASS_CONTAINER} || docker start -a ${SASS_CONTAINER} || docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css
+	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ubuntu-partners-sass 2>/dev/null || echo "missing"`)
+	if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
+	if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
+	if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
 
 ##
 # Force a rebuild of the sass files
@@ -156,11 +159,14 @@ connect-to-db:
 	docker run -it --link ${DB_CONTAINER}:postgres --rm postgres sh -c 'exec psql -h "$$POSTGRES_PORT_5432_TCP_ADDR" -p "$$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 
 ##
-# Delete all created images and containers
+# Delete created images and containers
 ##
 clean:
-	-docker rm -f ${DB_CONTAINER} ${SASS_CONTAINER}
-	-docker rmi -f ${APP_IMAGE}
+	$(eval destroy_db := $(shell bash -c 'read -p "Destroy database? (y/n): " yn; echo $$yn'))
+	@if [[ "${destroy_db}" == "y" ]]; then docker rm -f ${DB_CONTAINER} 2>/dev/null  || echo "Database not found: Nothing to do"; fi
+	@docker rm -f ${SASS_CONTAINER} 2>/dev/null || echo "Sass container not found: Nothing to do"
+	@docker rmi -f ${APP_IMAGE} 2>/dev/null || echo "App image not found: Nothing to do"
+	@echo "Images and containers removed"
 
 # The below targets
 # are just there to allow you to type "make it so"
