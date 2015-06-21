@@ -168,6 +168,24 @@ connect-to-db:
 	docker run -it --link ${DB_CONTAINER}:postgres --rm postgres sh -c 'exec psql -h "$$POSTGRES_PORT_5432_TCP_ADDR" -p "$$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 
 ##
+# Make a demo
+##
+demo:
+	${MAKE} build-app-image
+	$(eval current_branch := `git rev-parse --abbrev-ref HEAD`)
+	$(eval image_location := "ubuntudesign/${APP_IMAGE}:${current_branch}")
+	$(eval app_name := "${PROJECT_NAME}-${current_branch}")
+	docker tag -f ${APP_IMAGE} ${image_location}
+	docker push ${image_location}
+	ssh dokku@ubuntu.qa deploy-image ${image_location} ${app_name}
+	ssh dokku@ubuntu.qa deploy-image:link-postgresql-db ubuntu-partners-database ${app_name}
+	@echo ""
+	@echo "==="
+	@echo "Demo built: http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
+	@echo "==="
+	@echo ""
+
+##
 # Delete created images and containers
 ##
 clean:
