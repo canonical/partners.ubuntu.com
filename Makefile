@@ -97,7 +97,7 @@ run-site:
 # Create or start the sass container, to rebuild sass files when there are changes
 ##
 watch-sass:
-	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ubuntu-partners-sass 2>/dev/null || echo "missing"`)
+	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
 	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
 	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
 	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
@@ -118,7 +118,7 @@ stop-sass-watcher:
 # Re-create the app image (e.g. to update dependencies)
 ##
 rebuild-app-image:
-	-docker rmi -f ${APP_IMAGE}
+	-docker rmi -f ${APP_IMAGE} 2> /dev/null
 	${MAKE} build-app-image
 
 # Database commands
@@ -190,16 +190,15 @@ demo:
 ##
 clean:
 	$(eval destroy_db := $(shell bash -c 'read -p "Destroy database? (y/n): " yn; echo $$yn'))
-	@if [[ "${destroy_db}" == "y" ]]; then docker rm -f ${DB_CONTAINER} 2>/dev/null  || echo "Database not found: Nothing to do"; fi
-	@docker rm -f ${SASS_CONTAINER} 2>/dev/null || echo "Sass container not found: Nothing to do"
-	@docker rmi -f ${APP_IMAGE} 2>/dev/null || echo "App image not found: Nothing to do"
+	@echo "Removing images and containers:"
+	@if [[ "${destroy_db}" == "y" ]]; then docker rm -f ${DB_CONTAINER} 2>/dev/null && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
+	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
+	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
 	@echo "Images and containers removed"
 
-# The below targets
-# are just there to allow you to type "make it so"
-# as a replacement for "make develop"
-# - Thanks to https://directory.canonical.com/list/ircnick/deadlight/
-
+##
+# "make it so" alias for "make run" (thanks @karlwilliams)
+##
 it:
 so: run
 
