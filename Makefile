@@ -1,65 +1,206 @@
-define HELP_TEXT
-Canonical.com website project
-===
+SHELL := /bin/bash  # Use bash syntax
 
-Usage:
+# Settings
+# ===
 
-> make run  # Run the Docker containers, mapping 8003 to the site
-
-endef
-
-# Variables
-##
-
+# Default port for the dev server - can be overridden e.g.: "PORT=1234 make run"
 ifeq ($(PORT),)
 	PORT=8003
 endif
 
+# Settings
+# ===
+PROJECT_NAME=ubuntu-partners
+APP_IMAGE=${PROJECT_NAME}
+DB_CONTAINER=${PROJECT_NAME}-postgres
+SASS_CONTAINER=${PROJECT_NAME}-sass
+
+# Help text
+# ===
+
+define HELP_TEXT
+
+${PROJECT_NAME} - A Django website by the Canonical web team
+===
+
+Basic usage
+---
+
+> make run         # Prepare Docker images and run the Django site
+
+Now browse to http://127.0.0.1:${PORT} to run the site
+
+All commands
+---
+
+> make help               # This message
+> make run                # build, watch-sass and run-site
+> make it so              # a fun alias for "make run"
+> make build-app-image    # Build the docker image
+> make run-site           # Use Docker to run the website
+> make watch-sass         # Setup the sass watcher, to compile CSS
+> make compile-sass       # Setup the sass watcher, to compile CSS
+> make stop-sass-watcher  # If the watcher is running in the background, stop it
+> make prepare-db         # Start and provision the database
+> make start-db           # Start the database container
+> make stop-db            # Stop the databse container
+> make reset-db           # Delete and re-prepare the database
+> make update-db          # sync and migrate the database with Django
+> make connect-to-db      # Start an interactive postgresql shell to manipulate the database
+> make clean              # Delete all created images and containers
+
+(To understand commands in more details, simply read the Makefile)
+
+endef
+
+##
+# Print help text
+##
 help:
 	$(info ${HELP_TEXT})
 
-update-db:
-	./manage.py syncdb --noinput --migrate
- 
-update-charm:
-	if [ $(DATABASE_URL) ]; then $(MAKE) update-db; fi
+##
+# Use docker to run the sass watcher and the website
+##
+run:
+	${MAKE} build-app-image
+	${MAKE} prepare-db
+	${MAKE} watch-sass &
+	trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
 
-pip-cache:
-	bzr branch -r `cat pip-cache-revno.txt` lp:~webteam-backend/ubuntu-partner-website/dependencies pip-cache
+##
+# Build the docker image
+##
+build-app-image:
+	docker build -t ${APP_IMAGE} .
 
-# New docker instructions
+##
+# Run the Django site using the docker image
+##
+run-site:
+	# Make sure IP is correct for mac etc.
+	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
+
+	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
+	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
+	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
+
+	@echo ""
+	@echo "======================================="
+	@echo "Running server on http://${docker_ip}:${PORT}"
+	@echo "Using database at postgres://postgres@${db_ip}:${db_port}/postgres"
+	@echo "======================================="
+	@echo ""
+	@docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app -e "DATABASE_URL=${db_url}" ${APP_IMAGE}
+
+##
+# Create or start the sass container, to rebuild sass files when there are changes
+##
+watch-sass:
+	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
+	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
+	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
+	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
+
+##
+# Force a rebuild of the sass files
+##
+compile-sass:
+	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
+
+##
+# If the watcher is running in the background, stop it
+##
+stop-sass-watcher:
+	docker stop ${SASS_CONTAINER}
+
+##
+# Re-create the app image (e.g. to update dependencies)
+##
+rebuild-app-image:
+	-docker rmi -f ${APP_IMAGE} 2> /dev/null
+	${MAKE} build-app-image
+
+# Database commands
 # ===
 
-APP_IMAGE=ubuntudesign/ubuntu-partners
-DB_CONTAINER=ubuntu-partners-postgres
-SASS_CONTAINER=ubuntu-partners-sass
+##
+# Start and provision the database
+##
+prepare-db:
+	${MAKE} start-db
+	while ! docker logs ${DB_CONTAINER} 2>&1 | grep 'database system is ready'; do sleep 0.01; done
+	${MAKE} update-db
 
-rebuild-app-image:
-	-docker rm -f ${APP_IMAGE}
-	docker build -t ubuntu-partners .
-
-sass-watch:
-	docker start ${SASS_CONTAINER} || docker run --name ${SASS_CONTAINER} -d -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css
-
+##
+# Start the database container
+##
 start-db:
+	docker start ${DB_CONTAINER} 2>/dev/null || docker run -p 5432 --name ${DB_CONTAINER} -d postgres
+
+##
+# Stop the database container
+##
+stop-db:
+	docker stop ${DB_CONTAINER}
+
+##
+# Re-create and provision the database container
+##
+reset-db:
 	-docker rm -f ${DB_CONTAINER}
-	docker run --name ${DB_CONTAINER} -d postgres
-	while ! echo "^]" | netcat `docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${DB_CONTAINER}` 5432; do sleep 0.01; done
-	${MAKE} update-db-container
+	${MAKE} prepare-db
 
-update-db-container:
-	docker run --volume `pwd`/app --link ${DB_CONTAINER}:postgres ${APP_IMAGE} bash -c "DATABASE_URL=\$$(echo \$$POSTGRES_PORT | sed 's!tcp://!postres://postgres@!')/postgres python manage.py syncdb --noinput --migrate"
+##
+# Update postgres from the Django application
+##
+update-db:
+	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
+	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
+	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
 
-run:
-	docker start ${DB_CONTAINER} || ${MAKE} start-db
-	${MAKE} sass-watch
+	docker run -w /app -e "DATABASE_URL=${db_url}" ${APP_IMAGE} python manage.py syncdb --noinput --migrate
+
+##
+# Connect to the postgres database container, for direct editing
+##
+connect-to-db:
+	docker run -it --link ${DB_CONTAINER}:postgres --rm postgres sh -c 'exec psql -h "$$POSTGRES_PORT_5432_TCP_ADDR" -p "$$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
+
+##
+# Make a demo
+##
+demo:
+	${MAKE} build-app-image
+	$(eval current_branch := `git rev-parse --abbrev-ref HEAD`)
+	$(eval image_location := "ubuntudesign/${APP_IMAGE}:${current_branch}")
+	$(eval app_name := "${PROJECT_NAME}-${current_branch}")
+	docker tag -f ${APP_IMAGE} ${image_location}
+	docker push ${image_location}
+	ssh dokku@ubuntu.qa deploy-image ${image_location} ${app_name}
+	ssh dokku@ubuntu.qa deploy-image:link-postgresql-db ubuntu-partners-database ${app_name}
 	@echo ""
-	@echo "======================================="
-	@echo "Running server on http://localhost:${PORT}"
-	@echo "======================================="
+	@echo "==="
+	@echo "Demo built: http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
+	@echo "==="
 	@echo ""
-	docker run --tty --interactive --volume `pwd`:/app --publish ${PORT}:8000 --link ${DB_CONTAINER}:postgres ${APP_IMAGE}
 
+##
+# Delete created images and containers
+##
 clean:
-	-docker rm -f ${DB_CONTAINER} ${SASS_CONTAINER}
-	-docker rmi -f ${APP_IMAGE}
+	$(eval destroy_db := $(shell bash -c 'read -p "Destroy database? (y/n): " yn; echo $$yn'))
+	@echo "Removing images and containers:"
+	@if [[ "${destroy_db}" == "y" ]]; then docker rm -f ${DB_CONTAINER} 2>/dev/null && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
+	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
+	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
+	@echo "Images and containers removed"
+
+##
+# "make it so" alias for "make run" (thanks @karlwilliams)
+##
+it:
+so: run
+
+# Phone targets (don't correspond to files or directories)
+.PHONY: help build run run-site watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
