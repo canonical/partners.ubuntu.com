@@ -24,7 +24,8 @@ def get_grouped_random_partners():
         partner_type__name="Customer",
         programme__isnull=True,
         service_offered__isnull=True,
-        technology__isnull=True,
+        technology__isnull=True
+    ).filter(
         published=True
     ).order_by(
         '-always_featured', '?'
@@ -74,11 +75,15 @@ def partner_programmes(request, name):
 
     Renders the template, 'programmes/<name>.html'
     with the partners defined in:
-    https://basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
+    basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
     """
 
     max_num_of_partners = 8
-    base_partners = get_grouped_random_partners().filter(published=True).exclude(logo="")
+    base_partners = get_grouped_random_partners().filter(
+        published=True
+    ).exclude(
+        logo=""
+    )
     lookup_partners = {
         "public-cloud": base_partners.filter(
             programme__name="Certified Public Cloud",
@@ -173,7 +178,11 @@ def find_a_partner(request):
     """
 
     context = {
-        'partners': get_grouped_random_partners().filter(published=True).order_by('name')
+        'partners': get_grouped_random_partners().filter(
+            published=True
+        ).order_by(
+            'name'
+        )
     }
     context = add_default_values_to_context(context, request)
     Filter = namedtuple('Filter', ['name', 'items'])
