@@ -21,7 +21,8 @@ def get_grouped_random_partners():
     """
 
     return Partner.objects.exclude(
-        partner_type__name="Customer",
+        partner_type__name="Customer"
+    ).exclude(
         programme__isnull=True,
         service_offered__isnull=True,
         technology__isnull=True
