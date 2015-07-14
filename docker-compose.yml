@@ -2,7 +2,6 @@ db:
   image: postgres
 web:
   build: .
-  command: python manage.py runserver 0.0.0.0:5000
   volumes:
     - .:/app
   ports:
