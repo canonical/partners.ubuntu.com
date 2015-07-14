@@ -1,0 +1,16 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:5000
+  volumes:
+    - .:/app
+  ports:
+    - "8003:5000"
+  links:
+    - db
+sass:
+  image: ubuntudesign/sass
+  command: sass --debug-info --watch /app/static/css
+  volumes:
+    - .:/app
