@@ -91,8 +91,17 @@ run-site:
 	@echo "======================================="
 	@echo "Running server on http://${docker_ip}:${PORT}"
 	@echo "Running db on     http://${db_ip}"
+	@echo "To stop the server, run 'make stop'"
+	@echo "To get server logs, run 'make logs'"
 	@echo "======================================="
 	@echo ""
+	@docker-compose logs web
+
+stop:
+	@docker-compose stop -t 2
+
+logs:
+	@docker-compose logs web
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
@@ -205,4 +214,4 @@ it:
 so: run
 
 # Phone targets (don't correspond to files or directories)
-.PHONY: help build run run-site watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
+.PHONY: help build stop logsrun run-site watch-sass compile-sass stop-sass-watcher rebuild-app-image it so
