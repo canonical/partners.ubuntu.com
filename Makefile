@@ -11,7 +11,7 @@ endif
 # Settings
 # ===
 PROJECT_NAME=ubuntupartners
-APP_IMAGE=${PROJECT_NAME}_web_1
+APP_IMAGE=${PROJECT_NAME}_web
 DB_CONTAINER=${PROJECT_NAME}_db_1
 SASS_CONTAINER=${PROJECT_NAME}_sass_1
 
@@ -165,13 +165,21 @@ connect-to-db:
 ##
 # Make a demo
 ##
-demo:
+hub-image:
 	${MAKE} build-app-image
 	$(eval current_branch := `git rev-parse --abbrev-ref HEAD`)
 	$(eval image_location := "ubuntudesign/${APP_IMAGE}:${current_branch}")
 	$(eval app_name := "${PROJECT_NAME}-${current_branch}")
 	docker tag -f ${APP_IMAGE} ${image_location}
 	docker push ${image_location}
+	@echo ""
+	@echo "==="
+	@echo "Image pushed to: ${image_location} http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
+	@echo "==="
+	@echo ""
+
+demo:
+	${MAKE} hub-image
 	ssh dokku@ubuntu.qa deploy-image ${image_location} ${app_name}
 	ssh dokku@ubuntu.qa deploy-image:link-postgresql-db ubuntu-partners-database ${app_name}
 	@echo ""
