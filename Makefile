@@ -10,10 +10,10 @@ endif
 
 # Settings
 # ===
-PROJECT_NAME=ubuntu-partners
-APP_IMAGE=${PROJECT_NAME}
-DB_CONTAINER=${PROJECT_NAME}-postgres
-SASS_CONTAINER=${PROJECT_NAME}-sass
+PROJECT_NAME=ubuntupartners
+APP_IMAGE=${PROJECT_NAME}_web_1
+DB_CONTAINER=${PROJECT_NAME}_db_1
+SASS_CONTAINER=${PROJECT_NAME}_sass_1
 
 # Help text
 # ===
@@ -63,16 +63,15 @@ help:
 # Use docker to run the sass watcher and the website
 ##
 run:
-	${MAKE} build-app-image
-	${MAKE} prepare-db
-	${MAKE} watch-sass &
-	trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
+	#${MAKE} watch-sass &
+	#trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
+	${MAKE} run-site
 
 ##
 # Build the docker image
 ##
 build-app-image:
-	docker build -t ${APP_IMAGE} .
+	docker-compose build
 
 ##
 # Run the Django site using the docker image
@@ -82,16 +81,18 @@ run-site:
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
 
 	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
-	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
 	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
+
+
+	@docker-compose up -d
+	${MAKE} update-db || ${MAKE} update-db  # TODO someone with make-shell fu could do this better
 
 	@echo ""
 	@echo "======================================="
 	@echo "Running server on http://${docker_ip}:${PORT}"
-	@echo "Using database at postgres://postgres@${db_ip}:${db_port}/postgres"
+	@echo "Running db on     http://${db_ip}"
 	@echo "======================================="
 	@echo ""
-	@docker run -p ${PORT}:5000 --link ${DB_CONTAINER}:postgres -v `pwd`:/app -w=/app -e "DATABASE_URL=${db_url}" ${APP_IMAGE}
 
 ##
 # Create or start the sass container, to rebuild sass files when there are changes
@@ -118,9 +119,8 @@ stop-sass-watcher:
 # Re-create the app image (e.g. to update dependencies)
 ##
 rebuild-app-image:
-	-docker rmi -f ${APP_IMAGE} 2> /dev/null
-	${MAKE} build-app-image
-
+	docker-compose kill
+	docker-compose build web
 # Database commands
 # ===
 
@@ -129,37 +129,32 @@ rebuild-app-image:
 ##
 prepare-db:
 	${MAKE} start-db
-	while ! docker logs ${DB_CONTAINER} 2>&1 | grep 'database system is ready'; do sleep 0.01; done
-	${MAKE} update-db
+	${MAKE} update-db || ${MAKE} update-db  # TODO someone with make-shell fu could do this better
 
 ##
 # Start the database container
 ##
 start-db:
-	docker start ${DB_CONTAINER} 2>/dev/null || docker run -p 5432 --name ${DB_CONTAINER} -d postgres
-
+	docker-compose up -d
 ##
 # Stop the database container
 ##
 stop-db:
-	docker stop ${DB_CONTAINER}
+	docker-compose kill
 
 ##
 # Re-create and provision the database container
 ##
 reset-db:
-	-docker rm -f ${DB_CONTAINER}
+	docker-compose kill
+	docker-compose rm -f
 	${MAKE} prepare-db
 
 ##
 # Update postgres from the Django application
 ##
 update-db:
-	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
-	$(eval db_port := `docker port "${DB_CONTAINER}" 5432 | sed 's/0.0.0.0://'`)
-	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
-
-	docker run -w /app -e "DATABASE_URL=${db_url}" ${APP_IMAGE} python manage.py syncdb --noinput --migrate
+	docker-compose run web python manage.py syncdb --migrate --noinput
 
 ##
 # Connect to the postgres database container, for direct editing
@@ -191,9 +186,8 @@ demo:
 clean:
 	$(eval destroy_db := $(shell bash -c 'read -p "Destroy database? (y/n): " yn; echo $$yn'))
 	@echo "Removing images and containers:"
-	@if [[ "${destroy_db}" == "y" ]]; then docker rm -f ${DB_CONTAINER} 2>/dev/null && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
-	@docker rm -f ${SASS_CONTAINER} 2>/dev/null && echo "${SASS_CONTAINER} removed" || echo "Sass container not found: Nothing to do"
-	@docker rmi -f ${APP_IMAGE} 2>/dev/null && echo "${APP_IMAGE} removed" || echo "App image not found: Nothing to do"
+	@docker-compose kill
+	@if [[ "${destroy_db}" == "y" ]]; then docker-compose rm -f && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
 	@echo "Images and containers removed"
 
 ##
