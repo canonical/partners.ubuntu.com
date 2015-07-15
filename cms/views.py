@@ -17,17 +17,16 @@ def get_grouped_random_partners():
     """
     Group the partners by `always_featured` first, and then randomise
     within those two groups.
-    "no customers if they also have no other programmes"
+    "no customers if they have no [programme, service_offered, technology]"
     """
 
     return Partner.objects.exclude(
-        partner_type__name="Customer"
-    ).exclude(
+        partner_type__name="Customer",
         programme__isnull=True,
         service_offered__isnull=True,
         technology__isnull=True
-    ).filter(
-        published=True
+    ).exclude(
+        published=False
     ).order_by(
         '-always_featured', '?'
     )
