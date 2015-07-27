@@ -100,6 +100,9 @@ run:
 	@echo "======================================="
 	@echo ""
 
+load-data:
+	@docker-compose run web python manage.py loaddata partners.json
+
 # Stop all running services
 stop:
 	@docker-compose stop -t 5
