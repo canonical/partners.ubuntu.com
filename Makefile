@@ -60,14 +60,6 @@ help:
 	$(info ${HELP_TEXT})
 
 ##
-# Use docker to run the sass watcher and the website
-##
-run:
-	#${MAKE} watch-sass &
-	#trap "${MAKE} stop-db; exit" SIGINT; ${MAKE} run-site
-	${MAKE} run-site
-
-##
 # Build the docker image
 ##
 build-app-image:
@@ -76,29 +68,37 @@ build-app-image:
 ##
 # Run the Django site using the docker image
 ##
-run-site:
+run:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
+	docker pull ubuntudesign/python-auth
+	@docker-compose up -d db
+	@docker-compose up -d web     # Run Django
+	@echo ""
+	@echo "== Running server on http://${docker_ip}:${PORT} =="
+	@echo ""
+	@echo "== Building SCSS =="
+	@echo ""
 
-	$(eval db_ip := `docker inspect --format '{{ .NetworkSettings.Gateway }}' ${DB_CONTAINER}`)
-	$(eval db_url := "postgres://postgres@${db_ip}:${db_port}/postgres")
+	@docker-compose up sass           # Build CSS into `static/css`
+	@echo ""
+	@echo "== Built SCSS =="
+	@echo ""
 
+	@docker-compose up -t 1 -d sass-watch  # Watch SCSS files for changes
 
-	@docker-compose up -d
 	${MAKE} update-db || ${MAKE} update-db  # TODO someone with make-shell fu could do this better
 
 	@echo ""
 	@echo "======================================="
 	@echo "Running server on http://${docker_ip}:${PORT}"
-	@echo "Running db on     http://${db_ip}"
 	@echo "To stop the server, run 'make stop'"
 	@echo "To get server logs, run 'make logs'"
 	@echo "======================================="
 	@echo ""
-	@docker-compose logs web
 
 stop:
-	@docker-compose stop -t 2
+	@docker-compose stop -t 1
 
 logs:
 	@docker-compose logs web
@@ -113,22 +113,10 @@ watch-sass:
 	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
 
 ##
-# Force a rebuild of the sass files
-##
-compile-sass:
-	docker run -v `pwd`:/app ubuntudesign/sass sass --debug-info --update /app/static/css --force
-
-##
-# If the watcher is running in the background, stop it
-##
-stop-sass-watcher:
-	docker stop ${SASS_CONTAINER}
-
-##
 # Re-create the app image (e.g. to update dependencies)
 ##
 rebuild-app-image:
-	docker-compose kill
+	docker-compose kill web
 	docker-compose build web
 # Database commands
 # ===
@@ -144,19 +132,19 @@ prepare-db:
 # Start the database container
 ##
 start-db:
-	docker-compose up -d
+	docker-compose up -d db
 ##
 # Stop the database container
 ##
 stop-db:
-	docker-compose kill
+	docker-compose kill db
 
 ##
 # Re-create and provision the database container
 ##
 reset-db:
-	docker-compose kill
-	docker-compose rm -f
+	docker-compose kill db
+	docker-compose rm -f db
 	${MAKE} prepare-db
 
 ##
@@ -170,32 +158,6 @@ update-db:
 ##
 connect-to-db:
 	docker run -it --link ${DB_CONTAINER}:postgres --rm postgres sh -c 'exec psql -h "$$POSTGRES_PORT_5432_TCP_ADDR" -p "$$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
-
-##
-# Make a demo
-##
-hub-image:
-	${MAKE} build-app-image
-	$(eval current_branch := `git rev-parse --abbrev-ref HEAD`)
-	$(eval image_location := "ubuntudesign/${APP_IMAGE}:${current_branch}")
-	$(eval app_name := "${PROJECT_NAME}-${current_branch}")
-	docker tag -f ${APP_IMAGE} ${image_location}
-	docker push ${image_location}
-	@echo ""
-	@echo "==="
-	@echo "Image pushed to: ${image_location} http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
-	@echo "==="
-	@echo ""
-
-demo:
-	${MAKE} hub-image
-	ssh dokku@ubuntu.qa deploy-image ${image_location} ${app_name}
-	ssh dokku@ubuntu.qa deploy-image:link-postgresql-db ubuntu-partners-database ${app_name}
-	@echo ""
-	@echo "==="
-	@echo "Demo built: http://${PROJECT_NAME}-${current_branch}.ubuntu.qa/"
-	@echo "==="
-	@echo ""
 
 ##
 # Delete created images and containers
