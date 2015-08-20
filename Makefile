@@ -152,6 +152,7 @@ reset-db:
 ##
 update-db:
 	docker-compose run web python manage.py syncdb --migrate --noinput
+	docker-compose run web python manage.py loaddata partners.json
 
 ##
 # Connect to the postgres database container, for direct editing
