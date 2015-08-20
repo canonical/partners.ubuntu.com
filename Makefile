@@ -71,7 +71,7 @@ build-app-image:
 run:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
-	docker pull ubuntudesign/python-auth
+	if [[ -z "`docker images -q ubuntudesign/python-auth`" ]]; then docker pull ubuntudesign/python-auth; fi
 	@docker-compose up -d db
 	@docker-compose up -d web     # Run Django
 	@echo ""
