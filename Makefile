@@ -80,14 +80,20 @@ run:
 	@echo "== Building SCSS =="
 	@echo ""
 
-	@docker-compose up sass           # Build CSS into `static/css`
+	@echo ""
+	@echo "== Updating DB =="
+	@echo ""
+	${MAKE} update-db
+
+	@echo ""
+	@echo "== DB Ready =="
+	@echo ""
+
 	@echo ""
 	@echo "== Built SCSS =="
 	@echo ""
-
+	@docker-compose up sass           # Build CSS into `static/css`
 	@docker-compose up -t 1 -d sass-watch  # Watch SCSS files for changes
-
-	${MAKE} update-db || ${MAKE} update-db  # TODO someone with make-shell fu could do this better
 
 	@echo ""
 	@echo "======================================="
@@ -151,6 +157,8 @@ reset-db:
 # Update postgres from the Django application
 ##
 update-db:
+	# Wait for DB to be ready
+	docker run --link $$(docker-compose ps -q db):db aanand/wait
 	docker-compose run web python manage.py syncdb --migrate --noinput
 	docker-compose run web python manage.py loaddata partners.json
 
