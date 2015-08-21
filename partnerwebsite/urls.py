@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.http import (
-    HttpResponseNotFound, HttpResponseServerError, HttpResponseRedirect
+    HttpResponseNotFound, HttpResponseServerError
 )
 from django.template import RequestContext, loader, Context
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from cms.views import (
     partner_programmes, partner_view, PartnerView,
@@ -27,16 +28,36 @@ def handler500(request):
 urlpatterns = patterns(
     '',
     url(r'^openid/', include('django_openid_auth.urls')),
-    url(r'^admin/help/$', TemplateView.as_view(template_name='admin/help.html'), name='admin_help'),
-    url(r'^admin/?$', lambda r: HttpResponseRedirect('/admincms/partner/')),
+    url(
+        r'^admin/help/$',
+        TemplateView.as_view(template_name='admin/help.html'),
+        name='admin_help'
+    ),
+    url(
+        r'^admin/?$',
+        RedirectView.as_view(url='/admincms/partner/')
+    ),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^partners.json$', partners_json_view),
     url(r'^customers.json$', customers_json_view),
     url(r'^programmes/?$', PartnerView.as_view()),
-    url(r'^partner-programmes/phone-carrier$', lambda r: HttpResponseRedirect('/programmes/phone')),
-    url(r'^programmes/phone-carrier$', lambda r: HttpResponseRedirect('/programmes/phone')),
-    url(r'^partner-programmes/?$', lambda r: HttpResponseRedirect('/programmes/')),
-    url(r'^partner-programmes/(?P<name>[-\w]+)', lambda r, name: HttpResponseRedirect('/programmes/' + name)),
+    url(
+        r'^partner-programmes/phone-carrier$',
+        RedirectView.as_view(url='/programmes/phone')
+    ),
+    url(
+        r'^programmes/phone-carrier$',
+        RedirectView.as_view(url='/programmes/phone')
+    ),
+    url(
+        r'^partner-programmes/?$',
+        RedirectView.as_view(url='/programmes/')
+    ),
+    url(
+        r'^partner-programmes/(?P<name>[-\w]+)',
+        lambda request, name:
+            RedirectView.as_view(url='/programmes/' + name)(request)
+    ),
     url(r'^programmes/(?P<name>[-\w]+)', partner_programmes),
     url(r'^$', PartnerView.as_view()),
     url(r'^contact-us$', PartnerView.as_view()),
