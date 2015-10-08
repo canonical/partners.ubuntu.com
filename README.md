@@ -18,3 +18,4 @@ Run the site on <http://localhost:8003> as follows:
 make run  # Run docker containers, mapping server to port 8003
 ```
 
+With ♥ from Canonical
