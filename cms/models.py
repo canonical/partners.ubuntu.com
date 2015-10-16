@@ -2,6 +2,7 @@ from django.db import models
 from django.core import serializers
 from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
+from django.core.validators import MaxLengthValidator
 
 
 class PartnerModel(models.Model):
@@ -84,11 +85,12 @@ class Partner(PartnerModel):
     )
     short_description = models.TextField(
         help_text=(
-            "Used in search results, max 70 characters."
+            "Used in search results, max 375 characters."
             "(<a href='http://daringfireball.net/projects/markdown/basics'>"
             "Markdown formatted"
             "</a>)"
-        )
+        ),
+        validators=[MaxLengthValidator(375)]
     )
     long_description = models.TextField(
         blank=True, null=True,
