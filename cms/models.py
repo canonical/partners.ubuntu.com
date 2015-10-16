@@ -84,8 +84,10 @@ class Partner(PartnerModel):
     )
     short_description = models.TextField(
         help_text=(
-            "Used in search results, max 70 characters. "
-            "(<a href='http://daringfireball.net/projects/markdown/basics'>Markdown formatted</a>)"
+            "Used in search results, max 70 characters."
+            "(<a href='http://daringfireball.net/projects/markdown/basics'>"
+            "Markdown formatted"
+            "</a>)"
         )
     )
     long_description = models.TextField(
@@ -93,7 +95,9 @@ class Partner(PartnerModel):
         help_text=(
             "Only displayed on the dedicated partner page "
             "(when 'generate page' is selected). "
-            "(<a href='http://daringfireball.net/projects/markdown/basics'>Markdown formatted</a>)"
+            "(<a href='http://daringfireball.net/projects/markdown/basics'>"
+            "Markdown formatted"
+            "</a>)"
         )
     )
     featured = models.BooleanField(help_text="Promote to the front page")
