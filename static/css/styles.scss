@@ -246,9 +246,9 @@ core scss files are in /sites/core/static/css
 }
 
 @media only screen and (min-width : 768px) {
-/* 
+/*
   alternative to row-image-centered
-  requires equal-height class on row 
+  requires equal-height class on row
   add align-vertically to the div containing the image
   http://caniuse.com/transforms2d
 */
@@ -256,7 +256,7 @@ core scss files are in /sites/core/static/css
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    
+
     img,
     div,
     ul {
@@ -283,7 +283,7 @@ header.banner .logo-ubuntu span {
 header.banner .nav-primary ul li {
  	border-right: 0;
   width: 100%;
-  
+
   &:nth-last-child(-n+2) a:link,
   &:nth-last-child(-n+2) a:visited {
 	  border-bottom: 1px solid #d4d7d4;
@@ -294,7 +294,7 @@ header.banner .nav-primary ul li {
 	header.banner .nav-primary ul li {
 	 	border-right: 1px solid #d4d7d4;
 	  width: 50%;
-	  
+
 	  &:nth-last-child(-n+2) a:link,
 	  &:nth-last-child(-n+2) a:visited,
 		&:last-child,
@@ -303,7 +303,7 @@ header.banner .nav-primary ul li {
 	  }
 	}
 }
- 
+
 @media only screen and (min-width : 769px) {
 	header.banner .nav-primary ul li {
 	 	border-right: 0;
@@ -504,14 +504,6 @@ html.opera-mini {
   max-width: 250px;
   margin: 10px 0;
   float: left;
-}
-
-.row-retailers .twelve-col {
-  display: table;
-
-  .box {
-    display: table-cell;
-  }
 }
 
 /* @section logos
@@ -752,7 +744,7 @@ footer.global {
     a#item-facebook:hover { background-position: -90px -45px; }
     a#item-canonical:hover { background-position: -135px -45px; }
   }
-  
+
   .list-social li:last-child {
     margin-right: 0;
   }
@@ -872,7 +864,7 @@ html.yui3-js-enabled {
   }
 
   @media only screen and (min-width : 768px) {
-		footer.global {	
+		footer.global {
 		  .row {
 		    padding: 20px 20px 0;
 		  }
@@ -997,7 +989,7 @@ footer #nav-global {
 		margin-bottom: -10px;
 		float: left;
 	}
-	
+
   footer #nav-global li ul {
     clear: both;
     display: block;
@@ -1585,7 +1577,7 @@ html.no-svg {
     padding-right: 0;
     width: 984px;
   }
-  
+
   html.yui3-js-enabled footer.global .row {
 		padding-left: 0;
 		padding-right: 0;
@@ -1593,12 +1585,12 @@ html.no-svg {
 
   body footer.global {
     padding-top: 30px;
-    
+
     .legal,
     .row {
 	    padding-left: 0;
     	padding-right: 0;
-    	
+
 	    p, ul {
 	      padding-left: 0;
 	      padding-right: 0;
