@@ -159,7 +159,7 @@ reset-db:
 update-db:
 	# Wait for DB to be ready
 	docker run --link $$(docker-compose ps -q db):db aanand/wait
-	docker-compose run web python manage.py syncdb --migrate --noinput
+	docker-compose run web python manage.py migrate
 	docker-compose run web python manage.py loaddata partners.json
 
 ##
