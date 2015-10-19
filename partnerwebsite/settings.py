@@ -29,19 +29,18 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = (
-    'django.contrib.admin',
+INSTALLED_APPS = [
     'django.contrib.auth',
+    'django_openid_auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
     'cms',
-    'south',
-    'django_openid_auth',
     'markdown_deux'
-)
+]
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
