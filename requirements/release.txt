@@ -1,3 +1,1 @@
--r base.txt
-fenchurch
-django-openid-auth
+standard.txt
