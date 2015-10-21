@@ -1,13 +1,16 @@
+# System
 import json
 from collections import namedtuple
 
+# Modules
 from preserialize.serialize import serialize
-from fenchurch import TemplateFinder
+from django_template_finder_view import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
 from django.http import HttpResponse
 
+# Local
 from cms.models import (
     Partner, Technology, Programme, ServiceOffered
 )
@@ -62,6 +65,11 @@ class PartnerView(TemplateFinder):
         context['alliance_partners'] = published_partners.filter(
             dedicated_partner_page=True,
         )[:8]
+
+        # Add level_* context variables
+        clean_path = self.request.path.strip('/')
+        for index, path, in enumerate(clean_path.split('/')):
+            context["level_" + str(index + 1)] = path
 
         return super(PartnerView, self).render_to_response(
             context,

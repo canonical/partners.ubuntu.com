@@ -4,15 +4,10 @@ base:
   volumes:
     - .:/srv
 
-npm:
-  extends: {'service': 'base'}
-  image: library/node
-  command: /bin/bash -c 'umask 0000 && npm install'
-
 sass:
   extends: {'service': 'base'}
   image: ubuntudesign/sass
-  command: /bin/bash -c 'umask 0000 && sass --debug-info --update static/css --force -E "UTF-8"'
+  command: sass --cache-location /.sass-cache --update static/css --force -E "UTF-8"
 
 web:
   extends: {'service': 'base'}
@@ -26,4 +21,4 @@ db:
 
 sass-watch:
   extends: {'service': 'sass'}
-  command: /bin/bash -c 'umask 0000 && sass --debug-info --watch static/css -E "UTF-8"'
+  command: sass --cache-location /.sass-cache --watch static/css -E "UTF-8"

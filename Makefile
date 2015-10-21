@@ -11,7 +11,9 @@ endif
 # Settings
 # ===
 PROJECT_NAME=ubuntupartners
-APP_IMAGE=${PROJECT_NAME}_web
+PROJECT_DIR=$(shell basename `pwd`)
+DOCKER_PROJECT_NAME := $(subst _,,$(subst -,,$(PROJECT_DIR)))
+APP_IMAGE=${DOCKER_PROJECT_NAME}_web
 DB_CONTAINER=${PROJECT_NAME}_db_1
 SASS_CONTAINER=${PROJECT_NAME}_sass_1
 
@@ -33,41 +35,36 @@ Now browse to http://127.0.0.1:${PORT} to run the site
 All commands
 ---
 
-> make help               # This message
-> make run                # build, watch-sass and run-site
-> make it so              # a fun alias for "make run"
-> make build-app-image    # Build the docker image
-> make run-site           # Use Docker to run the website
-> make watch-sass         # Setup the sass watcher, to compile CSS
-> make compile-sass       # Setup the sass watcher, to compile CSS
-> make stop-sass-watcher  # If the watcher is running in the background, stop it
-> make prepare-db         # Start and provision the database
-> make start-db           # Start the database container
-> make stop-db            # Stop the databse container
-> make reset-db           # Delete and re-prepare the database
-> make update-db          # sync and migrate the database with Django
-> make connect-to-db      # Start an interactive postgresql shell to manipulate the database
-> make clean              # Delete all created images and containers
+> make help                      # Print help text (this message)
+> make run                       # Prepare and run all services, to serve the site locally
+> make stop                      # Stop all running services
+> make logs                      # Watch the logs from all running services
+> make sass-watch                # Start the sass-watch container
+> make sass-compile              # Use the sass container to compile all sass files
+> make app-build                 # (Re-)build the application image, in which the web container is based
+> make app-update-requirements   # Update pip requirements in the app image
+> make db-start                  # Start the database service
+> make db-stop                   # Stop the database service
+> make db-reset                  # Re-create the database from scratch (discards existing data)
+> make db-update                 # Update the database from local fixtures
+> make db-connect                # Connect to the database to hack around with it
+> make clean-css                 # Delete any compiled CSS files
+> make clean-db                  # Remove the database and web containers (discards existing data)
+> make clean-web                 # Remove the web container (doesn't remove the application image)
+> make clean-app                 # Remove the application image and the web container
+> make clean-containers          # Remove all containers (but not the application image)
+> make clean-all                 # Remove everything - containers (incl. database), images, CSS
+> make it so                     # a fun alias for "make run" (Karl)
 
 (To understand commands in more details, simply read the Makefile)
 
 endef
 
-##
 # Print help text
-##
 help:
 	$(info ${HELP_TEXT})
 
-##
-# Build the docker image
-##
-build-app-image:
-	docker-compose build
-
-##
-# Run the Django site using the docker image
-##
+# Prepare and run web, sass and database
 run:
 	# Make sure IP is correct for mac etc.
 	$(eval docker_ip := `hash boot2docker 2> /dev/null && echo "\`boot2docker ip\`" || echo "127.0.0.1"`)
@@ -83,7 +80,7 @@ run:
 	@echo ""
 	@echo "== Updating DB =="
 	@echo ""
-	${MAKE} update-db
+	${MAKE} db-update
 
 	@echo ""
 	@echo "== DB Ready =="
@@ -93,7 +90,7 @@ run:
 	@echo "== Built SCSS =="
 	@echo ""
 	@docker-compose up sass           # Build CSS into `static/css`
-	@docker-compose up -t 1 -d sass-watch  # Watch SCSS files for changes
+	@docker-compose up -d sass-watch  # Watch SCSS files for changes
 
 	@echo ""
 	@echo "======================================="
@@ -103,80 +100,87 @@ run:
 	@echo "======================================="
 	@echo ""
 
+# Stop all running services
 stop:
-	@docker-compose stop -t 1
+	@docker-compose stop -t 5
 
+# Watch the logs from all running services
 logs:
-	@docker-compose logs web
+	@docker-compose logs
 
-##
-# Create or start the sass container, to rebuild sass files when there are changes
-##
-watch-sass:
-	$(eval is_running := `docker inspect --format="{{ .State.Running }}" ${SASS_CONTAINER} 2>/dev/null || echo "missing"`)
-	@if [[ "${is_running}" == "true" ]]; then docker attach ${SASS_CONTAINER}; fi
-	@if [[ "${is_running}" == "false" ]]; then docker start -a ${SASS_CONTAINER}; fi
-	@if [[ "${is_running}" == "missing" ]]; then docker run --name ${SASS_CONTAINER} -v `pwd`:/app ubuntudesign/sass sass --debug-info --watch /app/static/css; fi
+# Start the sass-watch container
+sass-watch:
+	docker-compose up -d sass-watch
 
-##
-# Re-create the app image (e.g. to update dependencies)
-##
-rebuild-app-image:
-	docker-compose kill web
+# Use the sass container to compile all sass files
+sass-compile:
+	docker-compose up sass
+
+# (Re-)build the application image, in which the web container is based
+app-build:
+	rm -rf .sass-cache
 	docker-compose build web
-# Database commands
-# ===
 
-##
-# Start and provision the database
-##
-prepare-db:
-	${MAKE} start-db
-	${MAKE} update-db || ${MAKE} update-db  # TODO someone with make-shell fu could do this better
+# Update the database from local fixtures
+app-update-requirements:
+	docker exec $$(docker-compose ps -q web) pip install --requirement requirements/dev.txt
 
-##
-# Start the database container
-##
-start-db:
+# Start the database service
+db-start:
 	docker-compose up -d db
-##
-# Stop the database container
-##
-stop-db:
-	docker-compose kill db
 
-##
-# Re-create and provision the database container
-##
-reset-db:
-	docker-compose kill db
-	docker-compose rm -f db
-	${MAKE} prepare-db
+# Stop the database service
+db-stop:
+	docker-compose stop -t 5 db
 
-##
-# Update postgres from the Django application
-##
-update-db:
+# Re-create the database from scratch (discards existing data)
+db-reset:
+	${MAKE} clean-db
+	${MAKE} db-start
+	${MAKE} db-update
+
+# Update the database from local fixtures
+db-update:
 	# Wait for DB to be ready
 	docker run --link $$(docker-compose ps -q db):db aanand/wait
-	docker-compose run web python manage.py syncdb --migrate --noinput
+	docker-compose run web python manage.py migrate --fake-initial --noinput
 	docker-compose run web python manage.py loaddata partners.json
 
-##
-# Connect to the postgres database container, for direct editing
-##
-connect-to-db:
+# Connect to the database to hack around with it
+db-connect:
 	docker run -it --link ${DB_CONTAINER}:postgres --rm postgres sh -c 'exec psql -h "$$POSTGRES_PORT_5432_TCP_ADDR" -p "$$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 
-##
-# Delete created images and containers
-##
-clean:
-	$(eval destroy_db := $(shell bash -c 'read -p "Destroy database? (y/n): " yn; echo $$yn'))
-	@echo "Removing images and containers:"
-	@docker-compose kill
-	@if [[ "${destroy_db}" == "y" ]]; then docker-compose rm -f && echo "${DB_CONTAINER} removed" || echo "Database not found: Nothing to do"; fi
-	@echo "Images and containers removed"
+# Delete any compiled CSS files
+clean-css:
+	find static/css -name '*.css' | xargs rm -f
+
+# Remove the database container (discards existing data, and deletes web as well)
+clean-db:
+	docker-compose kill db web
+	docker-compose rm -f db
+	docker-compose rm -f web
+
+# Remove all containers (discards existing data, but not the application image)
+clean-containers:
+	docker-compose kill
+	docker-compose rm -f
+
+# Remove the web container (doesn't remove the application image)
+clean-web:
+	docker-compose kill web
+	docker-compose rm -f web
+
+# Remove the application image and the web container
+clean-app:
+	${MAKE} clean-web
+	# If image exists, delete it
+	if [[ -n $$(docker images -q ${APP_IMAGE}) ]]; then docker rmi -f ${APP_IMAGE}; fi
+
+# Remove everything - containers (incl. database), images, CSS
+clean-all:
+	${MAKE} clean-css
+	${MAKE} clean-containers
+	${MAKE} clean-app
 
 ##
 # "make it so" alias for "make run" (thanks @karlwilliams)
