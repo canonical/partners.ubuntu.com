@@ -91,7 +91,7 @@ USE_L10N = False
 
 USE_TZ = True
 
-TEMPLATE_DIRS = [BASE_DIR + "/templates"]
+TEMPLATE_DIRS = (BASE_DIR + "/templates",)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
