@@ -35,28 +35,25 @@ urlpatterns = patterns(
     ),
     url(
         r'^admin/?$',
-        RedirectView.as_view(url='/admincms/partner/')
+        RedirectView.as_view(url='/admincms/partner/', permanent=True)
     ),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^partners.json$', partners_json_view),
     url(r'^customers.json$', customers_json_view),
     url(r'^programmes/?$', PartnerView.as_view()),
     url(
-        r'^partner-programmes/phone-carrier$',
-        RedirectView.as_view(url='/programmes/phone')
-    ),
-    url(
         r'^programmes/phone-carrier$',
-        RedirectView.as_view(url='/programmes/phone')
+        RedirectView.as_view(url='/programmes/phone', permanent=True)
     ),
     url(
         r'^partner-programmes/?$',
-        RedirectView.as_view(url='/programmes/')
+        RedirectView.as_view(url='/programmes/', permanent=True)
     ),
     url(
         r'^partner-programmes/(?P<name>[-\w]+)',
-        lambda request, name:
-            RedirectView.as_view(url='/programmes/' + name)(request)
+        lambda request, name: RedirectView.as_view(
+            url='/programmes/' + name, permanent=True
+        )(request)
     ),
     url(r'^programmes/(?P<name>[-\w]+)', partner_programmes),
     url(r'^$', PartnerView.as_view()),
