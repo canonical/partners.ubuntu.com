@@ -245,7 +245,37 @@ core scss files are in /sites/core/static/css
   display: none;
 }
 
+.row.strip-dark .combined-list {
+  ul,
+  div {
+		padding-top: 0;
+    margin-bottom: 0;
+		padding-bottom: 0;
+  }
+
+  .last-col {
+    margin-bottom: 20px;
+  }
+
+	li.last-item {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
 @media only screen and (min-width : 768px) {
+  .row.strip-dark .combined-list {
+    ul,
+    div {
+      margin-bottom: 20px;
+    }
+
+    li.last-item {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
 /*
   alternative to row-image-centered
   requires equal-height class on row
