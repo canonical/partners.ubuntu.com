@@ -3,7 +3,12 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.core.validators
+from django.contrib.auth.models import Group
 
+
+def create_groups(apps, schema_editor):
+    authors = Group(name='partners.u.c-authors')
+    authors.save()
 
 class Migration(migrations.Migration):
 
@@ -137,4 +142,5 @@ class Migration(migrations.Migration):
             name='partner',
             field=models.ForeignKey(to='cms.Partner'),
         ),
+        migrations.RunPython(create_groups),
     ]
