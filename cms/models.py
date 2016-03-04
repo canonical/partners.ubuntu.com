@@ -151,6 +151,15 @@ class Partner(PartnerModel):
     def insights_tags(self):
         return serializers.serialize('python', self.insightstag_set.all())
 
+    tags_label = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="The displayed name for the tags list"
+    )
+
+    def tags(self):
+        return serializers.serialize('python', self.tag_set.all())
+
     def texts(self):
         return serializers.serialize('python', self.text_set.all())
 
@@ -186,6 +195,17 @@ class InsightsTag(models.Model):
     def __unicode__(self):
         return unicode(self.tag)
 
+class Tag(models.Model):
+    partner = models.ForeignKey(Partner)
+    tag = models.CharField(
+        max_length=200,
+        help_text=(
+            ""
+        )
+    )
+
+    def __unicode__(self):
+        return unicode(self.tag)
 
 class Text(models.Model):
     partner = models.ForeignKey(Partner)
