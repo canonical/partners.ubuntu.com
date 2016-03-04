@@ -60,7 +60,7 @@
       {% if partners %}
       <ul>
         {% for p in partners %}
-        <li id="{{ p.name|slugify }}" class="box clearfix twelve-col partner" data-searchText="{{ p.name }} {{ p.short_description }}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
+        <li id="{{ p.name|slugify }}" class="box clearfix twelve-col partner" data-searchText="{{ p.name }} {{ p.short_description }} {% for tag in p.tags %}{{ tag }}{% endfor %}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
             <div class="logo-container align-center no-margin-bottom">
               {% if p.partner_website and not p.dedicated_partner_page %}
               <a title="Vist the {{ p.name }} website" onclick="ga('send', 'event', 'External Link', '{{ p.name }} - find a partner page', 'From {{ p.name }} find-a-partner result image link');" href="{{ p.partner_website }}">

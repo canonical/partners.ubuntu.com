@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from cms.models import (
     Partner, Technology, PartnerType, Programme, ServiceOffered,
-    Quote, Link, InsightsTag, Text
+    Quote, Link, InsightsTag, Tag, Text
 )
 
 
@@ -23,6 +23,11 @@ class LinkInline(admin.TabularInline):
 
 class InsightsTagInline(admin.TabularInline):
     model = InsightsTag
+    extra = 0
+
+
+class TagInline(admin.TabularInline):
+    model = Tag
     extra = 0
 
 
@@ -139,12 +144,18 @@ class PartnerAdmin(admin.ModelAdmin):
                 'long_description',
             )
         }),
+        ('Tags', {
+            'fields': (
+                'tags_label',
+            )
+        }),
     )
     inlines = [
+        TagInline,
         TextInline,
         QuoteInline,
         LinkInline,
-        InsightsTagInline
+        InsightsTagInline,
     ]
     filter_horizontal = [
         'partner_type',
@@ -187,6 +198,10 @@ class InsightsTagAdmin(admin.ModelAdmin):
     pass
 
 
+class TagAdmin(admin.ModelAdmin):
+    pass
+
+
 class TextAdmin(admin.ModelAdmin):
     pass
 
@@ -199,4 +214,5 @@ admin.site.register(ServiceOffered, ServiceOfferedAdmin)
 admin.site.register(Quote, QuoteAdmin)
 admin.site.register(Link, LinkAdmin)
 admin.site.register(InsightsTag, InsightsTagAdmin)
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Text, TextAdmin)

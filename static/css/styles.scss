@@ -872,7 +872,7 @@ html.yui3-js-enabled {
       }
 
       .accordion-button {
-        background: url(http://www.canonical.com/static/img/icons/icon-arrow-down.svg) no-repeat scroll right 3px transparent;
+        background: url('https://assets.ubuntu.com/v1/7a7e0d52-arrow_down_9fa097.png') no-repeat scroll right 3px transparent;
         color: $cool_grey;
         display: block;
         font-size: 16px;
@@ -883,7 +883,7 @@ html.yui3-js-enabled {
 
     &.open {
       .accordion-button {
-        background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-up.svg);
+        background-image: url('https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png');
         margin-bottom: 10px;
       }
 
@@ -896,12 +896,12 @@ html.yui3-js-enabled {
   html.yui3-js-enabled.opera-mini .tabbed-content,
   html.yui3-js-enabled.no-svg .tabbed-content {
     .accordion-button {
-      background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-right.png)
+      background-image: url('https://assets.ubuntu.com/v1/7a7e0d52-arrow_down_9fa097.png')
     }
 
     &.open {
       .accordion-button {
-        background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-up.png);
+        background-image: url('https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png');
       }
     }
   }
@@ -968,10 +968,10 @@ html.yui3-js-enabled.opera-mini {
 html.opera-mini,
 html.no-svg {
   .tabbed-content .accordion-button {
-    background-image: url(http://www.canonical.com/static/img/arrow_down_9fa097.png);
+    background-image: url('https://assets.ubuntu.com/v1/7a7e0d52-arrow_down_9fa097.png');
   }
   .tabbed-content.open .accordion-button {
-    background-image: url(http://www.canonical.com/static/img/arrow_up_9fa097.png);
+    background-image: url('https://assets.ubuntu.com/v1/43e2b367-arrow_up_9fa097.png');
   }
 }
 
