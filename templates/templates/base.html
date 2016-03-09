@@ -26,9 +26,6 @@
 <!-- get ubuntu font from google -->
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic%7CUbuntu+Mono' rel='stylesheet' type='text/css' />
 
-<!-- get ubuntu guidelines css -->
-<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
-
 <!-- get global nav css -->
 <link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/ubuntu/latest/u/css/beta/global-responsive.css" />
 
@@ -74,8 +71,7 @@
 	</nav>
 {% endblock header_banner %}
 </header>
-<div class="wrapper">
-<div id="main-content" class="inner-wrapper">
+<div id="main-content">
 {% if level_1 %}
 {% block second_level_nav %}
 {% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}
@@ -87,9 +83,7 @@
 {% block outer_content %}
 {% endblock outer_content %}
 {% endblock content_container %}
-</div><!-- /.inner-wrapper -->
-
-</div><!-- /.wrapper -->
+</div>
 
 {% include "templates/footer.html" %}
 
