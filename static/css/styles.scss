@@ -424,7 +424,7 @@ html.opera-mini {
 
 .strip-dark {
   background-color: $dark_aubergine;
-  background-image: url(http://www.canonical.com/static/img/backgrounds/background-grid.png);
+  background-image: url('https://assets.ubuntu.com/v1/62d597f6-background-grid.png');
   background-repeat: repeat;
   color: #fff;
 }
@@ -551,7 +551,7 @@ ul.inline-logos li img {
 -------------------------------------------------------------- */
 .find-a-partner {
   .search {
-    background-image: url(http://www.canonical.com/static/img/pictograms/image-footer-search.svg);
+    background-image: url('https://assets.ubuntu.com/v1/5099cfac-image-footer-search.svg');
     background-position: 7px 7px;
     background-repeat: no-repeat;
     background-size: 20px;
@@ -769,7 +769,7 @@ footer.global {
     }
 
     a {
-      background-image: url("http://www.canonical.com/static/img/icons/icon-social.svg");
+      background-image: url('https://assets.ubuntu.com/v1/3a7c44e0-icon-social.svg');
       background-repeat: no-repeat;
     }
 
@@ -788,24 +788,16 @@ footer.global {
     margin-right: 0;
   }
 }
-html.opera-mini footer.global .list-social li,
-html.no-svg footer.global .list-social li {
-  a#item-twitter { background-image: url("http://www.canonical.com/static/img/icons/icon-social-twitter.png"); }
-  a#item-google { background-image: url("http://www.canonical.com/static/img/icons/icon-social-google.png"); }
-  a#item-facebook { background-image: url("http://www.canonical.com/static/img/icons/icon-social-facebook.png"); }
-  a#item-canonical { background-image: url("http://www.canonical.com/static/img/icons/icon-social-rss.png"); }
-
-  a#item-twitter:hover { background-image: url("http://www.canonical.com/static/img/icons/icon-social-twitter-selected.png"); }
-  a#item-google:hover { background-image: url("http://www.canonical.com/static/img/icons/icon-social-google-selected.png"); }
-  a#item-facebook:hover { background-image: url("http://www.canonical.com/static/img/icons/icon-social-facebook-selected.png"); }
-  a#item-canonical:hover { background-image: url("http://www.canonical.com/static/img/icons/icon-social-rss-selected.png"); }
+html.opera-mini footer.global .list-social li a,
+html.no-svg footer.global .list-social li a {
+  background-image: url('https://assets.ubuntu.com/v1/3a7c44e0-icon-social.svg');
 }
 
 html.opera-mini footer #nav-global h2:before,
 html.opera-mini footer #additional-info h2:before,
 html.no-svg footer #nav-global h2:before,
 html.no-svg footer #additional-info h2:before {
-  background-image: url('http://www.canonical.com/static/img/external-link.png');
+  background-image: url('https://assets.ubuntu.com/v1/e1b12fdd-external-link-9fa097.svg?fmt=png');
 }
 
 html.no-svg footer #additional-info h2:before {
@@ -872,7 +864,7 @@ html.yui3-js-enabled {
       }
 
       .accordion-button {
-        background: url(http://www.canonical.com/static/img/icons/icon-arrow-down.svg) no-repeat scroll right 3px transparent;
+        background: url('https://assets.ubuntu.com/v1/7a7e0d52-icon-arrow-down.png') no-repeat scroll right 3px transparent;
         color: $cool_grey;
         display: block;
         font-size: 16px;
@@ -883,7 +875,7 @@ html.yui3-js-enabled {
 
     &.open {
       .accordion-button {
-        background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-up.svg);
+        background-image: url('https://assets.ubuntu.com/v1/07d312d7-icon-arrow-up.png');
         margin-bottom: 10px;
       }
 
@@ -896,12 +888,12 @@ html.yui3-js-enabled {
   html.yui3-js-enabled.opera-mini .tabbed-content,
   html.yui3-js-enabled.no-svg .tabbed-content {
     .accordion-button {
-      background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-right.png)
+      background-image: url('https://assets.ubuntu.com/v1/7a7e0d52-icon-arrow-down.png')
     }
 
     &.open {
       .accordion-button {
-        background-image: url(http://www.canonical.com/static/img/icons/icon-arrow-up.png);
+        background-image: url('https://assets.ubuntu.com/v1/07d312d7-icon-arrow-up.png');
       }
     }
   }
@@ -968,10 +960,10 @@ html.yui3-js-enabled.opera-mini {
 html.opera-mini,
 html.no-svg {
   .tabbed-content .accordion-button {
-    background-image: url(http://www.canonical.com/static/img/arrow_down_9fa097.png);
+    background-image: url('https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg');
   }
   .tabbed-content.open .accordion-button {
-    background-image: url(http://www.canonical.com/static/img/arrow_up_9fa097.png);
+    background-image: url('https://assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg');
   }
 }
 
@@ -1008,7 +1000,7 @@ footer #nav-global h2 {
 
 footer #nav-global h2 span {
   @include background_size(100% 100%);
-  background-image: url("http://www.canonical.com/static/img/arrow_down_9fa097.svg");
+  background-image: url("https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg");
   background-position: 0 2px;
   background-repeat: no-repeat;
   clear: none;
@@ -1020,7 +1012,7 @@ footer #nav-global h2 span {
 }
 
 footer #nav-global h2.active span {
-  background-image: url("http://www.canonical.com/static/img/arrow_up_9fa097.svg");
+  background-image: url('https://assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg');
   background-position: 0 0;
 }
 
@@ -1078,7 +1070,7 @@ footer #nav-global {
 
   h2:before {
     @include background_size(14px 14px);
-    background-image: url('http://www.canonical.com/static/img/external-link-9fa097.svg');
+    background-image: url('https://assets.ubuntu.com/v1/e1b12fdd-external-link-9fa097.svg');
     background-repeat: no-repeat;
     content: "";
     display: inline-block;
@@ -1158,8 +1150,8 @@ footer #nav-global {
 
     &:before {
       @include background_size(14px 14px);
-      background-image: url('http://www.canonical.com/static/img/external-link-grey.png');
-      background-image: url('http://www.canonical.com/static/img/external-link-9fa097.svg'), none;
+      background-image: url('https://assets.ubuntu.com/v1/e1b12fdd-external-link-grey.svg?fmt=png');
+      background-image: url('https://assets.ubuntu.com/v1/e1b12fdd-external-link-grey.svg'), none;
       background-repeat: no-repeat;
       content: "";
       display: inline-block;
@@ -1172,7 +1164,7 @@ footer #nav-global {
 
     span {
       @include background_size(100% 100%);
-      background-image: url("http://www.canonical.com/static/img/arrow_down_9fa097.svg");
+      background-image: url('https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg');
       background-position: 0 2px;
       background-repeat: no-repeat;
       clear: none;
@@ -1184,7 +1176,7 @@ footer #nav-global {
     }
 
     &.active span {
-      background-image: url("http://www.canonical.com/static/img/arrow_up_9fa097.svg");
+      background-image: url('https://assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg');
       background-position: 0 0;
     }
   }
@@ -1270,20 +1262,20 @@ html.no-svg {
   footer #nav-global {
 
     h2 span {
-      background-image: url("http://www.canonical.com/static/img/arrow_down_9fa097.png");
+      background-image: url('https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg');
     }
     h2.active span {
-      background-image: url("http://www.canonical.com/static/img/arrow_up_9fa097.png");
+      background-image: url('https://assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg');
     }
     h2:before {
-      background-image: url('http://www.canonical.com/static/img/external-link.png');
+      background-image: url('https://assets.ubuntu.com/v1/7ff8d0ce-external-link.svg');
     }
   }
   #additional-info h2.active span {
-    background-image: url("http://www.canonical.com/static/img/arrow_up_9fa097.png");
+    background-image: url('https://assets.ubuntu.com/v1/a41d8313-arrow_up_9fa097.svg');
   }
   #additional-info h2 span {
-    background-image: url("http://www.canonical.com/static/img/arrow_down_9fa097.png");
+    background-image: url('https://assets.ubuntu.com/v1/0bb13297-arrow_down_9fa097.svg');
   }
 
 }
@@ -1555,7 +1547,7 @@ html.no-svg {
       p {
         background-position: 100% 5px;
         background-repeat: no-repeat;
-        background: url(http://www.canonical.com/static/img/pictograms/image-footer-ubuntu.svg);
+        background: url('https://assets.ubuntu.com/v1/83d13882-image-footer-ubuntu.svg');
         font-size: 1.219em; /*1.25em;*/
         min-height: 150px;
         padding-right: 150px;
@@ -1669,7 +1661,7 @@ body.error-page {
         position: relative;
       }
       span {
-        background: url(../img/error/image-quote-154.png);
+        background: url('https://assets.ubuntu.com/v1/caa44c93-image-quote-154.png');
         color: #fff;
         display: none;
         font-size: 90px;
