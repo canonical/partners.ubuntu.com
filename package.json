@@ -13,6 +13,6 @@
   ],
   "author": "Canonical webteam",
   "dependencies": {
-    "ubuntu-vanilla-theme": "0.0.18"
+    "ubuntu-vanilla-theme": "0.0.20"
   }
 }
