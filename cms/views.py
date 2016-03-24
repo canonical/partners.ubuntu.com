@@ -44,7 +44,7 @@ def add_default_values_to_context(context, request):
     path_list = [p for p in request.path.split('/') if p]
     for i, path, in enumerate(path_list):
         level = "level_%s" % str(i+1)
-        context[level] = path
+        context[level] = path.lower()
     context['STATIC_URL'] = settings.STATIC_URL
     return context
 
@@ -165,7 +165,7 @@ def partner_view(request, slug):
 
     partner = get_object_or_404(
         Partner,
-        slug=slug,
+        slug=slug.lower(),
         published=True,
         dedicated_partner_page=True
     )
