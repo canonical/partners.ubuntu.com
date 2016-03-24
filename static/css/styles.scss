@@ -241,6 +241,10 @@ core scss files are in /sites/core/static/css
   }
 }
 
+.video-container {
+  padding-bottom: 48%;
+}
+
 .hide {
   display: none;
 }
@@ -459,59 +463,6 @@ html.opera-mini {
   .strip {
     width: 100%;
     display: block;
-  }
-}
-
-/* @section home
--------------------------------------------------------------- */
-.home {
-  .wrapper {
-    width: 100%;
-    background: none;
-  }
-  #main-content {
-    background: none;
-    box-shadow: none;
-  }
-
-  .strip-inner-wrapper {
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0 8px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    box-sizing: border-box;
-    margin: 0 auto;
-    max-width: 984px;
-    float: none;
-    position: relative;
-  }
-
-  .row {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  @media only screen and (min-width : 768px) {
-    .row-hero {
-      min-height: 440px;
-    }
-
-    .strip-inner-wrapper {
-      padding: 0 30px;
-    }
-  }
-
-  @media only screen and (min-width : 984px) {
-    .strip-inner-wrapper {
-      padding: 0;
-    }
-
-    .cookie-policy .wrapper {
-      width: 984px;
-    }
   }
 }
 
@@ -1703,5 +1654,114 @@ body.error-page {
   }
   body.error-page #main-content .hero-box span {
     display: block;
+  }
+}
+
+/* @section featured partner
+-------------------------------------------------------------- */
+.full-width {
+  .wrapper {
+    width: 100%;
+    background: none;
+  }
+
+  #main-content {
+    background: none;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .strip-inner-wrapper {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0 8px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 984px;
+    float: none;
+    position: relative;
+  }
+
+  .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media only screen and (min-width : 768px) {
+    .row-hero {
+      min-height: 440px;
+    }
+
+    .strip-inner-wrapper {
+      padding: 0 30px;
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .strip {
+      padding: 60px 40px;
+    }
+
+    .strip-inner-wrapper {
+      padding: 0;
+    }
+
+    .cookie-policy .wrapper {
+      width: 984px;
+    }
+  }
+}
+
+.ibm {
+  .banner {
+    box-shadow: none;
+  }
+
+  .hero {
+    background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=768');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &--text {
+      background-color: rgba(255, 255, 255, .85);
+      max-width: 500px;
+      padding: 20px;
+    }
+  }
+
+  @media only screen and (min-width : 768px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=984');
+      background-size: cover;
+      margin-top: -30px;
+      min-height: 42vw;
+
+      &--text {
+        background-color: rgba(255, 255, 255, .85);
+        margin: 50px 0 0 0;
+        padding: 40px;
+      }
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500');
+    }
+  }
+}
+
+.dell .cms-text {
+  background-color: #fff;
+}
+
+.asus .hero {
+  background-color: #fff;
+  @media only screen and (min-width : 984px) {
+    margin-top: -30px;
   }
 }

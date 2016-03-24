@@ -209,12 +209,33 @@ class Tag(models.Model):
 
 class Text(models.Model):
     partner = models.ForeignKey(Partner)
+    header = models.TextField()
+    body = models.TextField()
     image_url = models.URLField(
         help_text="A URL for an image to appear alongside the text"
     )
-    header = models.TextField()
-    body = models.TextField()
+    video_url = models.URLField(
+        help_text="A Youtube video URL. Note: This will override any image for this text block.",
+        blank=True,
+        null=True
+    )
     read_more_link = models.URLField(blank=True, null=True)
+    read_more_link_text = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="The content of the field's link. Leave blank for 'read more'"
+    )
+    read_more_cta = models.BooleanField(
+        help_text=(
+            "Should the 'read more' link be a CTA button?"
+        ),
+        default=False
+    )
+    insights_tag = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Articles matching this insigts tag will be included in the block. Leave blank for no insights feed."
+    )
 
     def __unicode__(self):
         return unicode(self.header)
