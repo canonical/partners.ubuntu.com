@@ -47,7 +47,7 @@
             {% endif %}
                 <h2>{{ text.fields.header }}</h2>
                 {{ text.fields.body|markdown }}
-                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %} class="link-cta-ubuntu"{% endif %}>{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %} class="link-cta-ubuntu"{% endif %} onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ text.fields.header }} row link');">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
             </div>
             {% if forloop.counter|divisibleby:2 %}
             {% else %}
@@ -101,7 +101,7 @@
             <h2>Links</h2>
             <ul class="no-bullets">
                 {% for link in partner.links %}
-                <li><a class="external" href="{{ link.fields.url }}">{{ link.fields.text }}</a></li>
+                <li><a class="external" href="{{ link.fields.url }}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ link.fields.text }} link');">{{ link.fields.text }}</a></li>
                 {% endfor %}
             </ul>
         </div>
