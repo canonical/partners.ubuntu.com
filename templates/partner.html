@@ -6,112 +6,128 @@
 {% block meta_description %}Find or become and Ubuntu partner, and benefit from the support of Canonical, the company set up to guide Ubuntu's enterprise adoption.{% endblock %}
 {% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, IaaS, PaaS, SaaS, server, ISV, IHV, OEM, ODM, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
 
-{% block extra_body_class %}partner{% endblock %}
+{% block extra_body_class %}featured-partner full-width{% endblock %}
+
+{% block head_extra %}
+<script src="//assets.ubuntu.com/v1/c954db4a-jfeed_prm.js"></script>
+{% endblock %}
 
 {% block content %}
-<div class="row hero equal-height{% if partner.links or partner.insights_tags %}{% else %} no-border{% endif %}">
-	<div class="eight-col">
-		<h1>{{ partner.name }}</h1>
-		{% if partner.long_description %}
-		{{ partner.long_description|markdown|linebreaks }}
-		{% else %}
-		{{ partner.short_description|markdown|linebreaks }}
-		{% endif %}
-		{% if partner.partner_website %}<p><a href="{{ partner.partner_website }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website link');">{{ partner.name }} website</a></p>{% endif %}
-	</div>
-	<div class="four-col last-col align-center align-vertically">
-		{% if partner.partner_website %}<a title="Vist the {{ partner.name }} website" href="{{ partner.partner_website }}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website logo link');"><img src="{{ partner.logo }}" alt="{{ partner.name }} logo" /></a>{% else %}<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />{% endif %}
-	</div>
+<div class="row strip hero{% if partner.links or partner.insights_tags %}{% else %} no-border{% endif %}">
+    <div class="strip-inner-wrapper">
+        <div class="eight-col hero--text">
+            {% if partner.long_description %}
+            {{ partner.long_description|markdown }}
+            {% else %}
+            <h1>{{ partner.name }}</h1>
+            {{ partner.short_description|markdown }}
+            {% if partner.partner_website %}<p><a href="{{ partner.partner_website }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website link');">{{ partner.name }} website</a></p>{% endif %}
+            {% endif %}
+        </div>
+        {% if not partner.long_description %}
+        <div class="four-col last-col align-center">
+            {% if partner.partner_website %}<a title="Vist the {{ partner.name }} website" href="{{ partner.partner_website }}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website logo link');"><img src="{{ partner.logo }}" alt="{{ partner.name }} logo" /></a>{% else %}<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />{% endif %}
+        </div>
+        {% endif %}
+    </div>
 </div>
 
 {% if partner.texts %}
-{% for text in partner.texts %}
-<div class="row equal-height">
-	{% if forloop.counter|divisibleby:2 %}
-	<div class="four-col align-center align-vertically">
-		{% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" />{% endif %}
-	</div>
-	<div class="eight-col last-col">
-	{% else %}
-	<div class="eight-col">
-	{% endif %}
-		<h2>{{ text.fields.header }}</h2>
-		{{ text.fields.body|linebreaks }}
-		{% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}">Read more&nbsp;&rsaquo;</a></p>{% endif %}
-	</div>
-	{% if forloop.counter|divisibleby:2 %}
-	{% else %}
-	<div class="last-col four-col align-center align-vertically">
-		{% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" />{% endif %}
-	</div>
-	{% endif %}
-</div><!-- /row -->
+{% for text in partner.texts|dictsort:"pk" %}
+<div class="row strip{% if forloop.counter|divisibleby:2 %} strip-light{% endif %} cms-text">
+    <div class="strip-inner-wrapper">
+        <div class="twelve-col">
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="four-col">
+                {% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" class="cms-text--image" />{% endif %}
+            </div>
+            <div class="eight-col last-col">
+            {% else %}
+            <div class="eight-col cms-text--content">
+            {% endif %}
+                <h2>{{ text.fields.header }}</h2>
+                {{ text.fields.body|markdown }}
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %}class="link-cta-ubuntu"{% endif %}>{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+            {% else %}
+            <div class="last-col four-col">
+                {% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" class="cms-text--image" />{% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% if text.fields.insights_tag %}
+        <div id="articles-{{ forloop.counter }}" class="six-col"></div>
+        <script>
+          $(window).load(function(){
+            loadRSSFeed('articles-{{ forloop.counter }}', '{{ text.fields.insights_tag }}', 5);
+          });
+        </script>
+        {% endif %}
+        {% if text.fields.video_url %}
+        <div class="five-col prepend-one last-col">
+            <div class="video-container">
+                <iframe width="442" height="249" src="{{text.fields.video_url}}?rel=0&amp;wmode=opaque&amp;modestbranding=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
 {% endfor %}
 {% endif %}
 
 {% if partner.quotes %}
-<div class="row equal-height">
-	{% for quote in partner.quotes %}
-	<div class="box six-col{% if forloop.counter|divisibleby:2 %} last-col{% endif %}">
-		<blockquote class="pull-quote">
-			<p><span>&ldquo;</span>{{ quote.fields.text }}<span>&rdquo;</span></p>
-			<p><cite>{{ quote.fields.attribution }}</cite></p>
-		</blockquote>
-	</div>
-	{% endfor %}
-</div><!-- /row -->
+<div class="row strip">
+    <div class="strip-inner-wrapper equal-height">
+        {% for quote in partner.quotes %}
+        <div class="box six-col{% if forloop.counter|divisibleby:2 %} last-col{% endif %}">
+            <blockquote class="pull-quote">
+                <p><span>&ldquo;</span>{{ quote.fields.text }}<span>&rdquo;</span></p>
+                <p><cite>{{ quote.fields.attribution }}</cite></p>
+            </blockquote>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endif %}
 
-{% if partner.links or partner.insights_tags %}<div class="row no-border">{% endif %}
-	{% if partner.links %}
-	<div class="six-col">
-		<h2>Links</h2>
-		<ul class="no-bullets">
-			{% for link in partner.links %}
-			<li><a class="external" href="{{ link.fields.url }}">{{ link.fields.text }}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
-	{% endif %}
-	{% if partner.insights_tags %}
-	<div class="six-col last-col">
-		<h2>Further reading</h2>
-		<div id="insights"></div>
-	</div>
-	{% endif %}
-{% if partner.links or partner.insights_tags %}</div><!-- /row -->{% endif %}
+{% if partner.links or partner.insights_tags %}
+<div class="row strip">
+    <div class="strip-inner-wrapper">
+{% endif %}
+        {% if partner.links %}
+        <div class="six-col">
+            <h2>Links</h2>
+            <ul class="no-bullets">
+                {% for link in partner.links %}
+                <li><a class="external" href="{{ link.fields.url }}">{{ link.fields.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if partner.insights_tags %}
+        <div class="six-col last-col">
+            <h2>Further reading</h2>
+            <div id="insights"></div>
+        </div>
+        {% endif %}
+{% if partner.links or partner.insights_tags %}
+    </div>
+</div>
+{% endif %}
 
-{% include "templates/_contextual-footer.html" %}
+<div class="row strip no-border strip-light">
+    <div class="strip-inner-wrapper">
+        {% include "templates/_contextual-footer.html" with no_wrapper=True %}
+    </div>
+</div>
 
 {% if partner.insights_tags %}
-  {% block head_extra %}
-  <script src="https://www.google.com/jsapi"></script>
-  <script>google.load("feeds", "1")</script>
-  {% endblock %}
   <script>
-    var feedcontainer2=document.getElementById("insights")
-    var feedurl2=document.location.protocol+"//insights.ubuntu.com/tag/{% for tag in partner.insights_tags %}{{ tag.fields.tag }}{% endfor %}/feed/"
-    var feedlimit2=3
-    var rssoutput="<ul class='no-bullets smaller'>"
-      function rssfeedsetup2(){
-        var feedpointer2=new google.feeds.Feed(feedurl2) //Google Feed API method
-            feedpointer2.setNumEntries(feedlimit2) //Google Feed API method
-            feedpointer2.load(displayfeed2) //Google Feed API method
-      }
-
-      function displayfeed2(result){
-        if (!result.error){
-          var thefeeds2=result.feed.entries
-          for (var i=0; i<thefeeds2.length; i++){
-            rssoutput+="<li><a class='external' href='" + thefeeds2[i].link + "'>" + thefeeds2[i].title + "</a></li>"}
-            rssoutput+="</ul>"
-            feedcontainer2.innerHTML=rssoutput
-        }
-      }
-        
-      window.onload=function(){
-        rssfeedsetup2()
-      }
+    $(window).load(function(){
+      loadRSSFeed('insights', '{{ text.insights_tags }}', 5);
+    });
   </script>
  {% endif %}
 
