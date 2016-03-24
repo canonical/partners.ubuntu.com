@@ -44,6 +44,7 @@
 
 <!-- modernizr -->
 <script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 {% block head_extra %}{% endblock %}
 
@@ -51,9 +52,9 @@
 
 <body class="{% if level_1 != "" %}{% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}{% endif %}{% if level_2 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}{% endif %}{% if level_3 %} {% if level_1 == '2012' %}body-{% endif %}{{ level_1 }}-{{ level_2 }}-{{ level_3 }} {% endif %} {% include "templates/body-class.html" %}{% if extra_body_class != "" %} {% block extra_body_class %}{% endblock %}{% endif %}" itemscope itemtype="http://schema.org/Product">
 
-<header class="banner global" role="banner">
+<header class="banner global">
 {% block header_banner %}
-	<nav role="navigation" class="nav-primary nav-right">
+	<nav class="nav-primary nav-right">
 		<div class="logo">
 			<a class="logo-ubuntu" href="/">
 				<img width="106" height="25" alt="" src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/logos/logo-ubuntu-orange.svg">
