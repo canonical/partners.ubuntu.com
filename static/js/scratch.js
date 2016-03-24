@@ -207,9 +207,6 @@ loadRSSFeed = function(id, tag, limit, url, title) {
     feedURL += "?tag=" + tag;
   }
 
-///////######################### TEST CODE ###################//////////////
-  feedURL = "http://stmgrts.org.uk/taleo/insights_main.xml"
-///////######################### TEST CODE ###################//////////////
   if (limit) {
     var feedLimit = limit;
   } else {
