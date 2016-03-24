@@ -47,7 +47,7 @@
             {% endif %}
                 <h2>{{ text.fields.header }}</h2>
                 {{ text.fields.body|markdown }}
-                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %}class="link-cta-ubuntu"{% endif %}>{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %} class="link-cta-ubuntu"{% endif %}>{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
             </div>
             {% if forloop.counter|divisibleby:2 %}
             {% else %}
