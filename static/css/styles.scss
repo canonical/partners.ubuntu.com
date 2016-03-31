@@ -516,6 +516,12 @@ ul.inline-logos li img {
     border-color: $ubuntu_orange;
   }
 
+
+  .prioritisedResults li.last-item,
+  .prioritisedResults li:last-of-type {
+    margin-bottom: 20px;
+  }
+
   .results {
     .hide {
       display: none;
