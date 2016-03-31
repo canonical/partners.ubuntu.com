@@ -211,11 +211,18 @@ class Text(models.Model):
     partner = models.ForeignKey(Partner)
     header = models.TextField()
     body = models.TextField()
+    html_class = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="The class added to the generated HTML for this section"
+    )
     image_url = models.URLField(
-        help_text="A URL for an image to appear alongside the text"
+        help_text="A URL for an image to appear alongside the text",
+        blank=True,
+        null=True
     )
     video_url = models.URLField(
-        help_text="A Youtube video URL. Note: This will override any image for this text block.",
+        help_text="A Youtube video URL.",
         blank=True,
         null=True
     )
@@ -228,6 +235,12 @@ class Text(models.Model):
     read_more_cta = models.BooleanField(
         help_text=(
             "Should the 'read more' link be a CTA button?"
+        ),
+        default=False
+    )
+    read_more_external = models.BooleanField(
+        help_text=(
+            "Does the 'read more' link to an external site (other canonical sites or subdomains count as external)?"
         ),
         default=False
     )
