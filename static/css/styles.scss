@@ -1771,3 +1771,82 @@ body.error-page {
     margin-top: -30px;
   }
 }
+
+.microsoft {
+  .banner {
+    box-shadow: none;
+  }
+
+  .hero {
+    background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=768');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &--text {
+      background-color: rgba(255, 255, 255, .85);
+      max-width: 500px;
+      padding: 20px;
+    }
+  }
+
+  blockquote {
+    font-size: 1.1em;
+    line-height: 1.4em;
+    padding: 10px 20px;
+
+    p {
+
+      &::before {
+        color: $ubuntu-orange;
+        content: '“';
+        font-weight: bold;
+        margin-right: 2px;
+      }
+
+      &::after {
+        color: $ubuntu-orange;
+        content: '”';
+        font-weight: bold;
+        margin-left: 2px;
+      }
+    }
+  }
+
+  @media only screen and (min-width : 768px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=984');
+      background-size: cover;
+      margin-top: -30px;
+      min-height: 42vw;
+
+      &--text {
+        background-color: rgba(255, 255, 255, .85);
+        margin: 50px 0 0 0;
+        padding: 40px;
+      }
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=1500');
+    }
+  }
+
+  .azure-stack {
+    background-image: url('https://assets.ubuntu.com/v1/72be8745-azure-stack-hills.png');
+    background-position: 95% 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 220px;
+
+    @media only screen and (min-width : 768px) {
+      background-size: auto;
+      padding-bottom: 200px;
+    }
+
+    @media only screen and (min-width : 1400px) {
+      padding-bottom: 60px;
+    }
+  }
+}
