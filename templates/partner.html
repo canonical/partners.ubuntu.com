@@ -47,11 +47,7 @@
             {% endif %}
                 <h2>{{ text.fields.header }}</h2>
                 {{ text.fields.body|markdown }}
-<<<<<<< HEAD
-                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %} class="link-cta-ubuntu"{% endif %} onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ text.fields.header }} row link', 'eventValue' : undefined });">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
-=======
-                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}" class="{% if text.fields.read_more_cta %}link-cta-ubuntu"{% else %}{% if text.fields.read_more_external %} external{% endif %}{% endif %}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ text.fields.header }} row link');">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta and not text.fields.read_more_external %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
->>>>>>> 15f2d170c042ba62a69d635eaa58549920d7d864
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}" class="{% if text.fields.read_more_cta %}link-cta-ubuntu"{% else %}{% if text.fields.read_more_external %} external{% endif %}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ text.fields.header }} row link', 'eventValue' : undefined });">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta and not text.fields.read_more_external %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
             </div>
             {% if forloop.counter|divisibleby:2 %}
             {% else %}
