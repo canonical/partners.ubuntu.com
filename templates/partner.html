@@ -34,11 +34,11 @@
 
 {% if partner.texts %}
 {% for text in partner.texts|dictsort:"pk" %}
-<div class="row strip{% if forloop.counter|divisibleby:2 %} strip-light{% endif %} cms-text">
+<div class="row strip{% if forloop.counter|divisibleby:2 %} strip-light{% endif %} cms-text{% if text.fields.html_class%} {{ text.fields.html_class }}{% endif %}">
     <div class="strip-inner-wrapper">
-        <div class="twelve-col">
+        <div class="twelve-col equal-height">
             {% if forloop.counter|divisibleby:2 %}
-            <div class="four-col">
+            <div class="four-col align-center align-vertically">
                 {% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" class="cms-text--image" />{% endif %}
             </div>
             <div class="eight-col last-col">
@@ -47,11 +47,15 @@
             {% endif %}
                 <h2>{{ text.fields.header }}</h2>
                 {{ text.fields.body|markdown }}
+<<<<<<< HEAD
                 {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}"{% if text.fields.read_more_cta %} class="link-cta-ubuntu"{% endif %} onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ text.fields.header }} row link', 'eventValue' : undefined });">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+=======
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}" class="{% if text.fields.read_more_cta %}link-cta-ubuntu"{% else %}{% if text.fields.read_more_external %} external{% endif %}{% endif %}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ text.fields.header }} row link');">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta and not text.fields.read_more_external %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+>>>>>>> 15f2d170c042ba62a69d635eaa58549920d7d864
             </div>
             {% if forloop.counter|divisibleby:2 %}
             {% else %}
-            <div class="last-col four-col">
+            <div class="last-col four-col align-center align-vertically">
                 {% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" class="cms-text--image" />{% endif %}
             </div>
             {% endif %}
@@ -71,7 +75,6 @@
             </div>
         </div>
         {% endif %}
-
     </div>
 </div>
 {% endfor %}
