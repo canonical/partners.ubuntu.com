@@ -21,12 +21,12 @@
             {% else %}
             <h1>{{ partner.name }}</h1>
             {{ partner.short_description|markdown }}
-            {% if partner.partner_website %}<p><a href="{{ partner.partner_website }}" class="external" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website link');">{{ partner.name }} website</a></p>{% endif %}
+            {% if partner.partner_website %}<p><a href="{{ partner.partner_website }}" class="external"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} website link', 'eventValue' : undefined });">{{ partner.name }} website</a></p>{% endif %}
             {% endif %}
         </div>
         {% if not partner.long_description %}
         <div class="four-col last-col align-center">
-            {% if partner.partner_website %}<a title="Vist the {{ partner.name }} website" href="{{ partner.partner_website }}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page Partner Website logo link');"><img src="{{ partner.logo }}" alt="{{ partner.name }} logo" /></a>{% else %}<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />{% endif %}
+            {% if partner.partner_website %}<a title="Vist the {{ partner.name }} website" href="{{ partner.partner_website }}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} website logo link', 'eventValue' : undefined });"><img src="{{ partner.logo }}" alt="{{ partner.name }} logo" /></a>{% else %}<img src="{{ partner.logo }}" alt="{{ partner.name }} logo" />{% endif %}
         </div>
         {% endif %}
     </div>
@@ -47,7 +47,7 @@
             {% endif %}
                 <h2>{{ text.fields.header }}</h2>
                 {{ text.fields.body|markdown }}
-                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}" class="{% if text.fields.read_more_cta %}link-cta-ubuntu"{% else %}{% if text.fields.read_more_external %} external{% endif %}{% endif %}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ text.fields.header }} row link');">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta and not text.fields.read_more_external %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
+                {% if text.fields.read_more_link %}<p><a href="{{ text.fields.read_more_link }}" class="{% if text.fields.read_more_cta %}link-cta-ubuntu"{% else %}{% if text.fields.read_more_external %} external{% endif %}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ text.fields.header }} row link', 'eventValue' : undefined });">{% if text.fields.read_more_link_text %}{{text.fields.read_more_link_text}}{% else %}Read more{% endif %}{% if not text.fields.read_more_cta and not text.fields.read_more_external %}&nbsp;&rsaquo;{% endif %}</a></p>{% endif %}
             </div>
             {% if forloop.counter|divisibleby:2 %}
             {% else %}
@@ -100,7 +100,7 @@
             <h2>Links</h2>
             <ul class="no-bullets">
                 {% for link in partner.links %}
-                <li><a class="external" href="{{ link.fields.url }}" onclick="ga('send', 'event', 'External Link', '{{ partner.name }} partner page', 'From {{ partner.name }} partner page {{ link.fields.text }} link');">{{ link.fields.text }}</a></li>
+                <li><a class="external" href="{{ link.fields.url }}"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ link.fields.text }} link', 'eventValue' : undefined });">{{ link.fields.text }}</a></li>
                 {% endfor %}
             </ul>
         </div>
