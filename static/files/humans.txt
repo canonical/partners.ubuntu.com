@@ -29,8 +29,8 @@
   Heads:           Peter Mahnke and Alejandra Obregon
   Developer:       Anthony Dillon
   Developer:       Barry McGee
-  Developer:       Karl Williams
   Developer:       Graham Bancroft
+  Developer:       Karl Williams
   Developer:       Richard McCartney
   Developer:       Robin Winslow
   Developer:       Will Moggridge
