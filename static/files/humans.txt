@@ -1,0 +1,46 @@
+              %(((((((((((%
+          (((((((((((((((((((((
+       (((((((((((((((((((())(((((
+     ((((((((((((((((((((.    )(((((
+   (((((((((((((((,   ,((     )(((((((
+  (((((((((((/(/        *(   )(((((((((
+ ((((((((((     ( .///.       )(((((((((
+%(((((((((     (((((((((((     )((((((((%
+(((((())(    /((((((((((((((    )((((((((
+((((,   )/  .(((((((((((((((.   ,)(((((((
+(((,     )  /((((((((((((((((    )(((((((
+((((,   )(  .(((((((((((((((.   ,)(((((((
+(((((())(    /((((((((((((((    )((((((((
+%(((((((((     (((((((((((     ))(((((((%
+ ((((((((((      (./(/.       )(((((((((
+  ((((((((((((          ,(   )(((((((((
+   (((((((((((((((,   ,/(     )(((((((
+     ((((((((((((((((((((.    )(((((
+       ((((((((((((((((((((())((((
+          (((((((((((((((((((((
+              %(((((((((((%
+
+/* TEAM */
+  Title:           Ubuntu partners
+  Site:            partners.ubuntu.com
+  Contact:         webmaster@ubuntu.com
+  Location:        London, United Kingdom
+
+  Heads:           Peter Mahnke and Alejandra Obregon
+  Developer:       Anthony Dillon
+  Developer:       Barry McGee
+  Developer:       Karl Williams
+  Developer:       Graham Bancroft
+  Developer:       Richard McCartney
+  Developer:       Robin Winslow
+  Developer:       Will Moggridge
+  Designer:        Inayaili de Leon
+  Project manager: Magdalena Mirowicz
+  UX designer:     Francesca Granato
+
+/* SITE */
+  Last update:     26 April 2016
+  Language:        English
+  Standards:       HTML5, CSS3
+  Components:      Django, Moderniser, jQuery
+  IDEs:            Atom, Coda, Vim, emacs
