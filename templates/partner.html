@@ -58,8 +58,10 @@
         </div>
         {% if text.fields.insights_tag %}
         <div class="row no-border">
-            <h3>Further reading</h3>
-            <div id="articles-{{ forloop.counter }}" class="twelve-col"></div>
+            <div class="six-col">
+                <h3>Further reading</h3>
+                <div id="articles-{{ forloop.counter }}"></div>
+            </div>
         </div>
         <script>
           $(window).load(function(){
