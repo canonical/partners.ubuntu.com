@@ -107,8 +107,8 @@ def partner_programmes(request, name):
             featured=True
         ),
 
-        "reseller": base_partners.filter(
-            programme__name="Reseller"
+        "channel": base_partners.filter(
+            programme__name="channel"
         ),
 
         "retail": base_partners.filter(
