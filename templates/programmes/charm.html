@@ -13,7 +13,12 @@
 <section class="row row-hero equal-height">
     <div class="six-col">
         <h1>Charm Partner Programme</h1>
-        <p>If you&rsquo;re an ISV or solution provider focused on the cloud or big data, you know how difficult it can be for your customers to realise the full value of your software. Releasing your solutions with Juju, the award-winning service orchestration tool from Canonical, can help your customers use your product at every stage; from the initial proof of concept, to development, through to full scale deployment.</p>
+        <p>If you&rsquo;re an Independent Software Vendor (ISV)  you know how
+        difficult it can be for your customers to realise the full value of your
+        software. Releasing your solutions with Juju, the award-winning
+        application modelling tool from Canonical, can help your customers use
+        your product at every stage, from proof of concept and development,
+        through to full scale deployment.</p>
         <p><a href="/contact-us">Find out more&nbsp;&rsaquo;</a></p>
     </div>
     <div class="five-col prepend-one last-col align-vertically">
@@ -22,6 +27,23 @@
 </section>
 
 {% include "block/_logo-list.html" with name="Charm partners" query="programme=charm partner programme" %}
+
+<section class="row">
+    <div class="eight-col">
+        <h2>The power of charms</h2>
+        <p>Juju lets you model, integrate and scale applications quickly and easily.
+        By creating a Juju charm for your product, you make it easy for administrators
+        and devops teams to integrate it with hundreds of other solutions.</p>
+        <p>Charms are sets of scripts that simplify the deployment and management
+        tasks of specific services. They can be written in any language and leverage
+        configuration management tools. Once a Charm has been created by your developers,
+        anyone can use it to unleash the full power of your software.</p>
+        <p>The Juju Charm Store has over 300 applications ready to use today. They
+        can even be combined in Bundles. If your application is commonly deployed
+        with other services (as most are) a customer can use a Charm Bundle to deploy
+        all the services together, wherever they need to run.</p>
+    </div>
+</section>
 
 <section class="row equal-height">
     <div class="seven-col append-one">
@@ -34,6 +56,47 @@
     </div>
 </section>
 
+<section class="row">
+    <div class="eight-col">
+        <h2>The benefits of membership</h2>
+    </div>
+    <div class="six-col">
+        <ul class="list-ubuntu">
+            <li>Tailored training on Charm creation and best practices.</li>
+            <li>Red carpet access to Juju engineers and are offered guidance
+            throughout the Charm development and review process, streamlining
+            the route to achieving Recommended Charm status for more prominent
+            display in the Juju Charm Store. </li>
+            <li>Increase your revenue opportunities as Juju charms and bundles
+            can be deployed on a huge range of platforms and servers including;
+            AWS, Azure, Google Cloud and on bare metal; x86, IBM POWER8 and
+            ARM servers.</li>
+        </ul>
+    </div>
+    <div class="six-col last-col">
+        <ul class="list-ubuntu">
+            <li>Enablement of multi-vendor turnkey solutions: Get introduced to
+            other partners of the ecosystem to model higher level solutions
+            answering even bigger challenges</li>
+            <li>Ubuntu website promotion, including being featured as a Charm Partner</li>
+            <li>Joint marketing, including blogs, social media, webinars and joint demos</li>
+        </ul>
+    </div>
+</section>
+
+<div class="row">
+    <div class="eight-col last-col">
+        <h2>Charms run everywhere Ubuntu does</h2>
+        <ul class="list-ubuntu">
+            <li>Charms can be used to deploy services on a huge range clouds such
+            as Amazon Web Services, Microsoft Azure, Google Compute Engine, IBM
+            Softlayer, Joyent and more</li>
+            <li>They work on all kinds of bare metal architectures: x86, IBM POWER8 and ARM</li>
+            <li>They work in containers like Docker, vmware and LXC.</li>
+        </ul>
+    </div>
+</div>
+
 <section class="row no-border strip-dark">
     <div class="eight-col">
         <h2>What&rsquo;s included?</h2>
@@ -41,37 +104,31 @@
     </div>
     <div class="six-col">
         <ul class="list-ubuntu">
-            <li>Inclusion in our <a href="https://jujucharms.com/" class="external">online charm database</a>, available for instant deployment</li>
+            <li>Inclusion in the <a href="https://jujucharms.com/" class="external">Juju Charm Store</a></li>
             <li>QA to ensure your charms meets the highest quality standards</li>
         </ul>
     </div>
     <div class="six-col last-col">
         <ul class="list-ubuntu">
             <li>Training and guidance on writing charms for your products</li>
-            <li>Co-marketing opportunities such as joint events, videos, blogs, PR and demos to potential customers</li>
+            <li>Co-marketing opportunities</li>
         </ul>
     </div>
 </section>
 
-<section class="row no-border">
-    <div class="eight-col">
-        <h2>Benefits</h2>
-    </div>
-    <div class="six-col">
+<div class="row">
+    <div class="eight-col last-col">
+        <h2>Stringent quality testing</h2>
         <ul class="list-ubuntu">
-            <li>Optimise sales cycle by making it easy for potential clients to use Juju to spin up a proof of concept and start evaluating your products instantly. </li>
-            <li>Best practice is built into the charm, resulting in higher quality deployments and happier customers every time. </li>
-            <li>Increase your revenue opportunities as Juju charms and bundles can be deployed on a huge range of platforms and servers including; AWS, Azure, Google Cloud and on bare metal; x86, IBM POWER8 and ARM servers.</li>
+            <li>Learn how to write charms, and ensure that your charms meet quality standards</li>
+            <li>Use Juju’s integrated benchmarking solution to review how your
+            application performs on the various clouds and recommend best practices to your customers</li>
+            <li>Leverage our Cloud Weather Reporting tool to identify if your
+            application behaves as expected on all clouds</li>
         </ul>
     </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>Charms and bundles make it easy to get your products easily integrated into today&rsquo;s hottest technologies (e.g. cloud, scale-out,  Big Data, Docker, etc.) </li>
-            <li>Create better customer experiences as Juju charms simplify big, distributed systems.</li>
-            <li>Charms help you reduce costs as they are reusable, easy to deploy, and provide immediate integration with other charmed applications.</li>
-        </ul>
-    </div>
-</section>
+</div>
+
 {% include "templates/_contextual-footer.html" %}
 
 {% endblock %}
