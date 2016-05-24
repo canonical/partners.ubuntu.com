@@ -7,6 +7,8 @@ from django.template import RequestContext, loader, Context
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
+from django_yaml_redirects import load_redirects
+
 from cms.views import (
     partner_programmes, partner_view, PartnerView,
     find_a_partner, partners_json_view, customers_json_view
@@ -25,7 +27,9 @@ def handler500(request):
     t = loader.get_template('500.html')
     return HttpResponseServerError(t.render(Context({})))
 
-urlpatterns = patterns(
+urlpatterns = load_redirects()
+
+urlpatterns += patterns(
     '',
     url(r'^openid/', include('django_openid_auth.urls')),
     url(
