@@ -1,0 +1,65 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Ubuntu channel partners | {% endblock %}
+{% block meta_description %}Find or become and Ubuntu partner, and benefit from the support of Canonical, the company set up to guide Ubuntu's enterprise adoption.{% endblock %}
+{% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, IaaS, PaaS, SaaS, server, ISV, IHV, OEM, ODM, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, reseller, VAR, channel, developer{% endblock %}
+
+{% block second_level_nav_items %}
+    <nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Reseller" %}</nav>
+{% endblock second_level_nav_items %}
+
+{% block content %}
+<div class="row row-hero equal-height">
+    <div class="seven-col">
+        <h1>Ubuntu Channel Partners Programme</h1>
+        <p>Canonical works with channel partners around the world to ensure that
+        local Ubuntu expertise is available on every continent. From OpenStack
+        consulting and BootStack managed clouds to hardware sales and Ubuntu
+        Advantage service contracts, the opportunity for Canonical partners grows
+        by the day.</p>
+    </div>
+    <div class="five-col last-col align-center align-vertically">
+        <img src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/management/image-management.svg" alt="partner pictograms">
+    </div>
+</div>
+
+{% include "block/_logo-list.html" with name="Reseller partners" query="programme=reseller" %}
+
+<div class="row row-hero no-border equal-height">
+    <div class="eight-col">
+        <h2>Provide services with Canonical&rsquo;s backing</h2>
+        <p>Whether you’re a value-add reseller (VAR) or a systems integrator, the
+        Ubuntu channel programme provides valuable training and, most importantly,
+        direct access to the technology experts at Canonical. This enables you
+        and your team to deploy Ubuntu solutions for your customers with confidence
+        – and it gives you access to the highest level of service.</p>
+    </div>
+    <div class="four-col last-col align-center align-vertically">
+        <img class="priority-0" width="150" alt="Canonical Logo" src="http://assets.ubuntu.com/sites/ubuntu/latest/u/img/pictograms/picto-pack/picto-canonical.svg">
+    </div>
+</div>
+
+<div class="row no-border strip-dark">
+    <div class="eight-col append-four">
+        <h2>What&rsquo;s included?</h2>
+    </div>
+    <div class="six-col">
+        <ul class="list-ubuntu">
+            <li>Opportunities to profit from Ubuntu Advantage and BootStack support contracts</li>
+            <li>Joint lead generation and sharing</li>
+            <li>Access to Landscape and Autopilot, Canonical’s cloud management tools</li>
+            <li class="last-item">Technical and sales training for your customer-facing team</li>
+        </ul>
+    </div>
+    <div class="six-col last-col">
+        <ul class="list-ubuntu">
+            <li>Permission to use the Canonical and Ubuntu trademarks in your own materials</li>
+            <li>Inside information on forthcoming developments in Ubuntu</li>
+            <li class="last-item">Joint marketing opportunities</li>
+        </ul>
+    </div>
+</div>
+
+{% include "templates/_contextual-footer.html" %}
+
+{% endblock %}
