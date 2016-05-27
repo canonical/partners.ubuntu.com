@@ -194,9 +194,11 @@ core.autoLastItem = function() {
         }
         lastNode = node;
       });
-      lastNode.addClass('last-item');
-      y = 0;
-      lastNode = null;
+      if(lastNode){
+        lastNode.addClass('last-item');
+        y = 0;
+        lastNode = null;
+      }
     });
   }, 1000);
 };
