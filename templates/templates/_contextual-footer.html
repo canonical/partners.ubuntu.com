@@ -22,11 +22,28 @@
                 <p>Interested in becoming an Ubuntu partner? Talk to us today to learn more about our programmes.</p>
                 <p><a href="/contact-us">Talk to us about becoming a partner&nbsp;&rsaquo;</a></p>
             </div>
+        {% if level_2  == 'charm' %}
+            <div class="feature-two six-col last-col">
+                <h3>Further reading</h3>
+                <p><a class="external" href="http://insights.ubuntu.com/2016/02/21/charm-partner-programme/]">Charm Partner Programme datasheet</a></p>
+            </div>
+        {% else %}
+        {% if level_2  == 'public-cloud' %}
+            <div class="feature-two six-col last-col">
+                <h3>Further reading</h3>
+                <ul class="no-bullets">
+                  <li><a class="external" href="http://insights.ubuntu.com/2016/02/21/charm-partner-programme/">Ubuntu Certified Public Cloud programme datasheet</a></li>
+                  <li><a class="external" href="http://insights.ubuntu.com/2016/06/01/ebook-certified-ubuntu-cloud-guest/">Certified Ubuntu Cloud Guest eBook</a></li>
+                </ul>
+            </div>
+        {% else %}
             <div class="feature-two six-col last-col">
                 <h3>Partner programmes</h3>
                 <p>Do you offer different services to your customers? Learn more about other Ubuntu partner engagements.</p>
                 <p><a href="/programmes">Find the right programme for you&nbsp;&rsaquo;</a></p>
             </div>
+        {% endif %}
+        {% endif %}
         {% else %}
             <div class="feature-one six-col">
                 <h3>Become an Ubuntu partner</h3>
