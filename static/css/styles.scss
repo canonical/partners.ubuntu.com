@@ -1850,3 +1850,54 @@ body.error-page {
     }
   }
 }
+
+.amazon-web-services-llc, .aws {
+  .banner {
+    box-shadow: none;
+  }
+
+  .cms-text ul {
+    /* workaround for markdown cms content */
+    margin-bottom: 20px;
+
+    li {
+      list-style: none;
+      border-bottom: 1px dotted #888;
+      margin-bottom: 0;
+      padding: 10px 0;
+    }
+  }
+
+  .hero {
+    background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=768');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &--text {
+      background-color: rgba(255, 255, 255, .85);
+      max-width: 500px;
+      padding: 20px;
+    }
+  }
+
+  @media only screen and (min-width : 768px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=984');
+      background-size: cover;
+      margin-top: -30px;
+      min-height: 42vw;
+
+      &--text {
+        background-color: rgba(255, 255, 255, .85);
+        margin: 50px 0 0 0;
+        padding: 40px;
+      }
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .hero {
+      background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg');
+    }
+  }
+}
