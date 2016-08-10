@@ -1,4 +1,2 @@
 programmes/reseller/?: /programmes/channel
-amazon-web-services-llc: /aws
-amazon-web-services-llc/: /aws
-aws/: /aws
+amazon-web-services-llc/?: /aws

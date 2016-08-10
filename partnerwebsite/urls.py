@@ -65,5 +65,5 @@ urlpatterns += patterns(
     url(r'^thank-you$', PartnerView.as_view()),
     url(r'^find-a-partner$', find_a_partner),
     url(r'^partnering-with-us$', PartnerView.as_view()),
-    url(r'^(?P<slug>[-\w]+)$', partner_view),
+    url(r'^(?P<slug>[-\w]+)/?$', partner_view),
 )
