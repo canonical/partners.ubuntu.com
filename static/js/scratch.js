@@ -206,7 +206,7 @@ core.autoLastItem = function() {
 loadRSSFeed = function(id, tag, limit, url, title) {
   var feedURL = "https://insights.ubuntu.com/feed/";
   if (tag) {
-    feedURL += "?tags=" + tag;
+    feedURL += "?tag=" + tag;
   }
 
   if (limit) {
