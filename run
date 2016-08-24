@@ -23,7 +23,7 @@ if ! command -v docker >/dev/null 2>&1; then
     ==
 
     Please install Docker before continuing:
-    https://www.docker.com/products/overview#install_the_platform
+    https://www.docker.com/products/docker
     "
 fi
 if grep -q '^docker:' /etc/group && ! groups | grep -q '\bdocker\b'; then
