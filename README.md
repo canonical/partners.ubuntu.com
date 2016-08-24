@@ -1,21 +1,26 @@
-Ubuntu Partners
+[partners.ubuntu.com](http://partners.ubuntu.com)
 ===
 
-The Django-based website project for <http://partners.ubuntu.com>.
+The Django-based website project behind the Ubuntu Partners portal.
 
 Local development
 ---
 
-First, [install Docker](https://docs.docker.com/installation/). (For Ubuntu 14.04, try [this guide instead](https://robinwinslow.co.uk/2015/04/02/installing-docker-on-ubuntu/).)
+The simplest way to run the site for local development is to use
+[devrun](https://github.com/ubuntudesign/docker-devrun) as follows:
 
-Then, [install docker-compose](https://docs.docker.com/compose/) (all unixy systems: `sudo pip install docker-compose`)
+### Install Docker
+
+First ensure you [have Docker installed](https://www.docker.com/products/docker).
+
+On Ubuntu, you may find you need to [fix the DNS](https://robinwinslow.uk/files/2016/06/23/fix-docker-networking-dns/).
 
 ### Run local server
 
 Run the site on <http://localhost:8003> as follows:
 
 ``` bash
-make run  # Run docker containers, mapping server to port 8003
+./run  # Run the development server on port 8003
 ```
 
 With ♥ from Canonical
