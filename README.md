@@ -1,35 +1,32 @@
 [partners.ubuntu.com](http://partners.ubuntu.com)
 ===
 
-The Django-based website project behind the Ubuntu Partners portal.
+This is the code for the Ubuntu Partners website.
 
 Local development
 ---
 
-The simplest way to run the site for local development is to use
-[devrun](https://github.com/ubuntudesign/docker-devrun) as follows:
+To use this script you must have [Docker installed](https://www.docker.com/products/docker).
 
-### Install Docker
+### Run the server
 
-First ensure you [have Docker installed](https://www.docker.com/products/docker).
-
-On Ubuntu, you may find you need to [fix the DNS](https://robinwinslow.uk/files/2016/06/23/fix-docker-networking-dns/).
-
-### Run local server
-
-Run the site on <http://localhost:8003> as follows:
+From within the project folder, run:
 
 ``` bash
-./run  # Run the development server on port 8003
+./run  # Start the development server
 ```
 
-License
+This will run the site on <http://localhost:8003>.
+
+Licenses
 ---
 
-The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
+License for the content: [Creative Commons Attribution Share Alike version 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+License for the code: [Lesser GPL version 3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/)
 
 ---
 
-The champion for this project is @nottrobin.
+@nottrobin is this project's champion.
 
-With ♥ from Canonical
+With ♥ from Canonical.
