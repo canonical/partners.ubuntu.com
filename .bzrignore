@@ -1,9 +1,0 @@
-db.sqlite3
-.sass-cache
-distribute-0.6.34.tar.gz
-env
-cms.svg
-*.css
-static
-pip-cache
-*.pyc
