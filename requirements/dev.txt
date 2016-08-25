@@ -1,3 +1,0 @@
--r standard.txt
-ipdb==0.8
-pygraphviz==1.2
