@@ -1,21 +1,30 @@
-Ubuntu Partners
+[partners.ubuntu.com](http://partners.ubuntu.com)
 ===
 
-The Django-based website project for <http://partners.ubuntu.com>.
+This is the code for the Ubuntu Partners website.
 
 Local development
 ---
 
-First, [install Docker](https://docs.docker.com/installation/). (For Ubuntu 14.04, try [this guide instead](https://robinwinslow.co.uk/2015/04/02/installing-docker-on-ubuntu/).)
+To use this script you must have [Docker installed](https://www.docker.com/products/docker).
 
-Then, [install docker-compose](https://docs.docker.com/compose/) (all unixy systems: `sudo pip install docker-compose`)
+### Run the server
 
-### Run local server
-
-Run the site on <http://localhost:8003> as follows:
+From within the project folder, run:
 
 ``` bash
-make run  # Run docker containers, mapping server to port 8003
+./run  # Start the development server
 ```
 
-With ♥ from Canonical
+This will run the site on <http://localhost:8003>.
+
+Licenses
+---
+
+The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
+
+---
+
+@nottrobin is this project's champion.
+
+With ♥ from Canonical.
