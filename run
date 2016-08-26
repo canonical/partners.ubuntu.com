@@ -36,12 +36,16 @@ if grep -q '^docker:' /etc/group && ! groups | grep -q '\bdocker\b'; then
     "
 fi
 
+# Is this interactive?
+interactive=false
+if [ -t 1 ]; then interactive=true; fi
+
 ##
 # Run ubuntudesign/devrun with docker
 ##
 docker run $([ -f .env ] && echo "--env-file .env") \
   --volume /var/run/docker.sock:/var/run/docker.sock \
-  --tty --interactive \
+  $($interactive && echo "--tty --interactive") \
   --volume "`pwd`":"`pwd`" \
   --workdir "`pwd`" \
-  ubuntudesign/devrun:v1.2.0-rc2 $@
+  ubuntudesign/devrun:v1.2.0 $@
