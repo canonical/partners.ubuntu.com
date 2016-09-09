@@ -25,6 +25,6 @@ The content of this project is licensed under the [Creative Commons Attribution-
 
 ---
 
-@nottrobin is this project's champion.
+[nottrobin](https://github.com/nottrobin) is this project's champion.
 
 With ♥ from Canonical.
