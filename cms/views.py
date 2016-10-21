@@ -142,7 +142,7 @@ def partner_programmes(request, name):
         ),
 
         "charm": base_partners.filter(
-            programme__name="Charm Partner Programme"
+            programme__name="Charm partner programme"
         ),
     }
     distinct_partners = list(set(lookup_partners[name]))
