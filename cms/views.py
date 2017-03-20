@@ -145,7 +145,7 @@ def partner_programmes(request, name):
             programme__name="Charm partner programme"
         ),
     }
-    distinct_partners = list(set(lookup_partners[name]))
+    distinct_partners = list(lookup_partners[name])
     partners = distinct_partners[:max_num_of_partners]
     context = {'programme_partners': partners}
 
