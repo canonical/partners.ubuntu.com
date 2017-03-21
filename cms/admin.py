@@ -1,5 +1,9 @@
 from django.contrib import admin
 
+from cms.forms import (
+    PartnerForm,
+    TextForm,
+)
 from cms.models import (
     Partner, Technology, PartnerType, Programme, ServiceOffered,
     Quote, Link, InsightsTag, Tag, Text
@@ -32,6 +36,7 @@ class TagInline(admin.TabularInline):
 
 
 class PartnerAdmin(admin.ModelAdmin):
+    form = PartnerForm
 
     # Methods
     # ==
@@ -203,7 +208,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class TextAdmin(admin.ModelAdmin):
-    pass
+    form = TextForm
 
 
 admin.site.register(Partner, PartnerAdmin)
