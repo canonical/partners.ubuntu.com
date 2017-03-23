@@ -12,7 +12,7 @@ class PartnerForm(forms.ModelForm):
 
     def clean_logo(self):
         data = self.cleaned_data['logo']
-        if 'https://' not in data:
+        if data and 'https://' not in data:
             raise forms.ValidationError("Please only use https:// images.")
         return data
 
@@ -24,12 +24,12 @@ class TextForm(forms.ModelForm):
 
     def clean_image_url(self):
         data = self.cleaned_data['image_url']
-        if 'https://' not in data:
+        if data and 'https://' not in data:
             raise forms.ValidationError("Please only use https:// images.")
         return data
 
     def clean_video_url(self):
         data = self.cleaned_data['video_url']
-        if 'https://' not in data:
+        if data and 'https://' not in data:
             raise forms.ValidationError("Please only use https:// links.")
         return data
