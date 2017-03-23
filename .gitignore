@@ -11,6 +11,7 @@ pip-cache
 .bzr/
 *.css.map
 django-error.log
-.compose-project-name
 /static/css/
 npm-debug.log
+node_modules/
+.docker-project

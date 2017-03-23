@@ -18,6 +18,8 @@ From within the project folder, run:
 
 This will run the site on <http://localhost:8003>.
 
+For more detailed local development instructions, see [HACKING.md](HACKING.md).
+
 Licenses
 ---
 
