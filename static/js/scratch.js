@@ -11,7 +11,12 @@ String.prototype.format = function() {
   });
 };
 
-YUI().use('node', 'cookie', "event-resize", "transition", "event", function(Y) {
+var yuiOptions = {
+  comboBase: 'https://yui-s.yahooapis.com/combo?',
+  combine: true
+};
+
+YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", function(Y) {
 
 core.setupHtmlClass = function() {
   Y.all('html').removeClass('no-js').addClass('yes-js');
@@ -91,7 +96,7 @@ core.setupAdditionalInfo = function() {
 
 core.cookiePolicy = function() {
   function open() {
-    YUI().use('node', function(Y) {
+    YUI(yuiOptions).use('node', function(Y) {
       Y.one('body').prepend('<div class="cookie-policy"><div class="wrapper"><a href="?cp=close" class="link-cta">Close</a><p>We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings please <a href="/privacy-policy#cookies">see our policy</a>.</p></div></div>');
       Y.one('footer.global .legal').addClass('has-cookie');
       Y.one('.cookie-policy .link-cta').on('click',function(e){
@@ -101,14 +106,14 @@ core.cookiePolicy = function() {
     });
   }
   function close() {
-    YUI().use('node', function(Y) {
+    YUI(yuiOptions).use('node', function(Y) {
       Y.one('.cookie-policy').setStyle('display','none');
       Y.one('footer.global .legal').removeClass('has-cookie');
       setCookie();
     });
   }
   function setCookie() {
-    YUI().use('cookie', function (Y) {
+    YUI(yuiOptions).use('cookie', function (Y) {
       Y.Cookie.set("_cookies_accepted", "true", { expires: new Date("January 12, 2025") });
     });
   }
