@@ -1,4 +1,7 @@
-YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', function (Y) {
+YUI({
+  comboBase: 'https://yui-s.yahooapis.com/combo?',
+  combine: true
+}).use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', function (Y) {
 
   // Create a custom PartnerFilter class that extends AutoCompleteBase.
   var PartnerFilter = Y.Base.create('partnerFilter', Y.Base, [Y.AutoCompleteBase], {
@@ -68,7 +71,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
   function prioritiseTitleMatches(search) {
     //clone any exact title matches and hide the original
     partners = Y.all('#results .partner');
-    
+
     partners.each(function(partner) {
       partnerTitle = partner.getAttribute('ID');
       if (partnerTitle == search) {
@@ -119,7 +122,7 @@ YUI().use('autocomplete-base', 'autocomplete-filters', 'node-event-simulate', fu
         }
       }
     });
-    
+
     if (filters.indexOf(true) == -1) {
       if (partners.size() == Y.all('.notFilterMatch').size()) {
         partners.each(function(node){
