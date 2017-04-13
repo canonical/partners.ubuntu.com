@@ -1,13 +1,12 @@
 {
-  "dependencies": {
-    "node-sass": "^4.5.1",
-    "sass-lint": "^1.10.2"
-  },
   "scripts": {
-    "clean": "rm -rf django-error.log npm-debug.log static/css db.sqlite3; find . -name '*.pyc' -delete",
+    "clean": "rm -rf node_modules yarn-error.log",
     "test": "sass-lint static/**/*.scss --verbose --no-exit",
     "build": "node-sass --include-path node_modules static/sass --output static/css",
     "watch": "node-sass --include-path node_modules --watch --source-map true --recursive static/sass/styles.scss static/css/styles.css"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "sass-lint": "1.10.2"
   }
 }
-
