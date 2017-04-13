@@ -46,10 +46,6 @@ urlpatterns += patterns(
     url(r'^customers.json$', customers_json_view),
     url(r'^programmes/?$', PartnerView.as_view()),
     url(
-        r'^programmes/phone-carrier$',
-        RedirectView.as_view(url='/programmes/phone', permanent=True)
-    ),
-    url(
         r'^partner-programmes/?$',
         RedirectView.as_view(url='/programmes/', permanent=True)
     ),
