@@ -15,3 +15,13 @@ django-error.log
 npm-debug.log
 node_modules/
 .docker-project
+
+# Added by canonical-webteam generator
+*.map
+*.log
+*.bak
+*.sqlite
+*-cache/
+\#*\#
+*.*~
+.DS_store
