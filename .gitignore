@@ -1,27 +1,47 @@
-db.sqlite3
-.sass-cache
-distribute-0.6.34.tar.gz
-env
-cms.svg
-*.css
-./static
-pip-cache
-*.pyc
-*.~*
-.bzr/
-*.css.map
-django-error.log
-/static/css/
-npm-debug.log
-node_modules/
-.docker-project
-
-# Added by canonical-webteam generator
-*.map
-*.log
-*.bak
-*.sqlite
-*-cache/
+# OS files
+Desktop.ini
+Thumbs.db
+._*
+*.DS_Store
+*~
 \#*\#
-*.*~
-.DS_store
+__*
+.AppleDouble
+.LSOverride
+
+# Cache and backup
+*.bak
+*.pyc
+*-cache/
+
+# Local data
+*.sqlite*
+*.log
+logs/
+pids
+*.pid
+*.seed
+.*-metadata
+
+# Local dependencies
+.bundle/
+node_modules/
+bower_components/
+vendor/
+
+# Build files
+/build/
+_site/
+
+# Local environment settings
+.docker-project
+.envrc
+env/
+env3/
+
+# Sass
+*.css
+*.css.map
+
+# Project-specific ignores
+cms.svg
