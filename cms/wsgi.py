@@ -1,20 +1,18 @@
 """
-WSGI config for partnerwebsite project.
-
+WSGI config for the partners.ubuntu.com project.
 It exposes the WSGI callable as a module-level variable named ``application``.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
+# Core
 import os
-import sys
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "partnerwebsite.prod_settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cms.settings")
 
-from django.core.wsgi import get_wsgi_application
-from dj_static import Cling
+# Modules
+from django.core.wsgi import get_wsgi_application  # noqa
+from whitenoise.django import DjangoWhiteNoise  # noqa
 
-application = Cling(get_wsgi_application())
+application = DjangoWhiteNoise(get_wsgi_application())
+

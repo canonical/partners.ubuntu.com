@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import (
     HttpResponseNotFound, HttpResponseServerError
@@ -29,8 +29,7 @@ def handler500(request):
 
 urlpatterns = load_redirects()
 
-urlpatterns += patterns(
-    '',
+urlpatterns += [
     url(r'^openid/', include('django_openid_auth.urls')),
     url(
         r'^admin/help/$',
@@ -62,4 +61,5 @@ urlpatterns += patterns(
     url(r'^find-a-partner$', find_a_partner),
     url(r'^partnering-with-us$', PartnerView.as_view()),
     url(r'^(?P<slug>[-\w]+)/?$', partner_view),
-)
+]
+
