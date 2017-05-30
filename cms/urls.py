@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import (
     HttpResponseNotFound, HttpResponseServerError
 )
-from django.template import RequestContext, loader, Context
+from django.template import loader
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
@@ -19,18 +19,16 @@ admin.autodiscover()
 
 def handler404(request):
     t = loader.get_template('404.html')
-    context = RequestContext(request, {'request_path': request.path})
-    return HttpResponseNotFound(t.render(context))
+    return HttpResponseNotFound(t.render({'request_path': request.path}))
 
 
 def handler500(request):
     t = loader.get_template('500.html')
-    return HttpResponseServerError(t.render(Context({})))
+    return HttpResponseServerError(t.render({}))
 
 urlpatterns = load_redirects()
 
-urlpatterns += patterns(
-    '',
+urlpatterns += [
     url(r'^openid/', include('django_openid_auth.urls')),
     url(
         r'^admin/help/$',
@@ -62,4 +60,5 @@ urlpatterns += patterns(
     url(r'^find-a-partner$', find_a_partner),
     url(r'^partnering-with-us$', PartnerView.as_view()),
     url(r'^(?P<slug>[-\w]+)/?$', partner_view),
-)
+]
+

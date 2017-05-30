@@ -1,4 +1,4 @@
-<!doctype html>
+{% load versioned_static %}<!doctype html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
 <!--[if IE 8]>    <html class="lt-ie9" lang="en" dir="ltr"> <![endif]-->
@@ -27,26 +27,26 @@
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic%7CUbuntu+Mono' rel='stylesheet' type='text/css' />
 
 <!-- get ubuntu guidelines css -->
-<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
 
 <!-- get global nav css -->
-<link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/ubuntu/latest/u/css/beta/global-responsive.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://assets.ubuntu.com/sites/ubuntu/latest/u/css/beta/global-responsive.css" />
 
 <!-- site specific css -->
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/styles.css" />
-<link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}css/core-print.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
+<link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/core-print.css' %}" />
 
 
 <!--[if lte IE 8]>
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/ie/ie7.scss" />
-<link rel="stylesheet" type="text/css" href="//assets.ubuntu.com/sites/ubuntu/latest/u/css/global.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/ie/ie7.scss' %}" />
+<link rel="stylesheet" type="text/css" href="https://assets.ubuntu.com/sites/ubuntu/latest/u/css/global.css" />
 <![endif]-->
 
 <!-- modernizr -->
 <script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
 <script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
 
-<link type="text/plain" rel="author" href="{{ STATIC_URL }}files/humans.txt" />
+<link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
 {% block head_extra %}{% endblock %}
 

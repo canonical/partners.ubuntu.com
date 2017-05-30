@@ -3,7 +3,10 @@ from django.db import migrations
 
 # Local
 from cms.models import Partner
-from urlparse import urlparse, urlunparse
+try:
+    from urlparse import urlparse, urlunparse
+except ImportError:
+    from urllib.parse import urlparse
 
 
 def update_logo_urls(apps, schema_editor):

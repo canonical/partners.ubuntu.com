@@ -14,6 +14,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
+    'canonicalwebteam',
+    'whitenoise.runserver_nostatic',
     'django.contrib.auth',
     'django_openid_auth',
     'django.contrib.admin',
@@ -75,7 +77,19 @@ USE_L10N = False
 
 USE_TZ = True
 
-TEMPLATE_DIRS = (BASE_DIR + "/templates",)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': {
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.static'
+            },
+        },
+    },
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
