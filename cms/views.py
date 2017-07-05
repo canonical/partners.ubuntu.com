@@ -8,6 +8,7 @@ from django_template_finder_view import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
+from django.db.models.functions import Lower
 from django.http import HttpResponse
 
 # Local
@@ -189,7 +190,7 @@ def find_a_partner(request):
         'partners': get_grouped_random_partners().filter(
             published=True
         ).order_by(
-            'name'
+            Lower('name')
         )
     }
     context = add_default_values_to_context(context, request)
