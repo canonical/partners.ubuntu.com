@@ -268,13 +268,22 @@ def filter_partners(request, partners):
 
     try:
         query_list = Q()
-        for query, value in request.GET.iterlists():
+        for query, value in dict(request.GET).items():
             if query in filter_whitelist:
                 if len(value) > 1:
                     for listed_value in value:
+                        if listed_value.lower() == 'true':
+                            listed_value = True
+                        elif listed_value.lower() == 'false':
+                            listed_value = False
                         query_list = query_list | Q(**{query: listed_value})
                 else:
-                    partners = partners.filter(Q(**{query: value[0]}))
+                    listed_value = value[0]
+                    if listed_value.lower() == 'true':
+                        listed_value = True
+                    elif listed_value.lower() == 'false':
+                        listed_value = False
+                    partners = partners.filter(Q(**{query: listed_value}))
 
         distinct_partners = list(partners.filter(query_list).order_by(
             '-always_featured', '?'
