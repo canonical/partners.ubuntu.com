@@ -9,8 +9,8 @@
     </div>
     <div class="eight-col">
         <!-- MARKETO FORM -->
-<script src="https://assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
-<script src="https://assets.ubuntu.com/v1/e1085fb6-jquery.validate.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}37b1db88-jquery.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}e1085fb6-jquery.validate.min.js"></script>
 
 <form action="https://app-g.marketo.com/index.php/leadCapture/save" method="post" id="mktoForm_1260">
 <fieldset class="fieldset-1">
@@ -106,7 +106,7 @@ $("#mktoForm_1260").validate({
     errorClass: "mktFormMsg mktError"
 });
 </script>
-<script  src="https://assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+<script  src="{{ ASSET_SERVER_URL }}f97fa297-stateCountry.js"></script>
 
 <!-- /MARKETO FORM -->
     </div><!-- /.eight-col -->
