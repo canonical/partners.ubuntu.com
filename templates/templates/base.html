@@ -17,10 +17,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8">
 <![endif]-->
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png?w=114">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png?w=72">
-<link rel="apple-touch-icon-precomposed" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png?w=114">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png?w=72">
+<link rel="apple-touch-icon-precomposed" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png">
 <link rel="shortcut icon" href="https://assets.ubuntu.com/sites/ubuntu/latest/u/img/favicon.ico" type="image/x-icon" />
 
 <!-- get ubuntu font from google -->
@@ -44,7 +44,7 @@
 
 <!-- modernizr -->
 <script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
-<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
@@ -114,14 +114,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 </script>
 
-<script src="//assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/yui-combined.min.js"></script>
+<script src="https://assets.ubuntu.com/sites/ubuntu/latest/u/js/plugins/yui-combined.min.js"></script>
 <script>
     if(!core){ var core = {}; }
     core.globalPrepend = 'body';
 </script>
-<script src="//assets.ubuntu.com/sites/guidelines/js/responsive/core.js"></script>
+<script src="https://assets.ubuntu.com/sites/guidelines/js/responsive/core.js"></script>
 <script src="{{ STATIC_URL }}js/scratch.js"></script>
-<script src="//assets.ubuntu.com/v1/bdd03093-global.js"></script>
+<script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
 <script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
 
 {% block footer_extra %}{% endblock %}

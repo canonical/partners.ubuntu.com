@@ -77,6 +77,8 @@ USE_L10N = False
 
 USE_TZ = True
 
+ASSET_SERVER_URL = 'https://assets.ubuntu.com/v1/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -84,6 +86,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': {
+                'django_asset_server_url.asset_server_url',
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.static'
             },

@@ -47,6 +47,7 @@ def add_default_values_to_context(context, request):
         level = "level_%s" % str(i+1)
         context[level] = path.lower()
     context['STATIC_URL'] = settings.STATIC_URL
+    context['ASSET_SERVER_URL'] = settings.ASSET_SERVER_URL
     return context
 
 
