@@ -8,6 +8,8 @@
   "devDependencies": {
     "node-sass": "^4.5.3",
     "sass-lint": "^1.10.2"
+  },
+  "dependencies": {
+    "global-nav": "^0.2.3"
   }
 }
-
