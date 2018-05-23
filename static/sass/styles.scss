@@ -79,6 +79,9 @@
 @import "core-constants";
 @import "core-mixins";
 
+// vendor
+@import '../global-nav/src/sass/main';
+
 /*	@section import scss files
 import all the scss and css files in the order they should be combined.
 core scss files are in /sites/core/static/css

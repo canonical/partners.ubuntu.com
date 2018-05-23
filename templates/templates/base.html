@@ -124,6 +124,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
 <script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
 
+<script src="{% versioned_static 'global-nav/build/js/global.js' %}"></script>
+<script>ubuntu.globalNav.setup();</script>
+
 {% block footer_extra %}{% endblock %}
 
 {% if enable_crazyegg %}

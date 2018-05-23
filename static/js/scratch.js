@@ -22,49 +22,6 @@ core.setupHtmlClass = function() {
   Y.all('html').removeClass('no-js').addClass('yes-js');
 }
 
-core.resizeListener = function() {
-  Y.on('windowresize', function(e) {
-    core.redrawGlobal();
-  });
-  core.globalInit();
-};
-
-core.globalInit= function() {
-  if (document.documentElement.clientWidth < 768) {
-    core.globalPrepend = 'div.legal';
-    core.setupGlobalNav();
-    core.setupAdditionalInfo();
-    Y.one('.nav-global-wrapper').insert('<h2>Ubuntu websites</h2>','before');
-  } else if (document.documentElement.clientWidth >= 768) {
-    core.globalPrepend = 'body';
-    core.setupGlobalNav();
-    Y.all('#additional-info h2').setStyle('cursor', 'default');
-  }
-};
-
-core.redrawGlobal = function() {
-  var globalNav = Y.one("#nav-global");
-  if (document.documentElement.clientWidth < 768 && core.globalPrepend != 'div.legal') {
-    core.globalPrepend = 'div.legal';
-    if (globalNav) {
-      globalNav.remove();
-      core.setupGlobalNav();
-      core.setupAdditionalInfo();
-      Y.one('.nav-global-wrapper').insert('<h2>Ubuntu websites</h2>','before');
-      Y.one('#nav-global h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
-        this.toggleClass('active');
-        this.next('div').toggleClass('active');
-      });
-    }
-  } else if (document.documentElement.clientWidth >= 768 && core.globalPrepend != 'body') {
-    core.globalPrepend = 'body';
-    if (globalNav) {
-      globalNav.remove();
-      core.setupGlobalNav();
-    }
-  }
-};
-
 core.setupAccordion = function() {
   Y.all('.row-project li').each(function(node) {
     node.one('h3').append('<span></span>');
@@ -74,24 +31,6 @@ core.setupAccordion = function() {
       this.next('div').toggleClass('active');
     });
   });
-};
-
-core.setupGlobalNavAccordion = function() {
-  if(Y.one('#nav-global h2') !== null) {
-    Y.one('#nav-global h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
-      this.toggleClass('active');
-      this.next('div').toggleClass('active');
-    });
-  }
-};
-
-core.setupAdditionalInfo = function() {
-  if(Y.one('#additional-info h2 span') === null) {
-    Y.one('#additional-info h2').setStyle('cursor', 'pointer').append('<span></span>').on('click',function(e) {
-      this.toggleClass('active');
-      this.next('div').toggleClass('active');
-    });
-  }
 };
 
 core.cookiePolicy = function() {
@@ -238,9 +177,7 @@ loadRSSFeed = function(id, tag, limit, url, title) {
 }
 
 core.setupAccordion();
-core.resizeListener();
 core.cookiePolicy();
-core.setupGlobalNavAccordion();
 core.setupHtmlClass();
 core.parallaxBackground();
 core.homeAnimation();
