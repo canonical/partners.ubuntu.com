@@ -1,0 +1,31 @@
+/* Remove after updating site to latest Vanilla */
+
+.p-card--partners {
+  background: #fff;
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+  box-shadow: 0 1px 5px 1px rgba(17, 17, 17, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  .p-card__title {
+    font-size: .875rem;
+    font-weight: 100;
+    margin-bottom: 0;
+    padding: .75rem 1rem;
+    text-transform: uppercase;
+  }
+
+  .p-card__thumbnail {
+    display: block;
+    margin: 0 auto 1rem auto;
+  }
+
+  .p-card__content {
+    border-top: 1px solid #cdcdcd;
+    flex-shrink: 0;
+    margin: 0 .5rem;
+    padding: 1rem .5rem 1.5rem .5rem;
+  }
+}
