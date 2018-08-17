@@ -27,10 +27,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{% versioned_static 'css/styles.css' %}" />
 <link rel="stylesheet" type="text/css" media="print" href="{% versioned_static 'css/core-print.css' %}" />
 
-<!-- modernizr -->
-<script src="{{ STATIC_URL }}js/plugins/modernizr.2.7.1.js"></script>
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
-
 <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
 {% block head_extra %}{% endblock %}
@@ -49,45 +45,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K4K33T');</script>
 <!-- End Google Tag Manager -->
 
-<header class="banner global">
-{% block header_banner %}
-    <nav class="nav-primary nav-right">
-        <div class="logo">
-            <a class="logo-ubuntu" href="/">
-                <img width="106" height="25" alt="" src="https://assets.ubuntu.com/v1/c6679b95-logo-ubuntu-orange.svg">
-                <span>partners</span>
-            </a>
-        </div>
-        <ul>
-            <li class="accessibility-aid"><a accesskey="s" href="#main-content">Jump to content</a></li>
-            <li>
-                <a class="first{% if level_1 == 'programmes' %} active{% endif %}" href="/programmes">Programmes</a>
-                {% include "programmes/_nav_secondary.html" with promo="true" %}
-            </li>
-            <li><a{% if level_1 == 'find-a-partner' %} class="active"{% endif %} href="/find-a-partner">Find a partner</a></li>
-            <li><a{% if level_1 == 'partnering-with-us' %} class="active"{% endif %} href="/partnering-with-us">Partnering with us</a></li>
-            <li><a{% if level_1 == 'contact-us' %} class="active"{% endif %} href="/contact-us">Contact us</a></li>
-        </ul>
-        <a href="#canonlist" class="nav-toggle no-script">☰</a>
+<header id="navigation" class="p-navigation">
+  <div class="row">
+    <div class="p-navigation__banner">
+      <div class="p-navigation__logo">
+        <a class="p-navigation__link" href="/">
+          <img width="189" height="27" alt="Ubuntu" src="https://assets.ubuntu.com/v1/c6c41a4e-ubuntu-partners-logo.svg">
+        </a>
+      </div>
+      <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
+      <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
+    </div>
+    <nav class="p-navigation__nav" role="menubar">
+      <span class="u-off-screen">
+        <a href="#main-content">Jump to main content</a>
+      </span>
+      <ul class="p-navigation__links" role="menu">
+        <li class="p-navigation__link{% if level_1 == 'programmes' %} is-selected{% endif %}">
+            <a role="menuitem" href="/programmes">Programmes</a>
+        </li>
+        <li class="p-navigation__link{% if level_1 == 'find-a-partner' %} is-selected{% endif %}">
+          <a role="menuitem" href="/find-a-partner">Find a partner</a>
+        </li>
+        <li class="p-navigation__link{% if level_1 == 'partnering-with-us' %} is-selected{% endif %}">
+          <a role="menuitem" href="/partnering-with-us">Partnering with us</a>
+        </li>
+        <li class="p-navigation__link{% if level_1 == 'contact-us' %} is-selected{% endif %}">
+          <a role="menuitem" href="/contact-us">Contact us</a>
+        </li>
+      </ul>
     </nav>
-{% endblock header_banner %}
+  </div>
 </header>
-<div class="wrapper u-no-margin--top">
-<div id="main-content" class="inner-wrapper">
-{% if level_1 %}
-{% block second_level_nav %}
-{% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}
-{% endblock second_level_nav %}
-{% endif %}
 
-{% block header %}{% endblock %}
-{% block content_container %}
-{% block outer_content %}
-{% endblock outer_content %}
-{% endblock content_container %}
-</div><!-- /.inner-wrapper -->
+<div class="wrapper">
+  <div id="main-content" class="inner-wrapper">
+  {% if level_1 %}
+  {% block second_level_nav %}
+  {% spaceless %}{% block second_level_nav_items %}{% endblock second_level_nav_items %}{% endspaceless %}
+  {% endblock second_level_nav %}
+  {% endif %}
 
-</div><!-- /.wrapper -->
+  {% block header %}{% endblock %}
+  {% block content_container %}
+  {% block outer_content %}
+  {% endblock outer_content %}
+  {% endblock content_container %}
+  </div>
+</div>
 
 {% include "templates/footer.html" %}
 
@@ -100,17 +105,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <script src="https://assets.ubuntu.com/v1/40d25181-yui-combined.min.js"></script>
-<script>
-    if(!core){ var core = {}; }
-    core.globalPrepend = 'body';
-</script>
-<script src="https://assets.ubuntu.com/v1/8e7aa35a-core.js"></script>
 <script src="{{ STATIC_URL }}js/scratch.js"></script>
-<script src="{{ ASSET_SERVER_URL }}bdd03093-global.js"></script>
 <script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
 
-<script src="{% versioned_static 'global-nav/build/js/global.js' %}"></script>
-<script>ubuntu.globalNav.setup();</script>
+<script src="{{ STATIC_URL }}global-nav/dist/index.js"></script>
+<script>canonicalGlobalNav.createNav({
+  maxWidth: '64.875rem'
+});</script>
+
 
 {% block footer_extra %}{% endblock %}
 
