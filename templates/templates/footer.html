@@ -1,55 +1,61 @@
 {% block footer %}
-<div class="footer-wrapper strip-light">
-<footer class="global clearfix">
-<nav>
-	<div class="row no-border">
-		<div id="canonlist" class="canonlist five-col">
-			<h2>Partners</h2>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/programmes">Partner programmes</a></li>
-				<li><a href="/find-a-partner">Find a partner</a></li>
-				<li><a href="/partnering-with-us">Partnering with us</a></li>
-				<li><a href="/contact-us">Contact us</a></li>
-			</ul>
-		</div>
-		<div class="four-col">
-			<h2>Follow us</h2>
-			<ul class="list-social">
-				<li><a id="item-twitter" href="https://twitter.com/Ubuntu">@ubuntu on Twitter</a></li>
-				<li><a id="item-google" href="https://plus.google.com/+Ubuntu/posts">Ubuntu on Google+</a></li>
-				<li><a id="item-facebook" href="https://www.facebook.com/ubuntulinux?fref=ts">Ubuntu on Facebook</a></li>
-				<li><a id="item-canonical" href="http://blog.canonical.com">Canonical blog</a></li>
-			</ul>
-		</div>
-		<div id="additional-info" class="three-col last-col">
-			<h2>Find out more</h2>
-			<div>
-			<ul>
-				<li><a href="https://www.ubuntu.com/">Ubuntu</a></li>
-				<li><a href="https://www.ubuntu.com/support/plans-and-pricing">Ubuntu Advantage</a></li>
-				<li><a href="https://www.canonical.com/">Canonical</a></li>
-				<li><a href="https://insights.ubuntu.com/">Press and resources</a></li>
-			</ul>
-			</div>
-		</div>
-	</div>
-</nav>
-<div class="legal clearfix">
-	<div class="legal-inner">
-		<p class="twelve-col">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
-		<ul class="inline clear">
-			<li><a href="https://www.ubuntu.com/legal">Legal information</a></li>
-			<li><a href="https://github.com/canonical-websites/partners.ubuntu.com/issues/new" id="report-a-bug">Report a bug on this site</a></li>
-		</ul>
-		<span class="accessibility-aid"><a href="#">Got to the top of the page</a></span>
-	</div>
-</div>
-<script>
-  /* Add the page to the report a bug link */
-  var bugLink = document.querySelector('#report-a-bug');
-  bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
-</script>
+<footer class="p-strip">
+  <nav>
+    <div class="row">
+      <div id="canonlist" class="col-5">
+        <h2 class="p-muted-heading p-heading--four">Partners</h2>
+        <ul class="p-list is-split">
+          <li class="p-list__item"><a href="/">Home</a></li>
+          <li class="p-list__item"><a href="/programmes">Partner programmes</a></li>
+          <li class="p-list__item"><a href="/find-a-partner">Find a partner</a></li>
+          <li class="p-list__item"><a href="/partnering-with-us">Partnering with us</a></li>
+          <li class="p-list__item"><a href="/contact-us">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <h2 class="p-muted-heading p-heading--four">Follow us</h2>
+        <ul class="p-inline-list u-no-margin--top">
+          <li class="p-inline-list__item">
+            <a href="https://twitter.com/Ubuntu" title="@ubuntu on Twitter"><i class="p-icon--twitter">@ubuntu on Twitter</i></a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://plus.google.com/+Ubuntu/posts" title="Ubuntu on Google+"><i class="p-icon--google">Ubuntu on Google+</i></a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="https://www.facebook.com/ubuntulinux?fref=ts" title="Ubuntu on Facebook"><i class="p-icon--facebook">Ubuntu on Facebook</i></a>
+          </li>
+          <li class="p-inline-list__item">
+            <a href="http://blog.ubuntu.com" title="Ubuntu blog"><i class="p-icon--ubuntu">Ubuntu blog</i></a>
+          </li>
+        </ul>
+      </div>
+      <div id="additional-info" class="col-3">
+        <h2 class="p-muted-heading p-heading--four">Find out more</h2>
+        <div>
+        <ul class="p-list">
+          <li class="p-list__item"><a href="https://www.ubuntu.com/">Ubuntu</a></li>
+          <li class="p-list__item"><a href="https://www.ubuntu.com/support/plans-and-pricing">Ubuntu Advantage</a></li>
+          <li class="p-list__item"><a href="https://www.canonical.com/">Canonical</a></li>
+          <li class="p-list__item"><a href="https://insights.ubuntu.com/">Press and resources</a></li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <p style="max-width: none;">&copy; {% now "Y" %} Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
+    <nav class="p-footer__nav">
+      <ul class="p-footer__links">
+        <li class="p-footer__item"><a class="p-footer__link" href="https://www.ubuntu.com/legal">Legal information</a></li>
+        <li class="p-footer__item"><a class="p-footer__link" href="https://github.com/canonical-websites/partners.ubuntu.com/issues/new" id="report-a-bug">Report a bug on this site</a></li>
+      </ul>
+    </nav>
+    <span class="u-off-screen"><a href="#">Go to the top of the page</a></span>
+  </div>
+  <script>
+    /* Add the page to the report a bug link */
+    var bugLink = document.querySelector('#report-a-bug');
+    bugLink.href += '?body=%0a%0a%0a---%0a*Reported%20from:%20' + location.href + '*';
+  </script>
 </footer>
-</div>
 {% endblock footer %}
