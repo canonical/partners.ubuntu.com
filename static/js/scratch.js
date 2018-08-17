@@ -17,10 +17,6 @@ var yuiOptions = {
 };
 
 YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", function (Y) {
-  core.setupHtmlClass = function () {
-    Y.all('html').removeClass('no-js').addClass('yes-js');
-  }
-
   core.setupAccordion = function() {
     Y.all('.row-project li').each(function(node) {
       node.one('h3').append('<span></span>');
@@ -121,6 +117,4 @@ YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", fun
 
   core.setupAccordion();
   core.cookiePolicy();
-  core.setupHtmlClass();
-
 });
