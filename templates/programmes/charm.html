@@ -4,116 +4,108 @@
 {% block meta_description %}The Charm partner programme, for software vendors, developers and integrators who want to deliver scale-out solutions to their customers on public, private or hybrid clouds{% endblock %}
 {% block meta_keywords %}Ubuntu, Canonical, partner, program, programme, partnership, ISV, independent, software, vendor, developer, publisher, application, app, service, global, local, cloud, server,   customer, client, OpenStack, Landscape, Juju, MAAS, IT, provider, open source, Linux, Big Data, cloud orchestration, charm, bundles, solutions, scale, integration, container, LXD, LXC, docker, scale out, bare metal{% endblock %}
 
-{% block second_level_nav_items %}
-    <nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Charm" %}</nav>
-{% endblock second_level_nav_items %}
+{% block second_level_nav %}
+  {% include "programmes/_nav_secondary.html" with section="charm" %}
+{% endblock second_level_nav %}
 
 {% block content %}
 
-<section class="row row-hero equal-height">
-    <div class="six-col">
-        <h1>Charm partner programme</h1>
-        <p>If you&rsquo;re an Independent Software Vendor (ISV)  you know how
-        difficult it can be for your customers to realise the full value of your
-        software. Releasing your solutions with Juju, the award-winning
-        application modelling tool from Canonical, can help your customers use
-        your product at every stage, from proof of concept and development,
-        through to full scale deployment.</p>
-        <p><a href="/contact-us">Find out more&nbsp;&rsaquo;</a></p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1 class="p-heading--two">Charm partner programme</h1>
+      <p>If you&rsquo;re an Independent Software Vendor (ISV)  you know how
+      difficult it can be for your customers to realise the full value of your
+      software. Releasing your solutions with Juju, the award-winning
+      application modelling tool from Canonical, can help your customers use
+      your product at every stage, from proof of concept and development,
+      through to full scale deployment.</p>
+      <p><a href="/contact-us">Find out more&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="five-col prepend-one last-col align-vertically">
-        <img src="{{ STATIC_URL }}img/image-charm-hero.png" alt="Collection of juju charm icons" />
+    <div class="col-5">
+      <img src="{{ ASSET_SERVER_URL }}1ca47527-partners-charm-hero.png" alt="Collection of juju charm icons" width="350" />
     </div>
+  </div>
 </section>
 
-{% include "block/_logo-list.html" with name="Charm partners" query="programme=Charm partner programme" %}
+{% include "block/_logo-list.html" with name="Charm partners" query="programme=charm-partner-programme" %}
 
-<section class="row equal-height">
-    <div class="seven-col append-one">
-        <h2>The power of charms</h2>
-        <p>Juju lets you model, integrate and scale applications quickly and easily.
-        By creating a Juju charm for your product, you make it easy for administrators
-        and devops teams to integrate it with hundreds of other solutions.</p>
-        <p>Charms are sets of scripts that simplify the deployment and management
-        tasks of specific services. They can be written in any language and leverage
-        configuration management tools. Once a Charm has been created by your developers,
-        anyone can use it to unleash the full power of your software.</p>
-        <p>The Juju Charm Store has over 300 applications ready to use today. They
-        can even be combined in Bundles. If your application is commonly deployed
-        with other services (as most are) a customer can use a Charm Bundle to deploy
-        all the services together, wherever they need to run.</p>
+<section class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h2 class="p-heading--three">The power of charms</h2>
+      <p>Juju lets you model, integrate and scale applications quickly and easily.
+      By creating a Juju charm for your product, you make it easy for administrators
+      and devops teams to integrate it with hundreds of other solutions.</p>
+      <p>Charms are sets of scripts that simplify the deployment and management
+      tasks of specific services. They can be written in any language and leverage
+      configuration management tools. Once a Charm has been created by your developers,
+      anyone can use it to unleash the full power of your software.</p>
+      <p>The Juju Charm Store has over 300 applications ready to use today. They
+      can even be combined in Bundles. If your application is commonly deployed
+      with other services (as most are) a customer can use a Charm Bundle to deploy
+      all the services together, wherever they need to run.</p>
     </div>
-    <div class="three-col last-col align-vertically">
-        <img src="https://assets.ubuntu.com/v1/5fe74a5b-logo-juju.svg" alt="Juju logo" />
+    <div class="col-4">
+      <img src="{{ ASSET_SERVER_URL }}3d65e5fe-juju_black-orange_hex.svg" alt="Juju logo" />
     </div>
+  </div>
 </section>
 
-<section class="row">
-    <div class="eight-col">
-        <h2>The benefits of membership</h2>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">The benefits of membership</h2>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Joint marketing opportunities</li>
+        <li class="p-list__item is-ticked">Red carpet access to Juju engineers through the development and review process making it quicker to gain recommended Charm status and a more prominent Charm Store position</li>
+        <li class="p-list__item is-ticked">Tailored training on Charm creation and best practices</li>
+        <li class="p-list__item is-ticked">Ubuntu website promotion, including being featured as a Charm Partner</li>
+        <li class="p-list__item is-ticked">Enablement of multi-vendor turnkey solutions: Get introduced to other partners of the ecosystem to model higher level solutions answering even bigger challenges</li>
+      </ul>
     </div>
-    <div class="six-col">
-        <ul class="list-ubuntu">
-            <li>Joint marketing opportunities</li>
-            <li>Red carpet access to Juju engineers through the development and
-            review process making it quicker to gain recommended Charm status and
-            a more prominent Charm Store position</li>
-            <li>Tailored training on Charm creation and best practices</li>
-        </ul>
-    </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>Ubuntu website promotion, including being featured as a Charm Partner</li>
-            <li>Enablement of multi-vendor turnkey solutions: Get introduced to
-            other partners of the ecosystem to model higher level solutions
-            answering even bigger challenges</li>
-        </ul>
-    </div>
+  </div>
 </section>
 
-<div class="row">
-    <div class="eight-col last-col">
-        <h2>Charms run everywhere Ubuntu does</h2>
-        <ul class="list-ubuntu">
-            <li>Charms can be used to deploy services on a huge range of clouds such
-            as Amazon Web Services, Microsoft Azure, Google Compute Engine, IBM
-            Softlayer, Joyent and more</li>
-            <li>They work on all kinds of bare metal architectures: x86, IBM POWER8 and ARM</li>
-            <li>They work in containers like Docker, VMware and LXC</li>
-        </ul>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">Charms run everywhere Ubuntu does</h2>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Charms can be used to deploy services on a huge range of clouds such as Amazon Web Services, Microsoft Azure, Google Compute Engine, IBM Softlayer, Joyent and more</li>
+        <li class="p-list__item is-ticked">They work on all kinds of bare metal architectures: x86, IBM POWER8 and ARM</li>
+        <li class="p-list__item is-ticked">They work in containers like Docker, VMware and LXC</li>
+      </ul>
     </div>
-</div>
-
-<section class="row no-border strip-dark">
-    <div class="eight-col">
-        <h2>What&rsquo;s included?</h2>
-        <p>As a partner involved in the Charm partner programme you can expect:</p>
-    </div>
-    <div class="six-col">
-        <ul class="list-ubuntu">
-            <li>Inclusion in the <a href="https://jujucharms.com/" class="external">Juju Charm Store</a></li>
-            <li>QA to ensure your charms meet the highest quality standards</li>
-        </ul>
-    </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>Training and guidance on writing charms for your products</li>
-            <li>Co-marketing opportunities</li>
-        </ul>
-    </div>
+  </div>
 </section>
 
-<div class="row no-border">
-    <div class="eight-col last-col">
-        <h2>Stringent quality testing</h2>
-        <ul class="list-ubuntu">
-            <li>Learn how to write charms, and ensure that your charms meet quality standards</li>
-            <li>Use Juju’s integrated benchmarking solution to review how your
-            application performs on the various clouds and recommend best practices to your customers</li>
-            <li>Leverage our Cloud Weather Reporting tool to identify if your
-            application behaves as expected on all clouds</li>
-        </ul>
+<section class="p-strip--light">
+  <div class="row">
+    <h2 class="p-heading--three">What&rsquo;s included?</h2>
+    <p>As a partner involved in the Charm partner programme you can expect:</p>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Inclusion in the <a href="https://jujucharms.com/" class="external">Juju Charm Store</a></li>
+      <li class="p-list__item is-ticked">QA to ensure your charms meet the highest quality standards</li>
+      <li class="p-list__item is-ticked">Training and guidance on writing charms for your products</li>
+      <li class="p-list__item is-ticked">Co-marketing opportunities</li>
+    </ul>
+  </div>
+</section>
+
+<div class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">Stringent quality testing</h2>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Learn how to write charms, and ensure that your charms meet quality standards</li>
+        <li class="p-list__item is-ticked">Use Juju’s integrated benchmarking solution to review how your
+        application performs on the various clouds and recommend best practices to your customers</li>
+        <li class="p-list__item is-ticked">Leverage our Cloud Weather Reporting tool to identify if your
+        application behaves as expected on all clouds</li>
+      </ul>
     </div>
+  </div>
 </div>
 
 {% include "templates/_contextual-footer.html" %}
