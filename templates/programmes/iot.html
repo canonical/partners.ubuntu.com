@@ -4,64 +4,60 @@
 {% block meta_description %}{% endblock %}
 {% block meta_keywords %}{% endblock %}
 
-{% block second_level_nav_items %}
-    <nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Hardware" %}</nav>
-{% endblock second_level_nav_items %}
+{% block second_level_nav %}
+{% include "programmes/_nav_secondary.html" with section="iot" %}
+{% endblock second_level_nav %}
 
 {% block content %}
 
-<section class="row row-hero">
-    <div class="six-col append-one">
-        <h1>Internet of Things</h1>
-        <p>Commercial vendors of drones and other smart things can now deliver reliable software updates automatically, and sell software to their customers, all on an open platform. Ubuntu Core provides a production-ready platform for products that will ship across the globe, be hard to access physically and be connected to the internet for updates and security fixes with a store to make it easy for customer to find and install your apps.</p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="p-heading--two">Internet of Things</h1>
+      <p>Commercial vendors of drones and other smart things can now deliver reliable software updates automatically, and sell software to their customers, all on an open platform. Ubuntu Core provides a production-ready platform for products that will ship across the globe, be hard to access physically and be connected to the internet for updates and security fixes with a store to make it easy for customer to find and install your apps.</p>
     </div>
-    <div class="five-col last-col">
-        <img class="priority-0" src="{{ STATIC_URL }}img/image-snappy.png" alt="Snappy boxes">
+    <div class="col-6">
+      <img class="u-hide--small" src="{{ STATIC_URL }}img/image-snappy.png" alt="Snappy boxes">
     </div>
+  </div>
 </section>
 
 {% include "block/_logo-list.html" with name="Internet of Things partners" query="programme=internet of things" %}
 
-<section class="row">
-    <div class="eight-col">
-        <h2>One platform from cloud to device</h2>
-        <p>The Snappy Ubuntu Core on smart devices delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem at your fingertips &ndash; bringing the developer&rsquo;s favourite cloud platform to a wide range of internet things, connected devices and autonomous machines.</p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">One platform from cloud to device</h2>
+      <p>The Snappy Ubuntu Core on smart devices delivers bullet-proof security, reliable updates and the enormous Ubuntu ecosystem at your fingertips &ndash; bringing the developer&rsquo;s favourite cloud platform to a wide range of internet things, connected devices and autonomous machines.</p>
     </div>
-    <div class="four-col last-col">
+    <div class="col-4">
       <img class="priority-0" src="{{ STATIC_URL }}img/iot-secure.svg" alt="" width="200" />
     </div>
+  </div>
 </section>
 
-<section class="row">
-    <div class="five-col align-center">
-      <ul class="no-bullets inline">
-        <li class="two-col"><img src="https://assets.ubuntu.com/v1/328e17fb-picto-engineering-midaubergine.svg" alt="" class="priority-0" width="120" /></li>
-      <li class="two-col last-col"><img src="https://assets.ubuntu.com/v1/fa0f5e74-picto-shop-warmgrey.svg" alt="" class="priority-0" width="120" /></li>
-      </ul>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">A marketplace for incredible apps</h2>
+      <p>General-purpose, extensible devices like hubs, set-top boxes and gateways create a market for apps from a global developer community. Ubuntu makes it easy to develop amazing apps for incredible devices on your laptop, test on the cloud and publish straight to a global market of diverse devices.</p>
     </div>
-    <div class="seven-col last-col">
-        <h2>A marketplace for incredible apps</h2>
-        <p>General-purpose, extensible devices like hubs, set-top boxes and gateways create a market for apps from a global developer community. Ubuntu makes it easy to develop amazing apps for incredible devices on your laptop, test on the cloud and publish straight to a global market of diverse devices.</p>
-    </div>
+  </div>
 </section>
 
-<section class="row no-border strip-dark">
-    <div class="eight-col">
-        <h2>What&rsquo;s included?</h2>
-        <p>As a partner involved in the Internet of Things Partner Programme you can expect:</p>
-    </div>
-    <div class="six-col">
-        <ul class="list-ubuntu">
-            <li>Training and guidance on getting your hardware working with Ubuntu Core and writing apps for your products</li>
-            <li>QA to ensure your apps meets the highest quality standards</li>
-        </ul>
-    </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>Co-marketing opportunities including joint events, videos, blogs,  PR and demos to potential customers</li>
-            <li>Support for getting your software in our store</li>
-        </ul>
-    </div>
+<section class="p-strip--light">
+  <div class="row">
+    <h2 class="p-heading--three">What&rsquo;s included?</h2>
+    <p>As a partner involved in the Internet of Things Partner Programme you can expect:</p>
+  </div>
+  <div class="row">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Training and guidance on getting your hardware working with Ubuntu Core and writing apps for your products</li>
+      <li class="p-list__item is-ticked">QA to ensure your apps meets the highest quality standards</li>
+      <li class="p-list__item is-ticked">Co-marketing opportunities including joint events, videos, blogs,  PR and demos to potential customers</li>
+      <li class="p-list__item is-ticked">Support for getting your software in our store</li>
+    </ul>
+  </div>
 </section>
 {% include "templates/_contextual-footer.html" %}
 
