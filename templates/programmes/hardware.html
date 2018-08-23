@@ -4,60 +4,63 @@
 {% block meta_description %}The Canonical Technical Partner Program defines a process for collaboration between Canonical and IHV's. It helps IHVs understand how Ubuntu is developed and enhanced, and what is planned for the next release.{% endblock %}
 {% block meta_keywords %}Ubuntu, Technical Partners,IHVs,Technical Partner program,Technical collaboration,technical partnership,Technical certification,Hardware,certification,driver support,driver certification,Canonical certification programs,component certification{% endblock %}
 
-{% block second_level_nav_items %}
-    <nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Hardware" %}</nav>
-{% endblock second_level_nav_items %}
+{% block second_level_nav %}
+  {% include "programmes/_nav_secondary.html" with section="hardware" %}
+{% endblock second_level_nav %}
 
 {% block content %}
-<section class="row row-hero equal-height">
-    <div class="six-col">
-        <h1>Ubuntu hardware partners</h1>
-        <p>Partnering with Canonical is a great way to keep your products ahead of the competition. The Technical Partner Programme gives you access to information, tools and training that can help you get to market quicker and for less. And in retail and online, we work with our hardware partners on the promotion of Ubuntu to consumers and businesses.</p>
+<section class="p-strip is-bordered">
+  <div class="row p-align-vertically">
+    <div class="col-6">
+      <h1 class="p-heading--two">Ubuntu hardware partners</h1>
+      <p>Partnering with Canonical is a great way to keep your products ahead of the competition. The Technical Partner Programme gives you access to information, tools and training that can help you get to market quicker and for less. And in retail and online, we work with our hardware partners on the promotion of Ubuntu to consumers and businesses.</p>
     </div>
-    <div class="six-col last-col align-center align-vertically">
-        <img src="https://assets.ubuntu.com/v1/a1767ce2-image-tablet-music.jpg" alt="Ubuntu tablet">
+    <div class="col-6">
+      <img src="https://assets.ubuntu.com/v1/699bb660-image-laptop.jpg" alt="Ubuntu laptop">
     </div>
+  </div>
 </section>
 
 {% include "block/_logo-list.html" with name="Hardware partners" query="service-offered=hardware-manufacturer" %}
 
-<section class="row row-get-ahead">
-    <div class="eight-col last-col">
-        <h2>Get ahead with Ubuntu and Canonical</h2>
-        <p>As Ubuntu use grows around the world, demand for compatible devices is increasing fast. From thin clients, desktops and laptops to enterprise servers, manufacturers are looking to capitalise.</p>
-        <p>To get to market quicker and reduce costs, OEMs and their partners need components that are compatible with the latest Ubuntu releases. For IHVs and ISVs, the big question is how to develop, test and certify such products.</p>
-        <p>The answer is to work with Canonical, the company sponsoring the Ubuntu project. OEMs, IHVs, ISVs and peripheral manufacturers can subscribe to the Canonical Technical Partner Programme, which provides all the information, tools and training a manufacturer needs to keep its products ahead of the Ubuntu development curve.</p>
-        <p>In addition to the Technical Partner Programme, we work together with the world’s leading silicon vendors and OEMs to install Ubuntu on their hardware and ensure it works seamlessly. These partnerships result in the worldwide availability of stable, secure and performance-optimised Ubuntu devices.</p>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">Get ahead with Ubuntu and Canonical</h2>
+      <p>As Ubuntu use grows around the world, demand for compatible devices is increasing fast. From thin clients, desktops and laptops to enterprise servers, manufacturers are looking to capitalise.</p>
+      <p>To get to market quicker and reduce costs, OEMs and their partners need components that are compatible with the latest Ubuntu releases. For IHVs and ISVs, the big question is how to develop, test and certify such products.</p>
+      <p>The answer is to work with Canonical, the company sponsoring the Ubuntu project. OEMs, IHVs, ISVs and peripheral manufacturers can subscribe to the Canonical Technical Partner Programme, which provides all the information, tools and training a manufacturer needs to keep its products ahead of the Ubuntu development curve.</p>
+      <p>In addition to the Technical Partner Programme, we work together with the world’s leading silicon vendors and OEMs to install Ubuntu on their hardware and ensure it works seamlessly. These partnerships result in the worldwide availability of stable, secure and performance-optimised Ubuntu devices.</p>
     </div>
-    <img class="priority-0" src="https://assets.ubuntu.com/v1/699bb660-image-laptop.jpg" alt="Ubuntu laptop">
+  </div>
 </section>
-<section class="row equal-height no-border">
-    <div class="four-col align-vertically">
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--three">What you get when you work with us</h2>
+      <ul class="p-list--divided">
+        <li class="p-list__item is-ticked">Official hardware testing and certification</li>
+        <li class="p-list__item is-ticked">Custom development services</li>
+        <li class="p-list__item is-ticked">Product training and competence transfer</li>
+        <li class="p-list__item is-ticked">A global engineering network and support infrastructure</li>
+        <li class="p-list__item is-ticked">Marketing planning and assistance to support joint solutions and new revenue opportunities</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h2 class="p-heading--three">Increase your sales by becoming Ubuntu Certified</h2>
+      <p>Many of the world&rsquo;s biggest PC manufacturers and server providers have chosen to certify their hardware for Ubuntu. Through our Ubuntu Certified programme, we can ensure that your hardware runs perfectly with Ubuntu along with the OEM market leaders who offer Ubuntu Certified hardware.</p>
+      <p><a href="https://certification.ubuntu.com/certification/" class="p-link--external">Learn more about Ubuntu certified hardware</a></p>
+    </div>
+    <div class="col-4">
         <img src="{{ STATIC_URL }}img/image-certification.png" alt="Cetification rosettes" />
     </div>
-    <div class="seven-col prepend-one last-col">
-        <h2>Increase your sales by becoming Ubuntu Certified</h2>
-        <p>Many of the world&rsquo;s biggest PC manufacturers and server providers have chosen to certify their hardware for Ubuntu. Through our Ubuntu Certified programme, we can ensure that your hardware runs perfectly with Ubuntu along with the OEM market leaders who offer Ubuntu Certified hardware.</p>
-        <p><a href="https://certification.ubuntu.com/certification/" class="external">Learn more about Ubuntu certified hardware</a></p>
-    </div>
-</section>
-<section class="row no-border strip-dark">
-    <div class="eight-col append-four">
-        <h2>What you get when you work with us</h2>
-    </div>
-    <div class="six-col">
-        <ul class="list-ubuntu">
-            <li>Official hardware testing and certification</li>
-            <li>Custom development services</li>
-            <li class="last-item">Product training and competence transfer</li>
-        </ul>
-    </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>A global engineering network and support infrastructure</li>
-            <li class="last-item">Marketing planning and assistance to support joint solutions and new revenue opportunities</li>
-        </ul>
-    </div>
+  </div>
 </section>
 {% include "templates/_contextual-footer.html" %}
 
