@@ -17,17 +17,6 @@ var yuiOptions = {
 };
 
 YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", function (Y) {
-  core.setupAccordion = function() {
-    Y.all('.row-project li').each(function(node) {
-      node.one('h3').append('<span></span>');
-      node.one('a').on('click',function(e) {
-        e.preventDefault();
-        this.toggleClass('active');
-        this.next('div').toggleClass('active');
-      });
-    });
-  };
-
   core.cookiePolicy = function() {
     function open() {
       YUI(yuiOptions).use('node', function(Y) {
@@ -114,7 +103,22 @@ YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", fun
       }
     });
   }
-
-  core.setupAccordion();
   core.cookiePolicy();
 });
+
+core.accordion = function () {
+  const headings = document.querySelectorAll('.p-accordion__tab')
+
+  Array.prototype.forEach.call(headings, heading => {
+    let btn = heading
+    let target = heading.nextElementSibling
+
+    btn.onclick = () => {
+      let expanded = btn.getAttribute('aria-expanded') === 'true' || false
+      btn.setAttribute('aria-expanded', !expanded)
+      target.setAttribute('aria-hidden', expanded)
+    }
+  })
+};
+
+core.accordion();

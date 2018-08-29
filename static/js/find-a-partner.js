@@ -13,7 +13,7 @@ YUI({
 
   // Create instance
   search = new PartnerFilter({
-    inputNode: '#search',
+    inputNode: '.p-find-a-partner__search-input',
     minQueryLength: 0,
     queryDelay: 0,
 
@@ -21,7 +21,7 @@ YUI({
     source: (function () {
       var results = [];
 
-      Y.all('#results .partner').each(function (node) {
+      Y.all('.p-find-a-partner__partner').each(function (node) {
         results.push({
           node: node,
           searchText: node.getAttribute('data-searchText')
@@ -39,9 +39,9 @@ YUI({
 
   // Returns true if there are any matched results
   function matchesExist() {
-    var numberOfPartners = Y.all('#results .partner').size();
-    var numberOfSearchMisses = Y.all('#results .notSearchMatch').size();
-    var numberOfFilterMisses = Y.all('#results .notFilterMatch').size();
+    var numberOfPartners = Y.all('.p-find-a-partner__partner').size();
+    var numberOfSearchMisses = Y.all('.not-search-match').size();
+    var numberOfFilterMisses = Y.all('.not-filter-match').size();
     if (numberOfSearchMisses == numberOfPartners || numberOfFilterMisses == numberOfPartners) {
       return false;
     } else {
@@ -51,16 +51,16 @@ YUI({
 
   function updateNoResultsMessage(matchesExist) {
     if (matchesExist){
-      Y.one('#results .noResults').addClass('hide');
+      Y.one('.p-find-a-partner__no-results').addClass('u-hide');
     } else {
-      Y.one('#results .noResults').removeClass('hide');
+      Y.one('.p-find-a-partner__no-results').removeClass('u-hide');
     }
   }
 
   function cloneItem(node, exact) {
-      var container = Y.one('.prioritisedResults');
+      var container = Y.one('.p-find-a-partner__prioritised-results');
       clone = node.cloneNode(true);
-      node.addClass('matchHide');
+      node.addClass('match-hide');
       if(exact) {
         container.prepend(clone);
       } else {
@@ -70,7 +70,7 @@ YUI({
 
   function prioritiseTitleMatches(search) {
     //clone any exact title matches and hide the original
-    partners = Y.all('#results .partner');
+    partners = Y.all('.p-find-a-partner__partner');
 
     partners.each(function(partner) {
       partnerTitle = partner.getAttribute('ID');
@@ -86,18 +86,19 @@ YUI({
 
   // Subscribe to the "results" event
   search.on('results', function (e) {
-    Y.all('#results .partner').addClass('notSearchMatch');
-    Y.one('.prioritisedResults').empty();
+    Y.one('.p-find-a-partner__partner-list').addClass('u-hide');
+    Y.all('.p-find-a-partner__partner').addClass('not-search-match');
+    Y.one('.p-find-a-partner__prioritised-results').empty();
     Y.Array.each(e.results, function (result) {
-      result.raw.node.removeClass('notSearchMatch');
-      result.raw.node.removeClass('matchHide');
+      result.raw.node.removeClass('not-search-match');
+      result.raw.node.removeClass('match-hide');
     });
     prioritiseTitleMatches(e.query);
     updateNoResultsMessage(matchesExist());
   });
 
   //Adds a listener to checkboxes to filter results
-  var checkboxes = Y.all('.search-panel input[type=checkbox]');
+  var checkboxes = Y.all('.p-find-a-partner__filter"');
   checkboxes.on('change', function (e) {
     var checkbox = e.target;
     var checked = checkbox.get('checked');
@@ -110,23 +111,23 @@ YUI({
   //Adds the provided filter and filters the results accordingly
   function updateFilter(name, add) {
     filters[name] = add;
-    partners = Y.all('.partner');
+    partners = Y.all('.p-find-a-partner__partner');
     partners.each(function(node) {
-      node.addClass('notFilterMatch');
+      node.addClass('not-filter-match');
     });
     partners.each(function(node) {
       dataFilter = node.getAttribute('data-filter');
       for (var name in filters) {
         if (filters[name] == true && dataFilter.indexOf(name) != -1) {
-          node.removeClass('notFilterMatch');
+          node.removeClass('not-filter-match');
         }
       }
     });
 
     if (filters.indexOf(true) == -1) {
-      if (partners.size() == Y.all('.notFilterMatch').size()) {
+      if (partners.size() == Y.all('.not-filter-match').size()) {
         partners.each(function(node){
-          node.removeClass('notFilterMatch');
+          node.removeClass('not-filter-match');
         });
       }
     };
@@ -178,7 +179,7 @@ YUI({
 
   //auto-fill text search
   function populateTextbox() {
-    var searchbox = Y.one('#search');
+    var searchbox = Y.one('.p-find-a-partner__search-input');
     var searchText = getParameterByName('search');
     if (searchbox != null && searchText != null) {
       searchbox.focus();
@@ -190,5 +191,5 @@ YUI({
   populateTextbox();
 
 
-  Y.all('.search-not-run').removeClass('search-not-run');
+  Y.all('.p-find-a-partner search-not-run').removeClass('search-not-run');
 });
