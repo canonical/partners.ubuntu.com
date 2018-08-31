@@ -191,5 +191,5 @@ YUI({
   populateTextbox();
 
 
-  Y.all('.p-find-a-partner search-not-run').removeClass('search-not-run');
+  Y.all('.p-find-a-partner js-search-not-run').removeClass('js-search-not-run');
 });
