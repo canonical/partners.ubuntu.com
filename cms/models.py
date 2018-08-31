@@ -20,6 +20,9 @@ class PartnerModel(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(PartnerModel, self).save(*args, **kwargs)
@@ -33,6 +36,9 @@ class CategoryModel(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
+
+    def __str__(self):
+        return self.name
 
 
 class PartnerType(CategoryModel):
@@ -172,6 +178,9 @@ class Quote(models.Model):
     def __unicode__(self):
         return unicode(self.text)
 
+    def __str__(self):
+        return self.text
+
 
 class Link(models.Model):
     partner = models.ForeignKey(Partner)
@@ -180,6 +189,9 @@ class Link(models.Model):
 
     def __unicode__(self):
         return unicode(self.text)
+
+    def __str__(self):
+        return self.text
 
 
 class InsightsTag(models.Model):
@@ -195,6 +207,9 @@ class InsightsTag(models.Model):
     def __unicode__(self):
         return unicode(self.tag)
 
+    def __str__(self):
+        return self.tag
+
 class Tag(models.Model):
     partner = models.ForeignKey(Partner)
     tag = models.CharField(
@@ -206,6 +221,9 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return unicode(self.tag)
+
+    def __str__(self):
+        return self.tag
 
 class Text(models.Model):
     partner = models.ForeignKey(Partner)
@@ -252,6 +270,9 @@ class Text(models.Model):
 
     def __unicode__(self):
         return unicode(self.header)
+
+    def __str__(self):
+        return self.header
 
 
 def make_user_admin(sender, instance, **kwargs):
