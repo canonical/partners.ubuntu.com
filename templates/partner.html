@@ -42,7 +42,7 @@
     <div class="col-4 align-center align-vertically">
       {% if text.fields.image_url %}<img src="{{ text.fields.image_url }}" alt="" class="cms-text--image" />{% endif %}
     </div>
-    <div class="col-8 last-col">
+    <div class="col-8">
     {% else %}
     <div class="col-8 cms-text--content">
     {% endif %}
@@ -93,10 +93,10 @@
 <section class="p-strip">
   <div class="row">
     {% for quote in partner.quotes %}
-    <div class="box six-col{% if forloop.counter|divisibleby:2 %} last-col{% endif %}">
-      <blockquote class="pull-quote">
-        <p><span>&ldquo;</span>{{ quote.fields.text }}<span>&rdquo;</span></p>
-        <p><cite>{{ quote.fields.attribution }}</cite></p>
+    <div class="col-6">
+      <blockquote class="p-pull-quote">
+        <p>{{ quote.fields.text }}</p>
+        <cite class="p-pull-quote__citation">{{ quote.fields.attribution }}</cite>
       </blockquote>
     </div>
     {% endfor %}
@@ -110,9 +110,9 @@
     {% if partner.links %}
     <div class="col-6">
       <h2>Links</h2>
-      <ul class="no-bullets">
+      <ul class="p-list">
         {% for link in partner.links %}
-        <li><a class="p-link--external" href="{{ link.fields.url }}"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ link.fields.text }} link', 'eventValue' : undefined });">{{ link.fields.text }}</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="{{ link.fields.url }}"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Dedicated Partner Page Link', 'eventAction' : '{{ partner.name }} Page', 'eventLabel' : '{{ partner.name }} - {{ link.fields.text }} link', 'eventValue' : undefined });">{{ link.fields.text }}</a></li>
         {% endfor %}
       </ul>
     </div>
