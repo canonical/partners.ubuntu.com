@@ -78,7 +78,7 @@ YUI(yuiOptions).use('node', 'cookie', "event-resize", "transition", "event", fun
   };
 
   loadRSSFeed = function(id, tag, limit, url, title) {
-    var feedURL = "https://insights.ubuntu.com/feed/";
+    var feedURL = "https://blog.ubuntu.com/feed/";
     if (tag) {
       feedURL += "?tag=" + tag;
     }
