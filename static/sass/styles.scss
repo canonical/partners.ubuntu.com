@@ -26,3 +26,92 @@ p {
 .p-media-object__image {
   min-width: 6rem;
 }
+
+// Partner page styles
+
+//Counteract negative margin of p-card__content
+.p-card__title.p-muted-heading {
+  margin-bottom: $sp-large;
+}
+
+.p-hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__text {
+    background-color: rgba(255, 255, 255, .85);
+    padding: $spv-intra $sph-inter;
+  }
+}
+
+
+// IBM page
+.ibm {
+  .p-hero {
+    background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=768');
+  }
+
+  @media only screen and (min-width : 768px) {
+    .p-hero {
+      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=984');
+      min-height: 30vw;
+    }
+  }
+
+  @media only screen and (min-width : 984px) {
+    .p-hero {
+      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500');
+    }
+  }
+}
+
+// Microsoft Page
+.microsoft {
+  .p-hero {
+    background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=768');
+
+    @media only screen and (min-width : 768px) {
+      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=984');
+    }
+
+    @media only screen and (min-width : 984px) {
+      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=1500');
+    }
+  }
+
+  .azure-stack {
+    background-image: url('https://assets.ubuntu.com/v1/72be8745-azure-stack-hills.png');
+    background-position: 95% 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 220px;
+
+    @media only screen and (min-width : 768px) {
+      background-size: auto;
+      padding-bottom: 200px;
+    }
+
+    @media only screen and (min-width : 1400px) {
+      padding-bottom: 60px;
+    }
+  }
+}
+
+.amazon-web-services-llc,
+.amazon-web-services,
+.aws {
+  .p-hero {
+    background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=768');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media only screen and (min-width : 768px) {
+        background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=984');
+        min-height: 30vw;
+    }
+
+    @media only screen and (min-width : 984px) {
+        background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg');
+    }
+  }
+}
