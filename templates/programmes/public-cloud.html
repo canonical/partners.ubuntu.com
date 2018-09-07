@@ -4,55 +4,54 @@
 {% block meta_description %}Canonical has partnered with the very best cloud service providers to ensure that the best of Ubuntu - consistent, up-to-date, secure - is available to our joint user base.{% endblock %}
 {% block meta_keywords %}CPC, Certified Public Cloud, cloud ecosystem, cloud partners, cloud tools, Juju, Charm, orchestration, Ubuntu cloud, guest, Canonical{% endblock %}
 
-{% block second_level_nav_items %}
-    <nav role="navigation" class="nav-secondary clearfix">{% include "templates/_nav_breadcrumb.html" with section_title="Programmes" page_title="Certified Public cloud" %}</nav>
-{% endblock second_level_nav_items %}
+{% block second_level_nav %}
+  {% include "programmes/_nav_secondary.html" with section="public-cloud" %}
+{% endblock second_level_nav %}
 
 {% block content %}
-<div class="row row-hero no-border equal-height">
-    <div class="eight-col">
-        <h1 itemprop="name">Ubuntu Certified Public Cloud</h1>
-        <p>Ubuntu is enormously popular with providers delivering public cloud services today. Together with significant developer mindshare, a favourable licensing model and a policy of regular updates have made Ubuntu the number one platform for cloud guests, the world over.</p>
-        <p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities. </p>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h1 class="p-heading--two">Ubuntu Certified Public Cloud</h1>
+      <p>Ubuntu is enormously popular with providers delivering public cloud services today. Together with significant developer mindshare, a favourable licensing model and a policy of regular updates have made Ubuntu the number one platform for cloud guests, the world over.</p>
+      <p>If you operate a public cloud or you&rsquo;re considering launching one, the Ubuntu Certified Public Cloud programme lets you make certified, secure and up to date Ubuntu images available to your users, along with the opportunity to sell management, monitoring and commercial support from Canonical &mdash; all of which represent additional revenue opportunities. </p>
     </div>
-    <div class="three-col last-col prepend-one align-center align-vertically">
-        <img class="priority-0" width="250" src="{{ STATIC_URL }}img/logos/certified_cloud_partner_hex.png" itemprop="image" alt="" />
+    <div class="col-4 u-hide--small">
+      <img width="213" src="{{ STATIC_URL }}img/logos/certified_cloud_partner_hex.png" itemprop="image" alt="" />
     </div>
-</div>
-<div class="row no-border strip-dark">
-    <div class="eight-col append-four">
-        <h2>What&rsquo;s included?</h2>
-        <p>There are many benefits for partners in the Ubuntu Certified Public Cloud programme:</p>
-    </div>
-    <div class="six-col">
-        <ul class="list-ubuntu">
-            <li>Certified Ubuntu cloud images, tuned and tested to your environment, ensure optimal performance</li>
-            <li>Regular and automated refresh of Ubuntu images for enhanced user experience and increased security</li>
-            <li class="last-item">Automated publication across all cloud availability zones for facilitated operations</li>
-        </ul>
-    </div>
-    <div class="six-col last-col">
-        <ul class="list-ubuntu">
-            <li>Being featured as a certified partner on the Ubuntu website, including the ability to use Ubuntu Public Cloud certification logos</li>
-            <li>Joint marketing opportunities, including revenue-sharing for services and management tools delivered under <a href="https://www.ubuntu.com/support/plans-and-pricing">Ubuntu Advantage</a></li>
-            <li class="last-item">Automated publication across all cloud availability zones for more efficient operations</li>
-        </ul>
-    </div>
-</div>
-
-<div class="row no-border">
-    <div class="eight-col">
-        <h2>Premier cloud partners</h2>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <h2 class="p-heading--three">What&rsquo;s included?</h2>
+    <p>There are many benefits for partners in the Ubuntu Certified Public Cloud programme:</p>
+  </div>
+  <div class="row">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Certified Ubuntu cloud images, tuned and tested to your environment, ensure optimal performance</li>
+      <li class="p-list__item is-ticked">Automated publication across all cloud availability zones for facilitated operations</li>
+      <li class="p-list__item is-ticked">Being featured as a certified partner on the Ubuntu website, including the ability to use Ubuntu Public Cloud certification logos</li>
+      <li class="p-list__item is-ticked">Regular and automated refresh of Ubuntu images for enhanced user experience and increased security</li>
+      <li class="p-list__item is-ticked">Automated publication across all cloud availability zones for more efficient operations</li>
+      <li class="p-list__item is-ticked">Joint marketing opportunities, including revenue-sharing for services and management tools delivered under <a href="https://www.ubuntu.com/support/plans-and-pricing">Ubuntu Advantage</a></li>
+    </ul>
+  </div>
+</section>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+        <h2 class="p-heading--three">Premier cloud partners</h2>
         <p>We collaborate with our Premier Certified Public Cloud partners on numerous
         disruptive developments that are driving the cloud forward. They include
         <a href="https://jujucharms.com">Juju</a>, a groundbreaking application modelling
         tool that brings rapid deployment, scaling and integration of complex applications
         to any cloud, leading to ecosystem and workload growth for our partners.</p>
     </div>
-    <div class="prepend-one two-col last-col align-center">
+    <div class="col-4 u-hide--small">
         <img src="{{ STATIC_URL }}img/logos/logo-premiercloudpartner.svg" alt="">
     </div>
-</div>
+  </div>
+</section>
 
 {% include "block/_logo-list.html" with name="public cloud partners" query="programme=certified-public-cloud" extra_class="no-border" %}
 

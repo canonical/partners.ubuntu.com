@@ -1,11 +1,38 @@
-    <ul{% if list_class %} class="{{ list_class }}"{% endif %} class="second-level-nav">
-        <li class="first{% if level_1 == 'programmes' and not level_2 %} active{% endif %}"><a href="/programmes">Overview</a></li>
-        <li{% if level_2 == 'public-cloud' %} class="active" {% endif %}><a href="/programmes/public-cloud">Public cloud</a></li>
-        <li{% if level_2 == 'openstack' %} class="active" {% endif %}><a href="/programmes/openstack">OpenStack</a></li>
-        <li{% if level_2 == 'charm' %} class="active" {% endif %}><a href="/programmes/charm">Charm</a></li>
-        <li{% if level_2 == 'software' %} class="active"{% endif %}><a href="/programmes/software">Software</a></li>
-        <li{% if level_2 == 'hardware' %} class="active"{% endif %}><a href="/programmes/hardware">Hardware</a></li>
-        <li{% if level_2 == 'retail' %} class="active"{% endif %}><a href="/programmes/retail">Retail</a></li>
-        <li{% if level_2 == 'channel' %} class="active" {% endif %}><a href="/programmes/channel">Channel</a></li>
-        <li{% if level_2 == 'iot' %} class="active" {% endif %}><a href="/programmes/iot">IoT</a></li>
+<section class="p-strip--image is-dark" style="background-image: url('https://assets.ubuntu.com/v1/775cc62b-vanilla-grad-background.png'); background-position: 75% 50%;">
+  <div class="row">
+    <h1 class="u-no-margin--bottom">Ubuntu partner programmes</h1>
+  </div>
+</section>
+<div class="row">
+  <nav class="p-tabs">
+    <ul class="p-tabs__list" role="tablist">
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes" class="p-tabs__link"{% if section == 'programmes' %}  aria-selected="true"{% endif %}>Overview</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/public-cloud" class="p-tabs__link"{% if section == 'public-cloud' %}  aria-selected="true"{% endif %}>Public cloud</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/openstack" class="p-tabs__link"{% if section == 'openstack' %}  aria-selected="true"{% endif %}>OpenStack</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/charm" class="p-tabs__link"{% if section == 'charm' %}  aria-selected="true"{% endif %}>Charm</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/software" class="p-tabs__link"{% if section == 'software' %}  aria-selected="true"{% endif %}>Software</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/hardware" class="p-tabs__link"{% if section == 'hardware' %}  aria-selected="true"{% endif %}>Hardware</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/retail" class="p-tabs__link"{% if section == 'retail' %}  aria-selected="true"{% endif %}>Retail</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/channel" class="p-tabs__link"{% if section == 'channel' %}  aria-selected="true"{% endif %}>Channel</a>
+      </li>
+      <li class="p-tabs__item" role="presentation">
+        <a href="/programmes/iot" class="p-tabs__link"{% if section == 'iot' %}  aria-selected="true"{% endif %}>IoT</a>
+      </li>
     </ul>
+  </nav>
+</div>

@@ -1,17 +1,17 @@
 {% if programme_partners %}
-<section class="row {% if extra_class %}{{ extra_class }}{% endif %}">
-    <div class="twelve-col">
-        <h3 class="caps-centered">A selection of our {{ name }}</h3>
-        <div class="list-auto twelve-col">
-            <ul class="inline-logos no-bullets">
-                {% for partner in programme_partners %}
-                    <li{% if forloop.last %} class='last-item'{% endif %}><img src="{{ partner.logo }}" alt="{{ partner.name }}" /></li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="twelve-col">
-            <p class="align-center"><a href="/find-a-partner?{{ query }}">See all {{ name }}&nbsp;&rsaquo;</a></p>
-        </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+        <h3 class="p-muted-heading u-align--center">A selection of our {{ name }}</h3>
+        <ul class="p-inline-images">
+        {% for partner in programme_partners %}
+          <li class="p-inline-images__item">
+            <img class="p-inline-images__logo" src="{{ partner.logo }}" alt="{{ partner.name }}">
+          </li>
+        {% endfor %}
+        </ul>
+        <p class="u-align--center u-vertically-spaced"><a href="/find-a-partner?{{ query }}">See all {{ name }}&nbsp;&rsaquo;</a></p>
     </div>
+  </div>
 </section>
 {% endif %}

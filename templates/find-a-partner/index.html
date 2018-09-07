@@ -7,101 +7,94 @@
 {% block meta_keywords %}Canonical, Ubuntu, partner, partnership, program, programme, carrier, telco, mobile, network, phone, smartphone, tablet, cloud, OpenStack, public cloud, infrastructure, guest, image, server, ISV, software, hardware, enablement, certify, certified, certification, PC, laptop, desktop, channel partners, VAR, channel, developer{% endblock %}
 
 {% block content %}
-<div class="row row-hero no-border no-padding-bottom no-margin-bottom">
-    <div class="twelve-col equal-height">
-        <div class="eight-col">
-            <h1>Find an Ubuntu partner</h1>
-            <p class="intro">Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities. We offer partner programmes for software vendors, hardware OEMs, mobile carriers, channel partners, retailers and public cloud providers. </p>
-        </div>
-        <div class="four-col last-col align-center align-vertically">
-            <img class="priority-0" src="{{ STATIC_URL }}img/partners-search.svg" width="180" alt="Search pictogram">
-        </div>
-    </div>
-</div><!-- /row -->
 
-<div class="row no-border">
-    <div class="search-panel three-col">
-        <div class="twelve-col">
-            <form>
-                <input type="text" name="search" id="search" class="search">
-            </form>
-        </div>
-        <div class="twelve-col">
-            <div class="tabbed-menu" style="display: none;">
-                <ul>
-                    {% for filter in filters %}
-                    <li>
-                    <a href="#{{ filter.name|slugify }}" class="active">{{ filter.name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% for filter in filters %}
-            <div id="{{ filter.name|slugify }}" class="tabbed-content">
-                <a href="#{{ filter.name|slugify }}" class="accordion-button slideless">{{ filter.name|lower|capfirst }}</a>
-                <ul class="no-bullets">
-                    {% for item in filter.items %}
-                    <li>
-                        <input type="checkbox" name="{{ filter.name|slugify }}-{{ item|slugify }}" id="{{ filter.name|slugify }}-{{ item|slugify }}">
-                        <label for="{{ filter.name|slugify }}-{{ item|slugify }}">{{ item }}</label>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endfor %}
-        </div>
+<section class="p-strip--image is-dark" style="background-image: url('https://assets.ubuntu.com/v1/775cc62b-vanilla-grad-background.png'); background-position: 75% 50%;">
+  <div class="row">
+    <h1 class="u-no-margin--bottom">Find an Ubuntu partner</h1>
+    <p>Canonical&rsquo;s network of Ubuntu partners spans the full range of technology activities. We offer partner programmes for software vendors, hardware OEMs, mobile carriers, channel partners, retailers and public cloud providers. </p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-4 p-card">
+      <h3>Search</h3>
+      <form>
+        <input type="text" name="search" id="search" class="p-find-a-partner__search-input">
+      </form>
+      <aside class="p-accordion" role="tablist" aria-multiselect="true">
+        <h3>Filters</h3>
+        <ul class="p-accordion__list">
+          {% for filter in filters %}
+          <li class="p-accordion__group">
+            <button type="button" class="p-accordion__tab" id="{{ filter.name|slugify }}" role="tab" aria-controls="#{{ filter.name|slugify }}-section" aria-expanded="false">{{ filter.name|lower|capfirst }}</button>
+            <section class="p-accordion__panel" id="{{ filter.name|slugify }}-section" role="tabpanel" aria-hidden="true" aria-labelledby="{{ filter.name|slugify }}-section">
+              {% for item in filter.items %}
+              <p>
+                <input type="checkbox" class="p-find-a-partner__filter" name="{{ filter.name|slugify }}-{{ item|slugify }}" id="{{ filter.name|slugify }}-{{ item|slugify }}">
+                <label for="{{ filter.name|slugify }}-{{ item|slugify }}">{{ item }}</label>
+              </p>
+              {% endfor %}
+            </section>
+          </li>
+          {% endfor %}
+        </ul>
+      </aside>
     </div>
-    <div id="results" class="results nine-col last-col search-not-run">
-        <div class="box noResults hide">
-            <p>Sorry, no partners matches found.</p>
-            <p>Perhaps <a href="/find-a-partner">start your search again?</a></p>
+    <div class="col-8">
+      <div id="results" class="p-find-a-partner js-search-not-run">
+        <div class="p-card p-find-a-partner__no-results u-hide">
+          <p>Sorry, no partners matches found.</p>
+          <p>Perhaps <a href="/find-a-partner">start your search again?</a></p>
         </div>
-        <ul class="prioritisedResults"></ul>
+        <ul class="p-list p-find-a-partner__prioritised-results"></ul>
         {% if partners %}
-        <ul>
-            {% for p in partners %}
-            <li id="{{ p.name|slugify }}" class="box clearfix twelve-col partner" data-searchText="{{ p.name }} {{ p.short_description }} {% for tag in p.tags %}
-            {{ tag.fields.tag }}{% if not forloop.last %} {% endif %}{% endfor %}" data-filter="{% for technology in p.technology.all %}technology-{{ technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{ industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
-            <div class="logo-container align-center no-margin-bottom">
-                {% if p.partner_website and not p.dedicated_partner_page %}
-                <a title="Vist the {{ p.name }} website" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result image link', 'eventValue' : undefined });" href="{{ p.partner_website }}">
-                {% else %}
-                <a onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }}', 'eventLabel' : '{{ p.name }} find-a-partner result image link', 'eventValue' : undefined });" href="/{{ p.slug }}">
-                {% endif %}
-                {% if p.logo %}
-                <img src="{{ p.logo }}" alt="{{ p.name }} logo" /></a>
-                {% endif %}
+        <ul class="p-list p-find-a-partner__partner-list">
+          {% for p in partners %}
+          <li id="{{ p.name|slugify }}" class="p-list__item p-find-a-partner__partner p-media-object" data-searchText="{{ p.name }} {{ p.short_description }} {% for tag in p.tags %}{{ tag.fields.tag }}{% if not forloop.last %} {% endif %}{% endfor %}" data-filter="{% for technology in p.technology.all %}technology-{{technology.name|slugify }} {% endfor %}{% for industry_sector in p.industry_sector.all %}industry-sector-{{industry_sector.name|slugify }} {% endfor %}{% for programme in p.programme.all %}programme-{{ programme.name|slugify }} {% endfor %}{% for service_offered in p.service_offered.all %}service-offered-{{ service_offered.name|slugify }} {% endfor %}{% for region in p.region.all %}region-{{ region.name|slugify }} {% endfor %}" >
+            <div class="p-media-object__image">
+              {% if p.partner_website and not p.dedicated_partner_page %}
+              <a title="Vist the {{ p.name }} website" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result image link', 'eventValue' : undefined });" href="{{ p.partner_website }}">
+              {% else %}
+              <a onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }}', 'eventLabel' : '{{ p.name }} find-a-partner result image link', 'eventValue' : undefined });" href="/{{ p.slug }}">
+              {% endif %}
+              {% if p.logo %}
+                <img src="{{ p.logo }}" alt="{{ p.name }} logo" />
+              </a>
+              {% endif %}
             </div>
-            <div class="no-margin-bottom">
-                <h3>
-                    {% if p.dedicated_partner_page or p.partner_website %}
-                    {% if p.partner_website and not p.dedicated_partner_page %}
-                    <a title="Vist the {{ p.name }} website" class="external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result link', 'eventValue' : undefined });" href="{{ p.partner_website }}">
-                    {% else %}
-                    <a onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result link', 'eventValue' : undefined });" href="/{{ p.slug }}">
-                    {% endif %}
-                    {{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}
-                    </a>
-                    {% else %}
-                    {{ p.name }}
-                    {% endif %}
-                </h3>
-                <p>{{ p.short_description | markdown }}</p>
-                {% if p.tags %}
-                <h4>{{ p.tags_label }}:</h4>
-                <p>
+            <div class="p-media-object__details">
+              <h3 class="p-media-object__title">
+                {% if p.dedicated_partner_page or p.partner_website %}
+                {% if p.partner_website and not p.dedicated_partner_page %}
+                <a title="Vist the {{ p.name }} website" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result link', 'eventValue' : undefined });" href="{{ p.partner_website }}">
+                {% else %}
+                <a onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Find a Partner Page Link', 'eventAction' : '{{ p.name }} ', 'eventLabel' : '{{ p.name }} find-a-partner result link', 'eventValue' : undefined });" href="/{{ p.slug }}">
+                {% endif %}
+                  {{ p.name }}{% if p.dedicated_partner_page %}&nbsp;&rsaquo;{% endif %}
+                </a>
+                {% else %}
+                {{ p.name }}
+                {% endif %}
+              </h3>
+              <div class="p-media-object__content">{{ p.short_description | markdown }}</div>
+              {% if p.tags %}
+              <h4>{{ p.tags_label }}:</h4>
+              <p>
                 {% for tag in p.tags %}
                 {{ tag.fields.tag }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
-                </p>
-                {% endif %}
+              </p>
+              {% endif %}
             </div>
-            </li><!-- /.box -->
-        {% endfor %}
+          </li>
+          {% endfor %}
         </ul>
-    {% endif %}
-    </div><!-- /#results -->
-</div><!-- /row -->
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
 
 {% include "templates/_contextual-footer.html" %}
 
