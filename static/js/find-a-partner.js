@@ -44,14 +44,12 @@
   }
 
   function search(query) {
-    var partners = document.querySelectorAll(".p-find-a-partner__partner");
-    partners.forEach(function(partner) {
-      partner.classList.add("u-hide");
-    });
-
-    var partners = document.querySelectorAll(".p-find-a-partner__partner");
+    var partners = document.querySelectorAll(
+      ".p-find-a-partner__partner:not(.js-filtered)"
+    );
 
     partners.forEach(function(node) {
+      node.classList.add("u-hide");
       var searchText = node.getAttribute("data-searchText").toLowerCase();
       if (searchText.includes(query)) {
         node.classList.remove("u-hide");
@@ -74,12 +72,12 @@
     filters[name] = add;
     partners = document.querySelectorAll(".p-find-a-partner__partner");
     partners.forEach(function(node) {
-      node.classList.add("u-hide");
+      node.classList.add("u-hide", "js-filtered");
 
       dataFilter = node.getAttribute("data-filter");
       for (var name in filters) {
         if (filters[name] == true && dataFilter.indexOf(name) != -1) {
-          node.classList.remove("u-hide");
+          node.classList.remove("u-hide", "js-filtered");
         }
       }
     });
