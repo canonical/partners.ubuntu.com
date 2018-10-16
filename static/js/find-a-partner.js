@@ -1,5 +1,7 @@
 (function() {
 
+  var filters = [];
+
   function init() {
     revealSearch();
 
@@ -39,7 +41,7 @@
   }
 
   function searchHandler(e) {
-    var query = e.target.value;
+    var query = e.target.value.toLowerCase();
     search(query);
   }
 
@@ -68,7 +70,6 @@
 
   //Adds the provided filter and filters the results accordingly
   function updateFilter(name, add) {
-    var filters = [];
     filters[name] = add;
     partners = document.querySelectorAll(".p-find-a-partner__partner");
     partners.forEach(function(node) {
