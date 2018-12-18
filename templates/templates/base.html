@@ -29,6 +29,10 @@
 <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
 <script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+
+<!-- cookie policy -->
+<script src="{{ STATIC_URL }}js/modules/cookie-policy.js"></script>
+
 {% block head_extra %}{% endblock %}
 
 </head>
@@ -111,7 +115,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 });</script>
 
 
-{% block footer_extra %}{% endblock %}
+{% block footer_extra %}
+<script>
+  // Every page should show the cookie policy until accepted
+  var cookie_options = {
+    'content': 'We use cookies to improve your experience of canonical.com. By continuing to explore without changing your settings, you are agreeing to accept them. To learn how to change these settings, please see our <a href="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy#cookies">privacy policy</a>.'
+  }
+  ubuntu.cookiePolicy.setup(cookie_options);
+</script>
+{% endblock %}
 
 {% if enable_crazyegg %}
     <script type="text/javascript">

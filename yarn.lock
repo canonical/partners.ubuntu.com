@@ -240,6 +240,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
+cookie-policy@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/cookie-policy/-/cookie-policy-1.0.5.tgz#be71abae448c07fe97e5a0b1234d628e835072c3"
+
 core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"

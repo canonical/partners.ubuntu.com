@@ -7,6 +7,8 @@ $color-accent: #e95420;
 @import '_pattern_find-a-partner';
 @include p-find-a-partner;
 
+@import 'modules/cookie-policy';
+
 // XXX: KW-2018-08-16 - Fix for broken centre alignment with max-width elements
 // Can be removed when this is resolved in Vanilla:
 // https://github.com/vanilla-framework/vanilla-framework/issues/1794
