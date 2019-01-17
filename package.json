@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "cookie-policy": "^1.0.5",
-    "global-nav": "^1.0.0",
+    "global-nav": "^1.2.1",
     "vanilla-framework": "1.8.0"
   }
 }
