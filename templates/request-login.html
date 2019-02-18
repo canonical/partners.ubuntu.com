@@ -1,0 +1,98 @@
+{% extends "templates/base_index.html" %}
+
+{% block title %}Request login | {% endblock %}
+{% block meta_description %}Request access to Ubuntu's partner portal{% endblock %}
+
+{% block extra_body_class %}home full-width{% endblock %}
+
+{% block content %}
+
+{% if aliId %}
+<div class="p-strip is-bordered is-deep">
+  <div class="row">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h1>Thank you for requesting access to Ubuntu's partner portal</h1>
+        <p class="p-heading--four">A member of our team will be in touch soon.</p>
+      </div>
+      <div class="col-5 u-vertically-center u-align--center u-hide--small">
+        <img src="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg" alt="smile" width="200" height="200">
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if not aliId %}
+<div class="p-strip is-bordered is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Request access to Ubuntu's partner portal</h1>
+      <p>If you need to gain access to the Ubuntu's partner portal, please fill in your details below and a member of our team will get in touch.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <script src="//app-sjg.marketo.com/js/forms2/js/forms2.min.js"></script>
+      <form id="mktoForm_3339"></form>
+      <script>
+        MktoForms2.loadForm("//app-sjg.marketo.com", "066-EOV-335", 3339);
+        MktoForms2.whenReady(function (form) {
+          var formEl = form.getFormElem()[0];
+          formEl.classList.add('p-form');
+
+          // Remove element styles from root and children (may want to disable this while debugging)
+          var elsWithStyles = document.querySelectorAll('#' + formEl.id + ', #' + formEl.id + ' [style]')
+          for (var i = 0; i < elsWithStyles.length; i++) {
+            elsWithStyles[i].removeAttribute('style');
+          }
+
+          // Disable all Marketo-sourced stylesheets
+          var styleSheets = document.styleSheets;
+          for (var i = 0; i < styleSheets.length; i++) {
+            var ssLoc = document.createElement('A');
+            ssLoc.href = styleSheets[i].href;
+
+            if ((ssLoc.hostname.search(/\.marketo\.com$/) !== -1) //  external STYLEs
+              ||
+              ((styleSheets[i].ownerNode || styleSheets[i].owningElement).parentNode == formEl)) { //  inline STYLEs within FORM tag
+              styleSheets[i].disabled = true;
+            }
+          }
+
+          // Remove mktoAsterix
+          var mktoAsterix = document.querySelectorAll('.mktoAsterix');
+          for (var i = 0; i < mktoAsterix.length; i++) {
+            mktoAsterix[i].classList.add('u-hide');
+          }
+        });
+      </script>
+
+      <style>
+        .mktoRequiredField label::after {
+          content: "*";
+          color: #c7162b;
+          padding-left: .25rem;
+        }
+
+        .mktoError {
+          font-size: .875rem;
+          line-height: 1.25rem;
+          margin-bottom: .7rem;
+          padding-top: .05rem;
+        }
+
+        .mktoInvalid {
+          background-image: url(https://assets.ubuntu.com/v1/4b0cd7fc-icon-error.svg);
+          border-color: #c7162b;
+          background-position: calc(100% - .5rem) 50%;
+          background-repeat: no-repeat;
+        }
+      </style>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
