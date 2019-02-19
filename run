@@ -233,7 +233,7 @@ python_run () {
 
         # Provision database for django sites
         if [ -f manage.py ]; then
-            docker_run "--network ${network_name}" python3 manage.py migrate
+            run_as_user "--network ${network_name}" python3 manage.py migrate
         fi
 
     fi
