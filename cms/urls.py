@@ -57,6 +57,7 @@ urlpatterns += [
     url(r'^$', PartnerView.as_view()),
     url(r'^contact-us$', PartnerView.as_view()),
     url(r'^thank-you$', PartnerView.as_view()),
+    url(r'^request-login$', PartnerView.as_view()),
     url(r'^find-a-partner$', find_a_partner),
     url(r'^partnering-with-us$', PartnerView.as_view()),
     url(r'^(?P<slug>[-\w]+)/?$', partner_view),
