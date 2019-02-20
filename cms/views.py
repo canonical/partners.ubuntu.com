@@ -68,6 +68,9 @@ class PartnerView(TemplateFinder):
             dedicated_partner_page=True,
         )[:8]
 
+        # Add contact query
+        context["aliId"] = self.request.GET.get('aliId', '')
+
         # Add level_* context variables
         clean_path = self.request.path.strip('/')
         for index, path, in enumerate(clean_path.split('/')):
