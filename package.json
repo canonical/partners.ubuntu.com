@@ -9,12 +9,12 @@
     "copy-3rd-party-css": "mkdir -p static/sass/modules && cp node_modules/cookie-policy/build/css/cookie-policy.css static/sass/modules/"
   },
   "devDependencies": {
-    "node-sass": "4.5.3",
-    "sass-lint": "1.10.2"
+    "node-sass": "4.11.0",
+    "sass-lint": "1.12.1"
   },
   "dependencies": {
-    "cookie-policy": "1.0.5",
-    "global-nav": "2.0.0",
-    "vanilla-framework": "1.8.0"
+    "cookie-policy": "1.1.0",
+    "global-nav": "2.0.2",
+    "vanilla-framework": "1.8.1"
   }
 }
