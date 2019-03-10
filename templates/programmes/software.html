@@ -2,7 +2,7 @@
 
 {% block title %}Ubuntu software partners | {% endblock %}
 {% block meta_description %}The Canonical Technical Partner Program defines a process for collaboration between Canonical and IHV's. It helps IHVs understand how Ubuntu is developed and enhanced, and what is planned for the next release.{% endblock %}
-{% block meta_keywords %}Ubuntu, Technical Partners,IHVs,Technical Partner program,Technical collaboration,technical partnership,Technical certification,software,certification,driver support,driver certification,Canonical certification programs,component certification{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1CluSfP-OOnvhgkqJ4xoWguUViMz9ctUHh6zX8PNQAa4/edit#{% endblock %}
 
 {% block second_level_nav %}
 {% include "programmes/_nav_secondary.html" with section="software" %}
@@ -23,31 +23,19 @@
   </div>
 </section>
 
-{% include "block/_logo-list.html" with name="software partners" query="programme=openstack&amp;service-offered=softwarecontent-publisher" %}
+{% include "block/_logo-list.html" with name="software partners" query="service-offered=softwarecontent-publisher" %}
 
 <section class="p-strip is-bordered">
   <div class="row u-vertically-center">
     <div class="col-8">
       <h2 class="p-heading--three">App developer partners</h2>
-      <p>Thanks to the ease with which users can find and install software using the Ubuntu Software Centre, Ubuntu already supports thousands of client applications. With the launch of Ubuntu phones and tablets &mdash; and the resulting opportunity to target three client platforms with just one codebase &mdash; the Ubuntu app market is set to grow exponentially. </p>
-      <p><a href="https://developer.ubuntu.com/en/start/ubuntu-sdk/installing-the-sdk/" class="p-link--external">Learn more about Ubuntu SDK</a></p>
+      <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you’re building for desktop, cloud, or the Internet of Things, publishing as a snap will keep users up to date and make system configuration issues less likely, freeing you to code more and debug less.</p>
+      <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
+      <p><a href="https://snapcraft.io" class="p-link--external">Learn more about Ubuntu SDK</a></p>
     </div>
     <div class="col-4 u-hide--small">
-      <img width="150" src="https://assets.ubuntu.com/v1/527fbcef-picto-developer-warmgrey.svg" alt="developer pictogram">
+      <img width="150" src="https://assets.ubuntu.com/v1/5124bd9c-logo-snapcraft-primary_smaller.svg" alt="Snapcraft logo">
     </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row">
-    <h2 class="p-heading--three">What&rsquo;s included?</h2>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">The Ubuntu SDK, allowing you to build one app for PC, smartphone and cloud</li>
-      <li class="p-list__item is-ticked">Easy, single upload to the Ubuntu Software Centre</li>
-      <li class="p-list__item is-ticked">Priority access to the engineers that develop Ubuntu</li>
-      <li class="p-list__item is-ticked">Marketing assistance and assets to help promote your apps</li>
-    </ul>
-    <p><a href="https://design.ubuntu.com/apps" class="p-link--external">Explore our App Design Guide</a></p>
   </div>
 </section>
 
@@ -55,25 +43,13 @@
   <div class="row u-vertically-center">
     <div class="col-8">
       <h2 class="p-heading--three">Cloud software partners</h2>
-      <p>Ubuntu is the world&rsquo;s leading cloud operating system, both as a guest on public clouds &mdash; like Amazon and Windows Azure &mdash; and as a platform on which to build OpenStack clouds.</p>
-      <p>There are two Canonical partner programmes that can help you reach this global market of users and developers: the OpenStack interoperability lab and the Charm partner programme. Whether you want to improve interoperability in OpenStack, streamline application delivery or simply access more customers, we can help.</p>
-    </div>
-    <div class="col-4 u-hide--small">
-      <img width="250" src="https://assets.ubuntu.com/v1/651a5caa-image-ecosystem.svg" alt="" />
-    </div>
-  </div>
-</section>
-<section class="p-strip is-bordered u-no-padding--top">
-  <div class="row">
-    <div class="col-6" id="charm-partner-programme">
+      <p>Ubuntu is the world&rsquo;s leading cloud operating system, both as a guest on public clouds &mdash; like Amazon and Windows Azure &mdash; and as a platform on which to build OpenStack clouds and Kubernetes clusters.</p>
       <h3>Charm partner programme</h3>
       <p>Canonical&rsquo;s award-winning service modeling tool, Juju, makes it easy to model, deploy, manage and scale cloud software. With Juju charms, any customer can deploy your products in just a few clicks.</p>
       <p><a href="/contact-us">Contact us about the Charm partner programme&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6" id="openstack-interoperability-lab">
-      <h3>OpenStack interoperability lab for Software Partners</h3>
-      <p>In launching the Ubuntu OpenStack interoperability lab (OIL), Canonical has invested heavily in interoperability testing for OpenStack and Ubuntu. OIL offers significant benefits for partners looking to QA their products quickly and cost-effectively, ensuring they are are compatible with all versions of Ubuntu OpenStack.</p>
-      <p><a href="/programmes/openstack">Learn more about OpenStack interoperability lab&nbsp;&rsaquo;</a></p>
+    <div class="col-4 u-hide--small">
+      <img width="250" src="https://assets.ubuntu.com/v1/651a5caa-image-ecosystem.svg" alt="" />
     </div>
   </div>
 </section>
