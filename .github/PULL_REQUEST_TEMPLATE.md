@@ -1,14 +1,18 @@
 ## Done
 
-[List of work items including drive-bys]
+- [List of work items including drive-bys]
 
 ## QA
 
-[List of steps to QA the new features or prove the bug has been resolved]
+1. Download this branch
+2. `./run` the site
+3. Go to http://0.0.0.0:8003/
+4. Compare to the [copy doc]()
+[List additional steps to QA the new features or prove the bug has been resolved]
 
 ## Issue / Card
 
-[List of links to Github issues/bugs and cards if needed - e.g. `Fixes #1`]
+Fixes #1
 
 ## Screenshots
 
