@@ -4,12 +4,9 @@
     "test": "yarn run lint-scss && yarn run lint-python",
     "lint-scss": "sass-lint static/**/*.scss --verbose --no-exit",
     "lint-python": "flake8 --exclude '*env*,node_modules' && black --line-length 79 --check --exclude '(node_modules/.*|[^/]*env[0-9]?/.*)' .",
-    "build": "yarn run copy-3rd-party && node-sass --include-path node_modules static/sass --output static/css",
+    "build": "scripts/import-modules.sh && node-sass --include-path node_modules static/sass --output static/css",
     "watch": "node-sass --include-path node_modules --source-map true --watch static/sass --output static/css",
-    "serve": "./entrypoint 0.0.0.0:${PORT}",
-    "copy-3rd-party": "yarn run copy-3rd-party-js && yarn run copy-3rd-party-css",
-    "copy-3rd-party-js": "mkdir -p static/js/modules && cp node_modules/cookie-policy/build/js/cookie-policy.js static/js/modules/",
-    "copy-3rd-party-css": "mkdir -p static/sass/modules && cp node_modules/cookie-policy/build/css/cookie-policy.css static/sass/modules/"
+    "serve": "./entrypoint 0.0.0.0:${PORT}"
   },
   "devDependencies": {
     "node-sass": "4.11.0",
@@ -17,7 +14,7 @@
   },
   "dependencies": {
     "cookie-policy": "1.1.0",
-    "global-nav": "2.0.2",
+    "@canonical/global-nav": "2.0.5",
     "vanilla-framework": "1.8.1"
   }
 }

@@ -117,11 +117,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="/static/js/scratch.js"></script>
 <script src="/static/js/plugins/respond.min.js"></script>
 
-<script src="/static/global-nav/dist/index.js"></script>
-<script>canonicalGlobalNav.createNav({
-  maxWidth: '64.875rem',
-  showLogins: false
-});</script>
+<script src="/static/js/modules/global-nav.js"></script>
+<script>
+  canonicalGlobalNav.createNav({
+    maxWidth: '64.875rem',
+    showLogins: false
+  });
+</script>
 
 
 {% block footer_extra %}
