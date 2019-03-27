@@ -6,7 +6,6 @@ from collections import namedtuple
 from preserialize.serialize import serialize
 from django_template_finder_view import TemplateFinder
 from django.shortcuts import render_to_response, get_object_or_404
-from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.http import HttpResponse
@@ -44,8 +43,6 @@ def add_default_values_to_context(context, request):
     for i, path in enumerate(path_list):
         level = "level_%s" % str(i + 1)
         context[level] = path.lower()
-    context["STATIC_URL"] = settings.STATIC_URL
-    context["ASSET_SERVER_URL"] = settings.ASSET_SERVER_URL
     return context
 
 
