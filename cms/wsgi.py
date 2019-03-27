@@ -5,14 +5,11 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
-# Core
+# Standard library
 import os
 
+# Packages
+from django.core.wsgi import get_wsgi_application
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cms.settings")
-
-# Modules
-from django.core.wsgi import get_wsgi_application  # noqa
-from whitenoise.django import DjangoWhiteNoise  # noqa
-
-application = DjangoWhiteNoise(get_wsgi_application())
-
+application = get_wsgi_application()

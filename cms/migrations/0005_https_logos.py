@@ -3,6 +3,7 @@ from django.db import migrations
 
 # Local
 from cms.models import Partner
+
 try:
     from urlparse import urlparse, urlunparse
 except ImportError:
@@ -17,9 +18,9 @@ def update_logo_urls(apps, schema_editor):
             partner.logo
         )
 
-        if scheme == 'http' and netloc == 'assets.ubuntu.com':
+        if scheme == "http" and netloc == "assets.ubuntu.com":
             new_url = urlunparse(
-                ('https', netloc, path, params, query, fragment)
+                ("https", netloc, path, params, query, fragment)
             )
 
             partner.logo = new_url
@@ -27,10 +28,6 @@ def update_logo_urls(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ('cms', '0004_auto_20160331_1555'),
-    ]
+    dependencies = [("cms", "0004_auto_20160331_1555")]
 
-    operations = [
-        migrations.RunPython(update_logo_urls)
-    ]
+    operations = [migrations.RunPython(update_logo_urls)]

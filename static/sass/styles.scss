@@ -4,7 +4,7 @@ $color-accent: #e95420;
 
 @import 'vanilla-framework/scss/build';
 
-@import '_pattern_find-a-partner';
+@import 'pattern_find-a-partner';
 @include p-find-a-partner;
 
 @import 'modules/cookie-policy';
@@ -50,19 +50,19 @@ p {
 // IBM page
 .ibm {
   .p-hero {
-    background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=768');
+    background-image: url('#{$assets-path}3978eb15-cloud-lifestyle-with-screens.png?w=768');
   }
 
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width: 768px) {
     .p-hero {
-      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=984');
+      background-image: url('#{$assets-path}3978eb15-cloud-lifestyle-with-screens.png?w=984');
       min-height: 30vw;
     }
   }
 
-  @media only screen and (min-width : 984px) {
+  @media only screen and (min-width: 984px) {
     .p-hero {
-      background-image: url('https://assets.ubuntu.com/v1/3978eb15-cloud-lifestyle-with-screens.png?w=1500');
+      background-image: url('#{$assets-path}3978eb15-cloud-lifestyle-with-screens.png?w=1500');
     }
   }
 }
@@ -70,30 +70,30 @@ p {
 // Microsoft Page
 .microsoft {
   .p-hero {
-    background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=768');
+    background-image: url('#{$assets-path}518ad912-microsoft-build-conf.png?w=768');
 
-    @media only screen and (min-width : 768px) {
-      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=984');
+    @media only screen and (min-width: 768px) {
+      background-image: url('#{$assets-path}518ad912-microsoft-build-conf.png?w=984');
     }
 
-    @media only screen and (min-width : 984px) {
-      background-image: url('https://assets.ubuntu.com/v1/518ad912-microsoft-build-conf.png?w=1500');
+    @media only screen and (min-width: 984px) {
+      background-image: url('#{$assets-path}518ad912-microsoft-build-conf.png?w=1500');
     }
   }
 
   .azure-stack {
-    background-image: url('https://assets.ubuntu.com/v1/72be8745-azure-stack-hills.png');
+    background-image: url('#{$assets-path}72be8745-azure-stack-hills.png');
     background-position: 95% 100%;
     background-repeat: no-repeat;
     background-size: 100%;
     padding-bottom: 220px;
 
-    @media only screen and (min-width : 768px) {
+    @media only screen and (min-width: 768px) {
       background-size: auto;
       padding-bottom: 200px;
     }
 
-    @media only screen and (min-width : 1400px) {
+    @media only screen and (min-width: 1400px) {
       padding-bottom: 60px;
     }
   }
@@ -103,17 +103,17 @@ p {
 .amazon-web-services,
 .aws {
   .p-hero {
-    background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=768');
+    background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg?w=768');
     background-repeat: no-repeat;
     background-size: cover;
 
-    @media only screen and (min-width : 768px) {
-        background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg?w=984');
+    @media only screen and (min-width: 768px) {
+        background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg?w=984');
         min-height: 30vw;
     }
 
-    @media only screen and (min-width : 984px) {
-        background-image: url('https://assets.ubuntu.com/v1/89aed188-amazon-partners-hero-banner.jpg');
+    @media only screen and (min-width: 984px) {
+        background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg');
     }
   }
 }

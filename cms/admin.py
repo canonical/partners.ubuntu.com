@@ -1,12 +1,17 @@
 from django.contrib import admin
 
-from cms.forms import (
-    PartnerForm,
-    TextForm,
-)
+from cms.forms import PartnerForm, TextForm
 from cms.models import (
-    Partner, Technology, PartnerType, Programme, ServiceOffered,
-    Quote, Link, InsightsTag, Tag, Text
+    Partner,
+    Technology,
+    PartnerType,
+    Programme,
+    ServiceOffered,
+    Quote,
+    Link,
+    InsightsTag,
+    Tag,
+    Text,
 )
 
 
@@ -54,7 +59,7 @@ class PartnerAdmin(admin.ModelAdmin):
         if len(obj.short_description) < 70:
             return obj.short_description
         else:
-            return obj.short_description[0:64-1] + "[...]"
+            return obj.short_description[0:63] + "[...]"
 
     def page_url(self, obj):
         if obj.dedicated_partner_page and obj.published:
@@ -75,85 +80,82 @@ class PartnerAdmin(admin.ModelAdmin):
     def service_offered(obj):
         return ",\n".join([str(o) for o in obj.service_offered.all()])
 
-    actions = ['delete_selected', 'publish_selected']
+    actions = ["delete_selected", "publish_selected"]
 
     delete_selected.short_description = "Unpublish selected partners"
     publish_selected.short_description = "Publish selected partners"
 
-    page_url.short_description = 'Page URL'
+    page_url.short_description = "Page URL"
     page_url.allow_tags = True
 
-    shorter_description.short_description = 'Short Description'
+    shorter_description.short_description = "Short Description"
 
-    technology.short_description = 'Technology'
-    programme.short_description = 'Programme'
-    service_offered.short_description = 'Service Offered'
+    technology.short_description = "Technology"
+    programme.short_description = "Programme"
+    service_offered.short_description = "Service Offered"
 
     list_display = (
-        'name',
-        'page_url',
-        'logo',
-        'published',
-        'shorter_description',
-        'featured',
-        'always_featured',
-        'dedicated_partner_page',
+        "name",
+        "page_url",
+        "logo",
+        "published",
+        "shorter_description",
+        "featured",
+        "always_featured",
+        "dedicated_partner_page",
         partner_type,
         technology,
         programme,
         service_offered,
     )
     list_filter = (
-        'published',
-        'always_featured',
-        'dedicated_partner_page',
-        'technology',
-        'partner_type',
-        'programme',
-        'service_offered',
+        "published",
+        "always_featured",
+        "dedicated_partner_page",
+        "technology",
+        "partner_type",
+        "programme",
+        "service_offered",
     )
-    list_editable = (
-        'published',
-    )
-    search_fields = ['name']
+    list_editable = ("published",)
+    search_fields = ["name"]
 
     fieldsets = (
-        ("Notes", {
-            'classes': ('collapse',),
-            'fields': ('notes',)
-        }),
-        ('Partner Information', {
-            'fields': (
-                'name',
-                'featured',
-                'always_featured',
-                'short_description',
-                'published',
-                'logo',
-                'partner_website',
-                'fallback_website',
-            )
-        }),
-        ('Categories', {
-            'fields': (
-                'technology',
-                'programme',
-                'service_offered',
-                'partner_type'
-            )
-        }),
-        ('Detailed partner Information', {
-            'classes': ('collapse',),
-            'fields': (
-                'dedicated_partner_page',
-                'long_description',
-            )
-        }),
-        ('Tags', {
-            'fields': (
-                'tags_label',
-            )
-        }),
+        ("Notes", {"classes": ("collapse",), "fields": ("notes",)}),
+        (
+            "Partner Information",
+            {
+                "fields": (
+                    "name",
+                    "featured",
+                    "always_featured",
+                    "short_description",
+                    "published",
+                    "logo",
+                    "partner_website",
+                    "fallback_website",
+                )
+            },
+        ),
+        (
+            "Categories",
+            {
+                "fields": (
+                    "technology",
+                    "programme",
+                    "service_offered",
+                    "partner_type",
+                )
+            },
+        ),
+        (
+            "Detailed partner Information",
+            {
+                "classes": ("collapse",),
+                "fields": ("dedicated_partner_page", "long_description"),
+            },
+        ),
+        ("Tags", {"fields": ("tags_label",)}),
     )
     inlines = [
         TagInline,
@@ -163,12 +165,12 @@ class PartnerAdmin(admin.ModelAdmin):
         InsightsTagInline,
     ]
     filter_horizontal = [
-        'partner_type',
-        'technology',
-        'programme',
-        'service_offered',
+        "partner_type",
+        "technology",
+        "programme",
+        "service_offered",
     ]
-    change_form_template = 'admin/asterix_change_form.html'
+    change_form_template = "admin/asterix_change_form.html"
 
 
 class TechnologyAdmin(admin.ModelAdmin):
