@@ -542,6 +542,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@canonical/global-nav@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-2.0.5.tgz#5ec0a937248a36bd992abc21b35211c0924b572f"
+  integrity sha512-Uu8a4pS/Ts5L/anOtgr+HBqbHOynxyVgA2izdGT6RqZoC1C1VPiYhLyRpP9QjSVTUudHXDD0WL11HZ8rbUACiQ==
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -1664,10 +1669,6 @@ glob@^7.1.2, glob@^7.1.3:
     minimatch "^3.0.4"
     once "^1.3.0"
     path-is-absolute "^1.0.0"
-
-global-nav@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/global-nav/-/global-nav-2.0.2.tgz#2ff475d88b3995e53556039d591d919c49f2dd50"
 
 globals@^11.1.0:
   version "11.11.0"

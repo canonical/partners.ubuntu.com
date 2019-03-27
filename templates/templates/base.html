@@ -17,10 +17,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8">
 <![endif]-->
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png?w=114">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png?w=72">
-<link rel="apple-touch-icon-precomposed" href="{{ ASSET_SERVER_URL }}3361409d-apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png?w=114">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png?w=72">
+<link rel="apple-touch-icon-precomposed" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png">
 <link rel="shortcut icon" href="https://assets.ubuntu.com/v1/dbf71c80-favicon.ico" type="image/x-icon" />
 
 <!-- site specific css -->
@@ -28,10 +28,10 @@
 
 <link type="text/plain" rel="author" href="{% versioned_static 'files/humans.txt' %}" />
 
-<script src="{{ ASSET_SERVER_URL }}5d7e5bbf-jquery-2.2.0.min.js"></script>
+<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
 
 <!-- cookie policy -->
-<script src="{{ STATIC_URL }}js/modules/cookie-policy.js"></script>
+<script src="/static/js/modules/cookie-policy.js"></script>
 
 {% block head_extra %}{% endblock %}
 
@@ -114,14 +114,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <script src="https://assets.ubuntu.com/v1/40d25181-yui-combined.min.js"></script>
-<script src="{{ STATIC_URL }}js/scratch.js"></script>
-<script src="{{ STATIC_URL }}js/plugins/respond.min.js"></script>
+<script src="/static/js/scratch.js"></script>
+<script src="/static/js/plugins/respond.min.js"></script>
 
-<script src="{{ STATIC_URL }}global-nav/dist/index.js"></script>
-<script>canonicalGlobalNav.createNav({
-  maxWidth: '64.875rem',
-  showLogins: false
-});</script>
+<script src="/static/js/modules/global-nav.js"></script>
+<script>
+  canonicalGlobalNav.createNav({
+    maxWidth: '64.875rem',
+    showLogins: false
+  });
+</script>
 
 
 {% block footer_extra %}
