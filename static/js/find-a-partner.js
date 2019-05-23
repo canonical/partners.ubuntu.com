@@ -161,10 +161,8 @@
   }
 
   function revealSearch() {
-    var removeSearch = document.querySelector(
-      ".p-find-a-partner.u-hide"
-    );
-    removeSearch.classList.remove("u-hide");
+    var searchForm = document.querySelector(".col-4.p-card.u-hide");
+    searchForm.classList.remove("u-hide");
   }
 
   init();
