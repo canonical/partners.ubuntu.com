@@ -8,7 +8,7 @@ from cms.models import Partner
 c = Client()
 
 
-class APITestCase(TestCase):
+class TestRoutes(TestCase):
     """
     Tests /partners.json
     """
