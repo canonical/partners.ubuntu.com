@@ -193,7 +193,7 @@ start_django_db () {
         done
 
         # Provision database
-        run_as_user "${network}" python3 manage.py migrate
+        run_as_user "" python3 manage.py migrate
     fi
 }
 
