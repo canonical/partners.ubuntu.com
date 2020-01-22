@@ -11,4 +11,4 @@ cp node_modules/cookie-policy/build/js/cookie-policy.js static/js/modules/cookie
 cp node_modules/cookie-policy/build/css/cookie-policy.css static/sass/modules/cookie-policy.css
 
 # Global nav
-cp node_modules/@canonical/global-nav/dist/index.js static/js/modules/global-nav.js
+cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/modules/global-nav.js
