@@ -33,62 +33,73 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <script src="//app-sjg.marketo.com/js/forms2/js/forms2.min.js"></script>
-      <form id="mktoForm_3339"></form>
+
+      <!-- MARKETO FORM -->
+      <script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+      <script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+      <script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+
+      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3339" class="marketo-form">
+        <fieldset>
+          <ul class="p-list">
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="Company" class="mktoLabel " >Company Name:</label>
+              <input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="Website" class="mktoLabel " >Company website:</label>
+              <input required  id="Website" name="Website" maxlength="255" type="url" class="mktoField mktoUrlField  mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="FirstName" class="mktoLabel " >First Name:</label>
+              <input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="LastName" class="mktoLabel " >Last Name:</label>
+              <input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="Email" class="mktoLabel " >Work email:</label>
+              <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktFormReq mktField">
+              <label for="Phone" class="mktoLabel " >Phone Number:</label>
+              <input required  id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" >
+            </li>
+
+            <li  class="p-list__item mktField">
+              <button type="submit" class="mktoButton">Submit</button>
+              <input type="hidden" name="formid" class="mktoField " value="3339">
+              <input type="hidden" name="lpId" class="mktoField " value="6921">
+              <input type="hidden" name="subId" class="mktoField " value="30">
+              <input type="hidden" name="munchkinId" class="mktoField " value="066-EOV-335">
+              <input type="hidden" name="lpurl" class="mktoField " value="//pages.ubuntu.com/PartnerPortal_AccessRequest_form-landing-page.html?cr={creative}&amp;kw={keyword}">
+              <input type="hidden" name="cr" class="mktoField " value="">
+              <input type="hidden" name="kw" class="mktoField " value="">
+              <input type="hidden" name="q" class="mktoField " value="">
+            </li>
+
+          </ul>
+        </fieldset>
+
+        <input type="hidden" name="returnURL" value="https://partners.ubuntu.com/thank-you" />
+        <input type="hidden" name="retURL" value="https://partners.ubuntu.com/thank-you" />
+      </form>
       <script>
-        MktoForms2.loadForm("//app-sjg.marketo.com", "066-EOV-335", 3339);
-        MktoForms2.whenReady(function (form) {
-          var formEl = form.getFormElem()[0];
-          formEl.classList.add('p-form');
-
-          // Remove element styles from root and children (may want to disable this while debugging)
-          var elsWithStyles = document.querySelectorAll('#' + formEl.id + ', #' + formEl.id + ' [style]')
-          for (var i = 0; i < elsWithStyles.length; i++) {
-            elsWithStyles[i].removeAttribute('style');
-          }
-
-          // Disable all Marketo-sourced stylesheets
-          var styleSheets = document.styleSheets;
-          for (var i = 0; i < styleSheets.length; i++) {
-            var ssLoc = document.createElement('A');
-            ssLoc.href = styleSheets[i].href;
-
-            if ((ssLoc.hostname.search(/\.marketo\.com$/) !== -1) //  external STYLEs
-              ||
-              ((styleSheets[i].ownerNode || styleSheets[i].owningElement).parentNode == formEl)) { //  inline STYLEs within FORM tag
-              styleSheets[i].disabled = true;
-            }
-          }
-
-          // Remove mktoAsterix
-          var mktoAsterix = document.querySelectorAll('.mktoAsterix');
-          for (var i = 0; i < mktoAsterix.length; i++) {
-            mktoAsterix[i].classList.add('u-hide');
-          }
+        $("#mktoForm_3339").validate({
+          errorElement: "span",
+          errorClass: "mktFormMsg mktError",
+          onkeyup: false,
+          onclick: false,
+          onblur: false
         });
-      </script>
-
-      <style>
-        .mktoRequiredField label::after {
-          content: "*";
-          color: #c7162b;
-          padding-left: .25rem;
-        }
-
-        .mktoError {
-          font-size: .875rem;
-          line-height: 1.25rem;
-          margin-bottom: .7rem;
-          padding-top: .05rem;
-        }
-
-        .mktoInvalid {
-          background-image: url(https://assets.ubuntu.com/v1/4b0cd7fc-icon-error.svg);
-          border-color: #c7162b;
-          background-position: calc(100% - .5rem) 50%;
-          background-repeat: no-repeat;
-        }
-      </style>
+      <!-- /MARKETO FORM -->
     </div>
   </div>
 </div>
