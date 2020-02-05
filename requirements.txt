@@ -10,4 +10,4 @@ django-yaml-redirects==0.5.4
 django-markdown-deux==1.0.5
 django-template-finder-view==0.3
 django-openid-auth==0.15
-whitenoise==5.0.1
+whitenoise==4.1.4
