@@ -1,6 +1,6 @@
 canonicalwebteam.versioned-static==1.0.2
 talisker[gunicorn]==0.15.0
-Django==1.11.27
+Django==1.11.29
 django-preserialize==1.2.1
 psycopg2==2.8.4
 dj-database-url==0.5.0
