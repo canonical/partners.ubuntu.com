@@ -3,8 +3,8 @@
 $color-accent: #e95420;
 
 @import 'vanilla-framework/scss/build';
-
 @import 'pattern_find-a-partner';
+
 @include p-find-a-partner;
 
 @import 'modules/cookie-policy';
@@ -41,11 +41,10 @@ p {
   background-size: cover;
 
   &__text {
-    background-color: rgba(255, 255, 255, .85);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: $spv-intra $sph-inter;
   }
 }
-
 
 // IBM page
 .ibm {
@@ -108,12 +107,12 @@ p {
     background-size: cover;
 
     @media only screen and (min-width: 768px) {
-        background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg?w=984');
-        min-height: 30vw;
+      background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg?w=984');
+      min-height: 30vw;
     }
 
     @media only screen and (min-width: 984px) {
-        background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg');
+      background-image: url('#{$assets-path}89aed188-amazon-partners-hero-banner.jpg');
     }
   }
 }
