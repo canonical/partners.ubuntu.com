@@ -2,7 +2,7 @@
   "scripts": {
     "clean": "rm -rf node_modules yarn-error.log static/css *.log *.sqlite _site/ build/ .jekyll-metadata",
     "test": "yarn run lint-scss && yarn run lint-python && yarn run test-python",
-    "lint-scss": "sass-lint static/**/*.scss --verbose --no-exit",
+    "lint-scss": "stylelint static/**/*.scss",
     "lint-python": "flake8 --exclude '*env*,node_modules' && black --line-length 79 --check --exclude '(node_modules/.*|[^/]*env[0-9]?/.*)' .",
     "test-python": "python3 manage.py test",
     "build": "scripts/import-modules.sh && node-sass --include-path node_modules static/sass --output static/css",
@@ -11,11 +11,13 @@
   },
   "devDependencies": {
     "node-sass": "4.13.1",
-    "sass-lint": "1.13.1"
+    "stylelint": "13.2.1",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-order": "4.0.0"
   },
   "dependencies": {
-    "cookie-policy": "1.1.0",
     "@canonical/global-nav": "2.3.0",
+    "cookie-policy": "1.1.0",
     "vanilla-framework": "1.8.1"
   }
 }
