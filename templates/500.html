@@ -1,34 +1,8 @@
-{% extends "templates/base_index.html" %}
+{% extends "admin/base_site.html" %}
 
-{% block title %}Server error{% endblock %}
-
-{% block extra_body_class %}error-page error500{% endblock %}
-
-{% block head_extra %}
-    <link rel="stylesheet" type="text/css" media="screen" href="https://assets.ubuntu.com/v1/1a0a185a-styles.css" />
-    <link rel="shortcut icon" href="https://assets.ubuntu.com/v1/dbf71c80-favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" media="print" href="https://assets.ubuntu.com/v1/0df231d4-core-print.css" />
-    <script src="https://assets.ubuntu.com/v1/b0601acd-modernizr.2.7.1.js"></script>
-    <script src="https://assets.ubuntu.com/v1/2c8fd8c9-Imager.js"></script>
-{% endblock %}
-
+{% block title %}<h1>500: Server error.</h1>{% endblock %}
 {% block content %}
-<div class="row no-border hero-box">
-    <div class="six-col">
-        <img src="https://assets.ubuntu.com/v1/17a02192-image-knowledge-365.png" alt="Error owl" />
-        <span>!</span>
-    </div>
-    <div class="six-col last-col">
-        <h1>500: Server error.</h1>
-        <p>Something's gone wrong, try reloading.</p>
-    </div>
-</div><!-- / .row -->
+<div>
+    <p>Something's gone wrong, try reloading.</p>
+</div>
 {% endblock content %}
-
-{% block footer_extra %}
-    <script src="https://assets.ubuntu.com/v1/6124a084-yui-min.js"></script>
-    <script src="https://assets.ubuntu.com/v1/231f2d78-core.js"></script>
-    <script src="https://assets.ubuntu.com/v1/bdd03093-global.js"></script>
-    <script src="https://assets.ubuntu.com/v1/ea5f3f25-scratch.js"></script>
-    <script src="https://assets.ubuntu.com/v1/f5bf3854-respond.min.js"></script>
-{% endblock %}
