@@ -3,10 +3,9 @@ version: 2
 defaults: &defaults
   docker:
     - image: canonicalwebteam/dev:v1.6.7
-    - image: postgres
-      name: db
       environment:
-        POSTGRES_HOST_AUTH_METHOD: "trust"
+        SECRET_KEY: local_development_fake_key
+        DATABASE_URL: sqlite:///development.sqlite
 
 jobs:
   test-site:
