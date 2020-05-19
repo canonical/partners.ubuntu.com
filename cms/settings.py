@@ -9,8 +9,7 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "-q7g=b=d0($mr8vxb!_*-1aly29)v3@$ku(n5))z=orggymy9)"
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "false").lower() == "true"
 
@@ -51,22 +50,14 @@ WSGI_APPLICATION = "cms.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "dev",
-        "HOST": "db",
-        "PORT": "5432",
-    }
-}
+# Set up DB
+db_config = dj_database_url.config()
 
-# Update database settings from DATABASE_URL environment variable
-DATABASES["default"].update(dj_database_url.config())
+if not db_config:
+    print("Error: DATABASE_URL environment variable is required")
+    sys.exit(4)
 
-if "test" in sys.argv:
-    DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3"}
+DATABASES = {"default": db_config}
 
 
 # Internationalization

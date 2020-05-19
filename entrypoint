@@ -2,6 +2,8 @@
 
 set -e
 
+./manage.py migrate
+
 RUN_COMMAND="talisker.gunicorn cms.wsgi --bind $1 --worker-class sync --workers 8 --name talisker-`hostname` --access-logfile -"
 
 if [ "${DJANGO_DEBUG}" = true ] || [ "${DJANGO_DEBUG}" = 1 ]; then
