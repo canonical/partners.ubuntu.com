@@ -1,17 +1,13 @@
 # System
 import json
-from collections import namedtuple
 
 # Modules
 from preserialize.serialize import serialize
-from django_template_finder_view import TemplateFinder
-from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Q
-from django.db.models.functions import Lower
 from django.http import HttpResponse
 
 # Local
-from cms.models import Partner, Technology, Programme, ServiceOffered
+from cms.models import Partner
 
 
 def get_grouped_random_partners():
@@ -31,145 +27,6 @@ def get_grouped_random_partners():
         .exclude(published=False)
         .order_by("-always_featured", "?")
     )
-
-
-def add_default_values_to_context(context, request):
-    """
-    Until Fenchurch is updated to export this functionality,
-    had to paste it in here.
-    """
-
-    path_list = [p for p in request.path.split("/") if p]
-    for i, path in enumerate(path_list):
-        level = "level_%s" % str(i + 1)
-        context[level] = path.lower()
-    return context
-
-
-class PartnerView(TemplateFinder):
-    """
-    This view injects Partners into every template. You know, for prototyping.
-    """
-
-    def render_to_response(self, context, **response_kwargs):
-
-        published_partners = (
-            get_grouped_random_partners()
-            .filter(published=True)
-            .exclude(logo="")
-        )
-
-        context["partners"] = published_partners[:8]
-
-        context["alliance_partners"] = published_partners.filter(
-            dedicated_partner_page=True
-        )[:8]
-
-        # Add contact query
-        context["aliId"] = self.request.GET.get("aliId", "")
-
-        # Add level_* context variables
-        clean_path = self.request.path.strip("/")
-        for index, path in enumerate(clean_path.split("/")):
-            context["level_" + str(index + 1)] = path
-
-        return super(PartnerView, self).render_to_response(
-            context, **response_kwargs
-        )
-
-
-def partner_programmes(request, name):
-    """
-    /programmes/<name>
-
-    Renders the template, 'programmes/<name>.html'
-    with the partners defined in:
-    basecamp.com/2179997/projects/4523250/messages/27494952#comment_171423781
-    """
-
-    max_num_of_partners = 8
-    base_partners = (
-        get_grouped_random_partners().filter(published=True).exclude(logo="")
-    )
-    lookup_partners = {
-        "public-cloud": base_partners.filter(
-            programme__name="Certified Public Cloud", featured=True
-        ),
-        "phone": base_partners.filter(
-            (Q(technology__name="Personal computing/devices"))
-            & (Q(programme__name="Carrier Advisory Group")),
-            featured=True,
-        ),
-        "channel": base_partners.filter(programme__name="channel"),
-        "retail": base_partners.filter(programme__name="Retailer"),
-        "hardware": base_partners.filter(
-            (
-                Q(programme__name="Technical Partner Programme")
-                | Q(programme__name="OpenStack")
-            )
-            & (
-                Q(service_offered__name="Network operator")
-                | Q(service_offered__name="Hardware manufacturer")
-            )
-        ),
-        "software": base_partners.filter(
-            (
-                Q(programme__name="Technical Partner Programme")
-                | Q(programme__name="OpenStack")
-            )
-            & (Q(service_offered__name="Software/content publisher"))
-        ),
-        "openstack": base_partners.filter(programme__name="OpenStack"),
-        "iot": base_partners.filter(programme__name="Internet of Things"),
-        "charm": base_partners.filter(
-            programme__name="Charm partner programme"
-        ),
-    }
-    distinct_partners = list(lookup_partners[name])
-    partners = distinct_partners[:max_num_of_partners]
-    context = {"programme_partners": partners}
-
-    context = add_default_values_to_context(context, request)
-    return render_to_response("programmes/%s.html" % name, context)
-
-
-def partner_view(request, slug):
-    """
-    /<slug>
-    Gets the partner specified in <slug>
-    and renders partner.html with that partner
-    """
-
-    partner = get_object_or_404(
-        Partner, slug=slug.lower(), published=True, dedicated_partner_page=True
-    )
-
-    context = {"partner": partner}
-    context = add_default_values_to_context(context, request)
-
-    return render_to_response("partner.html", context)
-
-
-def find_a_partner(request):
-    """
-    /find-a-partner/
-    List all partners to the page, for frontend searching.
-    """
-
-    context = {
-        "partners": get_grouped_random_partners()
-        .filter(published=True)
-        .order_by(Lower("name"))
-    }
-    context = add_default_values_to_context(context, request)
-    Filter = namedtuple("Filter", ["name", "items"])
-    context["filters"] = [
-        Filter("Technology", Technology.objects.all()),
-        Filter("Programme", Programme.objects.all()),
-        Filter("Service Offered", ServiceOffered.objects.all()),
-    ]
-
-    return render_to_response("find-a-partner/index.html", context)
 
 
 class AllowJSONPCallback(object):

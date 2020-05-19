@@ -19,7 +19,6 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
-    "canonicalwebteam",
     "whitenoise.runserver_nostatic",
     "django.contrib.auth",
     "django_openid_auth",

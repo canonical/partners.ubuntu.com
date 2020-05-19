@@ -8,22 +8,10 @@ RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip 
 ADD requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
 
-# Build stage: Install yarn dependencies
-# ===
-FROM node:12-slim AS yarn-dependencies
-WORKDIR /srv
-ADD package.json .
-RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install
-
-# Build stage: Run "yarn run build-css"
-# ===
-FROM yarn-dependencies AS build-css
-ADD . .
-RUN yarn run build
-
 # Set up environment
 ENV LANG C.UTF-8
 WORKDIR /srv
+
 
 # Build the production image
 # ===
@@ -37,8 +25,7 @@ ENV PATH="/root/.local/bin:${PATH}"
 
 # Import code, build assets and mirror list
 ADD . .
-RUN rm -rf package.json yarn.lock .babelrc webpack.config.js
-COPY --from=build-css /srv/static/css static/css
+RUN rm -rf package.json
 
 # Set build ID
 ARG BUILD_ID

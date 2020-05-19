@@ -1,9 +1,0 @@
-// Find a partner page-specific styles
-@mixin p-find-a-partner {
-  .p-find-a-partner__partner {
-    &.match-hide,
-    &.not-matched {
-      display: none;
-    }
-  }
-}
