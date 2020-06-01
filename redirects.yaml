@@ -1,7 +1,7 @@
 programmes/reseller/?: https://canonical.com/partners/programmes/channel
 amazon-web-services-llc/?: https://canonical.com/partners/aws
 programmes/phone/?: https://canonical.com/partners/
-hp/?: https://canonical.com/partners/hewlett-packard-enterprise
+hp/?: https://canonical.com/partners/
 programmes/openstack/?: https://canonical.com/partners/programmes
 /?:    "https://canonical.com/partners"
 programmes/?:    "https://canonical.com/partners"
