@@ -5,6 +5,7 @@
     "test": "yarn run lint-python && yarn run test-python",
     "lint-python": "flake8 --exclude '*env*' && black --line-length 79 --check --exclude '[^/]*env[0-9]?/.*' .",
     "test-python": "python3 manage.py test",
-    "serve": "./entrypoint 0.0.0.0:${PORT}"
+    "serve": "./entrypoint 0.0.0.0:${PORT}",
+    "start": "yarn run serve"
   }
 }

@@ -64,3 +64,5 @@ static/js/modules/*.js
 static/sass/modules/*.css
 static/sass/modules/*.scss
 
+.dotrun.json
+.venv/
