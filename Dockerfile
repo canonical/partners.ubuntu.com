@@ -8,14 +8,14 @@ RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip 
 ADD requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
 
-# Set up environment
-ENV LANG C.UTF-8
-WORKDIR /srv
-
 
 # Build the production image
 # ===
 FROM ubuntu:focal
+
+# Set up environment
+ENV LANG C.UTF-8
+WORKDIR /srv
 
 # Install python and import python dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes python3-lib2to3 python3-pkg-resources ca-certificates
@@ -30,7 +30,6 @@ RUN rm -rf package.json
 # Set build ID
 ARG BUILD_ID
 ENV TALISKER_REVISION_ID "${BUILD_ID}"
-
 
 # Setup commands to run server
 ENTRYPOINT ["./entrypoint"]
