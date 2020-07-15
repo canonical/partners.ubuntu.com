@@ -13,10 +13,12 @@ LICENSE.md
 run
 env*
 .env*
+.venv*
 .*.hash
 .docker-project
 .vscode
 .editorconfig
+.dotrun.json
 renovate.json
 prettier.config.js
 
