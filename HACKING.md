@@ -1,6 +1,8 @@
 # Running the partners.ubuntu.com project
 
 The partners.ubuntu.com codebase is a [Django](https://www.djangoproject.com/) app, which also includes some [NPM](https://www.npmjs.com/)-based tools and tasks for building static files like CSS.
+The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning
+
 
 ## Running the site with Docker
 
