@@ -4,7 +4,7 @@
 
 This is the code for the Ubuntu Partners website.
 
-Local development
+Local development site
 ---
 
 To use this script you must have [Docker installed](https://www.docker.com/products/docker).
@@ -21,7 +21,7 @@ This will run the site on <http://localhost:8003>.
 
 For more detailed local development instructions, see [HACKING.md](HACKING.md).
 
-Licenses
+License
 ---
 
 The content of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), and the underlying code used to format and display that content is licensed under the [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd](http://www.canonical.com/).
