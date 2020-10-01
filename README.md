@@ -4,7 +4,7 @@
 
 This is the code for the Ubuntu Partners website.
 
-Local development site
+Local Host Development
 ---
 
 To use this script you must have [Docker installed](https://www.docker.com/products/docker).
