@@ -4,7 +4,7 @@
 
 This is the code for the Ubuntu Partners website.
 
-Local development site
+Local development website
 ---
 
 To use this script you must have [Docker installed](https://www.docker.com/products/docker).
@@ -31,3 +31,4 @@ The content of this project is licensed under the [Creative Commons Attribution-
 [nottrobin](https://github.com/nottrobin) is this project's champion.
 
 With ♥ from Canonical.
+Thanks.
