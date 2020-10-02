@@ -1,7 +1,7 @@
 [partners.ubuntu.com](http://partners.ubuntu.com)
 ===
 [![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/partners.ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-web-and-design/partners.ubuntu.com) [![Code coverage](https://codecov.io/gh/canonical-web-and-design/partners.ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/partners.ubuntu.com)
-
+an amazing website
 This is the code for the Ubuntu Partners website.
 
 Local development site
