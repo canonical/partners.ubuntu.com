@@ -1,8 +1,6 @@
 domain: partners.ubuntu.com
 image: prod-comms.docker-registry.canonical.com/partners.ubuntu.com
 
-memoryLimit: 512Mi
-
 production:
   replicas: 5
   env:
