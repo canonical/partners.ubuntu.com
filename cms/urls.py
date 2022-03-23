@@ -5,7 +5,9 @@ from django.template import loader
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
-from django_yaml_redirects import load_redirects
+from canonicalwebteam.yaml_responses.django_helpers import (
+    create_redirect_views,
+)
 
 from cms.views import (
     partners_json_view,
@@ -25,7 +27,7 @@ def handler500(request):
     return HttpResponseServerError(t.render({}))
 
 
-urlpatterns = load_redirects()
+urlpatterns = create_redirect_views()
 
 urlpatterns += [
     url(r"^openid/", include("django_openid_auth.urls")),
