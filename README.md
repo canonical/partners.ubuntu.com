@@ -2,7 +2,7 @@
 ===
 [![CircleCI build status](https://circleci.com/gh/canonical-web-and-design/partners.ubuntu.com.svg?style=shield)](https://circleci.com/gh/canonical-web-and-design/partners.ubuntu.com) [![Code coverage](https://codecov.io/gh/canonical-web-and-design/partners.ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/partners.ubuntu.com)
 
-This is the code for the Ubuntu Partners website.
+This is the code for `partners.ubuntu.com`, which provides the admin area for managing Partners data ([partners.ubuntu.com/admin](https://partners.ubuntu.com/partners)) and the partners API endpoint ([partners.ubuntu.com/partners.json](https://partners.ubuntu.com/partners.json))
 
 Local development site
 ---
