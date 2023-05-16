@@ -2,7 +2,6 @@
 import json
 
 # Modules
-from preserialize.serialize import serialize
 from django.db.models import Q
 from django.http import HttpResponse
 
@@ -111,21 +110,22 @@ def filter_partners(request, partners):
         distinct_partners = list(
             partners.filter(query_list).order_by("-always_featured", "?")
         )
-        partners_json = json.dumps(
-            serialize(
-                distinct_partners,
-                fields=[":all"],
-                exclude=[
-                    "created_on",
-                    "updated_on",
-                    "dedicated_partner_page",
-                    "id",
-                    "created_by",
-                    "updated_by",
-                ],
-            ),
-            default=lambda obj: None,
-        )
+        partners_json = json.dumps({})
+        # partners_json = json.dumps(
+        #     serialize(
+        #         distinct_partners,
+        #         fields=[":all"],
+        #         exclude=[
+        #             "created_on",
+        #             "updated_on",
+        #             "dedicated_partner_page",
+        #             "id",
+        #             "created_by",
+        #             "updated_by",
+        #         ],
+        #     ),
+        #     default=lambda obj: None,
+        # )
     except Exception as e:
         raise e
 

@@ -36,6 +36,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="tag",
             name="partner",
-            field=models.ForeignKey(to="cms.Partner"),
+            field=models.ForeignKey(to="cms.Partner", on_delete=models.CASCADE),
         ),
     ]

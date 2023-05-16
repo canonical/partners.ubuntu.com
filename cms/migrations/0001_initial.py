@@ -219,7 +219,7 @@ class Migration(migrations.Migration):
                 ),
                 ("text", models.TextField(blank=True)),
                 ("attribution", models.CharField(max_length=200)),
-                ("partner", models.ForeignKey(to="cms.Partner")),
+                ("partner", models.ForeignKey(to="cms.Partner", on_delete=models.CASCADE)),
             ],
         ),
         migrations.CreateModel(
@@ -278,7 +278,7 @@ class Migration(migrations.Migration):
                 ("header", models.TextField()),
                 ("body", models.TextField()),
                 ("read_more_link", models.URLField(null=True, blank=True)),
-                ("partner", models.ForeignKey(to="cms.Partner")),
+                ("partner", models.ForeignKey(to="cms.Partner", on_delete=models.CASCADE)),
             ],
         ),
         migrations.AddField(
@@ -325,12 +325,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="link",
             name="partner",
-            field=models.ForeignKey(to="cms.Partner"),
+            field=models.ForeignKey(to="cms.Partner", on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name="insightstag",
             name="partner",
-            field=models.ForeignKey(to="cms.Partner"),
+            field=models.ForeignKey(to="cms.Partner", on_delete=models.CASCADE),
         ),
         migrations.RunPython(create_groups),
     ]
