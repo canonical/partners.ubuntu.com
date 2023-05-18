@@ -7,6 +7,7 @@ from django.http import HttpResponse
 
 # Local
 from cms.models import Partner
+from cms.serializers import serialize
 
 
 def get_grouped_random_partners():
@@ -107,25 +108,13 @@ def filter_partners(request, partners):
                         listed_value = False
                     partners = partners.filter(Q(**{query: listed_value}))
 
-        distinct_partners = list(
-            partners.filter(query_list).order_by("-always_featured", "?")
+        partners_json = json.dumps(
+            serialize(
+                partners.filter(query_list)
+                    .order_by("-always_featured", "?")
+            )
         )
-        partners_json = json.dumps({})
-        # partners_json = json.dumps(
-        #     serialize(
-        #         distinct_partners,
-        #         fields=[":all"],
-        #         exclude=[
-        #             "created_on",
-        #             "updated_on",
-        #             "dedicated_partner_page",
-        #             "id",
-        #             "created_by",
-        #             "updated_by",
-        #         ],
-        #     ),
-        #     default=lambda obj: None,
-        # )
+
     except Exception as e:
         raise e
 
