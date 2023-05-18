@@ -62,8 +62,6 @@ class Programme(CategoryModel):
     class Meta:
         verbose_name_plural = "programme"
 
-    pass
-
 
 class ServiceOffered(CategoryModel):
     class Meta:
