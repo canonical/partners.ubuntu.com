@@ -1,5 +1,5 @@
 setuptools==65.5.1
-talisker[gunicorn]==0.19.0
+talisker[gunicorn]==0.21.3
 Django==4.2.1
 psycopg2-binary==2.9.6
 dj-database-url==0.5.0
