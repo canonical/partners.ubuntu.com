@@ -110,8 +110,7 @@ def filter_partners(request, partners):
 
         partners_json = json.dumps(
             serialize(
-                partners.filter(query_list)
-                    .order_by("-always_featured", "?")
+                partners.filter(query_list).order_by("-always_featured", "?")
             )
         )
 

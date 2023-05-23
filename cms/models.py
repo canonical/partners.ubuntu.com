@@ -69,7 +69,6 @@ class ServiceOffered(CategoryModel):
 
 
 class Partner(PartnerModel):
-
     published = models.BooleanField(
         help_text=(
             "Partners without this checked will never be seen by the public"
