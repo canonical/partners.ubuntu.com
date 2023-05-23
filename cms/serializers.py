@@ -10,13 +10,16 @@ def serialize(data: QuerySet):
     fields. 
     """
     serialized_data = []
+    # Return if queryset is empty
+    if len(data) == 0:
+        return serialized_data
 
     # Get related fields
-    related_fields = [field.name for field in data[0]._meta.local_many_to_many]
+    related_fields = [field.name for field in data.first()._meta.local_many_to_many]
 
     # Get reverse-relations i.e. *_set attribute models
     set_match = re.compile("[a-zA-Z]+_set")
-    reverse_relations = [attr_name for attr_name in dir(data[0]) if set_match.search(attr_name)]
+    reverse_relations = [attr_name for attr_name in dir(data.first()) if set_match.search(attr_name)]
 
     for item in data:
         # Serialize the entire model instance.
