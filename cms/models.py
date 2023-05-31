@@ -62,8 +62,6 @@ class Programme(CategoryModel):
     class Meta:
         verbose_name_plural = "programme"
 
-    pass
-
 
 class ServiceOffered(CategoryModel):
     class Meta:
@@ -71,7 +69,6 @@ class ServiceOffered(CategoryModel):
 
 
 class Partner(PartnerModel):
-
     published = models.BooleanField(
         help_text=(
             "Partners without this checked will never be seen by the public"
@@ -124,19 +121,18 @@ class Partner(PartnerModel):
         help_text="Does this partner have it's own dedicated page?"
     )
     technology = models.ManyToManyField(
-        Technology, related_name="partners", blank=True, null=True
+        Technology, related_name="partners", blank=True
     )
     programme = models.ManyToManyField(
-        Programme, related_name="partners", blank=True, null=True
+        Programme, related_name="partners", blank=True
     )
     service_offered = models.ManyToManyField(
-        ServiceOffered, related_name="partners", blank=True, null=True
+        ServiceOffered, related_name="partners", blank=True
     )
     partner_type = models.ManyToManyField(
         PartnerType,
         related_name="partners",
         blank=True,
-        null=True,
         help_text=("test"),
     )
     notes = models.TextField(
@@ -166,7 +162,7 @@ class Partner(PartnerModel):
 
 
 class Quote(models.Model):
-    partner = models.ForeignKey(Partner)
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     text = models.TextField(blank=True)
     attribution = models.CharField(max_length=200)
 
@@ -178,7 +174,7 @@ class Quote(models.Model):
 
 
 class Link(models.Model):
-    partner = models.ForeignKey(Partner)
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     url = models.URLField()
     text = models.TextField()
 
@@ -190,7 +186,7 @@ class Link(models.Model):
 
 
 class InsightsTag(models.Model):
-    partner = models.ForeignKey(Partner)
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     tag = models.CharField(
         max_length=200,
         help_text=(
@@ -207,7 +203,7 @@ class InsightsTag(models.Model):
 
 
 class Tag(models.Model):
-    partner = models.ForeignKey(Partner)
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     tag = models.CharField(max_length=200, help_text=(""))
 
     def __unicode__(self):
@@ -218,7 +214,7 @@ class Tag(models.Model):
 
 
 class Text(models.Model):
-    partner = models.ForeignKey(Partner)
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE)
     header = models.TextField()
     body = models.TextField()
     html_class = models.CharField(

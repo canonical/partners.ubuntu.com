@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     "markdown_deux",
 ]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -79,8 +80,9 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": {
+                "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
-                "django.template.context_processors.static",
+                "django.contrib.messages.context_processors.messages",
             }
         },
     }
@@ -95,6 +97,8 @@ STATICFILES_FINDERS = [
     "django_static_root_finder.finders.StaticRootFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Django openID auth
 # ===

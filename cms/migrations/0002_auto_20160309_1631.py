@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [("cms", "0001_initial")]
 
     operations = [
@@ -36,6 +35,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="tag",
             name="partner",
-            field=models.ForeignKey(to="cms.Partner"),
+            field=models.ForeignKey(
+                to="cms.Partner", on_delete=models.CASCADE
+            ),
         ),
     ]
