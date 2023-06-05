@@ -96,7 +96,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          dotrun exec coverage run --source=. -m unittest discover tests
+          dotrun exec coverage run ./manage.py test cms
           bash <(curl -s https://codecov.io/bash) -cF python
           
   check-inclusive-naming:
