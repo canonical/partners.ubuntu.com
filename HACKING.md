@@ -14,11 +14,11 @@ snap install dotrun
 ```
 
 You can then run the site by simply typing within the repository:
-```
+``` bash
 dotrun
 ```
 
-Then to learn about this script's options, type:
+Then to learn about this snap's options, type:
 
 ``` bash
 dotrun --help
