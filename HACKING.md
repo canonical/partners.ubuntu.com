@@ -16,6 +16,7 @@ You can then run the site by simply typing within the repository:
 ``` bash
 dotrun
 ```
+After this, go to http://0.0.0.0:8003/admin because http://0.0.0.0:8003/ itself will just redirect to canonical.com/partners.
 
 Then to learn about this snap's options, type:
 
