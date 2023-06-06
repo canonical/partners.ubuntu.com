@@ -9,7 +9,6 @@ The recommended way to run the site is by using the dotrun snap.
 First [install Docker](https://docs.docker.com/engine/installation/) and add your user to the `docker` group.
 Secondly, install dotrun
 ```
-snap refresh
 snap install dotrun
 ```
 
