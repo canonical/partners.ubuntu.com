@@ -2,25 +2,35 @@
 
 The partners.ubuntu.com codebase is a [Django](https://www.djangoproject.com/) app, which also includes some [NPM](https://www.npmjs.com/)-based tools and tasks for building static files like CSS.
 
-## Running the site with Docker
+## Running the site with Dotrun
 
-The recommended way to run the site is with the existing `./run` script, which uses Docker behind the scenes.
+The recommended way to run the site is by using the dotrun snap.
 
 First [install Docker](https://docs.docker.com/engine/installation/) and add your user to the `docker` group.
+Secondly, install dotrun
+```
+snap install dotrun
+```
 
-Then to learn about this script's options, type:
+You can then run the site by simply typing within the repository:
+``` bash
+dotrun
+```
+After this, go to http://0.0.0.0:8003/admin because http://0.0.0.0:8003/ itself will just redirect to canonical.com/partners.
+
+Then to learn about this snap's options, type:
 
 ``` bash
-./run --help
+dotrun --help
 ```
 
 The basic options are:
 
 ``` bash
-./run start  # Start the Django server, optionally watching for changes
-./run build  # Build the CSS
-./run watch  # Watch and build the CSS whenever Sass changes
-./run clean  # Remove created files and docker containers
+dorun start  # Start the Django server, optionally watching for changes
+dorun build  # Build the CSS
+dorun watch  # Watch and build the CSS whenever Sass changes
+dorun clean  # Remove created files and docker containers
 ```
 
 ### Watching in the background
@@ -28,10 +38,10 @@ The basic options are:
 The `start` function optionally takes a `--watch` argument:
 
 ``` bash
-./run start --watch
+dotrun start --watch
 ```
 
-This will effectively run the `./run watch` command in the background while also running the server.
+This will effectively run the `dotrun watch` command in the background while also running the server.
 
 **NB:** You won't see the output from the watcher by default. This makes it difficult to know if it's working properly.
 
