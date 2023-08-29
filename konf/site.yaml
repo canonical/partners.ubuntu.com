@@ -1,5 +1,5 @@
 domain: partners.ubuntu.com
-image: prod-comms.docker-registry.canonical.com/partners.ubuntu.com
+image: prod-comms.ps5.docker-registry.canonical.com/partners.ubuntu.com
 
 memoryLimit: 512Mi
 
