@@ -1,6 +1,6 @@
 setuptools==65.5.1
 talisker[gunicorn]==0.21.3
-Django==4.0.10
+Django==4.1.10
 psycopg2-binary==2.9.6
 dj-database-url==0.5.0
 python-openid==2.2.5
