@@ -10,8 +10,9 @@ from cms.django_helpers import (
 )
 
 from cms.views import (
-    partners_json_view,
     customers_json_view,
+    partners_json_view,
+    status_view,
 )
 
 admin.autodiscover()
@@ -41,6 +42,7 @@ urlpatterns += [
         RedirectView.as_view(url="/admincms/partner/", permanent=True),
     ),
     re_path(r"^admin/?", admin.site.urls),
+    re_path(r"^_status/check$", status_view),
     re_path(r"^partners.json$", partners_json_view),
     re_path(r"^customers.json$", customers_json_view),
 ]

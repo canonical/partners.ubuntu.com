@@ -46,6 +46,7 @@ ROOT_URLCONF = "cms.urls"
 
 WSGI_APPLICATION = "cms.wsgi.application"
 
+TALISKER_REVISION_ID = os.getenv("TALISKER_REVISION_ID", "OK")
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

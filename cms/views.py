@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 
 # Local
+from cms.settings import TALISKER_REVISION_ID
 from cms.models import Partner
 from cms.serializers import serialize
 
@@ -139,3 +140,8 @@ def customers_json_view(request):
         ),
         content_type="application.json",
     )
+
+
+@AllowJSONPCallback
+def status_view(request):
+    return HttpResponse(TALISKER_REVISION_ID)
