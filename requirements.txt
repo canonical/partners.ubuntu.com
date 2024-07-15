@@ -1,4 +1,4 @@
-setuptools==65.5.1
+setuptools==70.0.0
 talisker[gunicorn]==0.21.3
 Django==4.0.10
 psycopg2-binary==2.9.6
