@@ -3,7 +3,7 @@
 
 # Build stage: Install python dependencies
 # ===
-FROM ubuntu:jammy AS python-dependencies
+FROM ubuntu:noble AS python-dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip python3-setuptools libpq-dev
 ADD requirements.txt /tmp/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
@@ -11,7 +11,7 @@ RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement
 
 # Build the production image
 # ===
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 # Set up environment
 ENV LANG C.UTF-8
