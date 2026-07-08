@@ -2,6 +2,11 @@
 
 set -e
 
+# The Django project lives in ./cms (nested layout required by the
+# rockcraft django-framework extension). Run everything from there so that
+# `cms.wsgi`, redirects.yaml and BASE_DIR-relative paths all resolve.
+cd "$(dirname "$0")/cms"
+
 ./manage.py migrate
 
 RUN_COMMAND="talisker.gunicorn cms.wsgi --bind $1 --worker-class sync --workers 8 --name talisker-`hostname` --access-logfile -"

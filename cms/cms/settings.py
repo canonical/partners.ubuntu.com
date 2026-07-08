@@ -9,7 +9,7 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") or os.environ["SECRET_KEY"]
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "false").lower() == "true"
 
@@ -52,10 +52,17 @@ TALISKER_REVISION_ID = os.getenv("TALISKER_REVISION_ID", "OK")
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 # Set up DB
-db_config = dj_database_url.config()
+# The charm's PostgreSQL integration provides POSTGRESQL_DB_CONNECT_STRING;
+# locally and in the Docker image we use DATABASE_URL. Prefer whichever is set.
+db_config = dj_database_url.config(
+    env="POSTGRESQL_DB_CONNECT_STRING"
+) or dj_database_url.config()
 
 if not db_config:
-    print("Error: DATABASE_URL environment variable is required")
+    print(
+        "Error: no database configured "
+        "(set POSTGRESQL_DB_CONNECT_STRING or DATABASE_URL)"
+    )
     sys.exit(4)
 
 DATABASES = {"default": db_config}

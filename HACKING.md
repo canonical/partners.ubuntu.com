@@ -51,10 +51,14 @@ To check if the watcher daemon is running, use `docker ps`. Then you can use `do
 
 Since the site is basically a Django app, you can also run the site in the traditional way using [python 2.7](https://www.python.org/download/releases/2.7/) and [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/):
 
+The Django project lives in the `cms/` subdirectory (required by the rockcraft
+`django-framework` extension), so run `manage.py` from there:
+
 ``` bash
 virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
+cd cms
 ./manage.py runserver 0.0.0.0:8003
 ```
 
