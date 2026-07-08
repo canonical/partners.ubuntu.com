@@ -7,12 +7,11 @@ name: cms
 base: bare # as an alternative, an ubuntu base can be used
 build-base: ubuntu@24.04 # build-base is required when the base is bare
 version: "0.1" # just for humans. Semantic versioning is recommended
-summary: A summary of your Django application # 79 char long summary
+summary: Admin area and API for managing Canonical Partners data
 description: |
-  This is cms's description. You have a paragraph or two to tell the
-  most important story about it. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the
-  container registries out there.
+  This is the Django application behind partners.ubuntu.com. It provides
+  an admin area for managing Partners data and a public API endpoint for
+  serving partner information as JSON.
 # the platforms this rock should be built on and run on.
 # you can check your architecture with `dpkg --print-architecture`
 platforms:

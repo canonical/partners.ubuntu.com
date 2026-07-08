@@ -17,11 +17,13 @@ platforms:
   # s390x:
 
 # (Required)
-summary: A very short one-line summary of the Django application.
+summary: Admin area and API for managing Canonical Partners data
 
 # (Required)
 description: |
-  A comprehensive overview of your Django application.
+  This charm deploys the Django application behind partners.ubuntu.com. It
+  provides an admin area for managing Partners data and a public API
+  endpoint for serving partner information as JSON.
 
 extensions:
   - django-framework
