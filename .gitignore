@@ -67,3 +67,5 @@ static/sass/modules/*.scss
 .dotrun.json
 .venv/
 partners.json
+
+*.rock
