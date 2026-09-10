@@ -69,3 +69,11 @@ static/sass/modules/*.scss
 partners.json
 
 *.rock
+
+# [secrets] Publishing credentials — never commit
+*.auth
+charmhub-creds.auth
+
+# [data] Database dumps/backups — may contain partner PII, never commit
+*.sql
+*.dump

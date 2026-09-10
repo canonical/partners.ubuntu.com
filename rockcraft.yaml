@@ -43,3 +43,20 @@ extensions:
 #     stage-packages:
 #       # list required packages or slices for your Django application below.
 #       - libpq-dev
+
+# The django-framework extension packs the whole `cms/` directory into
+# /django/app. Redeclaring install-app makes the extension defer to this part
+# entirely, so the default `-django/app/db.sqlite3` exclusion is restated here
+# alongside the local artefacts we don't want in a production image.
+parts:
+  django-framework/install-app:
+    plugin: dump
+    source: cms
+    organize:
+      "*": django/app/
+      ".*": django/app/
+    stage:
+      - -django/app/db.sqlite3
+      - -django/app/development.sqlite
+      - -django/app/django-error.log
+      - -django/app/tests
