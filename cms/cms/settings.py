@@ -122,7 +122,7 @@ LOGIN_URL = "/openid/login/"
 LOGIN_REDIRECT_URL = "/"
 
 OPENID_CREATE_USERS = True
-OPENID_SSO_SERVER_URL = "https://login.launchpad.net/"
+OPENID_SSO_SERVER_URL = "https://login.ubuntu.com/"
 OPENID_LAUNCHPAD_TEAMS_REQUIRED = ["partners.u.c-authors"]
 OPENID_USE_AS_ADMIN_LOGIN = True
 OPENID_LAUNCHPAD_TEAMS_MAPPING_AUTO = True
