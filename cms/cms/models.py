@@ -8,13 +8,13 @@ from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
 from django.core.validators import MaxLengthValidator
 
-
 if sys.version_info[0] == 3:
     unicode = str
 
 
 class PartnerModel(models.Model):
     "Partner metadata"
+
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(
         unique=True, help_text="Auto-generated, for use in URLs"

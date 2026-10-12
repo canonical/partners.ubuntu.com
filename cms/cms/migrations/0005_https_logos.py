@@ -14,9 +14,7 @@ def update_logo_urls(apps, schema_editor):
     partners = Partner.objects.all()
 
     for partner in partners:
-        (scheme, netloc, path, params, query, fragment) = urlparse(
-            partner.logo
-        )
+        scheme, netloc, path, params, query, fragment = urlparse(partner.logo)
 
         if scheme == "http" and netloc == "assets.ubuntu.com":
             new_url = urlunparse(

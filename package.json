@@ -3,7 +3,7 @@
     "build": "echo 'No build step'",
     "clean": "rm -rf *.log *.sqlite",
     "test": "yarn run lint-python && yarn run test-python",
-    "lint-python": "flake8 --exclude '*env*' && black --line-length 79 --check --exclude '[^/]*env[0-9]?/.*' .",
+    "lint-python": "flake8 --exclude '*env*,charm' && black --line-length 79 --check --exclude '[^/]*env[0-9]?/.*' --extend-exclude 'charm/' .",
     "test-python": "cd cms && python3 manage.py test",
     "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run serve"
