@@ -60,3 +60,16 @@ parts:
       - -django/app/development.sqlite
       - -django/app/django-error.log
       - -django/app/tests
+
+# The extension does NOT run collectstatic, and the app serves its own static
+# via WhiteNoise from STATIC_ROOT (/django/app/static). Without this the Django
+# admin (and any static asset) 404s. Collect static once at startup, then exec
+# the same gunicorn the extension generates (see `rockcraft expand-extensions`).
+services:
+  django:
+    override: replace
+    command: /bin/sh -c "/bin/python3 /django/app/manage.py collectstatic --noinput && exec /bin/python3 -m gunicorn -c /django/gunicorn.conf.py cms.wsgi:application -k sync"
+    startup: enabled
+    after:
+      - statsd-exporter
+    user: _daemon_
