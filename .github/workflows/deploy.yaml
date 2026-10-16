@@ -1,191 +1,205 @@
-name: Deploy
+name: Pack and Deploy
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Select the environment to deploy to (staging or production)'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - staging
-          - production
-      branch:
-        description: 'Branch to deploy (production always requires main)'
-        required: false
-        default: 'main'
-        type: string
+    workflow_dispatch:
+    push:
+        branches:
+            - main
 
 concurrency:
-  group: partners-ubuntu-com-deploy
-  cancel-in-progress: false
+    group: partners-ubuntu-com-deploy-${{ github.ref }}
+    cancel-in-progress: false
 
 env:
-  CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
-  ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+    CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+    ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
 
 # ---------------------------------------------------------------------------
-# JAAS auth (replaces the old bastion + Vault flow):
-#   - Access is via a JAAS "service account" using OAuth client-credentials.
-#   - CI is non-interactive: setting JUJU_CLIENT_ID / JUJU_CLIENT_SECRET makes
-#     `juju login` skip the browser/SSO and authenticate as the service account.
-#   - Repo config to add:
-#       secrets:  STG_JAAS_CLIENT_ID, STG_JAAS_CLIENT_SECRET,
-#                 PROD_JAAS_CLIENT_ID, PROD_JAAS_CLIENT_SECRET
-#       vars:     JAAS_URL           (the JIMM controller hostname)
-#                 STAGING_MODEL      (e.g. <owner>/stg-staging-partners-ubuntu-com)
-#                 PROD_MODEL         (e.g. <owner>/prod-partners-ubuntu-com)
-#   - One-time: a JAAS admin grants each service account access to its model:
-#       juju grant <client-id>@serviceaccount write <model>
+# JAAS auth (JAAS "service account", OAuth client-credentials):
+#   Setting JUJU_CLIENT_ID / JUJU_CLIENT_SECRET makes `juju login`
+#   non-interactive (no browser/SSO).
+#
+# Repo config to add:
+#   Environments:  staging, production (add required reviewers on production)
+#   Per-environment secrets:  JUJU_CLIENT_ID, JUJU_CLIENT_SECRET
+#   Per-environment vars:     JUJU_MODEL_NAME_PS7, WEBSITE_URL
+#   Repo-level vars:          CHARM_NAME (partners-ubuntu-com),
+#                             JUJU_CONTROLLER_NAME_PS7,
+#                             JUJU_CONTROLLER_ADDRESS_PS7,
+#                             JUJU_VERSION (optional)
+#   One-time: a JAAS admin grants each service account write on its model:
+#     juju grant <client-id>@serviceaccount write <model>
 # ---------------------------------------------------------------------------
 
 jobs:
-  pack-charm:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.branch || github.ref }}
+    pack-charm:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Setup LXD
-        uses: canonical/setup-lxd@main
+            - name: Setup Charmcraft
+              run: sudo snap install charmcraft --classic --channel=latest/stable
 
-      - name: Setup Charmcraft
-        # Pin a channel/revision for reproducibility — an auto-refresh to a newer
-        # charmcraft can change which bases the django-framework extension accepts.
-        run: sudo snap install charmcraft --classic --channel=latest/stable
+            - name: Resolve charmcraft version
+              id: charmcraft-version
+              run: echo "version=$(charmcraft version)" >> "$GITHUB_OUTPUT"
 
-      - name: Pack charm
-        run: |
-          cd charm
-          charmcraft pack -v
+            - name: Compute cache week bucket
+              id: week
+              # Belt-and-braces: force a rebuild at least once a week even if
+              # nothing under charm/ changed, so the charm can never drift more
+              # than 7 days from upstream base images.
+              run: echo "value=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
 
-      - name: Upload charm
-        uses: actions/upload-artifact@v4
-        with:
-          name: partners-ubuntu-com-charm
-          path: ./charm/*.charm
+            - name: Restore charm cache
+              id: charm-cache
+              uses: actions/cache/restore@v4
+              with:
+                  path: ./charm/*.charm
+                  key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
 
-  pack-rock:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.branch || github.ref }}
+            - name: Setup LXD
+              if: steps.charm-cache.outputs.cache-hit != 'true'
+              uses: canonical/setup-lxd@main
 
-      - name: Setup LXD
-        uses: canonical/setup-lxd@main
+            - name: Pack charm
+              if: steps.charm-cache.outputs.cache-hit != 'true'
+              run: |
+                  cd charm
+                  charmcraft pack -v --project-dir ./
 
-      - name: Setup Rockcraft
-        run: sudo snap install rockcraft --classic --channel=latest/stable
+            - name: Save charm cache
+              if: steps.charm-cache.outputs.cache-hit != 'true'
+              uses: actions/cache/save@v4
+              with:
+                  path: ./charm/*.charm
+                  key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
 
-      - name: Pack Rock
-        run: rockcraft pack
+            - name: Upload charm
+              # Always runs, whether the charm came from cache or was just built,
+              # since the deploy jobs unconditionally download this artifact.
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ vars.CHARM_NAME }}-charm
+                  path: ./charm/*.charm
+                  if-no-files-found: error
 
-      - name: Upload Rock
-        uses: actions/upload-artifact@v4
-        with:
-          name: partners-ubuntu-com-rock
-          path: ./*.rock
+    pack-rock:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        outputs:
+            image_url: ${{ steps.image.outputs.image_url }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-  publish-image:
-    runs-on: ubuntu-latest
-    needs: pack-rock
-    permissions:
-      contents: read
-      packages: write
-    outputs:
-      image_url: ${{ steps.set_image_url.outputs.image_url }}
-    steps:
-      - name: Get Rock
-        uses: actions/download-artifact@v4
-        with:
-          name: partners-ubuntu-com-rock
+            - name: Set image URL
+              id: image
+              env:
+                  IMAGE_NAME: ghcr.io/canonical/partners-ubuntu-com
+                  SHA: ${{ github.sha }}
+              run: |
+                  echo "image_url=${IMAGE_NAME}:${SHA::7}" >> "$GITHUB_OUTPUT"
 
-      - name: Set image URL
-        id: set_image_url
-        run: echo "image_url=ghcr.io/canonical/partners-ubuntu-com:$(date +%s)-${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+            - name: Check if image already exists in GHCR
+              id: check-image
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  IMAGE_URL: ${{ steps.image.outputs.image_url }}
+              run: |
+                  set -e
+                  sudo apt-get update -qq && sudo apt-get install -y skopeo
+                  if skopeo inspect --creds "canonical:${GH_TOKEN}" \
+                    "docker://${IMAGE_URL}" &>/dev/null; then
+                    echo "exists=true" >> "$GITHUB_OUTPUT"
+                    echo "::notice::Image ${IMAGE_URL} already exists in GHCR, skipping rock build."
+                  else
+                    echo "exists=false" >> "$GITHUB_OUTPUT"
+                  fi
 
-      - name: Push to GHCR
-        run: skopeo --insecure-policy copy oci-archive:$(ls *.rock) docker://${{ steps.set_image_url.outputs.image_url }} --dest-creds "canonical:${{ secrets.GITHUB_TOKEN }}"
+            - name: Setup LXD
+              if: steps.check-image.outputs.exists == 'false'
+              uses: canonical/setup-lxd@main
 
-  deploy-staging:
-    # If JAAS is reachable from GitHub-hosted runners you can use `ubuntu-latest`.
-    # Keep the self-hosted runner only if JAAS requires the corporate network.
-    runs-on:
-      [self-hosted, self-hosted-linux-amd64-noble-private-endpoint-medium]
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
-    needs: [pack-charm, publish-image]
-    env:
-      # Presence of these makes `juju login` non-interactive (no browser/SSO).
-      JUJU_CLIENT_ID: ${{ secrets.STG_JAAS_CLIENT_ID }}
-      JUJU_CLIENT_SECRET: ${{ secrets.STG_JAAS_CLIENT_SECRET }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+            - name: Setup Rockcraft
+              if: steps.check-image.outputs.exists == 'false'
+              run: sudo snap install rockcraft --classic --channel=latest/stable
 
-      - name: Install Juju
-        run: sudo snap install juju --channel=3.6/stable --classic
+            - name: Pack Rock
+              if: steps.check-image.outputs.exists == 'false'
+              run: sudo -E rockcraft pack --destructive-mode -v
 
-      - name: Download Charm Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: partners-ubuntu-com-charm
+            - name: Push rock to GHCR
+              if: steps.check-image.outputs.exists == 'false'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  IMAGE_URL: ${{ steps.image.outputs.image_url }}
+                  REPO_OWNER: ${{ github.repository_owner }}
+              run: |
+                  sudo rockcraft.skopeo --insecure-policy copy \
+                    oci-archive:"$(ls ./*.rock)" \
+                    docker://"${IMAGE_URL}" \
+                    --dest-creds "${REPO_OWNER}:${GH_TOKEN}"
 
-      - name: Log in to JAAS (service account)
-        # Non-interactive OAuth client-credentials login via the env vars above.
-        run: juju login "${{ vars.JAAS_URL }}" -c jaas
+    deploy-staging:
+        needs: [pack-charm, pack-rock]
+        if: github.ref_name == 'main'
+        runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
+        permissions:
+            contents: read
+        environment:
+            name: staging
+            url: ${{ vars.WEBSITE_URL }}
+        concurrency:
+            group: partners-ubuntu-com-deploy-staging
+            cancel-in-progress: false
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+            - name: Deploy
+              uses: ./.github/actions/deploy-ps7
+              with:
+                  image-url: ${{ needs.pack-rock.outputs.image_url }}
+                  app-name: ${{ vars.CHARM_NAME }}
+                  controller-name: ${{ vars.JUJU_CONTROLLER_NAME_PS7 }}
+                  controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS_PS7 }}
+                  model-name: ${{ vars.JUJU_MODEL_NAME_PS7 }}
+                  juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
+                  juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
+                  juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
 
-      - name: Deploy Application to staging
-        run: |
-          juju switch "jaas:${{ vars.STAGING_MODEL }}"
-          CHARM=$(ls ./*.charm)
-          juju refresh partners-ubuntu-com --path "$CHARM" --resource django-app-image=${{ needs.publish-image.outputs.image_url }}
-          juju wait-for application partners-ubuntu-com --query='name=="partners-ubuntu-com" && (status=="active" || status=="idle")'
-
-  deploy-production:
-    runs-on: [self-hosted, self-hosted-linux-amd64-noble-private-endpoint-medium]
-    if: |
-      always() &&
-      needs.pack-charm.result == 'success' &&
-      needs.publish-image.result == 'success' &&
-      (needs.deploy-staging.result == 'success' || needs.deploy-staging.result == 'skipped') &&
-      (
-        github.event_name == 'push' ||
-        (
-          github.event_name == 'workflow_dispatch' &&
-          github.event.inputs.environment == 'production' &&
-          github.event.inputs.branch == 'main'
-        )
-      )
-    needs: [pack-charm, publish-image, deploy-staging]
-    env:
-      JUJU_CLIENT_ID: ${{ secrets.PROD_JAAS_CLIENT_ID }}
-      JUJU_CLIENT_SECRET: ${{ secrets.PROD_JAAS_CLIENT_SECRET }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Install Juju
-        run: sudo snap install juju --channel=3.6/stable --classic
-
-      - name: Download Charm Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: partners-ubuntu-com-charm
-
-      - name: Log in to JAAS (service account)
-        run: juju login "${{ vars.JAAS_URL }}" -c jaas
-
-      - name: Deploy Application to production
-        run: |
-          juju switch "jaas:${{ vars.PROD_MODEL }}"
-          CHARM=$(ls ./*.charm)
-          juju refresh partners-ubuntu-com --path "$CHARM" --resource django-app-image=${{ needs.publish-image.outputs.image_url }}
-          juju wait-for application partners-ubuntu-com --query='name=="partners-ubuntu-com" && (status=="active" || status=="idle")'
+    deploy-production:
+        needs: [pack-rock, deploy-staging]
+        if: github.ref_name == 'main'
+        runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
+        permissions:
+            contents: read
+        environment:
+            name: production
+            url: ${{ vars.WEBSITE_URL }}
+        concurrency:
+            group: partners-ubuntu-com-deploy-production
+            cancel-in-progress: false
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+            - name: Deploy
+              uses: ./.github/actions/deploy-ps7
+              with:
+                  image-url: ${{ needs.pack-rock.outputs.image_url }}
+                  app-name: ${{ vars.CHARM_NAME }}
+                  controller-name: ${{ vars.JUJU_CONTROLLER_NAME_PS7 }}
+                  controller-address: ${{ vars.JUJU_CONTROLLER_ADDRESS_PS7 }}
+                  model-name: ${{ vars.JUJU_MODEL_NAME_PS7 }}
+                  juju-version: ${{ vars.JUJU_VERSION || '3/stable' }}
+                  juju-client-id: ${{ secrets.JUJU_CLIENT_ID }}
+                  juju-client-secret: ${{ secrets.JUJU_CLIENT_SECRET }}
