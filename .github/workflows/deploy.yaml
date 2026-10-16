@@ -38,7 +38,7 @@ jobs:
             contents: read
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             - name: Setup Charmcraft
               run: sudo snap install charmcraft --classic --channel=latest/stable
@@ -56,7 +56,7 @@ jobs:
 
             - name: Restore charm cache
               id: charm-cache
-              uses: actions/cache/restore@v4
+              uses: actions/cache/restore@v6
               with:
                   path: ./charm/*.charm
                   key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
@@ -73,7 +73,7 @@ jobs:
 
             - name: Save charm cache
               if: steps.charm-cache.outputs.cache-hit != 'true'
-              uses: actions/cache/save@v4
+              uses: actions/cache/save@v6
               with:
                   path: ./charm/*.charm
                   key: charm-${{ steps.charmcraft-version.outputs.version }}-${{ steps.week.outputs.value }}-${{ hashFiles('charm/**', '!charm/*.charm') }}
@@ -81,7 +81,7 @@ jobs:
             - name: Upload charm
               # Always runs, whether the charm came from cache or was just built,
               # since the deploy jobs unconditionally download this artifact.
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: ${{ vars.CHARM_NAME }}-charm
                   path: ./charm/*.charm
@@ -96,7 +96,7 @@ jobs:
             image_url: ${{ steps.image.outputs.image_url }}
         steps:
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             - name: Set image URL
               id: image
@@ -160,7 +160,7 @@ jobs:
             cancel-in-progress: false
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   persist-credentials: false
             - name: Deploy
@@ -189,7 +189,7 @@ jobs:
             cancel-in-progress: false
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
               with:
                   persist-credentials: false
             - name: Deploy
