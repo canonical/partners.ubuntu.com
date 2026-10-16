@@ -1,0 +1,18 @@
+# charmcraft's only built-in ignores are .git/.svn/.hg/.bzr/.tox, /build/,
+# /revision, /venv and .jujuignore itself — it does NOT read .gitignore.
+# Anything else left in this directory is packed into the .charm verbatim.
+
+# Charmhub publishing credentials — must never ship inside a charm
+*.auth
+charmhub-creds.auth
+
+# Locally built charms (would nest a whole charm inside the new one)
+*.charm
+
+# Local tooling / caches
+.gitignore
+.coverage
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]

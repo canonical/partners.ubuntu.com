@@ -1,0 +1,4 @@
+# charm/ vendors third-party interface libraries fetched by
+# `charmcraft fetch-libs`; don't lint them for inclusive naming.
+ignore_files:
+  - charm/**

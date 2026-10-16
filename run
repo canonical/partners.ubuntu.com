@@ -193,8 +193,8 @@ start_django_db () {
             sleep $(( wait_time++ ))
         done
 
-        # Provision database
-        run_as_user "" python3 manage.py migrate
+        # Provision database (Django project is nested under ./cms)
+        run_as_user "" bash -c "cd cms && python3 manage.py migrate"
     fi
 }
 

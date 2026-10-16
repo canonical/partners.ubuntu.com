@@ -1,0 +1,191 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment to deploy to (staging or production)'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      branch:
+        description: 'Branch to deploy (production always requires main)'
+        required: false
+        default: 'main'
+        type: string
+
+concurrency:
+  group: partners-ubuntu-com-deploy
+  cancel-in-progress: false
+
+env:
+  CHARMCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+  ROCKCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: true
+
+# ---------------------------------------------------------------------------
+# JAAS auth (replaces the old bastion + Vault flow):
+#   - Access is via a JAAS "service account" using OAuth client-credentials.
+#   - CI is non-interactive: setting JUJU_CLIENT_ID / JUJU_CLIENT_SECRET makes
+#     `juju login` skip the browser/SSO and authenticate as the service account.
+#   - Repo config to add:
+#       secrets:  STG_JAAS_CLIENT_ID, STG_JAAS_CLIENT_SECRET,
+#                 PROD_JAAS_CLIENT_ID, PROD_JAAS_CLIENT_SECRET
+#       vars:     JAAS_URL           (the JIMM controller hostname)
+#                 STAGING_MODEL      (e.g. <owner>/stg-staging-partners-ubuntu-com)
+#                 PROD_MODEL         (e.g. <owner>/prod-partners-ubuntu-com)
+#   - One-time: a JAAS admin grants each service account access to its model:
+#       juju grant <client-id>@serviceaccount write <model>
+# ---------------------------------------------------------------------------
+
+jobs:
+  pack-charm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
+
+      - name: Setup LXD
+        uses: canonical/setup-lxd@main
+
+      - name: Setup Charmcraft
+        # Pin a channel/revision for reproducibility — an auto-refresh to a newer
+        # charmcraft can change which bases the django-framework extension accepts.
+        run: sudo snap install charmcraft --classic --channel=latest/stable
+
+      - name: Pack charm
+        run: |
+          cd charm
+          charmcraft pack -v
+
+      - name: Upload charm
+        uses: actions/upload-artifact@v4
+        with:
+          name: partners-ubuntu-com-charm
+          path: ./charm/*.charm
+
+  pack-rock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
+
+      - name: Setup LXD
+        uses: canonical/setup-lxd@main
+
+      - name: Setup Rockcraft
+        run: sudo snap install rockcraft --classic --channel=latest/stable
+
+      - name: Pack Rock
+        run: rockcraft pack
+
+      - name: Upload Rock
+        uses: actions/upload-artifact@v4
+        with:
+          name: partners-ubuntu-com-rock
+          path: ./*.rock
+
+  publish-image:
+    runs-on: ubuntu-latest
+    needs: pack-rock
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_url: ${{ steps.set_image_url.outputs.image_url }}
+    steps:
+      - name: Get Rock
+        uses: actions/download-artifact@v4
+        with:
+          name: partners-ubuntu-com-rock
+
+      - name: Set image URL
+        id: set_image_url
+        run: echo "image_url=ghcr.io/canonical/partners-ubuntu-com:$(date +%s)-${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+
+      - name: Push to GHCR
+        run: skopeo --insecure-policy copy oci-archive:$(ls *.rock) docker://${{ steps.set_image_url.outputs.image_url }} --dest-creds "canonical:${{ secrets.GITHUB_TOKEN }}"
+
+  deploy-staging:
+    # If JAAS is reachable from GitHub-hosted runners you can use `ubuntu-latest`.
+    # Keep the self-hosted runner only if JAAS requires the corporate network.
+    runs-on:
+      [self-hosted, self-hosted-linux-amd64-noble-private-endpoint-medium]
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+    needs: [pack-charm, publish-image]
+    env:
+      # Presence of these makes `juju login` non-interactive (no browser/SSO).
+      JUJU_CLIENT_ID: ${{ secrets.STG_JAAS_CLIENT_ID }}
+      JUJU_CLIENT_SECRET: ${{ secrets.STG_JAAS_CLIENT_SECRET }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Juju
+        run: sudo snap install juju --channel=3.6/stable --classic
+
+      - name: Download Charm Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: partners-ubuntu-com-charm
+
+      - name: Log in to JAAS (service account)
+        # Non-interactive OAuth client-credentials login via the env vars above.
+        run: juju login "${{ vars.JAAS_URL }}" -c jaas
+
+      - name: Deploy Application to staging
+        run: |
+          juju switch "jaas:${{ vars.STAGING_MODEL }}"
+          CHARM=$(ls ./*.charm)
+          juju refresh partners-ubuntu-com --path "$CHARM" --resource django-app-image=${{ needs.publish-image.outputs.image_url }}
+          juju wait-for application partners-ubuntu-com --query='name=="partners-ubuntu-com" && (status=="active" || status=="idle")'
+
+  deploy-production:
+    runs-on: [self-hosted, self-hosted-linux-amd64-noble-private-endpoint-medium]
+    if: |
+      always() &&
+      needs.pack-charm.result == 'success' &&
+      needs.publish-image.result == 'success' &&
+      (needs.deploy-staging.result == 'success' || needs.deploy-staging.result == 'skipped') &&
+      (
+        github.event_name == 'push' ||
+        (
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.environment == 'production' &&
+          github.event.inputs.branch == 'main'
+        )
+      )
+    needs: [pack-charm, publish-image, deploy-staging]
+    env:
+      JUJU_CLIENT_ID: ${{ secrets.PROD_JAAS_CLIENT_ID }}
+      JUJU_CLIENT_SECRET: ${{ secrets.PROD_JAAS_CLIENT_SECRET }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Juju
+        run: sudo snap install juju --channel=3.6/stable --classic
+
+      - name: Download Charm Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: partners-ubuntu-com-charm
+
+      - name: Log in to JAAS (service account)
+        run: juju login "${{ vars.JAAS_URL }}" -c jaas
+
+      - name: Deploy Application to production
+        run: |
+          juju switch "jaas:${{ vars.PROD_MODEL }}"
+          CHARM=$(ls ./*.charm)
+          juju refresh partners-ubuntu-com --path "$CHARM" --resource django-app-image=${{ needs.publish-image.outputs.image_url }}
+          juju wait-for application partners-ubuntu-com --query='name=="partners-ubuntu-com" && (status=="active" || status=="idle")'

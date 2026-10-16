@@ -31,6 +31,8 @@ test-redirects.pl
 
 # Testing
 tests
+cms/tests
+cms/development.sqlite
 .sass-lint.yml
 .circleci
 

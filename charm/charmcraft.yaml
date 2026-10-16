@@ -1,0 +1,38 @@
+# This file configures Charmcraft.
+# See https://juju.is/docs/sdk/charmcraft-config for guidance.
+# For questions or help, visit https://matrix.to/#/#12-factor-charms:ubuntu.com 
+
+name: partners-ubuntu-com
+
+type: charm
+
+base: ubuntu@22.04
+
+# the platforms this charm should be built on and run on.
+# you can check your architecture with `dpkg --print-architecture`
+platforms:
+  amd64:
+  # arm64:
+  # ppc64el:
+  # s390x:
+
+# (Required)
+summary: Admin area and API for managing Canonical Partners data
+
+# (Required)
+description: |
+  This charm deploys the Django application behind partners.ubuntu.com. It
+  provides an admin area for managing Partners data and a public API
+  endpoint for serving partner information as JSON.
+
+extensions:
+  - django-framework
+
+requires:
+  postgresql:
+    interface: postgresql_client
+    optional: false
+    limit: 1
+# Other integrations (redis, s3, saml, smtp, tracing, http-proxy, ...) can be
+# added under `requires:` — see the django-framework extension reference.
+
