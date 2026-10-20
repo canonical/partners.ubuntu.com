@@ -85,9 +85,17 @@ parts:
       - PARTS_PYTHON_INTERPRETER: python3.12
     override-build: |
       craftctl default
-      PYBIN="$(ls "${CRAFT_PART_INSTALL}"/bin/python3* | head -1)"
+      # `craftctl default` dismantles the venv (removes pyvenv.cfg), so the
+      # interpreter no longer auto-finds the installed packages. Point
+      # PYTHONPATH at the staged site-packages (locate it via the django pkg)
+      # so collectstatic can import Django and bake STATIC_ROOT into the image.
+      DJANGO_PKG="$(find "${CRAFT_PART_INSTALL}" -type d -name django -path '*/site-packages/*' | head -1)"
+      SITE_PACKAGES="$(dirname "${DJANGO_PKG}")"
+      PYBIN="$(ls "${CRAFT_PART_INSTALL}"/bin/python3* 2>/dev/null | head -1)"
+      [ -x "${PYBIN}" ] || PYBIN=python3
       mkdir -p "${CRAFT_PART_INSTALL}/django/app/static"
       SECRET_KEY=build-only \
       DATABASE_URL=sqlite:///tmp/collectstatic-build.sqlite3 \
       DJANGO_STATIC_ROOT="${CRAFT_PART_INSTALL}/django/app/static" \
+      PYTHONPATH="${SITE_PACKAGES}" \
         "${PYBIN}" "${CRAFT_PART_SRC}/cms/manage.py" collectstatic --noinput --clear
