@@ -5,8 +5,6 @@ on:
     push:
         branches:
             - main
-            # TEMP: test the staging deploy from this branch; revert before merge.
-            - WD-37663/fix-admin-static
 
 concurrency:
     group: partners-ubuntu-com-deploy-${{ github.ref }}
@@ -150,8 +148,7 @@ jobs:
 
     deploy-staging:
         needs: [pack-charm, pack-rock]
-        # TEMP: WD-37663/fix-admin-static added to test staging from this branch; revert before merge.
-        if: github.ref_name == 'main' || github.ref_name == 'WD-37663/fix-admin-static'
+        if: github.ref_name == 'main'
         runs-on: [self-hosted-linux-amd64-noble-private-endpoint-medium]
         permissions:
             contents: read
