@@ -60,3 +60,42 @@ parts:
       - -django/app/development.sqlite
       - -django/app/django-error.log
       - -django/app/tests
+      # Drop the stale, partial `static/` checked into the repo (old admin
+      # assets). The dependencies part regenerates a complete, current
+      # STATIC_ROOT with collectstatic, so keeping this would only collide.
+      - -django/app/static
+
+  # Re-declaration of the extension's dependencies part (verbatim from
+  # `rockcraft expand-extensions`) plus an override-build step that bakes
+  # Django's static files into the image. collectstatic runs here, while the
+  # venv is freshly built and usable in place, so WhiteNoise can serve
+  # /django/app/static at runtime with NO service-command override (overriding
+  # the `django` service makes the charm go `blocked`). Build-time failures
+  # fail the pack, never the running workload.
+  django-framework/dependencies:
+    plugin: python
+    source: .
+    stage-packages:
+      - python3.12-venv_ensurepip
+    python-packages:
+      - gunicorn~=23.0
+    python-requirements:
+      - requirements.txt
+    build-environment:
+      - PARTS_PYTHON_INTERPRETER: python3.12
+    override-build: |
+      craftctl default
+      # `craftctl default` dismantles the venv (removes pyvenv.cfg), so the
+      # interpreter no longer auto-finds the installed packages. Point
+      # PYTHONPATH at the staged site-packages (locate it via the django pkg)
+      # so collectstatic can import Django and bake STATIC_ROOT into the image.
+      DJANGO_PKG="$(find "${CRAFT_PART_INSTALL}" -type d -name django -path '*/site-packages/*' | head -1)"
+      SITE_PACKAGES="$(dirname "${DJANGO_PKG}")"
+      PYBIN="$(ls "${CRAFT_PART_INSTALL}"/bin/python3* 2>/dev/null | head -1)"
+      [ -x "${PYBIN}" ] || PYBIN=python3
+      mkdir -p "${CRAFT_PART_INSTALL}/django/app/static"
+      SECRET_KEY=build-only \
+      DATABASE_URL=sqlite:///tmp/collectstatic-build.sqlite3 \
+      DJANGO_STATIC_ROOT="${CRAFT_PART_INSTALL}/django/app/static" \
+      PYTHONPATH="${SITE_PACKAGES}" \
+        "${PYBIN}" "${CRAFT_PART_SRC}/cms/manage.py" collectstatic --noinput --clear
