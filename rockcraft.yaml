@@ -60,3 +60,22 @@ parts:
       - -django/app/development.sqlite
       - -django/app/django-error.log
       - -django/app/tests
+      # Stale repo-checked admin assets; collectstatic regenerates these (below).
+      - -django/app/static
+
+  # Bake Django static into the image for WhiteNoise. Done at build (not a
+  # service-command override, which sends the charm to `blocked`).
+  django-framework/dependencies:
+    override-build: |
+      craftctl default
+      # craftctl default dismantles the venv; point PYTHONPATH at the staged site-packages so collectstatic can import Django.
+      DJANGO_PKG="$(find "${CRAFT_PART_INSTALL}" -type d -name django -path '*/site-packages/*' | head -1)"
+      SITE_PACKAGES="$(dirname "${DJANGO_PKG}")"
+      PYBIN="$(ls "${CRAFT_PART_INSTALL}"/bin/python3* 2>/dev/null | head -1)"
+      [ -x "${PYBIN}" ] || PYBIN=python3
+      mkdir -p "${CRAFT_PART_INSTALL}/django/app/static"
+      SECRET_KEY=build-only \
+      DATABASE_URL=sqlite:///tmp/collectstatic-build.sqlite3 \
+      DJANGO_STATIC_ROOT="${CRAFT_PART_INSTALL}/django/app/static" \
+      PYTHONPATH="${SITE_PACKAGES}" \
+        "${PYBIN}" "${CRAFT_PART_SRC}/cms/manage.py" collectstatic --noinput --clear
