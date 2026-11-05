@@ -100,9 +100,7 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = "/static/"
-# Default to BASE_DIR/static; the rock overrides DJANGO_STATIC_ROOT at BUILD
-# time so `collectstatic` writes into the image. At runtime it is unset, so
-# WhiteNoise serves the baked files from BASE_DIR/static (/django/app/static).
+# DJANGO_STATIC_ROOT is set only at rock build time (collectstatic target); unset at runtime.
 STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT") or (BASE_DIR + "/static")
 STATICFILES_FINDERS = [
     "django_static_root_finder.finders.StaticRootFinder",
